@@ -1,0 +1,137 @@
+ 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    height: 100vh;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #efefef;
+}
+.login-page-navbar{
+    background: linear-gradient(90deg, rgba(118, 75, 162, 0.95) 0%, rgba(102, 126, 234, 0.95) 100%);
+    overflow: hidden;
+    border-radius: 0 0 20px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 14%;
+}
+.login-page-navbar .logo{
+    margin-left: 5%;
+}
+.login-page-container{
+    width: 100%;
+    padding: 25px 30px;
+    margin-top: 8%;
+    border-radius: 5px;
+    height: 90%;
+    background-image: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url("./public/img/login-registration/farmer.jpg");
+    background-repeat:no-repeat;
+    background-size:contain;
+    background-position:center;
+}
+.login-page-container .form-content{
+    width: 60%;
+    background: linear-gradient(90deg, rgba(11, 171, 100, 0.7) 0%, rgba(59, 183, 143, 0.7) 100%);
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-top: 8%;
+    text-align: center;
+}
+.login-page-container .form-content .input-box .error span{
+    color: red;
+    font-size: 12px;
+}
+.login-page-container .form-content .input-box #invalid{
+    border: 2px solid red;
+}
+.login-page-container .form-content h1{
+    font-size: 20px;
+    padding-top: 10px;
+    font-weight: 500;
+}
+.login-page-container .form-content a{
+    text-decoration: none;
+    display: block;
+    margin-top: 10px;
+}
+.login-page-container .form-content .input-box input{
+    height: 45px;
+    width:60%;
+    margin: 10px 0 10px 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+.login-page-container .form-content .button{
+    height: 45px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.login-page-container .form-content .button input{
+    height: 100%;
+    width: 30%;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #00A778;
+    border-radius: 10px;
+    background: none;
+}
+.login-page-container .form-content .button input:hover{
+    background: #00a778;
+}
+@media(max-width: 459px){
+    .login-page-container .form-content{
+        width: 90%;
+        margin-top: 75px;
+    }
+}
+@media(max-width: 420px){
+    .login-page-container .form-content{
+        width: 100%;
+        margin-top: 75px;
+    }
+    .login-page-container .form-content .input-box input{
+        font-size: 14px;
+        height: 35px;
+    }
+    .login-page-container .form-content a{
+        font-size: 13px;
+    }
+    .login-page-container .form-content .button input{
+        font-size: 15px;
+        width: 50%;
+    }
+}
+.allert{
+    background-color: lightgreen;
+    border: 2px solid green;
+    margin: 0 auto;
+    width: 400px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    border-radius: 10px;
+}
+.allert p{
+    font-size: 15px;
+}
+
+

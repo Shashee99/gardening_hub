@@ -1,0 +1,27 @@
+<?php
+
+    class Customer
+    {
+        private $db;
+
+        public function __construct()
+        {
+            $this->db = new Database;
+        }
+
+        public function getCustomerDetails($cus_id)
+        {
+            $sql = "SELECT * FROM customer WHERE customer_id = :cus_id LIMIT 1";
+            $this->db->query($sql);
+            $this->db->bind(':cus_id', $cus_id);
+            $row = $this->db->singleRecord($sql);
+            // print_r($row);
+            // die();
+            return $row;
+        }
+        public function get_all_customers(){
+            $this -> db ->query('SELECT * FROM customer');
+            $dataset = $this->db->resultSet();
+            return $dataset;
+        }
+    }

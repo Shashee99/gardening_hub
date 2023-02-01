@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #3BB78F ;
+    position: relative;
+    display: flex;
+}
+
+#side .items li:nth-child(6) {
+    background-color: #3BB78F;
+    border-radius: 0 50px 50px 0;
+    width: 90%;
+}
+.rest{
+    background-color: rgba(239, 239, 239, 0.65);
+    margin-top: 80px;
+    margin-left: 22%;
+    max-height: 100%;
+    width: 78%;
+    border-radius: 25px 0 0 0;
+    overflow-y: scroll;
+}
+.options{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.options .btn{
+    width: 300px;
+    height: 55px;
+    background-color: #fff;
+    text-align: center;
+    padding-top: 10px;
+    border-radius: 10px;
+    /* margin: 0 50px 0 0; */
+}
+.options .selectcat select{
+    width: 300px;
+}
+.options .btn a{
+    text-decoration: none;
+}
+#btn1{
+    border: #00a778 solid 5px;  
+}
+#btn2{
+    padding-top: 15px;
+}
+#btn1 a{
+    color: #00a778;
+    font-size: 16px;
+} 
+#btn2 a{
+    color: #000;
+    font-size: 16px;
+}
+#btn2:hover{
+    transform: scale(0.99);
+    background: #00a778;
+}
+#btn2:hover a{
+    color: white;
+}
+select{
+    padding: 10px 35px;
+    font-size: 18px;
+    color: #000;
+    height: 55px;
+    /* border: thin solid #a47c34; */
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+select:focus{
+    outline: none;
+}
+.harvest .part1{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.harvest .part1 img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+.harvest .part1 .date{
+    margin-top: 20px;
+}
+.harvest{
+    width: 90%;
+    margin: 20px auto 0 auto ;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.harvest h3{
+    text-align: center;
+    margin-bottom: 10px;
+}
+#images{
+    width: 90%;
+    position: relative;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+figure{
+    width: 20%;
+}
+img{
+    width: 100%;
+}
+figcaption{
+    text-align: center;
+    font-size: 2vmin;
+    margin-top: 0.5vmin;
+}
+.images{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width:80%;
+    height: 150px;
+    background-color: #efefef;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.images img{
+    width: 120px;
+    max-height: 50PX;
+    border-radius: 5px;
+    margin: 0 auto 0 auto;
+}
+.content p{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.add-harvest-card .last{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+.last{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.last .delete{
+    margin: auto auto auto auto;
+}
+input[type="text"]::placeholder {
+                 
+    /* Firefox, Chrome, Opera */
+    text-align: center;
+    color: #fff;
+}
+textarea::placeholder {
+    color:black
+}
+form .input-box{
+    display: flex;
+    flex-direction: column;
+}
+form .input-box input{
+    height: 40px;
+    width: 90%;
+    font-size: 14px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    background-color: #efefef;
+    border: none;
+    margin-top: 20px;
+    text-align: center;
+    margin-left: 5%;
+    
+    
+}
+form #title:focus, form textarea:focus{
+    outline: none;
+}
+form #title{
+    background: #00A778;
+    color: #fff;
+    border-radius: 50px;
+}
+form .input-box .title #invalid{
+    background: #00A778;
+    color: #fff;
+    border-radius: 50px;
+}
+
+.add-harvest-card .harvest .input-box select{
+    height: 40px;
+    width: 50%;
+    font-size: 14px;
+    border-radius: 10px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+    background-color: #efefef;
+    border: none;
+    margin-top: 20px;
+    margin-left: 5%;
+}
+    
+/* input[type="file"]{
+    display: none;
+} */
+form .input-box textarea{
+    resize: none;
+    height: 75px;
+    width: 90%;
+    font-size: 14px;
+    border-radius: 10px;
+    padding: 10px 10px 0 20px;
+    transition: all 0.3s ease;
+    border: none;
+    margin-top: 20px;
+    background: #efefef;
+    margin-left: 5%;
+    
+}
+.photos{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.photos .items{
+    margin-top: 10px;
+    width: 90%;
+    height: 45px;
+    background-color: #efefef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: 20px auto 0 auto;
+}
+input[type ='file']{
+}
+label{
+    cursor: pointer;
+}  
+.btns{
+    margin-left: 5%;
+}
+.btns .button{
+    height: 45px;
+    margin-top: 20px;
+}
+.btns .button input{
+    height: 100%;
+    width: 200px;
+    background-color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #00A778;
+    border-radius: 10px;
+    background: none;
+}
+#red input{
+    border: 2px solid red;
+}
+.button input:hover{
+    transform: scale(0.99);
+    background: #00a778;
+    color: #fff;
+}
+#red input:hover{
+    transform: scale(0.99);
+    background: red;
+    color: #fff;
+}
+.last .delete_btn{  
+    margin: 0 auto;   
+}
+.last .delete_btn input{
+    height: 40px;
+    width: 100px;
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid #00A778;
+    border-radius: 10px;
+    background: none;
+    border: 2px solid red;
+}
+.last .delete_btn input:hover{
+    transform: scale(0.95);
+    background: red;
+    color: #fff;
+}
+.input-box #invalid, .photos #invalid{
+    border: 1px solid red;
+}
+.input-box .error span, .photos .error span{
+    color: red;
+    font-size: 12px;
+    
+}
+.input-box .error, .photos .error{
+    margin-left: 6%;
+}
+.empty_record{
+    margin-top: 60px;
+}
+.empty_record h2{
+    text-align: center;
+    font-weight: 500;
+}
+

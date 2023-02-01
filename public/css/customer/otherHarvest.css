@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    widows: 100%;
+    background-color: #3BB78F ;
+    position: relative;
+    display: flex;
+}
+
+#side .items li:nth-child(6) {
+    background-color: #3BB78F;
+    border-radius: 0 50px 50px 0;
+    width: 90%;
+}
+#rest{
+    background-color: rgba(239, 239, 239, 0.65);
+    margin-top: 80px;
+    margin-left: 22%;
+    max-height: 100%;
+    width: 78%;
+    border-radius: 25px 0 0 0;
+    overflow-y: scroll;
+}
+.options{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.options .btn{
+    width: 300px;
+    height: 55px;
+    background-color: #fff;
+    text-align: center;
+    padding-top: 10px;
+    border-radius: 10px;
+}
+.options .selectcat select{
+    width: 300px;
+}
+.options .btn a{
+    text-decoration: none;
+}
+#btn2{
+    border: #00a778 solid 5px;
+}
+#btn1{
+    padding-top: 15px;
+}
+#btn2 a{
+    color: #00a778;
+    font-size: 16px;
+} 
+#btn1 a{
+    color: #000;
+    font-size: 16px;
+}
+#btn1:hover{
+    transform: scale(0.99);
+    background: #00a778;
+}
+#btn1:hover a{
+    color: white;
+}
+select{
+    padding: 10px 35px;
+    font-size: 18px;
+    color: #000;
+    height: 55px;
+    /* border: thin solid #a47c34; */
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+select:focus{
+    outline: none;
+}
+.add{
+    width: 600px;
+    height: 80px;
+    background-color: #efefef;
+    margin: 30px auto 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+.add .boarder{
+    width: 580px;
+    height: 60px;
+    border: #00a778 dashed 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.add .boarder h2{
+    color: #00a778;
+    font-size: 18px;
+    font-weight: 500;
+}
+.harvest .part1{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.harvest .part1 img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+.harvest .part1 .date{
+    margin-top: 20px;
+}
+.harvest{
+    width: 90%;
+    margin: 20px auto 0 auto ;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.harvest h3{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.images{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width:80%;
+    height: 120px;
+    background-color: #efefef;
+    border-radius: 10px;
+}
+.images img{
+    width: 120px;
+    border-radius: 5px;
+    margin: 0 auto 0 auto;
+}
+.content p{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.last{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.date p{
+    font-size: 14px;
+}
+.empty_record{
+    margin-top: 60px;
+}
+.empty_record h2{
+    text-align: center;
+    font-weight: 500;
+}

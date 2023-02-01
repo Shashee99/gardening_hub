@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    widows: 100%;
+    background-color: #3BB78F ;
+    position: relative;
+    display: flex;
+}
+
+#side .items li:nth-child(1) {
+    background-color: #3BB78F;
+    border-radius: 0 50px 50px 0;
+    width: 90%;
+}
+#rest{
+    background-color: #efefef;
+    margin-top: 80px;
+    margin-left: 22%;
+    max-height: 100%;
+    width: 78%;
+    border-radius: 25px 0 0 0;
+    overflow-y: scroll;
+}
+.order-details{
+    padding: 30px 30px 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.order-details .valbox{
+    width: 22%;
+    height: 100px;
+    padding: 16px 20px;
+    border-radius: 10px;
+    display: flex;
+    background-color: #efefef;
+    box-shadow: 0 10px 20px -10px #00a778;
+}
+.order-details .valbox img{
+    width: 50px;
+    margin-right: 20px;
+}
+.order-details .valbox h3{
+    font-size: 18px;
+    font-weight: 600;
+}
+.order-details .valbox span{
+    font-size: 18px;
+}
+h2{
+    margin: 30px 0 -10px 30px;
+    font-weight: 400;
+    font-size: 18px;
+}
