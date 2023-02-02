@@ -408,7 +408,7 @@ class Users extends Controller
                 if ($logged_user) {
 
                     if ($logged_user->type === 'customer' ) {
-                        if($logged_user->user_state === 0){
+                        if($logged_user->user_state === 1){
                             $customer_details = $this->customerModel->getCustomerDetails($logged_user->user_id);
                             $this->creatCusSession($logged_user, $customer_details);
                             redirect('customers/viewHomePage');
