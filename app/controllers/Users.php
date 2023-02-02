@@ -459,6 +459,7 @@ class Users extends Controller
         $_SESSION['cus_id'] = $data->user_id;
         $_SESSION['cus_name'] = $customer_details->name;
         $_SESSION['cus_photo_path'] = $customer_details->photo;
+        $_SESSION['customer'] = 1;
 
     }
 
@@ -469,8 +470,7 @@ class Users extends Controller
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_name'] = $user->user_name;
         $_SESSION['user_type'] = $user->usertype;
-
-
+        $_SESSION['admin'] = 1;
         redirect('admins/home');
 
     }
@@ -479,18 +479,41 @@ class Users extends Controller
     {
         $_SESSION['user_id'] = $user->user_id;
         $_SESSION['user_email'] = $user->email;
+        $_SESSION['seller'] = 1;
         redirect('sellers/dashboard');
     }
 
 
     public function logout()
     {
-        unset($_SESSION['cus_id']);
-        unset($_SESSION['cus_name']);
-        unset($_SESSION['cus_photo_path']);
 
-        session_destroy();
-        redirect('users/login');
+        if($_SESSION['customer'] == 1){
+            unset($_SESSION['cus_id']);
+            unset($_SESSION['cus_name']);
+            unset($_SESSION['cus_photo_path']);
+            unset($_SESSION['customer']);
+            session_destroy();
+            redirect('users/login');
+        }
+        if($_SESSION['admin'] == 1){
+            unset($_SESSION['admin']);
+            unset($_SESSION['user_id']);
+            unset($_SESSION['user_email']);
+            unset($_SESSION['user_name']);
+            unset($_SESSION['user_type']);
+            session_destroy();
+            redirect('users/login');
+        }
+        if($_SESSION['seller'] ==1){
+            unset($_SESSION['user_id']);
+            unset($_SESSION['user_email']);
+            unset($_SESSION['seller']) ;
+            session_destroy();
+            redirect('users/login');
+
+        }
+
+
 
     }
 

@@ -4,6 +4,9 @@ class Sellers extends Controller{
     private $categoryModel;
     public function __construct()
     {
+        if (!isSelleerLoggedIn()) {
+            redirect('users/login');
+        }
         $this->sellerModel = $this->model('Seller');
         $this -> categoryModel = $this ->model('ProductCategory');
 
