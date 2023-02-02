@@ -67,7 +67,7 @@
                 <li><a href="<?php echo URLROOT; ?>pages/about" class="an">About</a></li>
                 <li><a href="<?php echo URLROOT; ?>pages/contactus" class="an">Contact Us</a></li>
                 <?php if(isset($_SESSION['user_id'])) : ?>
-                <li><li><a href="<?php echo URLROOT; ?>users/logout" class="btn">Logout</a></li></li>
+                <li><li><a href="<?php echo URLROOT; ?>/users/logout" class="btn">Logout</a></li></li>
                 <?php endif; ?>
             </ul>
         </div>
