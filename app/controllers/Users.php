@@ -412,23 +412,45 @@ class Users extends Controller
                             $customer_details = $this->customerModel->getCustomerDetails($logged_user->user_id);
                             $this->creatCusSession($logged_user, $customer_details);
                             redirect('customers/viewHomePage');
-                        }else{
-                            $data['u_name_err'] = 'You are restricted to login';
+                        }
+                        elseif($logged_user->user_state === 2)
+                        {
+                            $data['u_name_err'] = 'Your user account has been deleted';
                             $this->view('users/login',$data);
                         }
 
 
                     } elseif ($logged_user->type === 'admin') {
-                        $this->createUserSession($logged_user);
-                        if($logged_user->user_state === 0){
+                        // $this->createUserSession($logged_user);
+                        if($logged_user->user_state === 1){
                             $this->createUserSession($logged_user);
-                        }else{
-                            $data['u_name_err'] = 'You are restricted to login';
+                        }
+                        elseif($logged_user->user_state === 2)
+                        {
+                            $data['u_name_err'] = 'Your user account has been deleted';
+                            $this->view('users/login',$data);
+                        }
+                        else
+                        {
+                            $data['u_name_err'] = 'Your registarion is pending';
                             $this->view('users/login',$data);
                         }
 
                     } elseif ($logged_user->type === 'seller') {
-                        $this->createSellerSession($logged_user);
+                        if($logged_user->user_state === 1 )
+                        {
+                            $this->createSellerSession($logged_user);
+                        }
+                        elseif($logged_user->user_state === 2)
+                        {
+                            $data['u_name_err'] = 'Your user account has been deleted';
+                            $this->view('users/login',$data);
+                        }
+                        else
+                        {
+                            $data['u_name_err'] = 'Your registarion is pending';
+                            $this->view('users/login',$data);
+                        }
                     }
 
 

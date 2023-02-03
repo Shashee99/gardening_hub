@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="input-box">
-                    <input type="password" id='<?php echo (!empty($data['pass_err'])) ? 'invalid' : ''; ?>' name="pass" value="<?php echo $data['pass']; ?>" placeholder="Password" >
+                    <input type="text" id='<?php echo (!empty($data['pass_err'])) ? 'invalid' : ''; ?>' name="pass" value="<?php echo $data['pass']; ?>" placeholder="Password" >
                     <i id="pass-status" class="uil uil-eye-slash " onclick="viewPassword()"></i>
                     <div class="error">
                         <span><?php echo $data['pass_err']; ?></span>
