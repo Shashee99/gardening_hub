@@ -509,7 +509,7 @@ class Users extends Controller
     public function logout()
     {
 
-        if($_SESSION['customer'] == 1){
+        if ($_SESSION['customer'] == 1) {
             unset($_SESSION['cus_id']);
             unset($_SESSION['cus_name']);
             unset($_SESSION['cus_photo_path']);
@@ -517,7 +517,7 @@ class Users extends Controller
             session_destroy();
             redirect('users/login');
         }
-        if($_SESSION['admin'] == 1){
+        if ($_SESSION['admin'] == 1) {
             unset($_SESSION['admin']);
             unset($_SESSION['user_id']);
             unset($_SESSION['user_email']);
@@ -526,7 +526,9 @@ class Users extends Controller
             session_destroy();
             redirect('users/login');
         }
-        if($_SESSION['seller'] ==1) {
+
+        if ($_SESSION['seller'] == 1) {
+
             unset($_SESSION['user_id']);
             unset($_SESSION['user_email']);
             unset($_SESSION['seller']);
@@ -535,7 +537,8 @@ class Users extends Controller
 
         }
 
-    }
+
+
     public function print()
     {
         echo "Hello world!!!";
@@ -548,5 +551,6 @@ class Users extends Controller
     {
 
     }
+
 
 }
