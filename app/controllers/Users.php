@@ -540,8 +540,6 @@ class Users extends Controller
 
     }
 
-
-
     public  function fu()
     {
 
