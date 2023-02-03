@@ -448,7 +448,7 @@ class Users extends Controller
                         }
                         else
                         {
-                            $data['u_name_err'] = 'Your registarion is pending';
+                            $data['u_name_err'] = 'Your registration is pending';
                             $this->view('users/login',$data);
                         }
                     }
@@ -535,6 +535,10 @@ class Users extends Controller
 
         }
 
+    }
+    public function print()
+    {
+        echo "Hello world!!!";
     }
 
 
