@@ -540,6 +540,10 @@ class Users extends Controller
     {
         echo "Hello world!!!";
     }
+    public  function foo()
+    {
+
+    }
 
 
 }
