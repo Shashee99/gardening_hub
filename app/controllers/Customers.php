@@ -17,6 +17,10 @@
             echo $tabledata;
             exit();
         }
+        public function merge()
+        {
+            echo 'Yes';
+        }
 
 
        
