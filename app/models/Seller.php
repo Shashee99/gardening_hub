@@ -8,7 +8,7 @@ class Seller{
 
     public function getItemData() {
         $id =$_SESSION['user_id'];
-        $this -> db -> query('SELECT title, price,image FROM seller_product_details WHERE seller_id = :id');
+        $this -> db -> query('SELECT * FROM seller_product_details WHERE seller_id = :id');
         $this -> db-> bind(':id',$id);
 
         $results = $this -> db -> resultSet();

@@ -540,8 +540,6 @@ class Users extends Controller
 
     }
 
-
-
     public  function fu()
     {
 
@@ -551,6 +549,8 @@ class Users extends Controller
         echo "Hello world!!!";
     }
 
+
+    public function valentine(){}
 
 
 }
