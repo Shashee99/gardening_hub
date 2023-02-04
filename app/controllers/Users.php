@@ -538,19 +538,5 @@ class Users extends Controller
         }
 
 
-
-    public function print()
-    {
-        echo "Hello world!!!";
     }
-    public  function foo()
-    {
-
-    }
-    public function  abc()
-    {
-
-    }
-
-
 }
