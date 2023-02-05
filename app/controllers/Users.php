@@ -540,6 +540,4 @@ class Users extends Controller
 
     }
 
-
-
 }
