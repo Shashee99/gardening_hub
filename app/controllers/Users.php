@@ -541,30 +541,5 @@ class Users extends Controller
     }
 
 
-    public  function fu()
-    {
-
-
-    }
-
-
-
-
-    public function print()
-    {
-        echo "Hello world!!!";
-    }
-    public  function foo()
-    {
-
-    }
-    public function  abc()
-    {
-
-    }
-
-    public function valentine(){}
-
-
 
 }
