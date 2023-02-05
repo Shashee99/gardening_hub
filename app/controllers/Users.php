@@ -540,12 +540,4 @@ class Users extends Controller
 
     }
 
-    public  function fu()
-    {
-
-    }
-
-    public function valentine(){}
-
-
 }
