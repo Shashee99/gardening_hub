@@ -26,7 +26,14 @@ body{
     border-radius: 25px 0 0 0;
     overflow-y: scroll;
 }
-select{
+.new-tech-option{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin: 20px auto 0 auto;
+}
+.new-tech-option select{
     padding: 10px 35px;
     font-size: 18px;
     color: #000;
@@ -36,7 +43,7 @@ select{
     border-radius: 10px;
     border: none;
 }
-select:focus{
+.new-tech-option select:focus{
     outline: none;
 }
 .new_technology{
@@ -69,4 +76,11 @@ select:focus{
 .new_technology h3{
     text-align: center;
     margin-bottom: 10px;
+}
+.empty_record{
+    margin-top: 30px;
+}
+.empty_record h2{
+    text-align: center;
+    font-weight: 500;
 }

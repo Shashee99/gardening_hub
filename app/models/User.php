@@ -112,6 +112,81 @@
                 return false;
             }
         }
+        public function advisorRegister($data,$photo)
+        {
+            $sql = 'INSERT INTO user (email,password,type,user_state) VALUES (:email, :password,:type,:state)';
+            $this->db->query($sql);
+            $this->db->bind(':email', $data['email']);
+            $this->db->bind(':password', $data['password']);
+            $this->db->bind(':type', 'advisor');
+            $this->db->bind(':state', 0);
+
+            if($this->db->execute())
+            {
+                $sql1 = "SELECT * FROM user WHERE email = :email";
+                $this->db->query($sql1);
+                $this->db->bind(':email', $data['email']);
+
+                $row1 = $this->db->singleRecord();
+
+                if($this->db->rowCount() > 0)
+                {
+                    $sql2 = "INSERT INTO advisor (advisor_id,name,address,email,nic_no,tel_no,qualification,photo,is_registered) 
+                            VALUES (:id,:name,:address,:mail,:nic,:tel,:qualification,:photo,:status)";
+
+                    $this->db->query($sql2);
+                    $this->db->bind(':id', $row1->user_id);
+                    $this->db->bind(':name', $data['fullname']);
+                    $this->db->bind(':address', $data['address']);
+                    $this->db->bind(':mail',$data['email']);
+                    $this->db->bind(':nic',$data['nic']);
+                    $this->db->bind(':tel',$data['phone']);
+                    $this->db->bind(':qualification',$data['qualification']);  
+                    $this->db->bind(':photo',$data['pp']);
+                    $this->db->bind(':status',0); 
+                    
+                    if($this -> db -> execute()) 
+                    {
+                        foreach($photo as $rows)
+                        {
+                            $sql3 = "INSERT INTO advisor_document (advisor_id,name) VALUES (:id,:photo)";
+                            $this->db->query($sql3);
+                            $this->db->bind(':id', $row1->user_id);
+                            $this->db->bind(':photo', $rows );
+
+                            if($this -> db -> execute())
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        
+                        return true;
+
+                    } 
+                    else 
+                    {
+                        $sql3 = "DELETE FROM user WHERE user_id = :user_id ";
+                        $this->db->query($sql3);
+                        $this->db->bind(':user_id', $row1->user_id);
+                        $this->db->execute();
+
+                        return false;
+                    }
+
+                }
+
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
         public function login($email, $password)
         {
             $sql = "SELECT * FROM user WHERE email = :email";

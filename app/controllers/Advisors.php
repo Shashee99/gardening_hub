@@ -18,6 +18,10 @@
             echo $tabledata;
             exit();
         }
+        public function viewHomePage()
+        {
+            $this->view('advisor/homepage');
+        }
 
         
     }

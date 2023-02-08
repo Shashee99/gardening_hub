@@ -22,6 +22,16 @@
     <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
 
     <section  class="rest" id="blur">
+        <div class="new-tech-option">
+            <div class="cat-option">
+                <select name="category" id="category">
+                    <option value="">All</option>
+                    <option value="Bonzzai">Bonzzai</option>
+                    <option value="Hybrid Plantation">Hybrid Plantation</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+        </div>
         <div class="new-tech-wraper">
 
             <?php 
@@ -60,6 +70,8 @@
             ?>
         </div>
     </section>
+    <script src="<?php echo URLROOT; ?>/js/customer/newTechFilter.js"></script>
+
 
 </body>
 </html>

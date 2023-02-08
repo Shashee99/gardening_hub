@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #3BB78F ;
+    position: relative;
+    display: flex;
+}
+
+#side .items li:nth-child(8) {
+    background-color: #3BB78F;
+    border-radius: 0 50px 50px 0;
+    width: 90%;
+}
+#rest{
+    background-color: rgba(239, 239, 239, 0.65);
+    margin-top: 80px;
+    margin-left: 22%;
+    max-height: 100%;
+    width: 78%;
+    border-radius: 25px 0 0 0;
+    overflow-y: scroll;
+}
+.one-problem-card{
+    width: 90%;
+    margin: 40px auto 10px auto ;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.customer-problem .user-info{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 0px 0 0 20px;
+}
+.customer-problem .user-info .photo img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+.customer-problem .user-info .name-date-time{
+    margin-top: 20px;
+}
+.customer-problem .problem-content{
+    margin: 10px 15px;
+}
+.customer-problem  h3{
+    text-align: center;
+}
+.user-reply{
+    background-color: #efefef;
+    width: 85%;
+    margin: 0 0 10px 10% ;
+    border-radius: 10px;
+}
+.user-reply .user-info{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 0px 0 0 20px;
+}
+.user-reply .user-info .photo img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+.user-reply .user-info .name-date-time{
+    margin-top: 20px;
+}
+.user-reply .reply-content{
+    margin: 10px 10px;
+}
