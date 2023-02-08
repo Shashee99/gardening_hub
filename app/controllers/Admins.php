@@ -4,8 +4,11 @@ class Admins extends Controller {
         if (!isLoggedIn()) {
             redirect('users/login');
         }
-        $this->adminModel = $this->model('Admin');
+
+        $this-> adminModel = $this->model('Admin');
         $this ->customerModel = $this ->model('Customer');
+        $this ->sellerModel = $this -> model('Seller');
+        $this-> complaintModel = $this->model('Complaint');
     }
     public function home(){
         $data = [
@@ -40,9 +43,11 @@ class Admins extends Controller {
         $this->view('admin/sellers',$data);
     }
     public function complains(){
+        $complaints = $this -> complaintModel -> getAllComplaints();
         $data = [
             'nav'=>'complain',
-            'title'=>'Complains'
+            'title'=>'Complains',
+            'complaints' => $complaints
         ];
         $this->view('admin/Complains',$data);
     }
@@ -90,6 +95,21 @@ class Admins extends Controller {
             'customerinfo'=>$customerinfo
         ];
         $this->view('admin/customerpreview',$data);
+    }
+    public function viewseller($id){
+        $sellers = $this ->sellerModel->getSellerDetails($id);
+        $data = [
+            'nav'=>'Sellers',
+            'title'=>'Sellers',
+            'sellerinfo'=>$sellers
+        ];
+        $this->view('admin/sellerpreview',$data);
+    }
+//
+    public function  sellerApprove ($id){
+     $this -> adminModel ->sellerApprove($id);
+        redirect('admins/sellers');
+
     }
 
 }

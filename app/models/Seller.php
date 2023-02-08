@@ -91,5 +91,15 @@ class Seller{
         $dataset = $this->db->resultSet();
         return $dataset;
     }
+    public function getSellerDetails($sell_id)
+    {
+        $sql = "SELECT * FROM seller WHERE seller_id = :sell_id LIMIT 1";
+        $this->db->query($sql);
+        $this->db->bind(':sell_id', $sell_id);
+        $row = $this->db->singleRecord($sql);
+        // print_r($row);
+        // die();
+        return $row;
+    }
 }
 
