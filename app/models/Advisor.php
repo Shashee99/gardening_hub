@@ -13,7 +13,7 @@
             $sql = "SELECT * FROM advisor WHERE advisor_id = :id";
             $this->db->query($sql);
             $this->db->bind(':id',$id);
-            $result = $this->db->singleRecord($sql);
+            $result = $this->db->singleRecord();
             return $result;
         }
         public function get_non_registered_advisors(){

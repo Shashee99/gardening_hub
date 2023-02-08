@@ -4,12 +4,14 @@ class Users extends Controller
 {
     private $userModel;
     private $customerModel;
+    private $advisorModel;
 
     public function __construct()
     {
         // Load the user model
         $this->userModel = $this->model('User');
         $this->customerModel = $this->model('Customer');
+        $this->advisorModel = $this->model('Advisor');
     }
 
     public function customerRegister()
@@ -376,6 +378,91 @@ class Users extends Controller
         }
     }
 
+    public function advisorRegister()
+    {
+        if ($_SERVER ['REQUEST_METHOD'] == 'POST')
+        {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+                'password' => trim($_POST['password']),
+                'fullname' => trim($_POST['fname']),
+                'address' => trim($_POST['address']),
+                'nic' => trim($_POST['nic']),
+                'phone' => trim($_POST['phone']),
+                'email' => trim($_POST['gmail']),
+                'qualification' => trim($_POST['qualification']),
+                'pp'=> $_FILES['photo']['name'],
+                'email_err' => ''
+
+            ];
+
+            if($this->userModel->findUser($data['email']))
+            {
+                $data['email_err'] = "Username/email allready exsits";
+            }
+
+            if(empty($data['email_err']))
+            {
+                //Hashing password
+                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                // Photo upload
+                $tmp_name = $_FILES['photo']['tmp_name'];
+                $img_type = strtolower(pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION));
+                $new_img = uniqid('IMG-', true) . '.' . $img_type;
+                $img_upload_path = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/advisor_pp/' . $new_img;
+                move_uploaded_file($tmp_name, $img_upload_path);
+
+                $photo = array();
+
+                foreach($_FILES['qfile']['name'] as $key => $value)
+                {
+                    
+                    $img_name1 = $_FILES['qfile']['name'][$key];
+                    $tmp_name1 = $_FILES['qfile']['tmp_name'][$key];
+                    $img_type1 = strtolower(pathinfo($img_name1, PATHINFO_EXTENSION)); 
+                    $new_img1 = uniqid('IMG-',true).'.'.$img_type1;
+                    $img_upload_path1 = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/Advisor_Qualification_photos/'.$new_img1;
+                    move_uploaded_file($tmp_name1,$img_upload_path1);
+                    array_push($photo,$new_img1);
+                }
+
+                if($this->userModel->advisorRegister($data, $photo))
+                {
+                    redirect('users/login');
+                }
+                else
+                {
+                    $this->view('users/advisorRegister',$data);
+                }
+            }
+            else
+            {
+                $this->view('users/advisorRegister', $data);
+            }
+           
+
+        }
+        else
+        {
+            $data = [
+                'password' =>'',
+                'fullname' => '',
+                'address' => '',
+                'nic' =>'',
+                'phone' => '',
+                'email' => '',
+                'qualification' => '',
+                'pp'=> '',
+                'email_err' => ''
+
+            ];
+
+            $this->view('users/advisorRegister',$data);
+        }
+        
+    }
+
     public function login()
     {
 
@@ -404,6 +491,8 @@ class Users extends Controller
             if (empty($data['u_name_err']) && empty($data['pass_err'])) {
                 // die('Success');
                 $logged_user = $this->userModel->login($data['u_name'], $data['pass']);
+                // print_r($logged_user);
+                // die();
 
                 if ($logged_user) {
 
@@ -440,6 +529,26 @@ class Users extends Controller
                         if($logged_user->user_state === 1 )
                         {
                             $this->createSellerSession($logged_user);
+                        }
+                        elseif($logged_user->user_state === 2)
+                        {
+                            $data['u_name_err'] = 'Your user account has been deleted';
+                            $this->view('users/login',$data);
+                        }
+                        else
+                        {
+                            $data['u_name_err'] = 'Your registration is pending';
+                            $this->view('users/login',$data);
+                        }
+                    }
+                    elseif($logged_user->type === 'advisor')
+                    {
+                        if($logged_user->user_state === 1 )
+                        {
+                            // print_r($logged_user->user_id);
+                            // die();
+                            $advisor_details = $this->advisorModel->advisorDetails($logged_user->user_id);
+                            $this->createAdvisorSession($advisor_details);
                         }
                         elseif($logged_user->user_state === 2)
                         {
@@ -504,6 +613,14 @@ class Users extends Controller
         $_SESSION['seller'] = 1;
         redirect('sellers/dashboard');
     }
+    public function createAdvisorSession($details)
+    {
+        $_SESSION['advisor_id'] = $details->advisor_id;
+        $_SESSION['advisor_name'] = $details->name;
+        $_SESSION['advisor_photo_path'] = $details->photo;
+        $_SESSION['Advisor'] = 1;
+        redirect('advisors/viewHomePage');
+    }
 
 
     public function logout()
@@ -539,5 +656,7 @@ class Users extends Controller
 
 
     }
+
+
 
 }

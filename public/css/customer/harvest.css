@@ -64,11 +64,17 @@ body{
     font-size: 16px;
 }
 #btn2:hover{
-    transform: scale(0.99);
+    transform: scale(0.95);
     background: #00a778;
+    transition: all .3s ease-in-out;
 }
 #btn2:hover a{
     color: white;
+
+}
+#btn1:hover{
+    transform: scale(0.95);
+    transition: all .3s ease-in-out;
 }
 select{
     padding: 10px 35px;
@@ -163,7 +169,7 @@ figcaption{
     align-items: center;
 }
 .last .delete{
-    margin: auto auto auto auto;
+    margin: auto;
 }
 input[type="text"]::placeholder {
                  
@@ -277,6 +283,10 @@ label{
     border-radius: 10px;
     background: none;
 }
+.btns .button:hover{
+    transform: scale(0.99);
+    transition: all .3s ease-in-out;
+}
 #red input{
     border: 2px solid red;
 }
@@ -318,7 +328,6 @@ label{
 .input-box .error span, .photos .error span{
     color: red;
     font-size: 12px;
-    
 }
 .input-box .error, .photos .error{
     margin-left: 6%;

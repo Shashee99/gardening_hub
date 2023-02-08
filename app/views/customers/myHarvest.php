@@ -166,8 +166,8 @@
 
    </section>
 
-   <script src="<?php echo URLROOT; ?>/js/displayimage.js" ></script>
-   <script src="<?php echo URLROOT; ?>/js/harvestFilter.js"></script>
+   <script src="<?php echo URLROOT; ?>/js/customer/displayimage.js" ></script>
+   <script src="<?php echo URLROOT; ?>/js/customer/harvestFilter.js"></script>
 
    
 </body>

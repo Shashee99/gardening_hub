@@ -97,6 +97,6 @@
 
         </div>
     </section>
-    <script src="<?php echo URLROOT; ?>/js/OtherHarvestFilter.js"></script>
+    <script src="<?php echo URLROOT; ?>/js/customer/OtherHarvestFilter.js"></script>
 </body>
 </html>
