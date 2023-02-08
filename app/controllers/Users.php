@@ -230,7 +230,7 @@ class Users extends Controller
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
                 'confirm_password' => trim($_POST['confirm_password']),
-                'pro_li' => $fileDestinatio,
+                'pro_li' => $fileName,
                 'seller_image' => $_FILES['shopimage']['name'],
                 'name_err' => '',
                 'shop_name_err' => '',
@@ -249,7 +249,7 @@ class Users extends Controller
                 $data['name_err'] = 'Please enter name';
             }
 
-            //Validate shpo name
+            //Validate shop name
             if (empty($data['shop_name'])) {
                 $data['shop_name_err'] = 'Please enter shop name';
             }
