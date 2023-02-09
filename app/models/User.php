@@ -142,7 +142,7 @@
                     $this->db->bind(':nic',$data['nic']);
                     $this->db->bind(':tel',$data['phone']);
                     $this->db->bind(':qualification',$data['qualification']);  
-                    $this->db->bind(':photo',$data['pp']);
+                    $this->db->bind(':photo',$photo);
                     $this->db->bind(':status',0); 
                     
                     if($this -> db -> execute()) 

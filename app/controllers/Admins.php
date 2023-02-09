@@ -10,6 +10,7 @@ class Admins extends Controller {
         $this ->sellerModel = $this -> model('Seller');
         $this-> complaintModel = $this->model('Complaint');
         $this -> userModel = $this -> model('User');
+        $this -> advisorModel = $this -> model('Advisor');
     }
     public function home(){
         $data = [
@@ -116,6 +117,15 @@ class Admins extends Controller {
         $this->view('admin/sellerpreview',$data);
     }
 
+    public function viewadvisor($id){
+        $advisor = $this ->advisorModel->getAdvisordetails($id);
+        $data = [
+            'nav'=>'Advisor',
+            'title'=>'Advisors',
+            'advisor'=>$advisor
+        ];
+        $this->view('admin/advisorpreview',$data);
+    }
 
     public function  sellerApprove ($id){
      $this -> adminModel ->sellerApprove($id);
