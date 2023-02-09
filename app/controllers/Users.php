@@ -512,22 +512,12 @@ class Users extends Controller
 
 
                     } elseif ($logged_user->type === 'admin') {
-                        // $this->createUserSession($logged_user);
-                        if($logged_user->user_state === 1){
-                            $this->createUserSession($logged_user);
-                        }
-                        elseif($logged_user->user_state === 2)
-                        {
-                            $data['u_name_err'] = 'Your user account has been deleted';
-                            $this->view('users/login',$data);
-                        }
-                        else
-                        {
-                            $data['u_name_err'] = 'Your registarion is pending';
-                            $this->view('users/login',$data);
-                        }
+                        $this->createUserSession($logged_user);
+                       
 
-                    } elseif ($logged_user->type === 'seller') {
+                    } 
+                    elseif ($logged_user->type === 'seller') {
+                        // $this->createSellerSession($logged_user);
                         if($logged_user->user_state === 1 )
                         {
                             $this->createSellerSession($logged_user);
