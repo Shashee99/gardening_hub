@@ -26,7 +26,7 @@
                 <form action="<?= URLROOT;?>/users/advisorRegister" method="POST" enctype="multipart/form-data">
                     <div class="form">
                         <div class="col1">
-                            <input type="text" name="gmail" id="gmail" placeholder="Gmail" ><br>
+                            <input type="text" name="gmail" id="gmail" placeholder="Email" ><br>
                             <label for="" id="username-label"><?= $data['email_err']; ?></label><br>
                         
                         <input type="text" name="password" id="password"placeholder="Password"  ><br>

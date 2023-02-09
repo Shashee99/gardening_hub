@@ -1,20 +1,6 @@
 <?php require_once APPROOT . '/views/inc/incAdmin/header.php'; ?>
     <div class="approvals">
 
-        <!--    <div class="approvedsellers flex">-->
-        <!--        <div class="">-->
-        <!--            Approved sellers-->
-        <!--        </div>-->
-        <!--        <div class="count">-->
-        <!--            100-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--    <div class="searchbox">-->
-        <!--        <form>-->
-        <!--            <input type="text" placeholder="Search...">-->
-        <!--            <button type="submit"> <img src="--><?//= URLROOT; ?><!--/img/landingPage/Star.png" width="30px" height="32px" alt=""></button>-->
-        <!--        </form>-->
-        <!--    </div>-->
         <div class="category parentwidth flex">
             <div class="category-item1 flex">
                 <h3 class="font600">New Advisors</h3>
@@ -65,7 +51,7 @@
                         <td><?php echo $row -> nic_no ?></td>
                         <td><?php echo $row -> email ?></td>
                         <td><?php echo $row -> tel_no ?></td>
-                        <td> <div class="seller-action flex"> <div class="view"> View </div> <div class="delete"> Delete </div> </div></td>
+                        <td> <div class="seller-action flex"><a href="<?=URLROOT;?>/admins/viewadvisor/<?= $row -> advisor_id;?>"" class="view"> View </a> <div class="delete"> Delete </div> </div></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
