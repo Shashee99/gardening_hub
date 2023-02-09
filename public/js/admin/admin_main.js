@@ -4,6 +4,8 @@ getregsellercount();
 getnewsellercount();
 getregadvisorcount();
 getnewadvisorcount();
+getviewedcomplaints();
+
 
 function deletecat(e) {
 
@@ -143,22 +145,18 @@ function getregsellercount() {
     };
 }
 
-function getnewsellercount() {
+function getviewedcomplaints() {
     var ajax = new XMLHttpRequest();
 
-    ajax.open("POST", "http://localhost/gardening_hub/sellers/allnewsellers", true);
+    ajax.open("POST", "http://localhost/gardening_hub/complaints/allnewcomplaints", true);
     ajax.send();
 
     ajax.onreadystatechange = function () {
 
         if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(this.responseText);
-            document.getElementById("newsellCount").innerText = data.length;
+            document.getElementById("complaintcount").innerText = data.length;
             console.log(data.length);
-
-
-
-
         }
     };
 }
@@ -193,6 +191,23 @@ function getnewadvisorcount(){
         }
     };
 }
+
+function getnewsellercount() {
+    var ajax = new XMLHttpRequest();
+
+    ajax.open("POST", "http://localhost/gardening_hub/sellers/allnewsellers", true);
+    ajax.send();
+
+    ajax.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            document.getElementById("newsellCount").innerText = data.length;
+            console.log(data.length);
+        }
+    };
+}
+
 
 //prevent the page refresh after closing new modal
 catform.addEventListener('click', (e) => {
@@ -242,7 +257,6 @@ function getcatObjID(){
     return catobj['id'];
 }
 
-//update product category
 function editCat(e) {
 
     let id = e.parentNode.parentNode.children[0].innerHTML;
@@ -250,8 +264,6 @@ function editCat(e) {
     let existingcat = e.parentNode.parentNode.children[1].innerHTML;
     let existingsubcat = e.parentNode.parentNode.children[2].innerHTML;
     console.log(existingcat);
-    //  let category =  e.parentNode.parentNode.children[1].innerHTML;
-    //  let subcategory =  e.parentNode.parentNode.children[2].innerHTML;
     let newcat = document.getElementById("editcategory");
     let newsub = document.getElementById('editsub');
 
@@ -275,8 +287,6 @@ document.getElementById("editcatbutton").addEventListener('click' ,()=>{
         ajax.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200){
                 getData();
-
-                // alert(this.responseText);
             }
         };
         closeeditModal();
@@ -287,22 +297,6 @@ document.getElementById("editcatbutton").addEventListener('click' ,()=>{
     }
     getData();
 })
-
-//function for temp cat id holder
-
-
-
-
-// if(cat.value != "" && subcat.value!=""){
-//
-//    let newcat  = document.getElementById("category").value;
-//     let newsubcat =  document.getElementById("subcategory").value;
-//
-// }
-//
-//
-//
-// return false;
 
 
 

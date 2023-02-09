@@ -6,7 +6,7 @@
     <div class="category parentwidth ">
         <div class="category-item1 flex">
             <h3 class="font600">Number of complains</h3>
-            <h1 class="font700" id="cuscount"></h1>
+            <h1 class="font700" id="complaintcount"></h1>
         </div>
 
     </div>
