@@ -634,3 +634,12 @@ hr {
 .userinfo-list >li {
     margin-top:5px;
 }
+.complaint-list{
+    list-style: none;
+    margin-left: 130px;
+    margin-top: 65px;
+    font-size:18px ;
+}
+.complaint-list li{
+    margin-bottom: 15px;
+}

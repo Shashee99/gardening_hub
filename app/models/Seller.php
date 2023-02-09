@@ -96,10 +96,21 @@ class Seller{
         $sql = "SELECT * FROM seller WHERE seller_id = :sell_id LIMIT 1";
         $this->db->query($sql);
         $this->db->bind(':sell_id', $sell_id);
-        $row = $this->db->singleRecord($sql);
+        $row = $this->db->singleRecord();
         // print_r($row);
         // die();
         return $row;
+    }
+
+    public function getSellerName ($id){
+        $this -> db -> query('SELECT owner_name FROM seller WHERE seller_id = :id');
+        $this ->db ->bind(':id',$id);
+        $row = $this -> db -> singleRecord();
+
+        return $row->owner_name;
+
+
+
     }
 }
 

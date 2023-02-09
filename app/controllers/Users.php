@@ -5,6 +5,7 @@ class Users extends Controller
     private $userModel;
     private $customerModel;
     private $advisorModel;
+    private $sellerModel;
 
     public function __construct()
     {
@@ -12,6 +13,7 @@ class Users extends Controller
         $this->userModel = $this->model('User');
         $this->customerModel = $this->model('Customer');
         $this->advisorModel = $this->model('Advisor');
+        $this->sellerModel = $this ->model('Seller');
     }
 
     public function customerRegister()
@@ -656,7 +658,5 @@ class Users extends Controller
 
 
     }
-
-
 
 }

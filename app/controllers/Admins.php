@@ -9,6 +9,7 @@ class Admins extends Controller {
         $this ->customerModel = $this ->model('Customer');
         $this ->sellerModel = $this -> model('Seller');
         $this-> complaintModel = $this->model('Complaint');
+        $this -> userModel = $this -> model('User');
     }
     public function home(){
         $data = [
@@ -44,15 +45,24 @@ class Admins extends Controller {
     }
     public function complains(){
         $complaints = $this -> complaintModel -> getAllComplaints();
+
+        foreach ($complaints as $rowdata){
+            $rowdata->posted_user_id = $this -> userModel ->getNamebyuserid($rowdata->posted_user_id);
+            $rowdata ->complained_user_id = $this -> userModel -> getNamebyuserid($rowdata->complained_user_id);
+        }
+
+
+
         $data = [
-            'nav'=>'complain',
-            'title'=>'Complains',
+            'nav'=>'complaint',
+            'title'=>'Complaints',
             'complaints' => $complaints
         ];
         $this->view('admin/Complains',$data);
     }
     public function advisors(){
         $advisors = $this->adminModel->all_registered_advisors();
+
         $data = [
             'nav'=>'advisors',
             'title'=>'Agricultural Advisors',
@@ -105,11 +115,41 @@ class Admins extends Controller {
         ];
         $this->view('admin/sellerpreview',$data);
     }
-//
+
+
     public function  sellerApprove ($id){
      $this -> adminModel ->sellerApprove($id);
         redirect('admins/sellers');
+    }
+
+    public function viewcomplain($complaintID){
+
+        $complaints = $this -> complaintModel->getcomplaintbyid($complaintID);
+
+        $complainant  = $this -> userModel -> getNamebyuserid($complaints -> posted_user_id );
+        $complainant_type  = $this -> userModel -> getUsertype($complaints -> posted_user_id);
+        $complainee = $this -> userModel -> getNamebyuserid ($complaints -> complained_user_id);
+        $complainee_type  = $this -> userModel -> getUsertype($complaints -> posted_user_id);
+
+        $this->complaintModel->viewedcomplain($complaintID);
+
+        $data = [
+            'nav'=>'complaint',
+            'title'=>'Complaints',
+            'complaints' => $complaints,
+            'complainant' => $complainant,
+            'complainant_type' => $complainant_type,
+            'complainee' => $complainee,
+            'complainee_type' => $complainee_type
+        ];
+        $this->view('admin/complaintview',$data);
 
     }
+
+
+
+
+
+
 
 }

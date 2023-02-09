@@ -206,4 +206,49 @@
             }
         }
 
+
+
+        public function getUsertype($id){
+            $this -> db -> query('SELECT type FROM user WHERE user_id = :id');
+            $this ->db ->bind(':id',$id);
+            $row = $this -> db -> singleRecord();
+
+            if($row->type = 'seller'){
+                return 'seller';
+            }
+            elseif($row->type = 'customer'){
+                return 'customer';
+            }
+            else {
+                return 'advisor';
+            }
+        }
+
+        public function getNamebyuserid($id){
+            $this -> db -> query('SELECT type FROM user WHERE user_id = :id');
+            $this ->db ->bind(':id',$id);
+            $row = $this -> db -> singleRecord();
+            $type = $row -> type;
+            if($type == 'seller'){
+                $this -> db -> query('SELECT `seller_id`, `shop_name`, `owner_name`, `address`, `br_no`, `tel_no`, `email`, `photo`, `br_photo`, `is_registered` FROM `seller` WHERE `seller_id` = :id');
+                $this ->db ->bind(':id',$id);
+                $seller = $this -> db -> singleRecord();
+                $name = $seller->shop_name;
+            }
+            elseif($type == 'advisor'){
+                $this -> db -> query('SELECT name FROM advisor WHERE advisor_id = :id');
+                $this ->db ->bind(':id',$id);
+                $advisor = $this -> db -> singleRecord();
+                $name = $advisor->name;
+            }
+            else{
+                $this -> db -> query('SELECT name FROM customer WHERE customer_id = :id');
+                $this ->db ->bind(':id',$id);
+                $customer = $this -> db -> singleRecord();
+                $name =  $customer->name;
+            }
+            return $name;
+        }
+
+
     }

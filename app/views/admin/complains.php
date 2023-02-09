@@ -31,7 +31,7 @@
                     <td><?php echo $row -> complain_date ?></td>
                     <td><?php echo $row -> posted_user_id ?></td>
                     <td><?php echo $row -> complained_user_id ?></td>
-                    <td> <div class="seller-action flex"> <div class="view"> View </div> <div class="delete"> Delete </div> </div></td>
+                    <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewcomplain/<?php echo $row -> complian_no  ?>" class="view"> View </a> <div class="delete"> Delete </div> </div></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

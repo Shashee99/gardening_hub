@@ -24,4 +24,11 @@
             $dataset = $this->db->resultSet();
             return $dataset;
         }
+
+        public function getCustomerName ($id){
+            $this -> db -> query('SELECT name FROM customer WHERE customer_id = :id');
+            $this ->db ->bind(':id',$id);
+            $row = $this -> db -> singleRecord();
+            return $row->name;
+        }
     }

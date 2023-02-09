@@ -27,4 +27,15 @@
             $dataset = $this->db->resultSet();
             return $dataset;
         }
+
+        public function getAdvisorName ($id){
+            $this -> db -> query('SELECT name FROM advisor WHERE advisor_id = :id');
+            $this ->db ->bind(':id',$id);
+            $row = $this -> db -> singleRecord();
+
+            return $row->name;
+
+
+
+        }
     }
