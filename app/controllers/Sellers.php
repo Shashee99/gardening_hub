@@ -14,8 +14,10 @@ class Sellers extends Controller{
     public function dashboard() {
         //Get item details
         $itemData = $this -> sellerModel ->getItemData();
+        $catData = $this -> sellerModel -> getCatData();
         $data = [
-            'itemData' => $itemData
+            'itemData' => $itemData,
+            'catData' => $catData
         ];
 
         $this -> view('seller/dashboard', $data);
@@ -262,5 +264,55 @@ class Sellers extends Controller{
         $tabledata =json_encode($tabledata);
         echo $tabledata;
         exit();
+    }
+
+    public function show($id) {
+
+        $itemData = $this -> sellerModel -> getItemById($id);
+        $productImg = $this -> sellerModel -> getProductImages($id); 
+
+        $data = [
+            'itemData' => $itemData,
+            'productImg' => $productImg
+        ];
+        
+
+        
+        $this->view('seller/show', $data);
+    }
+
+    public function order(){
+
+        $orderData = $this -> sellerModel -> getOrderData();
+        $data =[
+            'orderData' => $orderData
+        ];
+
+        if($_SERVER ['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $today = date("Y-m-d");
+            $data = [
+                'confirm' => $_POST['orderConfirm'],
+                'cancle' => $_POST['orderCancle'],
+                'complete' => $_POST['orderComplete'],
+                'complete_date' => $today,
+                'confirmation' => '',
+                'completeness' => ''
+            ];
+
+            if(!empty($data['confirm'])) {
+                $data['confirmation'] = 1;
+            } else {
+                $data['confirmation'] = 0;
+            }
+
+            if(!empty($data['complete'])) {
+                $data['completeness'] = 1;
+            } else {
+                $data['completeness'] = 0;
+            }
+        }
+
+        $this->view('seller/order', $data);
     }
 }

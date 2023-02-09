@@ -28,7 +28,7 @@
             background-size: 100% 100%;
         }
 
-        .sampleimg > img {
+        .sampleimg > a> img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -70,22 +70,26 @@
             display: flex;
             flex-direction: column;
             justify-content: space-around;
+            height: 550px;
         }
         .products{
-            flex-grow: 10;
+            /* flex-grow: 10; */
             border: 1px solid white;
-            padding: 20px 50px;
+            padding: 20px 32px 20px 50px;
             border-radius: 10px 10px 10px 10px;
             background-color: #FBF8F3;
+            height: 550px;
 
         }
         .itemgrid{
-            overflow: scroll;
+            
             display: grid;
             grid-gap:10px ;
             grid-template-columns: repeat(4, 1fr);
+            overflow: scroll;
             overflow-x: hidden;
-
+            height: 510px;
+            padding-right: 15px;
         }
         .itemcard i{
             font-size: 40px;
@@ -119,13 +123,16 @@
             list-style: none;
             display: grid;
             grid-gap: 10px;
-
-
+            overflow: scroll;
+            overflow-x: hidden;
+            padding: 0px;
+            height: 220px;
         }
         .catgeories{
             background-color:rgba(178,161,167,0.47);
             border-radius: 10px;
             padding: 20px;
+            margin: 10px 0px;
         }
         .catgeories h4{
             margin: 10px 0px 20px 0px;
@@ -137,10 +144,10 @@
         .catlist input{
             margin-right: 10px;
             width: 20px;
-            height: 20px;
         }
         .catlist li{
             font-size: 20px;
+            margin: 7px;
         }
         #cusorder,#genreport{
             width: 100%;
@@ -166,6 +173,38 @@
             text-decoration:none;
             font-weight: 900;
         }
+
+        .itemgrid::-webkit-scrollbar {
+            width: 15px;
+        }
+
+        .itemgrid::-webkit-scrollbar-track {
+            background: #FFFFFF;
+            border-radius: 100vw;
+        }
+
+        .itemgrid::-webkit-scrollbar-thumb {
+            background: #1d976cb2;
+            border-radius: 100vw;
+            border: 3px solid #FFFFFF;
+            padding: 10px;
+        }
+
+        .catlist::-webkit-scrollbar {
+            width: 15px;
+        }
+
+        .catlist::-webkit-scrollbar-track {
+            background: #FFFFFF;
+            border-radius: 100vw;
+        }
+
+        .catlist::-webkit-scrollbar-thumb {
+            background: #1d976cb2;
+            border-radius: 100vw;
+            border: 3px solid #FFFFFF;
+            padding: 10px;
+        }
         
     </style>
 
@@ -173,14 +212,14 @@
 <div class="container">
     <main>
         <div class="productmenu">
-            <input type="button" class="button" id="cusorder" value="Cutomer Orders">
+            <button class="button" id="cusorder" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/order';"> Customers Orders</button>
             <div class="catgeories">
                 <h4>Categories</h4>
                 <ul class="catlist">
-                    <li><input type="checkbox" name="ch1" id="ch1">Plants</li>
-                    <li><input type="checkbox" name="ch2" id="ch2">Gardening</li>
-                    <li><input type="checkbox" name="ch3" id="ch3">Seeds</li>
-                    <li><input type="checkbox" name="ch4" id="ch4">Others</li>
+                    <li><input type="radio" class="radio" name="ch1" id="ch1" value="" checked>All</li>
+                    <?php foreach($data['catData'] as $cat_data) : ?>
+                        <li><input type="radio" class="radio" name="ch1" id="ch1" value="<?php echo $cat_data -> product_category; ?>"><?php echo $cat_data -> product_category; ?></li>
+                    <?php endforeach; ?>
                 </ul>
 
             </div>
@@ -196,10 +235,11 @@
                 </div>
                 
                 <?php foreach($data['itemData'] as $item_data) : ?>
-                    
                     <div class="sampleitem">
                         <div class="sampleimg">
-                            <img src="<?=URLROOT;?>/img/upload_images/product_cover_photo/<?=$item_data->image;?>" alt="Image">
+                            <a href="<?php echo URLROOT."/sellers/show/". $item_data -> product_no ?>">
+                                <img src="<?=URLROOT;?>/img/upload_images/product_cover_photo/<?=$item_data->image;?>" alt="Image"> 
+                            </a>
                         </div>
                         <h4><?php echo $item_data -> title; ?></h4>
                         <div class="ratings">
@@ -209,6 +249,7 @@
                             <span class="fa fa-star"></span>
                             <span class="fa fa-star"></span>
                         </div>
+                       
                         <div class="price">
                             <span>Price <stron><?php echo $item_data -> price; ?></stron></span>
                         </div>
@@ -216,12 +257,39 @@
                             <input type="button" class="button" value="Update">
                             <input type="button" class="button del" value="Delete">
                         </div>
-
                     </div>
                 <?php endforeach; ?>
             </div>
         </div>
     </main>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.radio').click(function(){
+            var radio_value = $('.radio:checked').val();
+            
+            if(radio_value != '') {
+                load_content("all", radio_value);
+            }
+            else {
+                load_content();
+            }
+            load_content();
+        });
+    })
+
+    function load_content(type, radio_value) {
+        $.ajax({
+            url: "http://localhost/gardening_hub/Seller",
+            method: "POST",
+            data: {type: type, radio_value: radio_value},
+            success: function(data) {
+                $('tbody').html(data);
+            }
+        });
+    }
+</script>
 
     <?php require APPROOT . '/views/inc/incSeller/footer.php'; ?>
