@@ -108,7 +108,13 @@
     
             return $row;
         }
-
-
+        public function deleteHarvest($id)
+        {
+            $sql ="UPDATE harvest SET deleted = :delete WHERE harvest_id = :id";
+            $this->db->query($sql);
+            $this->db->bind(':delete', 1);
+            $this->db->bind(':id', $id);
+            $this->db->execute();
+        }
 
     }
