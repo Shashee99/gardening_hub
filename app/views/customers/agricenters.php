@@ -28,6 +28,9 @@
             </div>
             <input type="text" placeholder="Search">
         </div>
+        <div class="agri-center-tabel">
+            
+        </div>
 
     </section>
     
