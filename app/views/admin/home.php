@@ -44,16 +44,16 @@
                 <img src="<?= URLROOT; ?>/img/admin/users/avi.jpg" alt=""
                      style="width: 100%; height: 100%; border-radius: 100%">
             </div>
-            <p>Avishka Sathyanjana</p>
-            <p>Nugegoda</p>
+            <p>Danusha Deshan</p>
+            <p>Kurunagala</p>
         </div>
         <div class="advisorcards-card">
             <div class="advisorimg">
                 <img src="<?= URLROOT; ?>/img/admin/users/avi.jpg" alt=""
                      style="width: 100%; height: 100%; border-radius: 100%">
             </div>
-            <p>Avishka Sathyanjana</p>
-            <p>Nugegoda</p>
+            <p>Nilshan Deemantha</p>
+            <p>Galle</p>
         </div>
         <div class="advisorcards-card">
             <div class="advisorimg">
@@ -115,7 +115,7 @@
             <div class="advisorimg">
                 <img src="<?= URLROOT;?>/img/admin/users/avi.jpg" alt="" style="width: 100%; height: 100%; border-radius: 100%">
             </div>
-            <p>Avishka Sathyanjana</p>
+            <p>Viraj pushpakumara</p>
             <p>Nugegoda</p>
 
         </div>
@@ -123,24 +123,24 @@
             <div class="advisorimg">
                 <img src="<?= URLROOT;?>/img/admin/users/avi.jpg" alt="" style="width: 100%; height: 100%; border-radius: 100%">
             </div>
-            <p>Avishka Sathyanjana</p>
-            <p>Nugegoda</p>
+            <p>Saman kumara</p>
+            <p>kirulapana</p>
 
         </div>
         <div class="advisorcards-card">
             <div class="advisorimg">
                 <img src="<?= URLROOT;?>/img/admin/users/avi.jpg" alt="" style="width: 100%; height: 100%; border-radius: 100%">
             </div>
-            <p>Avishka Sathyanjana</p>
-            <p>Nugegoda</p>
+            <p>Deepamal perera</p>
+            <p>Wijerama</p>
 
         </div>
         <div class="advisorcards-card">
             <div class="advisorimg">
                 <img src="<?= URLROOT;?>/img/admin/users/avi.jpg" alt="" style="width: 100%; height: 100%; border-radius: 100%">
             </div>
-            <p>Avishka Sathyanjana</p>
-            <p>Nugegoda</p>
+            <p>Kimuthu Kisal</p>
+            <p>Gampaha</p>
 
         </div>
     </div>
@@ -167,7 +167,7 @@
             <div class="advisorimg">
                 <img src="<?= URLROOT;?>/img/admin/users/avi.jpg" alt="" style="width: 100%; height: 100%; border-radius: 100%">
             </div>
-            <p>Avishka Sathyanjana</p>
+            <p>Isuru Heshan</p>
             <p>Nugegoda</p>
 
         </div>
@@ -175,32 +175,32 @@
             <div class="advisorimg">
                 <img src="<?= URLROOT;?>/img/admin/users/avi.jpg" alt="" style="width: 100%; height: 100%; border-radius: 100%">
             </div>
-            <p>Avishka Sathyanjana</p>
-            <p>Nugegoda</p>
+            <p>Osura Viduranga</p>
+            <p>Homagama</p>
 
         </div>
         <div class="advisorcards-card">
             <div class="advisorimg">
                 <img src="<?= URLROOT;?>/img/admin/users/avi.jpg" alt="" style="width: 100%; height: 100%; border-radius: 100%">
             </div>
-            <p>Avishka Sathyanjana</p>
-            <p>Nugegoda</p>
+            <p>Pasindu </p>
+            <p>Homagama</p>
 
         </div>
         <div class="advisorcards-card">
             <div class="advisorimg">
                 <img src="<?= URLROOT;?>/img/admin/users/avi.jpg" alt="" style="width: 100%; height: 100%; border-radius: 100%">
             </div>
-            <p>Avishka Sathyanjana</p>
-            <p>Nugegoda</p>
+            <p>Rahal Balangoda</p>
+            <p>Kottawa</p>
 
         </div>
         <div class="advisorcards-card">
             <div class="advisorimg">
                 <img src="<?= URLROOT;?>/img/admin/users/avi.jpg" alt="" style="width: 100%; height: 100%; border-radius: 100%">
             </div>
-            <p>Avishka Sathyanjana</p>
-            <p>Nugegoda</p>
+            <p>Ramith Rodrigo</p>
+            <p>Ja ela</p>
 
         </div>
     </div>

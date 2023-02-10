@@ -49,5 +49,15 @@ class Admin{
 
     }
 
+    public function advisorApprove($id){
+        $this ->db -> query('UPDATE user SET user_state = 1 WHERE user_id = :id');
+        $this ->db-> bind(':id',$id);
+        $this -> db -> execute();
+        $this ->db -> query('UPDATE advisor SET is_registered = 1 WHERE advisor_id = :id');
+        $this ->db-> bind(':id',$id);
+        $this -> db -> execute();
+        return true;
+    }
+
 
 }

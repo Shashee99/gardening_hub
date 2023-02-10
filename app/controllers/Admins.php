@@ -128,8 +128,18 @@ class Admins extends Controller {
     }
 
     public function  sellerApprove ($id){
-     $this -> adminModel ->sellerApprove($id);
+        $this->adminModel->sellerApprove($id);
         redirect('admins/sellers');
+    }
+    public function  advisorApprove ($id){
+
+//        $data['id'] = $id;
+//        $this->view('admin/test',$data);
+        $val = $this -> adminModel ->advisorApprove($id);
+        if($val){
+            redirect('admins/advisors');
+        }
+
     }
 
     public function viewcomplain($complaintID){

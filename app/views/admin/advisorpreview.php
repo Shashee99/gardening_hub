@@ -18,7 +18,7 @@
                 <li><b>E-mail : </b> <?=$data['advisor'] -> email; ?></li>
                 <li><b>Qualification : </b> <?=$data['advisor'] -> qualification; ?></li>
                 <li class="flex" style="justify-content:space-evenly">
-                    <a href="<?= URLROOT;?>/admins/advisorApprove/<?=$data['advisor'] -> seller_id?>" class="view" >Approve</a>
+                    <a href="<?= URLROOT;?>/admins/advisorApprove/<?=$data['advisor'] -> advisor_id?>" class="view" >Approve</a>
                     <div class="delete" >Reject</div>
                 </li>
             </ul>
