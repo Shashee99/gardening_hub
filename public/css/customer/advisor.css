@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    widows: 100%;
+    background-color: #3BB78F ;
+    position: relative;
+    display: flex;
+}
+
+#side .items li:nth-child(4) {
+    background-color: #3BB78F;
+    border-radius: 0 50px 50px 0;
+    width: 90%;
+}
+#rest{
+    background-color: rgba(239, 239, 239, 0.65);
+    margin-top: 80px;
+    margin-left: 22%;
+    max-height: 100%;
+    width: 78%;
+    border-radius: 25px 0 0 0;
+    position: fixed;
+    overflow-y: auto;
+    height: 100%;
+}
+.advisor-filter-option{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin: 20px auto 0 auto;
+}
+.advisor-filter-option select{
+    padding: 10px 35px;
+    font-size: 18px;
+    color: #000;
+    height: 55px;
+    /* border: thin solid #a47c34; */
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+.advisor-filter-option select:focus{
+    outline: none;
+}
+.advisor-wrapper{
+    width: 90%;
+    margin: 30px auto 100px auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.advisor-card{
+    width: 450px;
+    background-color: #efefef;
+    margin-bottom: 20px;
+}
+.advisor-card .part1
+{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 20px;
+}
+.advisor-card .part1 img{
+    width: 50px;
+    border-radius: 50%;
+}
+.advisor-card .part2{
+    margin-left: 30px;
+}
+.advisor-card .part2 .address{
+    display: flex;
+    margin-top: 20px;
+}
+.advisor-card .part2 .address img{
+    width: 20px;
+    margin-right: 20px;
+}
+.advisor-card .part2 .phone-no{
+    display: flex;
+    margin-top: 10px;
+}
+.advisor-card .part2 .phone-no img{
+    width: 20px;
+    margin-right: 20px;
+}
+.advisor-card .showmore{
+    width: 180px;
+    height: 40px;
+    background-color: #fff;
+    margin: 20px auto 20px auto;
+    border-radius: 10px;
+    border: 1px solid #00a778;
+}
+.advisor-card .showmore a{
+    text-decoration: none;
+    color: #000;
+    text-align: center;
+    display: block;
+    padding-top: 7px;
+    
+}
+.advisor-card .showmore:hover{
+    background-color: #00a778;
+    transition: all .3s ease-in-out;
+    transform: scale(0.95);
+    
+}
+.advisor-card .showmore:hover a{
+    color: #fff;
+}

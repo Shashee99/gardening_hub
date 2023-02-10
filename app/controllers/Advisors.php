@@ -2,6 +2,8 @@
 
     class Advisors extends Controller
     {
+        private $advisorModel;
+
         public function __construct()
         {
             $this->advisorModel = $this->model('Advisor');
@@ -21,6 +23,14 @@
         public function viewHomePage()
         {
             $this->view('advisor/homepage');
+        }
+        public function viewAdvisors()
+        {
+            $details = $this->advisorModel->all_registered_advisors();
+            $data = [
+                'advisor_details' => $details
+            ];
+            $this->view('customers/advisors',$data);
         }
 
         

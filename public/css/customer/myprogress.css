@@ -101,7 +101,7 @@ select:focus{
     border-radius: 10px;
 }
 .progress-add .progress-border{
-    width: 100%;
+    width: 580px;
     height: 60px;
     border: #00a778 dashed 3px;
     display: flex;
@@ -109,8 +109,120 @@ select:focus{
     justify-content: center;
     border-radius: 10px;
 }
-.progress- add .border:hover{
+.progress-add .progress-border:hover{
     background-color: #00a778;
-    /* transition: ease-in-out; */
+    color: #fff;
+    transform: scale(0.98);
+    transition: all .3s ease-in-out;
 
 }
+.progress-add a{
+    text-decoration: none;
+    color: #000;
+}
+.my-progress-wrapper{
+    margin-bottom: 100px;
+}
+.my-progress-card:hover {
+    transition: all .05s ease-in-out;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px -10px #00a778;
+}
+.my-progress-card .part1{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.my-progress-card .part1 img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+.my-progress-card .part1 .date{
+    margin-top: 20px;
+}
+.my-progress-card{
+    width: 90%;
+    margin: 20px auto 0 auto ;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.my-progress-card h3{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.my-progress-card .content p{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.my-progress-card .last{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.my-progress-card .last .images{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width:80%;
+    height: 150px;
+    background-color: #efefef;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+.my-progress-card .last .images img{
+    width: 120px;
+    max-height: 50PX;
+    border-radius: 5px;
+    margin: 0 auto 0 auto;
+}
+.my-progress-card .last .option-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+} 
+.my-progress-card .last .delete-button input,.my-progress-card .last .edit-button input{
+    height: 40px;
+    width: 100px;
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    margin: 10px auto;
+}
+.my-progress-card .last .delete-button input {
+    border: 2px solid red;
+}
+.my-progress-card .last .edit-button input{
+    border: 2px solid #00a778; 
+}
+.my-progress-card .last .delete-button input:hover{
+    transform: scale(0.95);
+    transition: all .3s ease-in-out;
+    background: red;
+    color: #fff;
+}
+.my-progress-card .last .edit-button input:hover{
+    transform: scale(0.95);
+    transition: all .3s ease-in-out;
+    background: #00a778;
+    color: #fff;
+}
+.empty_record{
+    margin-top: 60px;
+}
+.empty_record h2{
+    text-align: center;
+    font-weight: 500;
+}
+

@@ -414,6 +414,7 @@ class Users extends Controller
                 $new_img = uniqid('IMG-', true) . '.' . $img_type;
                 $img_upload_path = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/advisor_pp/' . $new_img;
                 move_uploaded_file($tmp_name, $img_upload_path);
+                $data['pp'] = $new_img;
 
                 $photo = array();
 

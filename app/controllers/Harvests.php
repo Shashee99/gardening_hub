@@ -335,5 +335,10 @@
             }
 
          }
+         public function deletHarvest($id)
+         {
+            $this->haervestModel->deleteHarvest($id);
+            redirect('harvests/viewAddMyHarvest');
+         }
       
    }
