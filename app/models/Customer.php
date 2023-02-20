@@ -31,4 +31,14 @@
             $row = $this -> db -> singleRecord();
             return $row->name;
         }
+
+        public function searchuserbyname($name){
+            $search_term = $name . '%';
+            $this -> db -> query('SELECT * FROM `customer` WHERE `name` LIKE :search_term');
+            $this ->db ->bind(':search_term',$search_term);
+            $dataset = $this->db->resultSet();
+            return $dataset;
+
+        }
+
     }

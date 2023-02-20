@@ -7,7 +7,7 @@
                 <h1 class="font700" id="newadcount"></h1>
             </div>
             <div class="searcharea flex">
-                <input type="text" name="searchcat" id="searchcat" class="searchbox" placeholder="Search Category">
+                <input type="text" name="searchbyadviosrunregistered" id="searchbyadviosrunregistered" class="searchbox" placeholder="Search Category" onkeyup="searchbyunregisteredseller();">
                 <div class="searchbtn bglightgray">
                     <img src="<?= URLROOT; ?>/img/admin/icon/search.png" alt="" width="30px" height="25px" class="searchicon">
                 </div>
@@ -43,10 +43,11 @@
                 </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="advisorstableunregistered">
+                <?php $i = 1; ?>
                 <?php foreach ($data['newadvisors'] as $row) : ?>
                     <tr>
-                        <td><?php echo $row -> advisor_id ?></td>
+                        <td><?php echo $i++ ?></td>
                         <td><?php echo $row -> name ?></td>
                         <td><?php echo $row -> nic_no ?></td>
                         <td><?php echo $row -> email ?></td>

@@ -163,6 +163,23 @@ class Seller{
         $this -> db -> bind(':order_date', $data['complete_date']);
         $this -> db-> bind(':id',$id);
     }
+    public function searchuserbyname_registeredsellers($name){
+        $search_term = $name . '%';
+        $this -> db -> query('SELECT * FROM `seller` WHERE `shop_name` LIKE :search_term AND is_registered = 1');
+        $this ->db ->bind(':search_term',$search_term);
+        $dataset = $this->db->resultSet();
+        return $dataset;
+
+    }
+    public function searchuserbyname_unregisteredsellers($name){
+        $search_term = $name . '%';
+        $this -> db -> query('SELECT * FROM `seller` WHERE `shop_name` LIKE :search_term AND is_registered = 0');
+        $this ->db ->bind(':search_term',$search_term);
+        $dataset = $this->db->resultSet();
+        return $dataset;
+
+    }
+
 
 }
 

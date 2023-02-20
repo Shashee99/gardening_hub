@@ -315,4 +315,45 @@ class Sellers extends Controller{
 
         $this->view('seller/order', $data);
     }
+
+    public function searchbynames_registeredseller(){
+
+
+        if(isset($_POST['searchbynames_registeredseller'])){
+            $text = $_POST['searchbynames_registeredseller'];
+            $dataset = $this->sellerModel -> searchuserbyname_registeredsellers($text);
+            echo json_encode($dataset);
+            unset($_POST['searchbynames_registeredseller']);
+            exit();
+        }
+        else{
+            $tabledata = $this->sellerModel->all_registered_sellers();
+            $tabledata =json_encode($tabledata);
+            echo $tabledata;
+            exit();
+
+        }
+
+    }
+
+    public function searchbynames_unregisteredseller(){
+
+
+        if(isset($_POST['searchbynames_unregisteredseller'])){
+            $text = $_POST['searchbynames_unregisteredseller'];
+            $dataset = $this->sellerModel -> searchuserbyname_unregisteredsellers($text);
+            echo json_encode($dataset);
+            unset($_POST['searchbynames_unregisteredseller']);
+            exit();
+        }
+        else{
+            $tabledata = $this->sellerModel->get_non_registered_sellers();
+            $tabledata =json_encode($tabledata);
+            echo $tabledata;
+            exit();
+
+        }
+
+    }
+
 }

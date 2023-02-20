@@ -13,9 +13,17 @@ class Admins extends Controller {
         $this -> advisorModel = $this -> model('Advisor');
     }
     public function home(){
+
+        $advisors = $this ->advisorModel->all_registered_advisors();
+        $customers = $this ->customerModel->get_all_customers();
+//        $sellers = $this -> customerModel -> get_all_sellers();
+
         $data = [
             'nav'=>'home',
-            'title'=>'Dashboard'
+            'title'=>'Dashboard',
+            'advisors' => $advisors,
+            'customers' => $customers,
+//            'sellers' => $sellers
         ];
         $this->view('admin/home',$data);
     }
@@ -51,9 +59,6 @@ class Admins extends Controller {
             $rowdata->posted_user_id = $this -> userModel ->getNamebyuserid($rowdata->posted_user_id);
             $rowdata ->complained_user_id = $this -> userModel -> getNamebyuserid($rowdata->complained_user_id);
         }
-
-
-
         $data = [
             'nav'=>'complaint',
             'title'=>'Complaints',

@@ -22,6 +22,26 @@
             echo 'Yes';
         }
 
+        public function searchbynames(){
+
+
+            if(isset($_POST['searchbyname'])){
+                $text = $_POST['searchbyname'];
+                $dataset = $this->customerModel -> searchuserbyname($text);
+                echo json_encode($dataset);
+                unset($_POST['searchbyname']);
+                exit();
+            }
+            else{
+                $tabledata = $this->customerModel->get_all_customers();
+                $tabledata =json_encode($tabledata);
+                echo $tabledata;
+                exit();
+
+            }
+
+        }
+
 
        
     }

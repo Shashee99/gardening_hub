@@ -21,6 +21,7 @@ function deletecat(e) {
 
         ajax.send("id=" + id);
 
+
         getData();
         return false;
     } else {
@@ -297,6 +298,256 @@ document.getElementById("editcatbutton").addEventListener('click' ,()=>{
     }
     getData();
 })
+
+
+function searchbyname() {
+
+    let search = document.getElementById('searchbyname').value;
+
+    var ajax = new XMLHttpRequest();
+
+    ajax.open("POST", "http://localhost/gardening_hub/customers/searchbynames", true);
+
+    ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    ajax.send("searchbyname=" + search);
+    ajax.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            var html = "";
+           if(data.length>=1){
+
+               for (var a = 0; a < data.length; a++) {
+                   html += "<tr>";
+                   html += "<td>" + (a+1)+ "</td>";
+                   html += "<td>" + data[a].name + "</td>";
+                   html += "<td>" + data[a].nic_no + "</td>";
+                   html += "<td>" + data[a].email + "</td>";
+                   html += "<td>" + data[a].bod + "</td>";
+                   html += "<td>" + data[a].gramasewa_division + "</td>";
+                   html += "<td>" + data[a].divisional_secretary + "</td>";
+                   html += "<td>" + data[a].tel_no + "</td>";
+                   html += `<td> <div class="seller-action flex"> <a href="http://localhost/gardening_hub/admins/viewcustomer/${data[a].customer_id}" class="view"> View </a> <div class="delete"> Delete </div> </div></td>`;
+                   html += "</tr>";
+                   // console.log(html);
+               }
+
+           }
+           else {
+               html += "<tr> Sorry no records found!! </tr>";
+           }
+            document.getElementById("customersall").innerHTML = html;
+        }
+
+    };
+
+
+
+}
+//search by user name (registered seller)
+
+function searchbyregisteredshopname() {
+
+    let search = document.getElementById('searchbyshopnameregistered').value;
+
+    var ajax = new XMLHttpRequest();
+
+    ajax.open("POST", "http://localhost/gardening_hub/sellers/searchbynames_registeredseller", true);
+
+    ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    ajax.send("searchbynames_registeredseller=" + search);
+    ajax.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            // console.log(data);
+            var html = "";
+            if(data.length>=1){
+
+                for (var a = 0; a < data.length; a++) {
+                    html += "<tr>";
+                    html += "<td>" + (a+1)+ "</td>";
+                    html += "<td>" + data[a].shop_name + "</td>";
+                    html += "<td>" + data[a].owner_name + "</td>";
+                    html += "<td>" + data[a].email + "</td>";
+                    html += "<td>" + data[a].tel_no + "</td>";
+                    html += `<td> <div class="seller-action flex"> <a href="http://localhost/gardening_hub/admins/viewseller/${data[a].seller_id}" class="view"> View </a> <div class="delete"> Delete </div> </div></td>`;
+                    html += "</tr>";
+                    // console.log(html);
+                }
+
+            }
+            else {
+                html += "<tr> Sorry no records found!! </tr>";
+            }
+            document.getElementById("registeredsellerstable").innerHTML = html;
+        }
+
+    };
+
+
+
+}
+
+//search by user name (un registered seller)
+
+function searchbyunregisteredshopname() {
+
+    let search = document.getElementById('searchbyshopnameunregistered').value;
+
+    var ajax = new XMLHttpRequest();
+
+    ajax.open("POST", "http://localhost/gardening_hub/sellers/searchbynames_unregisteredseller", true);
+
+    ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    ajax.send("searchbynames_unregisteredseller=" + search);
+    ajax.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            // console.log(data);
+            var html = "";
+            if(data.length>=1){
+
+                for (var a = 0; a < data.length; a++) {
+                    html += "<tr>";
+                    html += "<td>" + (a+1)+ "</td>";
+                    html += "<td>" + data[a].shop_name + "</td>";
+                    html += "<td>" + data[a].owner_name + "</td>";
+                    html += "<td>" + data[a].email + "</td>";
+                    html += "<td>" + data[a].tel_no + "</td>";
+                    html += `<td> <div class="seller-action flex"> <a href="http://localhost/gardening_hub/admins/viewseller/${data[a].seller_id}" class="view"> View </a> <div class="delete"> Delete </div> </div></td>`;
+                    html += "</tr>";
+                    // console.log(html);
+                }
+
+            }
+            else {
+                html += "<tr> Sorry no records found!! </tr>";
+            }
+            document.getElementById("unregisteredsellerstable").innerHTML = html;
+        }
+
+    };
+
+}
+
+
+//search by user name (registered advisor)
+function searchbyregisteredseller() {
+
+    let search = document.getElementById('searchbyadviosrregistered').value;
+
+    var ajax = new XMLHttpRequest();
+
+    ajax.open("POST", "http://localhost/gardening_hub/advisors/searchbynames_registeredadvisor", true);
+
+    ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    ajax.send("searchbynames_registeredadvisor=" + search);
+    ajax.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            var html = "";
+            if(data.length>=1){
+
+                for (var a = 0; a < data.length; a++) {
+                    html += "<tr>";
+                    html += "<td>" + (a+1)+ "</td>";
+                    html += "<td>" + data[a].name + "</td>";
+                    html += "<td>" + data[a].nic_no + "</td>";
+                    html += "<td>" + data[a].email + "</td>";
+                    html += "<td>" + data[a].tel_no + "</td>";
+                    html += `<td> <div class="seller-action flex"> <a href="http://localhost/gardening_hub/admins/viewadvisor/${data[a].advisor_id}" class="view"> View </a> <div class="delete"> Delete </div> </div></td>`;
+                    html += "</tr>";
+                }
+
+            }
+            else {
+                html += "<tr> Sorry no records found!! </tr>";
+            }
+            document.getElementById("advisorstableregistered").innerHTML = html;
+        }
+
+    };
+
+}
+
+//search by user name (unregistered advisor)
+function searchbyunregisteredseller() {
+
+    let search = document.getElementById('searchbyadviosrunregistered').value;
+
+    var ajax = new XMLHttpRequest();
+
+    ajax.open("POST", "http://localhost/gardening_hub/advisors/searchbynames_unregisteredadvisor", true);
+
+    ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    ajax.send("searchbynames_unregisteredadvisor=" + search);
+    ajax.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            var html = "";
+            if(data.length>=1){
+
+                for (var a = 0; a < data.length; a++) {
+                    html += "<tr>";
+                    html += "<td>" + (a+1)+ "</td>";
+                    html += "<td>" + data[a].name + "</td>";
+                    html += "<td>" + data[a].nic_no + "</td>";
+                    html += "<td>" + data[a].email + "</td>";
+                    html += "<td>" + data[a].tel_no + "</td>";
+                    html += `<td> <div class="seller-action flex"> <a href="http://localhost/gardening_hub/admins/viewadvisor/${data[a].advisor_id}" class="view"> View </a> <div class="delete"> Delete </div> </div></td>`;
+                    html += "</tr>";
+                }
+
+            }
+            else {
+                html += "<tr> Sorry no records found!! </tr>";
+            }
+            document.getElementById("advisorstableunregistered").innerHTML = html;
+        }
+
+    };
+
+}
+
+//search product categories
+function searchcategories() {
+
+    let search = document.getElementById('searchcat').value;
+
+    var ajax = new XMLHttpRequest();
+
+    ajax.open("POST", "http://localhost/gardening_hub/ProductCategories/searchcategoriesbyname", true);
+
+    ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    ajax.send("searchcategory=" + search);
+
+    ajax.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+            var data = JSON.parse(this.responseText);
+            console.log(data);
+            var html = "";
+            for (var a = 0; a < data.length; a++) {
+                html += "<tr>";
+                html += "<td>" + data[a].product_id + "</td>";
+                html += "<td>" + data[a].product_category + "</td>";
+                html += "<td>" + data[a].sub_category + "</td>";
+                html += "<td><button onClick=\"editCat(this);\">Edit</button>\n" +
+                    "<button onClick=\"deletecat(this);\">Delete</button></td>";
+                html += "</tr>";
+                // console.log(html);
+            }
+
+            document.getElementById("categoryTable").innerHTML = html;
+        }
+    };
+
+}
+
 
 
 
