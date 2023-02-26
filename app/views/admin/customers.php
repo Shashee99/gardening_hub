@@ -1,27 +1,14 @@
 <?php require_once APPROOT . '/views/inc/incAdmin/header.php'; ?>
 <div class="approvals">
 
-    <!--    <div class="approvedsellers flex">-->
-    <!--        <div class="">-->
-    <!--            Approved sellers-->
-    <!--        </div>-->
-    <!--        <div class="count">-->
-    <!--            100-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--    <div class="searchbox">-->
-    <!--        <form>-->
-    <!--            <input type="text" placeholder="Search...">-->
-    <!--            <button type="submit"> <img src="--><?//= URLROOT; ?><!--/img/landingPage/Star.png" width="30px" height="32px" alt=""></button>-->
-    <!--        </form>-->
-    <!--    </div>-->
+
     <div class="category parentwidth flex">
         <div class="category-item1 flex">
             <h3 class="font600">All Product Customers</h3>
             <h1 class="font700" id="cuscount"></h1>
         </div>
         <div class="searcharea flex">
-            <input type="text" name="searchcat" id="searchcat" class="searchbox" placeholder="Search Category">
+            <input type="text" name="searchcat" id="searchbyname" class="searchbox" placeholder="Search by name" onkeyup="searchbyname();">
             <div class="searchbtn bglightgray">
                 <img src="<?= URLROOT; ?>/img/admin/icon/search.png" alt="" width="30px" height="25px" class="searchicon">
             </div>
@@ -42,7 +29,7 @@
     <hr>
     <br>
     <div class="seller-table-area" style="border: 1px solid black; overflow-x: scroll;">
-        <table class="table-sellers parentwidth">
+        <table class="table-sellers parentwidth" >
             <thead>
             <tr>
                 <th>#</th>
@@ -57,10 +44,11 @@
             </tr>
             </thead>
 
-            <tbody>
+            <tbody id="customersall">
+            <?php $i =1; ?>
             <?php foreach ($data['customers'] as $row) : ?>
                 <tr>
-                    <td><?php echo $row -> customer_id ?></td>
+                    <td><?php echo $i++ ?></td>
                     <td><?php echo $row -> name ?></td>
                     <td><?php echo $row -> nic_no ?></td>
                     <td><?php echo $row -> email ?></td>
