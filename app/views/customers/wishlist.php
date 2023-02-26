@@ -59,13 +59,67 @@
             <table>
                 <thead>
                 <th>No</th>
-                <th>Date & Time</th>
+                <th>Ordered Date & Time</th>
                 <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Seller</th>
                 <th>Status</th>
+                <th>Status Message</th>
                 </thead>
                 <tbody>
+                    <?php 
+                    foreach($data['wislist'] as $row)
+                    {
+                        $i=0;
+                    ?>
+                        <tr>
+                        <td><?= ++$i; ?></td>
+                        <td><?= $row->order_date_time; ?></td>
+                        <td><?= $row->title; ?></td>
+                        <td><?= $row->count; ?></td>
+                        <td><?= $row->shop_name; ?></td>
+                        <td>
+                            <?php
+                                if($row->status === 0)
+                                {
+                                    echo "Pending To Confirm";
+                                }
+                                elseif($row->status === 1 )
+                                {
+                                    echo "Rejected";
+                                }
+                                elseif($row->status === 2)
+                                {
+                                    echo "Confirm & pending to Complete";
+                                }
+                                elseif($row->status === 3)
+                                {
+                                    echo "Complete";
+                                }
+                                else
+                                {
+                                    echo "Not Collected";
+                                }
+
+
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                                if(is_null($row->status_msg))
+                                {
+                                    echo "---";
+                                }
+                                else
+                                {
+                                    echo $row->status_msg;
+                                }
+                            ?>
+                        </td>
+                </tr>
+                    <?php
+                    }
+                    ?>
                 <tr>
                     <td>1</td>
                     <td>2020/10/01 10.53</td>

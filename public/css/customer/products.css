@@ -6,7 +6,7 @@
     font-family: 'Poppins',sans-serif;
 }
 body{
-    widows: 100%;
+    width: 100%;
     background-color: #3BB78F ;
     position: relative;
     display: flex;
@@ -63,16 +63,6 @@ body{
     justify-content: space-evenly;
 
 }
-.product-wraper .cart{
-    width: 8%;
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
 .products-details .product{
     display: flex;
     flex-direction: column;
@@ -105,6 +95,7 @@ body{
     border: none;
     color: #ffffff;
     border-radius: 10px;
+    cursor: pointer;
 }
 .product .product-add input:hover{
     background-color: #107AB0;

@@ -84,4 +84,7 @@ class NewTechs extends Controller
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
         }
     }
+    public function addNewTechnology(){
+        $this -> view('advisor/addtechnology');
+    }
 }

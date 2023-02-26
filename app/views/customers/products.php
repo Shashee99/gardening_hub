@@ -57,7 +57,7 @@ if(!isset($_SESSION['cus_id']))
 
                 <?php foreach($data['products'] as $products) { ?>
                     <div class="product">
-                        <a href="">
+                        <a href="<?= URLROOT; ?>/products/viewOneProduct/<?= $products->product_no; ?>">
                             <img src="<?= URLROOT; ?>/img/upload_images/product_cover_photo/<?= $products->image; ?>" alt="">
                         </a>
                         <h4><?= $products->title; ?></h4>
@@ -65,7 +65,9 @@ if(!isset($_SESSION['cus_id']))
                         <p>Available : <?= $products->quantity; ?></p>
                         <h4>Price Rs.<?= $products->price; ?></h4>
                         <div class="product-add">
-                            <input type="submit" name="add-btn" value="Add to Wishlist">
+                            <a href="<?= URLROOT; ?>/products/addProductToWishlist/<?= $products->product_no; ?>">
+                                <input type="submit" name="add-btn" value="Add to Wishlist">
+                            </a>
                         </div>
 
 

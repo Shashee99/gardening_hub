@@ -14,6 +14,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>home</title>
     <link rel="stylesheet" href="<?= URLROOT; ?>/css/advisor/homepage.css">
+    <style>
+        
+    </style>
 </head>
 <body>
     
@@ -36,13 +39,18 @@
      <div class="sider">
        <div class="sidleft">
          <div class="profile">
-            <img src="<?= URLROOT; ?>/img/advisor/logo.png" alt="image" >
+            <img src="<?= URLROOT; ?>/advisors/view" alt="image" >
             <p>Dasith chanuka <br>Active now </p> <div></div>
          </div>
 
           <div class="function"><p class="c">Dashbord</p></div>
-          <div class="function"><p class="a">Customer Problems</p></div>
-          <div class="function"><p class="a">Add New Technology</p></div>
+          <a href="<?= URLROOT;?>/replies/addReply">
+            <div class="function"><p class="a">Customer Problems</p></div>
+          </a>
+          <a href="<?= URLROOT;?>/newTechs/addNewTechnology">
+            <div class="function"><p class="a">Add New Technology</p></div>
+          </a>
+          
           <div class="function"><p class="c">Log out</p></div>
           <div class="function"><p class="c">View Generate Report</p></div>
 

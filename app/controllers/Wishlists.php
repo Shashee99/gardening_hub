@@ -10,6 +10,10 @@
         }
         public function viewWishlist()
         {
-            $this->view('customers/wishlist');
+            $wishlist = $this->wishlistModel->customerWishlistDetails();
+            $data =[
+                'wislist' => $wishlist
+            ];
+            $this->view('customers/wishlist',$data);
         }
     }
