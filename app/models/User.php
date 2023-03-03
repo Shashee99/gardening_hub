@@ -327,5 +327,11 @@
             return $code;
         }
 
+        public function setuserasregistered($email){
+            $this ->db -> query('UPDATE user SET user_state = 1 WHERE email = :email');
+            $this ->db-> bind(':email',$email);
+            $this -> db -> execute();
+        }
+
 
     }

@@ -185,18 +185,21 @@ class Admins extends Controller
             redirect('admins/sellers');
         }
 
-
-
-
     }
 
     public function advisorApprove($id)
     {
 
-//        $data['id'] = $id;
-//        $this->view('admin/test',$data);
         $val = $this->adminModel->advisorApprove($id);
-        if ($val) {
+        $username = '';
+//        getting the email of the seller from user table
+        $email = $this->userModel->getemailbyuserid($id);
+//        generating the verification code
+        $verification_code = substr(uniqid(rand()), 0, 6);
+//       updating the verification code in users table
+        $this->userModel->insertverificationcode($id, $verification_code);
+
+        if ($this->mailer->sendVerificationbyMail($username,$email,$verification_code)) {
             redirect('admins/advisors');
         }
 

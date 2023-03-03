@@ -435,6 +435,7 @@ class Users extends Controller
 
                 if($this->userModel->advisorRegister($data, $new_img1))
                 {
+                    $this ->notiModel -> addnotification('Advisor');
                     redirect('users/login');
                 }
                 else
@@ -520,8 +521,9 @@ class Users extends Controller
 //                $state = $this->userModel->verify($data['u_name'],$data['pass'],$data['verify']);
 
                 if($usertype == 'seller'){
-                    if($userstate === 1 )
+                    if($userstate === 0 )
                     {
+                        $this ->userModel -> setuserasregistered($data['u_name']);
                         $this->createSellerSession($logged_user);
                     }
                     elseif($logged_user->user_state === 2)
@@ -537,8 +539,9 @@ class Users extends Controller
 
                 }
                 if($usertype == 'advisor'){
-                    if($userstate === 1 )
+                    if($userstate === 0 )
                     {
+                        $this ->userModel -> setuserasregistered($data['u_name']);
                         $advisor_details = $this->advisorModel->advisorDetails($logged_user->user_id);
                         $this->createAdvisorSession($advisor_details);
                     }
