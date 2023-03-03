@@ -21,6 +21,13 @@ class Notification{
         $result = $this->db->execute();
         return $result;
     }
+    public function addnotification($type){
+
+        $this ->db ->query('INSERT INTO `admin_notification`(`user_type`) VALUES (:type)');
+        $this ->db ->bind(':type',$type);
+        $this ->db -> execute();
+
+    }
 
 
     

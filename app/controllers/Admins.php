@@ -172,7 +172,7 @@ class Admins extends Controller
     public function sellerApprove($id)
     {
 
-//        $this->adminModel->sellerApprove($id);
+        $this->adminModel->sellerApprove($id);
         $username = '';
 //        getting the email of the seller from user table
         $email = $this->userModel->getemailbyuserid($id);

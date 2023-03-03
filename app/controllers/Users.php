@@ -6,6 +6,7 @@ class Users extends Controller
     private $customerModel;
     private $advisorModel;
     private $sellerModel;
+    private $notiModel;
 
     public function __construct()
     {
@@ -14,6 +15,7 @@ class Users extends Controller
         $this->customerModel = $this->model('Customer');
         $this->advisorModel = $this->model('Advisor');
         $this->sellerModel = $this ->model('Seller');
+        $this ->notiModel = $this ->model('Notification');
     }
 
     public function customerRegister()
@@ -340,6 +342,7 @@ class Users extends Controller
                 $data['seller_image'] = $newimagename;
                 //Register User
                 if ($this->userModel->sellerRegister($data)) {
+                    $this ->notiModel -> addnotification('Seller');
                     flash('register_success', 'You are registered and can log in');
                     redirect('users/login');
                 } else {
@@ -464,6 +467,110 @@ class Users extends Controller
             $this->view('users/advisorRegister',$data);
         }
         
+    }
+    public function verify(){
+        // Check for POST request
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            // Process the form data
+            $data = [
+                'title' => 'Fill following fields to be verified!',
+                'u_name' => trim($_POST['u_name']),
+                'pass' => trim($_POST['pass']),
+                'verify'=>(int)trim($_POST['verify']),
+                'verify_err' => '',
+                'u_name_err' => '',
+                'pass_err' => ''
+            ];
+
+            if (empty($data['u_name'])) {
+                $data['u_name_err'] = 'Please enter Email';
+            } elseif (!$this->userModel->findUser($data['u_name'])) {
+                $data['u_name_err'] = 'No user found';
+            }
+            if (empty($data['pass'])) {
+                $data['pass_err'] = 'Please enter password';
+            }
+            if (empty($data['verify'])) {
+                $data['verify_err'] = 'Please enter Verification code';
+            }
+            $hashedpw = '' ;
+            $usertype = '';
+            $userstate = '';
+            $logged_user = '';
+            $vericode  = '';
+
+            if(!empty($data['u_name'])){
+                $hashedpw = $this -> userModel -> getuserhashedpasswordbyemail($data['u_name']);
+                $usertype = $this -> userModel -> getusertypebyemail($data['u_name']);
+                $vericode = $this -> userModel -> getuserverificationcodebyemail($data['u_name']);
+                $userstate = $this -> userModel -> getuserstatebyemail($data['u_name']);
+                $logged_user = $this ->userModel -> findUser($data['u_name']);
+            }
+
+            if(!password_verify($data['pass'], $hashedpw)){
+                $data['pass_err'] = "Incorrect Password";
+            }
+            if($data['verify'] != $vericode){
+                $data['verify_err'] = "Incorrect Verification Code";
+            }
+
+            if (empty($data['u_name_err']) && empty($data['pass_err']) && empty($data['verify_err'])) {
+//                $state = $this->userModel->verify($data['u_name'],$data['pass'],$data['verify']);
+
+                if($usertype == 'seller'){
+                    if($userstate === 1 )
+                    {
+                        $this->createSellerSession($logged_user);
+                    }
+                    elseif($logged_user->user_state === 2)
+                    {
+                        $data['u_name_err'] = 'Your user account has been deleted';
+                        $this->view('users/login',$data);
+                    }
+                    else
+                    {
+                        $data['u_name_err'] = 'Your registration is pending';
+                        $this->view('users/login',$data);
+                    }
+
+                }
+                if($usertype == 'advisor'){
+                    if($userstate === 1 )
+                    {
+                        $advisor_details = $this->advisorModel->advisorDetails($logged_user->user_id);
+                        $this->createAdvisorSession($advisor_details);
+                    }
+                    elseif($userstate === 2)
+                    {
+                        $data['u_name_err'] = 'Your user account has been deleted';
+                        $this->view('users/login',$data);
+                    }
+                    else
+                    {
+                        $data['u_name_err'] = 'Your registration is pending';
+                        $this->view('users/login',$data);
+                    }
+
+                }
+            } else {
+                $this->view('users/verify', $data);
+            }
+
+
+        } else {
+            $data = [
+                'title' => 'Fill following fields to be verified!',
+                'u_name' => '',
+                'pass' => '',
+                'u_name_err' => '',
+                'pass_err' => '',
+                'verify' =>'',
+                'verify_err' => ''
+            ];
+            $this->view('users/verify', $data);
+        }
     }
 
     public function login()

@@ -25,6 +25,14 @@
                 return false;
             }
         }
+
+        public function userregister($email){
+            $this ->db -> query('UPDATE user SET user_state = 1 WHERE email = :email');
+            $this ->db-> bind(':email',$email);
+            $this -> db -> execute();
+
+        }
+
         public function customerRegister($data)
         {
             $sql = "INSERT INTO user (email,password,type) VALUES (:email, :pass, :type)";
@@ -205,6 +213,26 @@
                 return false;
             }
         }
+        public function verify($email, $password,$verification_code)
+        {
+            $sql = "SELECT * FROM user WHERE email = :email";
+            $this->db->query($sql);
+            $this->db->bind(':email', $email);
+
+            $row = $this->db->singleRecord();
+            $hashPass = $row->password;
+            $verifi = (int)$row -> verification_code;
+
+
+            if(password_verify($password, $hashPass))
+            {
+                return   true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
 
 
@@ -268,6 +296,35 @@
             $this->db->execute();
 
 
+        }
+
+        public function getusertypebyemail($email){
+            $this -> db -> query('SELECT * FROM user WHERE email = :email');
+            $this ->db ->bind(':email',$email);
+            $result = $this -> db -> singleRecord();
+            $email =  $result->type;
+            return $email;
+        }
+        public function getuserverificationcodebyemail($email){
+            $this -> db -> query('SELECT * FROM user WHERE email = :email');
+            $this ->db ->bind(':email',$email);
+            $result = $this -> db -> singleRecord();
+            $code =  $result->verification_code;
+            return $code;
+        }
+        public function getuserhashedpasswordbyemail($email){
+            $this -> db -> query('SELECT * FROM user WHERE email = :email');
+            $this ->db ->bind(':email',$email);
+            $result = $this -> db -> singleRecord();
+            $code =  $result->password;
+            return $code;
+        }
+        public function getuserstatebyemail($email){
+            $this -> db -> query('SELECT * FROM user WHERE email = :email');
+            $this ->db ->bind(':email',$email);
+            $result = $this -> db -> singleRecord();
+            $code =  $result->user_state;
+            return $code;
         }
 
 
