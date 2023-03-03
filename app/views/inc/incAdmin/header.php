@@ -91,10 +91,12 @@
     <div class="navbar">
         <div class="nav-container">
             <h1 class="sidebarheader"><?php echo $data['title'];?></h1>
-            <div class="profiles">
-                <div class="notiout">
+            <div class="profiles" >
+                <div class="notiout"  id="notbtn">
                     <img src="<?= URLROOT;?>/img/admin/icon/Icon-color.png" alt="" class="bell">
+                    <div class="notibellcount" id="bellnoti"><h5 id="numofnotifications"></h5></div>
                 </div>
+
                 <div class="profileinfo">
                     <h3>Admin</h3>
                     <div class="admindp">
@@ -107,5 +109,4 @@
     </div>
     <hr class="navsplitter">
     <div class="contain">
-
 

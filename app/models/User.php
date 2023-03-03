@@ -250,5 +250,25 @@
             return $name;
         }
 
+        public function getemailbyuserid($id){
+
+
+            $this -> db -> query('SELECT * FROM user WHERE user_id = :id');
+            $this ->db ->bind(':id',$id);
+            $result = $this -> db -> singleRecord();
+            $email =  $result->email;
+            return $email;
+        }
+
+        public function insertverificationcode($id,$code){
+
+            $this -> db -> query('UPDATE user SET verification_code = :code WHERE user_id = :id');
+            $this -> db -> bind(':code',$code);
+            $this -> db -> bind(':id',$id);
+            $this->db->execute();
+
+
+        }
+
 
     }

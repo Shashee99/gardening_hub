@@ -18,9 +18,10 @@
     <hr>
 
     <div class="sortarea flex parentwidth">
-        <a href="<?= URLROOT; ?>/admins/newadvisors" class="sortbtn flex bglightgray text-decoration-none" style="width: 300px;height: 60px">
+        <a href="<?= URLROOT; ?>/admins/newadvisors" class="sortbtn flex bglightgray text-decoration-none position-relative" style="width: 300px;height: 60px">
             <img src="<?= URLROOT; ?>/img/admin/icon/addcat.png" alt="" width="25px" height="25px">
             <p class="font500" style="font-size: 20px">New Advisor Requests</p>
+            <div id="newadvisorcountnoti"><h5 id="notiadvisor"></h5></div>
         </a>
         <div class="sortbtn flex bglightgray" style="width: 300px;height: 60px">
             <img src="<?= URLROOT; ?>/img/admin/icon/sort.png" alt="" width="25px" height="25px">

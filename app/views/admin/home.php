@@ -4,7 +4,7 @@
     <div class="userlist-usercard">
         <div class="user">
             <h3>Customers</h3>
-            <h1 class="usercount" id="cuscount"></h1>
+            <h1 class="usercount" id="customers"></h1>
         </div>
         <div class="userphoto">
             <img src="<?= URLROOT; ?>/img/admin/customers.png" alt="">
@@ -13,7 +13,7 @@
     <div class="userlist-usercard">
         <div class="user">
             <h3>Sellers</h3>
-            <h1 class="usercount" id="sellCount"></h1>
+            <h1 class="usercount" id="sellers"></h1>
         </div>
         <div class="userphoto" style="margin-left: 20px">
             <img src="<?= URLROOT; ?>/img/admin/sellers.png" alt="">
@@ -22,7 +22,7 @@
     <div class="userlist-usercard">
         <div class="user">
             <h3>Advisors</h3>
-            <h1 class="usercount" id="regadcount"></h1>
+            <h1 class="usercount" id="advisors"></h1>
         </div>
         <div class="userphoto" style="margin-left: 30px">
             <img src="<?= URLROOT; ?>/img/admin/advisor.png" alt="">

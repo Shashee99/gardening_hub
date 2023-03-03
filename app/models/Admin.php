@@ -39,6 +39,8 @@ class Admin{
 
 
     public function sellerApprove($id){
+
+
         $this ->db -> query('UPDATE user SET user_state = 1 WHERE user_id = :id');
         $this ->db-> bind(':id',$id);
         $this -> db -> execute();
