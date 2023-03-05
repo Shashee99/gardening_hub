@@ -23,7 +23,11 @@
         }
         public function viewOneProduct($id)
         {
-            $this->view('customers/oneproductdetails');
+            $productDetails = $this->productModel->getaProductDetails($id);
+            $data = [
+                'product' => $productDetails
+            ];
+            $this->view('customers/oneproductdetails',$data);
             
         }
         public function addProductToWishlist($product_id)
@@ -72,6 +76,29 @@
                 ];
                 $this->view('customers/addproduct',$data);
             }   
+        }
+        public function filterProducts()
+        {
+            $category = $_GET['category'];
+            $sub_category = $_GET['sub-category'];
+            $price = $_GET['price'];
+
+            $result = $this->productModel->filterProducts($category, $sub_category, $price);
+
+            $arr = array();
+
+            foreach($result as $products)
+            {
+                $arr[] = array(
+                    'product_no' => $products->product_no,
+                    'photo' => $products->image,
+                    'title' => $products->title,
+                    'seller' => $products->shop_name,
+                    'quantity' => $products->quantity,
+                    'price' => $products->price
+                );
+            }
+            echo json_encode($arr, JSON_UNESCAPED_UNICODE);
         }
                     
     }

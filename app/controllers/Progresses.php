@@ -24,4 +24,9 @@
             ];
             $this->view('customers/otherProgress', $data);
         }
+        public function deleteprogress($id)
+        {
+            $this->progressModel->deleteprogress($id);
+            redirect('progresses/viewMyProgress');
+        }
     }
