@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    width: 100%;
+    background-color: rgba(0,0,0,0.85);
+    position: relative;
+    display: flex;
+}
+.count-get-modal{
+    margin: auto;
+    background-color: #fff;
+    width: 500px;
+    height: 180px;
+}
+.count-get-modal .modal-content p{
+    text-align: center;
+    margin-top: 20px;
+}
+.count-get-modal .modal-content #input-field{
+    width: 200px;
+    margin: 20px auto 5px auto;
+    display: block;
+    height: 30px;
+    border: none;
+    border: 1px solid #636161;
+    border-radius: 10px;
+    text-align: center;
+}
+.count-get-modal .modal-content #input-field:focus{
+    outline: none;
+}
+.count-get-modal .modal-content .button-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 10px;
+}
+.count-get-modal .modal-content .button-div input{
+    width: 100px;
+    height: 40px;
+    background-color: #00a778;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+.count-get-modal .modal-content .button-div a{
+    width: 100px;
+    height: 40px;
+    background-color: red;
+    border: none;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 7px;
+}
+.count-get-modal .modal-content  #invalid{
+    
+    width: 200px;
+    margin: 20px auto 5px auto;
+    display: block;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid red;
+}
+.count-get-modal .modal-content .error span{
+    color: red;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+.count-get-modal .modal-content .error{
+    text-align: center;
+
+}

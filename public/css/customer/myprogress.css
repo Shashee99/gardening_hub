@@ -1,0 +1,289 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    widows: 100%;
+    background-color: #3BB78F ;
+    position: relative;
+    display: flex;
+}
+
+#side .items li:nth-child(7) {
+    background-color: #3BB78F;
+    border-radius: 0 50px 50px 0;
+    width: 90%;
+}
+#rest{
+    background-color: rgba(239, 239, 239, 0.65);
+    margin-top: 80px;
+    margin-left: 22%;
+    max-height: 100%;
+    width: 78%;
+    border-radius: 25px 0 0 0;
+    position: fixed;
+    overflow-y: auto;
+    height: 100%;
+
+}
+.filter-options{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 40px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.filter-options .btn{
+    width: 300px;
+    height: 55px;
+    background-color: #fff;
+    text-align: center;
+    padding-top: 10px;
+    border-radius: 10px;
+    /* margin: 0 50px 0 0; */
+}
+.filter-options .btn a{
+    text-decoration: none;
+}
+.filter-options #btn1{
+    border: #00a778 solid 5px;  
+}
+.filter-options #btn2{
+    padding-top: 15px;
+}
+.filter-options #btn1 a{
+    color: #00a778;
+    font-size: 16px;
+} 
+.filter-options #btn2 a{
+    color: #000;
+    font-size: 16px;
+}
+.filter-options #btn2:hover{
+    transform: scale(0.95);
+    background: #00a778;
+    transition: all .3s ease-in-out;
+}
+.filter-options #btn2:hover a{
+    color: white;
+
+}
+.filter-options #btn1:hover{
+    transform: scale(0.95);
+    transition: all .3s ease-in-out;
+}
+.filter-options select{
+    padding: 10px;
+    font-size: 18px;
+    color: #000;
+    height: 55px;
+    /* border: thin solid #a47c34; */
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+}
+select:focus{
+    outline: none;
+}
+.progress-add{
+    width: 60%;
+    height: 80px;
+    background-color: #efefef;
+    margin: 30px auto 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+.progress-add .progress-border{
+    width: 580px;
+    height: 60px;
+    border: #00a778 dashed 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.progress-add .progress-border:hover{
+    background-color: #00a778;
+    color: #fff;
+    transform: scale(0.98);
+    transition: all .3s ease-in-out;
+
+}
+.progress-add a{
+    text-decoration: none;
+    color: #000;
+}
+.my-progress-wrapper{
+    margin-bottom: 100px;
+}
+.my-progress-card:hover {
+    transition: all .05s ease-in-out;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px -10px #00a778;
+}
+.my-progress-card .part1{
+    display: flex;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.my-progress-card .part1 img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+.my-progress-card .part1 .date{
+    margin-top: 20px;
+}
+.my-progress-card{
+    width: 90%;
+    margin: 20px auto 0 auto ;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.my-progress-card h3{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.my-progress-card .content p{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.my-progress-card .last{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.my-progress-card .last .images{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width:80%;
+    height: 150px;
+    background-color: #efefef;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+.my-progress-card .last .images img{
+    width: 120px;
+    max-height: 50PX;
+    border-radius: 5px;
+    margin: 0 auto 0 auto;
+}
+.my-progress-card .last .option-button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+} 
+.my-progress-card .last .delete-button button,.my-progress-card .last .edit-button input{
+    height: 40px;
+    width: 100px;
+    background-color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    margin: 10px auto;
+}
+.my-progress-card .last .delete-button button {
+    border: 2px solid red;
+}
+.my-progress-card .last .edit-button input{
+    border: 2px solid #00a778; 
+}
+.my-progress-card .last .delete-button button:hover{
+    transform: scale(0.95);
+    transition: all .3s ease-in-out;
+    background: red;
+    color: #fff;
+}
+.my-progress-card .last .edit-button input:hover{
+    transform: scale(0.95);
+    transition: all .3s ease-in-out;
+    background: #00a778;
+    color: #fff;
+}
+.empty_record{
+    margin-top: 60px;
+}
+.empty_record h2{
+    text-align: center;
+    font-weight: 500;
+}
+.confirm-progress-delete-popup{
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9);
+    
+}
+.confirm-progress-delete-popup .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
+    border-radius: 10px;
+}
+.confirm-progress-delete-popup .modal-content  p{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close-button:hover, .close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+  
+
+.confirm-progress-delete-popup .modal-content .modal-buttons {
+    display: flex;
+    justify-content: center;
+}
+.confirm-progress-delete-popup .modal-content .modal-buttons #confirm-delete{
+    background-color: red;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+}
+.confirm-progress-delete-popup .modal-content .modal-buttons #cancel-delete {
+    background-color: #00A778;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+ }
+

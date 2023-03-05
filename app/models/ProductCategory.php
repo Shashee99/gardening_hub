@@ -67,4 +67,14 @@ class ProductCategory{
         return $result;
 
     }
+
+    public function searchbycatname($name){
+        $search_term = $name . '%';
+        $this -> db -> query('SELECT * FROM product_category  WHERE product_category LIKE :search_term ');
+        $this ->db ->bind(':search_term',$search_term);
+        $dataset = $this->db->resultSet();
+        return $dataset;
+
+    }
+
 }

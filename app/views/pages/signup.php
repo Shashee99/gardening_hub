@@ -59,7 +59,7 @@
                      </div>
                 </div>
                 </a>
-                <a style="text-decoration: none" href="http://localhost/advisor_project/view/advisor/advisor_register.php">
+                <a style="text-decoration: none" href="<?= URLROOT; ?>/users/advisorRegister">
                 <div class="actorcard" >
                     <div class="whitebg">
                         <div class="actorimg">

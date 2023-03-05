@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #3BB78F ;
+    position: relative;
+    display: flex;
+}
+
+#side .items li:nth-child(2) {
+    background-color: #3BB78F;
+    border-radius: 0 50px 50px 0;
+    width: 90%;
+}
+#rest{
+    background-color: #efefef;
+    margin-top: 80px;
+    margin-left: 22%;
+    max-height: 100%;
+    width: 78%;
+    border-radius: 25px 0 0 0;
+    overflow-y: scroll;
+    display: flex;
+}
+#rest .left-side{
+    width: 350px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#rest .right-side{
+    height: 100%;
+    width: calc(100% - 350px);
+}
+#rest .left-side h2{
+    /* margin-top: 50px; */
+}
+#rest .right-side .part-one .description{
+    width: 50%;
+    min-width: 300px;
+}
+#rest .right-side .part-one .review-rating-add{
+    width: 45%;
+    background-color: #d99999;
+    height: 300px;
+}
+
+#rest .left-side .product-cover-photo img{
+    margin-top: 30px;
+    width: 250px;
+}
+#rest .left-side h4{
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#rest .left-side h3{
+    margin-top: 10px;
+    font-weight: 600;
+}
+#rest .right-side .part-one{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+#rest .right-side .part-one  .description h3{
+    margin: 30px 0 20px 20px;
+}
+#rest .right-side .part-one  .description p{
+    text-align: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px;
+    background-color: #fff;
+}
+#rest .right-side .part-two{
+    width: 100%;
+    background-color: #fff;
+    height: auto;
+    display: flex;
+    flex-wrap:wrap ;
+    justify-content: space-evenly;
+    gap: 15px;
+    padding: 25px 0;
+    margin-top: 20px;
+}
+#rest .right-side .part-two img{
+    width: 100px;
+}
+#rest .right-side .part-three h3{
+    margin: 20px 0;
+}
+#rest .right-side .part-three .user-reviews{
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+#rest .right-side .part-three {
+    padding-bottom: 5px;
+}
+#rest .right-side .part-three .review .user-info{
+    display: flex;
+}
+#rest .right-side .part-three .review .user-info h4{
+    margin: auto 0 auto 20px;
+}
+#rest .right-side .part-three .review .user-info img{
+    width: 50px;
+    border-radius: 50%;
+}
+#rest .right-side .part-three .review p{
+    padding: 10px;
+}

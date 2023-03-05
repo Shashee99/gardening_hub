@@ -8,7 +8,7 @@ class Seller{
 
     public function getItemData() {
         $id =$_SESSION['user_id'];
-        $this -> db -> query('SELECT title, price,image FROM seller_product_details WHERE seller_id = :id');
+        $this -> db -> query('SELECT * FROM seller_product_details WHERE seller_id = :id');
         $this -> db-> bind(':id',$id);
 
         $results = $this -> db -> resultSet();
@@ -16,7 +16,7 @@ class Seller{
     }
 
     public function add2($data) {
-        $this -> db -> query('INSERT INTO seller_product_details_demo (seller_id, title, price, description, quantity) VALUES (:seller_id, :title, :price, :description, :quantity)');
+        $this -> db -> query('INSERT INTO seller_product_details (seller_id, title, price, description, quantity) VALUES (:seller_id, :title, :price, :description, :quantity)');
 
         $this -> db -> bind(':title', $data['title']);
         $this -> db -> bind(':price', $data['price']);
@@ -91,5 +91,102 @@ class Seller{
         $dataset = $this->db->resultSet();
         return $dataset;
     }
+    public function getSellerDetails($sell_id)
+    {
+        $sql = "SELECT * FROM seller WHERE seller_id = :sell_id LIMIT 1";
+        $this->db->query($sql);
+        $this->db->bind(':sell_id', $sell_id);
+        $row = $this->db->singleRecord();
+        // print_r($row);
+        // die();
+        return $row;
+    }
+
+    public function getSellerName ($id){
+        $this -> db -> query('SELECT owner_name FROM seller WHERE seller_id = :id');
+        $this ->db ->bind(':id',$id);
+        $row = $this -> db -> singleRecord();
+
+        return $row->owner_name;
+
+
+
+    }
+
+    public function getItemById($id) {
+        $this -> db -> query('SELECT * FROM seller_product_details WHERE product_no = :id');
+        $this -> db-> bind(':id',$id);
+
+        $results = $this -> db -> singleRecord();
+        return $results;
+    }
+
+    public function getProductImages($id) {
+        $this -> db -> query('SELECT * FROM product_photos WHERE product_no = :id');
+        $this -> db-> bind(':id',$id);
+
+        $results = $this -> db -> resultSet();
+        return $results;
+    }
+
+    public function getCatData() {
+        $this -> db -> query('SELECT DISTINCT(product_category) FROM product_category');
+
+        $catresults = $this -> db -> resultSet();
+        return $catresults;
+    }
+
+    public function getOrderData() {
+        $id =$_SESSION['user_id'];
+        $this -> db -> query('SELECT * FROM wishlist
+                                INNER JOIN customer
+                                ON wishlist.customer_id = customer.customer_id
+                                INNER JOIN seller_product_details
+                                ON wishlist.product_no = seller_product_details.product_no
+                                WHERE wishlist.seller_id = :id;
+        ');
+        $this -> db-> bind(':id',$id);
+        $orderdetails = $this -> db -> resultSet();
+        return $orderdetails;
+    }
+
+    public function order($data) {
+        $id =$_SESSION['user_id'];
+        $this -> db -> query('UPDATE wishlist 
+                              SET completeness = :orderComplete,
+                              confirmation = :confirmation
+                              complete_date = :order_date
+                              WHERE seller_id = :id');
+
+        $this -> db -> bind(':orderComplete', $data['completeness']);
+        $this -> db -> bind(':confirmation', $data['confirmation']);
+        $this -> db -> bind(':order_date', $data['complete_date']);
+        $this -> db-> bind(':id',$id);
+    }
+    public function searchuserbyname_registeredsellers($name){
+        $search_term = $name . '%';
+        $this -> db -> query('SELECT * FROM `seller` WHERE `shop_name` LIKE :search_term AND is_registered = 1');
+        $this ->db ->bind(':search_term',$search_term);
+        $dataset = $this->db->resultSet();
+        return $dataset;
+
+    }
+    public function searchuserbyname_unregisteredsellers($name){
+        $search_term = $name . '%';
+        $this -> db -> query('SELECT * FROM `seller` WHERE `shop_name` LIKE :search_term AND is_registered = 0');
+        $this ->db ->bind(':search_term',$search_term);
+        $dataset = $this->db->resultSet();
+        return $dataset;
+
+    }
+    public function recentlyaddedsellers()
+    {
+        $this -> db -> query('SELECT * FROM seller ORDER BY seller_id DESC LIMIT 5; ');
+        $dataset = $this -> db-> resultSet();
+        return $dataset;
+    }
+
+
+
 }
 

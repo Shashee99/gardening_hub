@@ -9,7 +9,7 @@
 <body>
     <div class="login-page-navbar">
         <div class="logo">
-            <a href="<?php echo URLROOT; ?>/css/LoginPage/login_page.css">
+            <a href="<?php echo URLROOT; ?>/">
                 <img src="<?php echo URLROOT; ?>/img/login-registration/logo2.png" alt="logo">
             </a>  
         </div>
@@ -21,7 +21,7 @@
             <form action="<?php echo URLROOT; ?>/users/login" method="post">
 
                 <div class="input-box">
-                    <input type="text" id='<?php echo (!empty($data['u_name_err'])) ? 'invalid' : ''; ?>' name="u_name" value="<?php echo $data['u_name']; ?>" placeholder="User Name" >
+                    <input type="text" id='<?php echo (!empty($data['u_name_err'])) ? 'invalid' : ''; ?>' name="u_name" value="<?php echo $data['u_name']; ?>" placeholder="Your Email" >
                     <div class="error">
                         <span><?php echo $data['u_name_err']; ?></span>
                     </div>

@@ -4,12 +4,18 @@ class Users extends Controller
 {
     private $userModel;
     private $customerModel;
+    private $advisorModel;
+    private $sellerModel;
+    private $notiModel;
 
     public function __construct()
     {
         // Load the user model
         $this->userModel = $this->model('User');
         $this->customerModel = $this->model('Customer');
+        $this->advisorModel = $this->model('Advisor');
+        $this->sellerModel = $this ->model('Seller');
+        $this ->notiModel = $this ->model('Notification');
     }
 
     public function customerRegister()
@@ -228,7 +234,7 @@ class Users extends Controller
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
                 'confirm_password' => trim($_POST['confirm_password']),
-                'pro_li' => $fileDestinatio,
+                'pro_li' => $fileName,
                 'seller_image' => $_FILES['shopimage']['name'],
                 'name_err' => '',
                 'shop_name_err' => '',
@@ -247,7 +253,7 @@ class Users extends Controller
                 $data['name_err'] = 'Please enter name';
             }
 
-            //Validate shpo name
+            //Validate shop name
             if (empty($data['shop_name'])) {
                 $data['shop_name_err'] = 'Please enter shop name';
             }
@@ -336,6 +342,7 @@ class Users extends Controller
                 $data['seller_image'] = $newimagename;
                 //Register User
                 if ($this->userModel->sellerRegister($data)) {
+                    $this ->notiModel -> addnotification('Seller');
                     flash('register_success', 'You are registered and can log in');
                     redirect('users/login');
                 } else {
@@ -376,6 +383,199 @@ class Users extends Controller
         }
     }
 
+    public function advisorRegister()
+    {
+        if ($_SERVER ['REQUEST_METHOD'] == 'POST')
+        {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+                'password' => trim($_POST['password']),
+                'fullname' => trim($_POST['fname']),
+                'address' => trim($_POST['address']),
+                'nic' => trim($_POST['nic']),
+                'phone' => trim($_POST['phone']),
+                'email' => trim($_POST['gmail']),
+                'qualification' => trim($_POST['qualification']),
+                'pp'=> $_FILES['photo']['name'],
+                'email_err' => ''
+
+            ];
+
+            if($this->userModel->findUser($data['email']))
+            {
+                $data['email_err'] = "Username/email allready exsits";
+            }
+
+            if(empty($data['email_err']))
+            {
+                //Hashing password
+                $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+                // Photo upload
+                $tmp_name = $_FILES['photo']['tmp_name'];
+                $img_type = strtolower(pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION));
+                $new_img = uniqid('IMG-', true) . '.' . $img_type;
+                $img_upload_path = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/advisor_pp/' . $new_img;
+                move_uploaded_file($tmp_name, $img_upload_path);
+                $data['pp'] = $new_img;
+
+                $photo = array();
+
+                foreach($_FILES['qfile']['name'] as $key => $value)
+                {
+                    
+                    $img_name1 = $_FILES['qfile']['name'][$key];
+                    $tmp_name1 = $_FILES['qfile']['tmp_name'][$key];
+                    $img_type1 = strtolower(pathinfo($img_name1, PATHINFO_EXTENSION)); 
+                    $new_img1 = uniqid('IMG-',true).'.'.$img_type1;
+                    $img_upload_path1 = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/Advisor_Qualification_photos/'.$new_img1;
+                    move_uploaded_file($tmp_name1,$img_upload_path1);
+                    array_push($photo,$new_img1);
+                }
+
+                if($this->userModel->advisorRegister($data, $photo))
+                {
+                    $this ->notiModel -> addnotification('Advisor');
+                    redirect('users/login');
+                }
+                else
+                {
+                    $this->view('users/advisorRegister',$data);
+                }
+            }
+            else
+            {
+                $this->view('users/advisorRegister', $data);
+            }
+           
+
+        }
+        else
+        {
+            $data = [
+                'password' =>'',
+                'fullname' => '',
+                'address' => '',
+                'nic' =>'',
+                'phone' => '',
+                'email' => '',
+                'qualification' => '',
+                'pp'=> '',
+                'email_err' => ''
+
+            ];
+
+            $this->view('users/advisorRegister',$data);
+        }
+        
+    }
+    public function verify(){
+        // Check for POST request
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            // Process the form data
+            $data = [
+                'title' => 'Fill following fields to be verified!',
+                'u_name' => trim($_POST['u_name']),
+                'pass' => trim($_POST['pass']),
+                'verify'=>(int)trim($_POST['verify']),
+                'verify_err' => '',
+                'u_name_err' => '',
+                'pass_err' => ''
+            ];
+
+            if (empty($data['u_name'])) {
+                $data['u_name_err'] = 'Please enter Email';
+            } elseif (!$this->userModel->findUser($data['u_name'])) {
+                $data['u_name_err'] = 'No user found';
+            }
+            if (empty($data['pass'])) {
+                $data['pass_err'] = 'Please enter password';
+            }
+            if (empty($data['verify'])) {
+                $data['verify_err'] = 'Please enter Verification code';
+            }
+            $hashedpw = '' ;
+            $usertype = '';
+            $userstate = '';
+            $logged_user = '';
+            $vericode  = '';
+
+            if(!empty($data['u_name'])){
+                $hashedpw = $this -> userModel -> getuserhashedpasswordbyemail($data['u_name']);
+                $usertype = $this -> userModel -> getusertypebyemail($data['u_name']);
+                $vericode = $this -> userModel -> getuserverificationcodebyemail($data['u_name']);
+                $userstate = $this -> userModel -> getuserstatebyemail($data['u_name']);
+                $logged_user = $this ->userModel -> findUser($data['u_name']);
+            }
+
+            if(!password_verify($data['pass'], $hashedpw)){
+                $data['pass_err'] = "Incorrect Password";
+            }
+            if($data['verify'] != $vericode){
+                $data['verify_err'] = "Incorrect Verification Code";
+            }
+
+            if (empty($data['u_name_err']) && empty($data['pass_err']) && empty($data['verify_err'])) {
+//                $state = $this->userModel->verify($data['u_name'],$data['pass'],$data['verify']);
+
+                if($usertype == 'seller'){
+                    if($userstate === 0 )
+                    {
+                        $this ->userModel -> setuserasregistered($data['u_name']);
+                        $this->createSellerSession($logged_user);
+                    }
+                    elseif($logged_user->user_state === 2)
+                    {
+                        $data['u_name_err'] = 'Your user account has been deleted';
+                        $this->view('users/login',$data);
+                    }
+                    else
+                    {
+                        $data['u_name_err'] = 'Your registration is pending';
+                        $this->view('users/login',$data);
+                    }
+
+                }
+                if($usertype == 'advisor'){
+                    if($userstate === 0 )
+                    {
+                        $this ->userModel -> setuserasregistered($data['u_name']);
+                        $advisor_details = $this->advisorModel->advisorDetails($logged_user->user_id);
+                        $this->createAdvisorSession($advisor_details);
+                    }
+                    elseif($userstate === 2)
+                    {
+                        $data['u_name_err'] = 'Your user account has been deleted';
+                        $this->view('users/login',$data);
+                    }
+                    else
+                    {
+                        $data['u_name_err'] = 'Your registration is pending';
+                        $this->view('users/login',$data);
+                    }
+
+                }
+            } else {
+                $this->view('users/verify', $data);
+            }
+
+
+        } else {
+            $data = [
+                'title' => 'Fill following fields to be verified!',
+                'u_name' => '',
+                'pass' => '',
+                'u_name_err' => '',
+                'pass_err' => '',
+                'verify' =>'',
+                'verify_err' => ''
+            ];
+            $this->view('users/verify', $data);
+        }
+    }
+
     public function login()
     {
 
@@ -404,6 +604,8 @@ class Users extends Controller
             if (empty($data['u_name_err']) && empty($data['pass_err'])) {
                 // die('Success');
                 $logged_user = $this->userModel->login($data['u_name'], $data['pass']);
+                // print_r($logged_user);
+                // die();
 
                 if ($logged_user) {
 
@@ -412,23 +614,55 @@ class Users extends Controller
                             $customer_details = $this->customerModel->getCustomerDetails($logged_user->user_id);
                             $this->creatCusSession($logged_user, $customer_details);
                             redirect('customers/viewHomePage');
-                        }else{
-                            $data['u_name_err'] = 'You are restricted to login';
+                        }
+                        elseif($logged_user->user_state === 2)
+                        {
+                            $data['u_name_err'] = 'Your user account has been deleted';
                             $this->view('users/login',$data);
                         }
 
 
                     } elseif ($logged_user->type === 'admin') {
                         $this->createUserSession($logged_user);
-                        if($logged_user->user_state === 0){
-                            $this->createUserSession($logged_user);
-                        }else{
-                            $data['u_name_err'] = 'You are restricted to login';
+                       
+
+                    } 
+                    elseif ($logged_user->type === 'seller') {
+                        // $this->createSellerSession($logged_user);
+                        if($logged_user->user_state === 1 )
+                        {
+                            $this->createSellerSession($logged_user);
+                        }
+                        elseif($logged_user->user_state === 2)
+                        {
+                            $data['u_name_err'] = 'Your user account has been deleted';
                             $this->view('users/login',$data);
                         }
-
-                    } elseif ($logged_user->type === 'seller') {
-                        $this->createSellerSession($logged_user);
+                        else
+                        {
+                            $data['u_name_err'] = 'Your registration is pending';
+                            $this->view('users/login',$data);
+                        }
+                    }
+                    elseif($logged_user->type === 'advisor')
+                    {
+                        if($logged_user->user_state === 1 )
+                        {
+                            // print_r($logged_user->user_id);
+                            // die();
+                            $advisor_details = $this->advisorModel->advisorDetails($logged_user->user_id);
+                            $this->createAdvisorSession($advisor_details);
+                        }
+                        elseif($logged_user->user_state === 2)
+                        {
+                            $data['u_name_err'] = 'Your user account has been deleted';
+                            $this->view('users/login',$data);
+                        }
+                        else
+                        {
+                            $data['u_name_err'] = 'Your registration is pending';
+                            $this->view('users/login',$data);
+                        }
                     }
 
 
@@ -459,6 +693,7 @@ class Users extends Controller
         $_SESSION['cus_id'] = $data->user_id;
         $_SESSION['cus_name'] = $customer_details->name;
         $_SESSION['cus_photo_path'] = $customer_details->photo;
+        $_SESSION['customer'] = 1;
 
     }
 
@@ -469,8 +704,7 @@ class Users extends Controller
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_name'] = $user->user_name;
         $_SESSION['user_type'] = $user->usertype;
-
-
+        $_SESSION['admin'] = 1;
         redirect('admins/home');
 
     }
@@ -479,20 +713,51 @@ class Users extends Controller
     {
         $_SESSION['user_id'] = $user->user_id;
         $_SESSION['user_email'] = $user->email;
+        $_SESSION['seller'] = 1;
         redirect('sellers/dashboard');
+    }
+    public function createAdvisorSession($details)
+    {
+        $_SESSION['advisor_id'] = $details->advisor_id;
+        $_SESSION['advisor_name'] = $details->name;
+        $_SESSION['advisor_photo_path'] = $details->photo;
+        $_SESSION['Advisor'] = 1;
+        redirect('advisors/viewHomePage');
     }
 
 
     public function logout()
     {
-        unset($_SESSION['cus_id']);
-        unset($_SESSION['cus_name']);
-        unset($_SESSION['cus_photo_path']);
 
-        session_destroy();
-        redirect('users/login');
+        if ($_SESSION['customer'] == 1) {
+            unset($_SESSION['cus_id']);
+            unset($_SESSION['cus_name']);
+            unset($_SESSION['cus_photo_path']);
+            unset($_SESSION['customer']);
+            session_destroy();
+            redirect('users/login');
+        }
+        if ($_SESSION['admin'] == 1) {
+            unset($_SESSION['admin']);
+            unset($_SESSION['user_id']);
+            unset($_SESSION['user_email']);
+            unset($_SESSION['user_name']);
+            unset($_SESSION['user_type']);
+            session_destroy();
+            redirect('users/login');
+        }
+
+        if ($_SESSION['seller'] == 1) {
+
+            unset($_SESSION['user_id']);
+            unset($_SESSION['user_email']);
+            unset($_SESSION['seller']);
+            session_destroy();
+            redirect('users/login');
+
+        }
+
 
     }
-
 
 }

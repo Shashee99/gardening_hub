@@ -58,4 +58,22 @@ class ProductCategories extends Controller{
         }
     }
 
+    public function searchcategoriesbyname(){
+        if(isset($_POST['searchcategory'])){
+            $text = $_POST['searchcategory'];
+            $dataset = $this->categoryModel -> searchbycatname($text);
+            echo json_encode($dataset);
+            unset($_POST['searchcategory']);
+            exit();
+        }
+        else{
+            $tabledata = $this->categoryModel->getAllCategories();
+            $tabledata =json_encode($tabledata);
+            echo $tabledata;
+            exit();
+
+        }
+    }
+
+
 }

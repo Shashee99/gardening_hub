@@ -21,6 +21,16 @@
 
     <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
 
+    <div class="confirm-delete-popup" id="delete-modal">
+        <div class="modal-content">
+            <p>Are you sure you want to delete this item?</p>
+            <div class="modal-buttons" id="modal-button">
+                <button id="confirm-delete">Yes</button>
+                <button id="cancel-delete">No</button>
+            </div>
+        </div>
+    </div>
+
    <section class="rest" id="blur" >
         <div class="options">
             <div class="btn" id="btn1">
@@ -40,6 +50,7 @@
                 </div>
                
         </div>
+        
 
         <div class="add-harvest-card">
             <h3>Add Your harvest</h3>
@@ -136,15 +147,9 @@
                                     }
                                 }
                                 ?>
-                            </div>
-                            
-                            <div class="delete_btn">
-                                <form action="../controller/harvest_con.php" method="POST">
-                                    <input type="hidden" name="type" value="Delete">
-                                    <input type="hidden" name="id" value="<?php echo $row->harvest_id ?>">
-                                    <input type="submit" value="Delete">
-                                </form>
-                                    
+                            </div>                            
+                            <div class="delete_btn"  >
+                                <button class="delete_buttonsaa" data-wishlistID="<?= $row->harvest_id; ?>">DELETE</button>                               
                             </div>
                         </div><br>
                 
@@ -166,9 +171,9 @@
 
    </section>
 
-   <script src="<?php echo URLROOT; ?>/js/displayimage.js" ></script>
-   <script src="<?php echo URLROOT; ?>/js/harvestFilter.js"></script>
-
+   <script src="<?php echo URLROOT; ?>/js/customer/displayimage.js" ></script>
+   <script src="<?php echo URLROOT; ?>/js/customer/harvestFilter.js"></script>
+   <script src="<?php echo URLROOT; ?>/js/customer/delete_wishlist_modal.js"></script>
    
 </body>
 </html>

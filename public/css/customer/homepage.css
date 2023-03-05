@@ -30,17 +30,45 @@ body{
     padding: 30px 30px 0 30px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
+.order-details #d1{
+    background: linear-gradient(90deg, #EF629F 5.88%, #EECDA3 100%);
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+}
+.order-details #d2{
+    background: linear-gradient(90deg, #00CDAC -9.75%, #02AAB0 100%);
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+}
+.order-details #d3{
+    background: linear-gradient(90deg, #b20917 0%, #eb5447 100%);
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+}
+.order-details #d4{
+    background: linear-gradient(90deg, #FF5F6D 0%, #FFC371 100%);
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+}
+
+
 .order-details .valbox{
-    width: 22%;
+    width: 250px;
     height: 100px;
+    margin-bottom: 20px;
     padding: 16px 20px;
     border-radius: 10px;
     display: flex;
     background-color: #efefef;
     box-shadow: 0 10px 20px -10px #00a778;
+}
+.order-details .valbox:hover{
+    transition: all .05s ease-in-out;
+    transform: scale(1.1); 
+}
+.order-details #d3:hover{
+    transition: all .05s ease-in-out;
+    transform: scale(1.1);
+    border: 2px solid red;
 }
 .order-details .valbox img{
     width: 50px;
@@ -57,4 +85,36 @@ h2{
     margin: 30px 0 -10px 30px;
     font-weight: 400;
     font-size: 18px;
+}
+.not-complete-orders{
+    width: 60%;
+    margin: 20px 15px;
+}
+.not-complete-orders table thead{
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+}
+.not-complete-orders table thead tr th{
+    font-size: 14px;
+}
+.not-complete-orders table{
+    border-collapse: collapse;
+    width: 90%;
+    margin: 30px auto 20px auto;
+}
+.not-complete-orders table td, .not-complete-orders table th{
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+.not-complete-orders table th{
+    background-color: #00a778;
+    color: #fff;
+}
+.not-complete-orders table tbody tr:nth-child(even){
+    background-color: #fff;
+}
+#d3 h3, #d3 span{
+    color: #fff;
+    font-weight: 600;
 }

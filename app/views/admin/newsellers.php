@@ -1,27 +1,13 @@
 <?php require_once APPROOT . '/views/inc/incAdmin/header.php'; ?>
 <div class="approvals">
 
-<!--    <div class="approvedsellers flex">-->
-<!--        <div class="">-->
-<!--            Approved sellers-->
-<!--        </div>-->
-<!--        <div class="count">-->
-<!--            100-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="searchbox">-->
-<!--        <form>-->
-<!--            <input type="text" placeholder="Search...">-->
-<!--            <button type="submit"> <img src="--><?//= URLROOT; ?><!--/img/landingPage/Star.png" width="30px" height="32px" alt=""></button>-->
-<!--        </form>-->
-<!--    </div>-->
     <div class="category parentwidth flex">
         <div class="category-item1 flex">
             <h3 class="font600">New Product Sellers</h3>
             <h1 class="font700" id="newsellCount"></h1>
         </div>
         <div class="searcharea flex">
-            <input type="text" name="searchcat" id="searchcat" class="searchbox" placeholder="Search Category">
+            <input type="text" name="searchbyshopnameunregistered" id="searchbyshopnameunregistered" class="searchbox" placeholder="Search Category" onkeyup="searchbyunregisteredshopname();">
             <div class="searchbtn bglightgray">
                 <img src="<?= URLROOT; ?>/img/admin/icon/search.png" alt="" width="30px" height="25px" class="searchicon">
             </div>
@@ -35,6 +21,7 @@
         <a href="<?= URLROOT; ?>/admins/sellers" class="sortbtn flex bglightgray text-decoration-none" style="width: 300px;height: 60px">
             <img src="<?= URLROOT; ?>/img/admin/icon/backbtn.png" alt="" width="25px" height="25px">
             <p class="font500" style="font-size: 20px">Back to sellers</p>
+
         </a>
         <div class="sortbtn flex bglightgray" style="width: 300px;height: 60px">
             <img src="<?= URLROOT; ?>/img/admin/icon/sort.png" alt="" width="25px" height="25px">
@@ -50,13 +37,13 @@
             <tr>
                 <th>#</th>
                 <th>Shop Name</th>
-                <th>Owner Name</th>
+                <th>Owner</th>
                 <th>Email</th>
                 <th>Mobile Phone</th>
                 <th>Action</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="unregisteredsellerstable">
             <?php foreach ($data['newsellers'] as $row) : ?>
             <tr>
                 <td><?php echo $row -> seller_id ?></td>
@@ -64,7 +51,7 @@
                 <td><?php echo $row -> owner_name ?></td>
                 <td><?php echo $row -> email ?></td>
                 <td><?php echo $row -> tel_no ?></td>
-                <td> <div class="seller-action flex"> <div class="view"> View </div> <div class="delete"> Delete </div> </div></td>
+                <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewseller/<?= $row -> seller_id;?>"" class="view"> View </a> <div class="delete"> Delete </div> </div></td>
             </tr>
             <?php endforeach; ?>
             </tbody>

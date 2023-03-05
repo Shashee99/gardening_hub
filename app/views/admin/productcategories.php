@@ -27,7 +27,7 @@
             <p class="font500" style="font-size: 20px">Sort by</p>
         </div>
         <div class="searcharea flex">
-            <input type="text" name="searchcat" id="searchcat" class="searchbox" placeholder="Search Category">
+            <input type="text" name="searchcat" id="searchcat" class="searchbox" placeholder="Search Category" onkeyup="searchcategories();">
             <div class="searchbtn bglightgray">
                 <img src="<?= URLROOT; ?>/img/admin/icon/search.png" alt="" width="30px" height="25px"
                      class="searchicon">

@@ -64,11 +64,17 @@ body{
     font-size: 16px;
 }
 #btn2:hover{
-    transform: scale(0.99);
+    transform: scale(0.95);
     background: #00a778;
+    transition: all .3s ease-in-out;
 }
 #btn2:hover a{
     color: white;
+
+}
+#btn1:hover{
+    transform: scale(0.95);
+    transition: all .3s ease-in-out;
 }
 select{
     padding: 10px 35px;
@@ -163,7 +169,7 @@ figcaption{
     align-items: center;
 }
 .last .delete{
-    margin: auto auto auto auto;
+    margin: auto;
 }
 input[type="text"]::placeholder {
                  
@@ -252,8 +258,6 @@ form .input-box textarea{
     border-radius: 10px;
     margin: 20px auto 0 auto;
 }
-input[type ='file']{
-}
 label{
     cursor: pointer;
 }  
@@ -277,6 +281,10 @@ label{
     border-radius: 10px;
     background: none;
 }
+.btns .button:hover{
+    transform: scale(0.99);
+    transition: all .3s ease-in-out;
+}
 #red input{
     border: 2px solid red;
 }
@@ -293,7 +301,7 @@ label{
 .last .delete_btn{  
     margin: 0 auto;   
 }
-.last .delete_btn input{
+.last .delete_btn button{
     height: 40px;
     width: 100px;
     background-color: #fff;
@@ -318,7 +326,6 @@ label{
 .input-box .error span, .photos .error span{
     color: red;
     font-size: 12px;
-    
 }
 .input-box .error, .photos .error{
     margin-left: 6%;
@@ -330,4 +337,66 @@ label{
     text-align: center;
     font-weight: 500;
 }
+
+.confirm-delete-popup{
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9);
+    
+}
+.confirm-delete-popup .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
+    border-radius: 10px;
+}
+.confirm-delete-popup .modal-content  p{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close-button:hover, .close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+  
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+}
+#confirm-delete{
+    background-color: red;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+}
+#cancel-delete {
+    background-color: #00A778;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+ }
 

@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #3BB78F ;
+    position: relative;
+    display: flex;
+}
+
+#side .items li:nth-child(2) {
+    background-color: #3BB78F;
+    border-radius: 0 50px 50px 0;
+    width: 90%;
+}
+#rest{
+    background-color: rgba(239, 239, 239, 0.65);
+    margin-top: 80px;
+    margin-left: 22%;
+    max-height: 100%;
+    width: 78%;
+    border-radius: 25px 0 0 0;
+    position: fixed;
+    overflow: auto;
+
+}
+.product-option{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 20px;
+}
+.product-option select{
+    padding: 10px 35px;
+    font-size: 18px;
+    color: #000;
+    height: 55px;
+    /* border: thin solid #a47c34; */
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
+}
+.product-option select:focus{
+    outline: none;
+}
+.product-wraper{
+    display: flex;
+    margin: 20px 20px 0 20px;
+    gap: 20px;
+
+}
+.product-wraper .products-details{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 100px;
+    justify-content: space-evenly;
+
+}
+.products-details .product{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    background-color: #efefef;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+.products-details .product:hover{
+    transition: all .05s ease-in-out;
+    transform: translateY(-5px);
+    box-shadow: 0 20px 30px -20px #00a778;
+}
+.products-details .product img{
+    width: 100px;
+    margin-top: 20px;
+    max-width: 100px;
+    min-height: 80px;
+}
+.products-details .product h4{
+    margin-bottom: 10px;
+}
+.product .product-add input{
+    width: 120px;
+    height: 30px;
+    background-color: #00A778;
+    margin-bottom: 10px;
+    border: none;
+    color: #ffffff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.product .product-add input:hover{
+    background-color: #107AB0;
+    transition: all .05s ease-in-out;
+    transform: scale(1.1);
+}
+products-details .product a:hover img{
+    transition: all .05s ease-in-out;
+    transform: scale(1.1);
+}

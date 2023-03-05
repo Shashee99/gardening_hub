@@ -167,6 +167,7 @@
                      }
                      $arr[] = array 
                         (
+                           'id' => $harvest_id,
                            'cus_name' => $_SESSION['cus_name'],
                            'photo_path' => $_SESSION['cus_photo_path'],
                            'title' => $title,
@@ -200,6 +201,7 @@
                      }
                      $arr[] = array 
                         (
+                           'id' => $harvest_id,
                            'cus_name' => $_SESSION['cus_name'],
                            'photo_path' => $_SESSION['cus_photo_path'],
                            'date' => $date,
@@ -334,6 +336,11 @@
                echo json_encode($arr, JSON_UNESCAPED_UNICODE);
             }
 
+         }
+         public function deletHarvest($id)
+         {
+            $this->haervestModel->deleteHarvest($id);
+            redirect('harvests/viewAddMyHarvest');
          }
       
    }

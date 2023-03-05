@@ -19,7 +19,7 @@
     
         <div class="form-content">
         <h1><?php echo $data['title']; ?></h1>
-            <form action="<?php URLROOT;?>/users/customerRegister" method="POST" enctype="multipart/form-data">
+            <form action="<?=URLROOT;?>/users/customerRegister" method="POST" enctype="multipart/form-data">
                 <div class="user-details">
                     
                     <div class="input-box">
