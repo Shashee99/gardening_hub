@@ -232,4 +232,11 @@ class Admins extends Controller
     }
 
 
+    public function getlatesadvisors()
+    {
+
+
+    }
+
+
 }

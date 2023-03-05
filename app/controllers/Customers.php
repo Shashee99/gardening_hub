@@ -42,6 +42,14 @@
 
         }
 
+        public function recentlyaddedcustomers(){
+
+            $dataset = $this -> customerModel -> recentlyaddedcustomers();
+            $data = json_encode($dataset);
+            echo $data;
+            exit();
+        }
+
 
        
     }

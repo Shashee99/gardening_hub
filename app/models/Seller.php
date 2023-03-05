@@ -179,6 +179,13 @@ class Seller{
         return $dataset;
 
     }
+    public function recentlyaddedsellers()
+    {
+        $this -> db -> query('SELECT * FROM seller ORDER BY seller_id DESC LIMIT 5; ');
+        $dataset = $this -> db-> resultSet();
+        return $dataset;
+    }
+
 
 
 }

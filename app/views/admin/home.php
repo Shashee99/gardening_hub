@@ -37,51 +37,10 @@
         <h4 id="newadcount"></h4>
     </div>
 
-    <div class="advisorcards">
+    <div class="advisorcards" id="latestadvisors">
 
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT; ?>/img/admin/users/avi.jpg" alt=""
-                     style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Danusha Deshan</p>
-            <p>Kurunagala</p>
-        </div>
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT; ?>/img/admin/users/member-1.png" alt=""
-                     style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Nilshan Deemantha</p>
-            <p>Galle</p>
-        </div>
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT; ?>/img/admin/users/member-2.png" alt=""
-                     style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Avishka Sathyanjana</p>
-            <p>Nugegoda</p>
 
-        </div>
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT; ?>/img/admin/users/member-3.png" alt=""
-                     style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Avishka Sathyanjana</p>
-            <p>Nugegoda</p>
 
-        </div>
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT; ?>/img/admin/users/member-4.png" alt=""
-                     style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Avishka Sathyanjana</p>
-            <p>Nugegoda</p>
-
-        </div>
     </div>
 
     <div class="afteradvisors">
@@ -101,48 +60,10 @@
         <h4 id="newsellCount"></h4>
     </div>
 
-    <div class="advisorcards">
+    <div class="advisorcards" id="latestsellers">
 
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT;?>/img/admin/users/member-5.png" alt="" style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Avishka Sathyanjana</p>
-            <p>Nugegoda</p>
 
-        </div>
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT;?>/img/admin/users/member-6.png" alt="" style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Viraj pushpakumara</p>
-            <p>Nugegoda</p>
 
-        </div>
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT;?>/img/admin/users/member-7.png" alt="" style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Saman kumara</p>
-            <p>kirulapana</p>
-
-        </div>
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT;?>/img/admin/users/member-8.png" alt="" style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Deepamal perera</p>
-            <p>Wijerama</p>
-
-        </div>
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT;?>/img/admin/users/photo1.png" alt="" style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Kimuthu Kisal</p>
-            <p>Gampaha</p>
-
-        </div>
     </div>
 
     <div class="afteradvisors">
@@ -161,48 +82,10 @@
 
     </div>
 
-    <div class="advisorcards">
+    <div class="advisorcards" id="latestcustomers">
 
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT;?>/img/admin/users/photo2.png" alt="" style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Isuru Heshan</p>
-            <p>Nugegoda</p>
 
-        </div>
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT;?>/img/admin/users/photo3.png" alt="" style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Osura Viduranga</p>
-            <p>Homagama</p>
 
-        </div>
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT;?>/img/admin/users/photo4.png" alt="" style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Pasindu </p>
-            <p>Homagama</p>
-
-        </div>
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT;?>/img/admin/users/photo5.png" alt="" style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Rahal Balangoda</p>
-            <p>Kottawa</p>
-
-        </div>
-        <div class="advisorcards-card">
-            <div class="advisorimg">
-                <img src="<?= URLROOT;?>/img/admin/users/photo6.png" alt="" style="width: 100%; height: 100%; border-radius: 100%">
-            </div>
-            <p>Ramith Rodrigo</p>
-            <p>Ja ela</p>
-
-        </div>
     </div>
 
     <div class="afteradvisors">

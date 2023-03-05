@@ -61,5 +61,12 @@
 
         }
 
+        public function recentlyaddedadvisors()
+        {
+            $this -> db -> query('SELECT * FROM advisor ORDER BY advisor_id DESC LIMIT 5; ');
+            $dataset = $this -> db-> resultSet();
+            return $dataset;
+        }
+
 
     }
