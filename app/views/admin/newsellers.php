@@ -21,6 +21,7 @@
         <a href="<?= URLROOT; ?>/admins/sellers" class="sortbtn flex bglightgray text-decoration-none" style="width: 300px;height: 60px">
             <img src="<?= URLROOT; ?>/img/admin/icon/backbtn.png" alt="" width="25px" height="25px">
             <p class="font500" style="font-size: 20px">Back to sellers</p>
+
         </a>
         <div class="sortbtn flex bglightgray" style="width: 300px;height: 60px">
             <img src="<?= URLROOT; ?>/img/admin/icon/sort.png" alt="" width="25px" height="25px">

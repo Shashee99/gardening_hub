@@ -40,5 +40,12 @@
             return $dataset;
 
         }
+        public function recentlyaddedcustomers()
+        {
+            $this -> db -> query('SELECT * FROM customer ORDER BY customer_id DESC LIMIT 5; ');
+            $dataset = $this -> db-> resultSet();
+            return $dataset;
+        }
+
 
     }

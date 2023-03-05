@@ -356,4 +356,13 @@ class Sellers extends Controller{
 
     }
 
+    public function recentlyaddedsellers(){
+
+        $dataset = $this -> sellerModel -> recentlyaddedsellers();
+        $data = json_encode($dataset);
+        echo $data;
+        exit();
+
+    }
+
 }
