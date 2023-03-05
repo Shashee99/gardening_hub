@@ -433,7 +433,7 @@ class Users extends Controller
                     array_push($photo,$new_img1);
                 }
 
-                if($this->userModel->advisorRegister($data, $new_img1))
+                if($this->userModel->advisorRegister($data, $photo))
                 {
                     $this ->notiModel -> addnotification('Advisor');
                     redirect('users/login');

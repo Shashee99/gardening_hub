@@ -301,7 +301,7 @@ label{
 .last .delete_btn{  
     margin: 0 auto;   
 }
-.last .delete_btn input{
+.last .delete_btn button{
     height: 40px;
     width: 100px;
     background-color: #fff;
@@ -381,8 +381,8 @@ label{
     display: flex;
     justify-content: center;
 }
-button {
-    background-color: #00A778;
+#confirm-delete{
+    background-color: red;
     color: white;
     padding: 14px 20px;
     margin: 8px;
@@ -390,8 +390,13 @@ button {
     cursor: pointer;
     width: 100px;
 }
-  
-button:hover {
-    background-color: #3e8e41;
-}
+#cancel-delete {
+    background-color: #00A778;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+ }
 

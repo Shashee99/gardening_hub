@@ -50,6 +50,7 @@
                 </div>
                
         </div>
+        
 
         <div class="add-harvest-card">
             <h3>Add Your harvest</h3>
@@ -146,11 +147,9 @@
                                     }
                                 }
                                 ?>
-                            </div>
-                            
-                            <div class="delete_btn" id="delete-button">
-                                <!-- <input type="button" value="<?= $row->harvest_id; ?>" id="delete-value">    -->
-                                <button id="delete-value" value="<?= $row->harvest_id; ?>">DELETE</button>                               
+                            </div>                            
+                            <div class="delete_btn"  >
+                                <button class="delete_buttonsaa" data-wishlistID="<?= $row->harvest_id; ?>">DELETE</button>                               
                             </div>
                         </div><br>
                 
@@ -174,54 +173,7 @@
 
    <script src="<?php echo URLROOT; ?>/js/customer/displayimage.js" ></script>
    <script src="<?php echo URLROOT; ?>/js/customer/harvestFilter.js"></script>
-
-   <script>
-        var modal = document.getElementById("delete-modal");
-
-        // Get the trigger button
-        var trigger = document.getElementById("delete-button");
-
-        // Get the confirm delete button
-        var confirmButton = document.getElementById("confirm-delete");
-
-        // Get the cancel delete button
-        var cancelButton = document.getElementById("cancel-delete");
-
-        var inputField = document.getElementById("delete-value");
-        var inputValue = inputField.value;
-        
-
-
-        trigger.addEventListener("click", function() {
-            modal.style.display = "block";
-            var container = document.getElementById("modal-button");
-            console.log('http://localhost/gardening_hub/harvests/deletHarvest/'+inputValue);
-            container.innerHTML = 
-                '<form action="http://localhost/gardening_hub/harvests/deletHarvest/'+inputValue +'" method="POST">'+
-                    '<button id="confirm-delete" type="submit">Yes</button>'+
-                '</form>'+
-
-                '<form action="http://localhost/gardening_hub/harvests/viewAddMyHarvest">'+
-                    '<button id="cancel-delete" type="submit" >No</button>'+
-                '</form>'; 
-                
-            
-        });
-
-        // When the close button is clicked, close the modal
-        cancelButton.addEventListener("click", function() {
-            modal.style.display = "none";
-        });
-
-        // When the confirm delete button is clicked, delete the item
-        confirmButton.addEventListener("click", function() {
-        // Code to delete the item goes here
-            modal.style.display = "none";
-        });
-
-
-   </script>
-
+   <script src="<?php echo URLROOT; ?>/js/customer/delete_wishlist_modal.js"></script>
    
 </body>
 </html>

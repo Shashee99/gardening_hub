@@ -51,12 +51,7 @@ selectMenu.addEventListener("change", function()
                         
                         out += `</div>
                         <div class="delete_btn">
-                            <form action="../controller/harvest_con.php" method="POST">
-                                <input type="hidden" name="type" value="Delete">
-                                <input type="hidden" name="id" value="<?php echo $row->harvest_id ?>">
-                                <input type="submit" value="Delete">
-                            </form>
-                                
+                            <button class="delete_buttonsaa" data-wishlistID="${item.id}">DELETE</button>      
                         </div>
                     </div><br>
             
@@ -66,10 +61,45 @@ selectMenu.addEventListener("change", function()
             }
             
             container.innerHTML = out;
+            const modal = document.getElementById("delete-modal");
+            const buttons = document.querySelectorAll(".delete_buttonsaa");
+            // Get the confirm delete button
+            const confirmButton = document.getElementById("confirm-delete");
+
+            // Get the cancel delete button
+            const cancelButton = document.getElementById("cancel-delete");
+
+            console.log("Hello");
+
+            buttons.forEach(function(btn){
+                btn.addEventListener("click", function(){
+                    modal.style.display = "block";
+                    const id = btn.dataset.wishlistid;
+
+                    const container = document.getElementById("modal-button");
+                    container.innerHTML = 
+                                '<form action="http://localhost/gardening_hub/harvests/deletHarvest/'+id +'" method="POST">'+
+                                    '<button id="confirm-delete" type="submit">Yes</button>'+
+                                '</form>'+
+
+                                '<a href="http://localhost/gardening_hub/harvests/viewAddMyHarvest">'+
+                                    '<button id="cancel-delete">No</button>'+
+                                '</a>';
+                });
+            });
+
+            cancelButton.addEventListener("click", function() {
+                modal.style.display = "none";
+            });
+
+            confirmButton.addEventListener("click", function() {
+                modal.style.display = "none";
+            });
         };
     }
 
     httpRequest.open('POST', "http://localhost/gardening_hub/harvests/filterHarvest", true);
     httpRequest.setRequestHeader("content-type", "application/x-www-form-urlencoded");
     httpRequest.send("category="+categoryName);
+
 });

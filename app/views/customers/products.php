@@ -81,6 +81,7 @@ if(!isset($_SESSION['cus_id']))
     </section>
 
     <script src="<?php echo URLROOT; ?>/js/customer/getSubCategory.js"></script>
+    <script src="<?php echo URLROOT; ?>/js/customer/product_filter.js"></script>
 
 </body>
 </html>

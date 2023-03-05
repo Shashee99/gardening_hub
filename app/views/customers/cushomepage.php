@@ -40,7 +40,7 @@
                
          </div>
          <div class="valbox" id="d3">
-               <img src="<?= URLROOT;?>/img/customer/red-pending.png" alt="">
+               <img src="<?= URLROOT;?>/img/customer/pending-cart.png" alt="">
                <div>
                   <h3><?= $data['pending_to_complete']; ?></h3>
                   <span>Pending To Complete</span>
@@ -67,7 +67,7 @@
                <th>Order Confirm Date</th>
                <th>Remain Time to Collect</th>
             </thead>
-            <tbody>
+            <tbody id = "tdata">
                <div class="tabale_data">
                
                   <?php foreach ($data['wishlist'] as $row )
@@ -80,11 +80,30 @@
                         <td><?= $row->shop_name; ?></td>
                         <td><?= $row->count; ?></td>
                         <td><?= $row->confirm_reject_date_time; ?></td>
-                        <td id="remaning-time">
-                           <input type="text" name="time" value="<?="2020-06-07 23:39:00"; ?>" hidden>
-                        </td>
-                        
-                     </tr>
+                        <?php
+                           list($dateString, $timeString) = explode(' ', $row->confirm_reject_date_time);
+
+                           $dateTime = new DateTime($dateString);
+
+                           $timeInterval = new DateInterval('P7DT23H59M'); // 23 hours and 59 minutes
+                           
+                           $newDateTime = $dateTime->add($timeInterval);
+                           //echo $newDateTime->format('Y-m-d H:i:s');
+                           $currentDateTime = new DateTime();
+                           $interval = $newDateTime->diff($currentDateTime);
+                           if($interval->format('%a')==0)
+                           {
+                        ?>
+                              <td class="remaning_time" style="color:red" data-time=<?= $row->confirm_reject_date_time; ?> > <?=  $interval->format('%a days, %h hours, %i minutes'); ?></td>
+                           <?php
+                           } 
+                           else{
+                           ?>
+                              <td class="remaning_time" data-time=<?= $row->confirm_reject_date_time; ?> > <?=  $interval->format('%a days, %h hours, %i minutes'); ?></td>
+                           <?php
+                           }
+                           ?>
+               
                   <?php
                      } 
                   }
@@ -95,60 +114,7 @@
       </div>
    </section>
 
-   <script>
+   <!-- <script src="<?php echo URLROOT; ?>/js/customer/remaning_time.js"></script> -->
 
-
-      function getRemainingTime() {
-
-         const dateValue = document.getElementById("remaning-time").value;
-        
-         var date = Math.abs((new Date().getTime() / 1000).toFixed(0));
-        var date2 = Math.abs((new Date(dateValue).getTime() / 1000).toFixed(0));
-
-        var diff = date2 - date;
-
-        var days = Math.floor(diff / 86400);
-        var hours = Math.floor(diff / 3600) % 24;
-        var minutes = Math.floor(diff / 60) % 60;
-        var seconds = diff % 60;
-
-        var daysStr = days;
-        if (days < 10) {
-            daysStr = "0" + days;
-        }
- 
-        var hoursStr = hours;
-        if (hours < 10) {
-            hoursStr = "0" + hours;
-        }
- 
-        var minutesStr = minutes;
-        if (minutes < 10) {
-            minutesStr = "0" + minutes;
-        }
- 
-        var secondsStr = seconds;
-        if (seconds < 10) {
-            secondsStr = "0" + seconds;
-        }
-
-        if (days < 0 && hours < 0 && minutes < 0 && seconds < 0) {
-            daysStr = "00";
-            hoursStr = "00";
-            minutesStr = "00";
-            secondsStr = "00";
-
-            console.log("close");
-            if (typeof interval !== "undefined") {
-                clearInterval(interval);
-            }
-        }
-
-        document.getElementById("remaning-time").innerHTML = daysStr + " days, " + hoursStr + ":" + minutesStr + ":" + secondsStr;
-    }
-
-    getRemainingTime();
-    var interval = setInterval(getRemainingTime, 1000); // update time every second
-   </script>
 </body>
 </html>

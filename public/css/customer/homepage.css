@@ -33,6 +33,24 @@ body{
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+.order-details #d1{
+    background: linear-gradient(90deg, #EF629F 5.88%, #EECDA3 100%);
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+}
+.order-details #d2{
+    background: linear-gradient(90deg, #00CDAC -9.75%, #02AAB0 100%);
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+}
+.order-details #d3{
+    background: linear-gradient(90deg, #b20917 0%, #eb5447 100%);
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+}
+.order-details #d4{
+    background: linear-gradient(90deg, #FF5F6D 0%, #FFC371 100%);
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+}
+
+
 .order-details .valbox{
     width: 250px;
     height: 100px;
@@ -97,6 +115,6 @@ h2{
     background-color: #fff;
 }
 #d3 h3, #d3 span{
-    color: red;
+    color: #fff;
     font-weight: 600;
 }

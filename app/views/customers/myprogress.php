@@ -18,6 +18,15 @@
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
     <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
+    <div class="confirm-progress-delete-popup" id="delete-modal">
+        <div class="modal-content">
+            <p>Are you sure you want to delete this Progress?</p>
+            <div class="modal-buttons" id="modal-button">
+                <button id="confirm-delete">Yes</button>
+                <button id="cancel-delete">No</button>
+            </div>
+        </div>
+    </div>
 
     <section id="rest">
         <div class="filter-options">
@@ -85,9 +94,7 @@
                     </div>
                     <div class="option-button">
                         <div class="delete-button">
-                            <form action="<?= URLROOT; ?>/harvests/deletHarvest/<?= $row->harvest_id; ?>" method="POST">
-                                <input type="submit" value="Delete">
-                            </form>                
+                            <button class="delete_buttons" data-progressID="<?= $row->progress_id; ?>">DELETE</button>                    
                         </div>
                         <div class="edit-button">
                             <form action="#">
@@ -111,6 +118,8 @@
 
 
     </section>
+
+    <script src="<?php echo URLROOT; ?>/js/customer/delete_progress_modal.js"></script>
 
 </body>
 </html>
