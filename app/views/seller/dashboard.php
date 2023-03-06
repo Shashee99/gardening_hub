@@ -254,8 +254,11 @@
                             <span>Price <stron><?php echo $item_data -> price; ?></stron></span>
                         </div>
                         <div class="operations">
-                            <input type="button" class="button" value="Update">
-                            <input type="button" class="button del" value="Delete">
+                            <button class="button" btn_id="<?php echo $item_data -> product_no .'update' ?>"
+                            onclick="window.location.href='<?php echo URLROOT.'/sellers/update/'. $item_data -> product_no ?>';">Update</button>
+                            <button class="button del" btn_id="<?php echo $item_data -> product_no .'delete' ?>">Delete</button>
+                            <!-- <input type="button" class="button" value="Update" btn_id="<?php echo $item_data -> product_no .'update' ?>">
+                            <input type="button" class="button del" value="Delete" btn_id="<?php echo $item_data -> product_no .'delete' ?>"> -->
                         </div>
                     </div>
                 <?php endforeach; ?>

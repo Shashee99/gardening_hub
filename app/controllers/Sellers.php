@@ -292,6 +292,7 @@ class Sellers extends Controller{
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $today = date("Y-m-d");
             $data = [
+                'product_no' => $_POST['product_no'],
                 'confirm' => $_POST['orderConfirm'],
                 'cancle' => $_POST['orderCancle'],
                 'complete' => $_POST['orderComplete'],
@@ -316,53 +317,43 @@ class Sellers extends Controller{
         $this->view('seller/order', $data);
     }
 
-    public function searchbynames_registeredseller(){
-
-
-        if(isset($_POST['searchbynames_registeredseller'])){
-            $text = $_POST['searchbynames_registeredseller'];
-            $dataset = $this->sellerModel -> searchuserbyname_registeredsellers($text);
-            echo json_encode($dataset);
-            unset($_POST['searchbynames_registeredseller']);
-            exit();
+    public function order_conf() {
+        $item = $_POST['item'];
+        $result = $this -> sellerModel->order_conf($item);
+        if ($result){
+            echo "Confirm Suceccfully";
         }
-        else{
-            $tabledata = $this->sellerModel->all_registered_sellers();
-            $tabledata =json_encode($tabledata);
-            echo $tabledata;
-            exit();
-
-        }
-
     }
 
-    public function searchbynames_unregisteredseller(){
-
-
-        if(isset($_POST['searchbynames_unregisteredseller'])){
-            $text = $_POST['searchbynames_unregisteredseller'];
-            $dataset = $this->sellerModel -> searchuserbyname_unregisteredsellers($text);
-            echo json_encode($dataset);
-            unset($_POST['searchbynames_unregisteredseller']);
-            exit();
+    public function order_cancel() {
+        $product_no = $_POST['cancel_item'];
+        $cancel_reason = $_POST['cancel_reason'];
+        $result = $this -> sellerModel->order_cancel($product_no, $cancel_reason);
+        if ($result){
+            echo "Confirm Suceccfully";
         }
-        else{
-            $tabledata = $this->sellerModel->get_non_registered_sellers();
-            $tabledata =json_encode($tabledata);
-            echo $tabledata;
-            exit();
-
-        }
-
     }
 
-    public function recentlyaddedsellers(){
+    public function update($id) {
+        $itemData = $this -> sellerModel -> getItemById($id);
+        $productImg = $this -> sellerModel -> getProductImages($id); 
 
-        $dataset = $this -> sellerModel -> recentlyaddedsellers();
-        $data = json_encode($dataset);
-        echo $data;
-        exit();
+        $data = [
+            'itemData' => $itemData,
+            'productImg' => $productImg
+        ];
 
+        $this->view('seller/update', $data);
     }
 
+    // public function delete(){
+    //     $id = $_POST['id'];
+    //     $result = $this->categoryModel->delete($id);
+    //     if ($result){
+    //         echo "Deleted Succefully";
+    //     }else{
+    //         die("something went wrong");
+    //     }
+
+    // }
 }
