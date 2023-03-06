@@ -7,6 +7,7 @@ class Users extends Controller
     private $advisorModel;
     private $sellerModel;
     private $notiModel;
+    private $mailModel;
 
     public function __construct()
     {
@@ -16,6 +17,7 @@ class Users extends Controller
         $this->advisorModel = $this->model('Advisor');
         $this->sellerModel = $this ->model('Seller');
         $this ->notiModel = $this ->model('Notification');
+        $this -> mailModel = new Mailer();
     }
 
     public function customerRegister()
@@ -404,7 +406,7 @@ class Users extends Controller
 
             if($this->userModel->findUser($data['email']))
             {
-                $data['email_err'] = "Username/email allready exsits";
+                $data['email_err'] = "Email allready exsits";
             }
 
             if(empty($data['email_err']))
@@ -624,11 +626,11 @@ class Users extends Controller
 
                     } elseif ($logged_user->type === 'admin') {
                         $this->createUserSession($logged_user);
-                       
 
-                    } 
+
+                    }
                     elseif ($logged_user->type === 'seller') {
-                        // $this->createSellerSession($logged_user);
+
                         if($logged_user->user_state === 1 )
                         {
                             $this->createSellerSession($logged_user);
@@ -755,6 +757,142 @@ class Users extends Controller
             session_destroy();
             redirect('users/login');
 
+        }
+
+
+    }
+
+//    forget password implementing
+
+
+    public function forgetpassword()
+    {
+
+//        $this -> view('users/forgetpassword',$data);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            // Process the form data
+            $data = [
+                'title' => 'Reset Password',
+                'u_name' => trim($_POST['u_name']),
+                'u_name_err' => '',
+                'pass_err' => ''
+            ];
+
+            if (empty($data['u_name'])) {
+                $data['u_name_err'] = 'Please enter user name';
+            } elseif (!$this->userModel->findUser($data['u_name'])) {
+                $data['u_name_err'] = 'No user found';
+            }
+
+            if (empty($data['u_name_err']) ) {
+
+//                send verification for pw reset
+                //        generating the verification code
+                $verification_code = substr(uniqid(rand()), 0, 6);
+                $username = "";
+                $this->userModel->insertpwreset($data['u_name'], $verification_code);
+
+             if(   $this ->mailModel -> sendverificationforpwreset($username,$data['u_name'],$verification_code)){
+
+                 $data = [
+                     'title' => 'Reset Password',
+                     'u_name' => trim($_POST['u_name']),
+                     'new_pass' => '',
+                     're_pass' => '',
+                     'pass_err1' => '',
+                     'pass_err2' => ''
+
+                 ];
+                 $this->view('users/newpassword',$data);
+             }
+
+
+
+
+
+
+            }
+            else {
+                  $this -> view('users/forgetpassword',$data);
+            }
+
+
+        } else {
+            $data = [
+                'title' => 'Reset Password',
+                'u_name' => '',
+                'pass' => '',
+                'u_name_err' => '',
+                'pass_err' => ''
+            ];
+              $this -> view('users/forgetpassword',$data);
+        }
+
+
+    }
+
+
+    public function newpassword()
+    {
+
+//        $this -> view('users/forgetpassword',$data);
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            // Process the form data
+            $data = [
+                'title' => 'Reset Password',
+                'new_pass' => trim($_POST['new_pass']),
+                're_pass' => trim($_POST['re_pass']),
+                'pass_err1' => '',
+                'pass_err2' => ''
+            ];
+
+            if (empty($data['new_pass'])) {
+                $data['pass_err1'] = 'Please enter your new password';
+            }
+
+            if (empty($data['re_pass']) ) {
+                $data['pass_err1'] = 'Please enter your new password';
+            }
+
+            if (empty($data['re_pass']) && !empty($data['new_pass']) ) {
+                $data['pass_err1'] = 'Enter password again';
+            }
+
+            if($data['re_pass'] != $data['new_pass']){
+                $data['pass_err1'] = 'Password didn\'t match';
+                $data['pass_err2'] = 'Password didn\'t match';
+            }
+            if (empty($data['re_pass']) && empty($data['new_pass'])) {
+                $email = $data['u_name'];
+                $newpw = $data['new_pass'];
+               if( $this->userModel -> changepw($email,$newpw)) {
+                   flash('register_success', ' ');
+                   $this->view('users/done');
+               } else{
+                   $this -> view('users/newpassword',$data);
+               }
+
+            }
+            else {
+                $this -> view('users/done',$data);
+            }
+
+
+        } else {
+            $data = [
+                'title' => 'Reset Password',
+                'new_pass' => '',
+                're_pass' => '',
+                'pass_err1' => '',
+                'pass_err2' => ''
+            ];
+            $this -> view('users/newpassword',$data);
         }
 
 

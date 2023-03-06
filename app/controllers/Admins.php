@@ -11,7 +11,6 @@ class Admins extends Controller
         $this->adminModel = $this->model('Admin');
         $this->customerModel = $this->model('Customer');
         $this->sellerModel = $this->model('Seller');
-        $this->complaintModel = $this->model('Complaint');
         $this->userModel = $this->model('User');
         $this->advisorModel = $this->model('Advisor');
         $this->mailer = new Mailer();

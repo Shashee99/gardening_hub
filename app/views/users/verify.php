@@ -39,7 +39,7 @@
                     <span><?php echo $data['verify_err']; ?></span>
                 </div>
             </div>
-            <a href="#">Forget Password ?</a>
+
             <div class="button">
                 <input type="submit" value="Verify"   name="Verify" >
             </div>

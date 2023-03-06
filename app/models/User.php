@@ -297,6 +297,15 @@
 
 
         }
+        public function insertpwreset($id,$code){
+
+            $this -> db -> query('UPDATE user SET password_reset_code = :code WHERE email = :id');
+            $this -> db -> bind(':code',$code);
+            $this -> db -> bind(':id',$id);
+            $this->db->execute();
+
+
+        }
 
         public function getusertypebyemail($email){
             $this -> db -> query('SELECT * FROM user WHERE email = :email');
@@ -331,6 +340,14 @@
             $this ->db -> query('UPDATE user SET user_state = 1 WHERE email = :email');
             $this ->db-> bind(':email',$email);
             $this -> db -> execute();
+        }
+
+        public function changepw($email,$newpw){
+            $this ->db -> query('UPDATE user SET password = :newpw WHERE email = :email');
+            $this ->db-> bind(':email',$email);
+            $this ->db-> bind(':newpw',$newpw);
+            $this -> db -> execute();
+            return true;
         }
 
 
