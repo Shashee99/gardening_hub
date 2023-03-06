@@ -292,6 +292,7 @@ class Sellers extends Controller{
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $today = date("Y-m-d");
             $data = [
+                'product_no' => $_POST['product_no'],
                 'confirm' => $_POST['orderConfirm'],
                 'cancle' => $_POST['orderCancle'],
                 'complete' => $_POST['orderComplete'],
@@ -315,4 +316,44 @@ class Sellers extends Controller{
 
         $this->view('seller/order', $data);
     }
+
+    public function order_conf() {
+        $item = $_POST['item'];
+        $result = $this -> sellerModel->order_conf($item);
+        if ($result){
+            echo "Confirm Suceccfully";
+        }
+    }
+
+    public function order_cancel() {
+        $product_no = $_POST['cancel_item'];
+        $cancel_reason = $_POST['cancel_reason'];
+        $result = $this -> sellerModel->order_cancel($product_no, $cancel_reason);
+        if ($result){
+            echo "Confirm Suceccfully";
+        }
+    }
+
+    public function update($id) {
+        $itemData = $this -> sellerModel -> getItemById($id);
+        $productImg = $this -> sellerModel -> getProductImages($id); 
+
+        $data = [
+            'itemData' => $itemData,
+            'productImg' => $productImg
+        ];
+
+        $this->view('seller/update', $data);
+    }
+
+    // public function delete(){
+    //     $id = $_POST['id'];
+    //     $result = $this->categoryModel->delete($id);
+    //     if ($result){
+    //         echo "Deleted Succefully";
+    //     }else{
+    //         die("something went wrong");
+    //     }
+
+    // }
 }

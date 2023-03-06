@@ -164,5 +164,30 @@ class Seller{
         $this -> db-> bind(':id',$id);
     }
 
+    
+    public function order_conf($item) {
+        $id =$_SESSION['user_id'];
+        $this -> db -> query('UPDATE wishlist 
+                              SET confirmation = 1
+                              WHERE (seller_id = :id  AND product_no = :item)');
+        
+        $this -> db -> bind(':item', $item);
+        // $this -> db -> bind(':confirmation', $data['confirmation']);
+        // $this -> db -> bind(':order_date', $data['complete_date']);
+        $this -> db-> bind(':id',$id);
+        $this->db->execute();
+    }
+
+    public function order_cancel($product_no, $cancel_reason) {
+        $id =$_SESSION['user_id'];
+        $this -> db -> query('UPDATE wishlist 
+                              SET cancel_reason = :cancel_reason 
+                              WHERE (seller_id = :id  AND product_no = :item)');
+        
+        $this -> db -> bind(':cancel_reason', $cancel_reason);
+        $this -> db -> bind(':item', $product_no);
+        $this -> db-> bind(':id',$id);
+        $this->db->execute();
+    }
 }
 

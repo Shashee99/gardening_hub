@@ -190,18 +190,6 @@ body {
 </style>
 <!-- ---------------------------------------------------------------------- -->
 
-<!-- <div class="navbar">
-        <nav>
-            <div class="logo"></div>
-            <div class="navs">
-                <ul id="navul">
-                    <li><a href="" class="an">Home</a></li>
-                    <li><a href="" class="an">About</a></li>
-                    <li><a href="" class="an">Contact</a></li>
-                </ul>
-            </div>
-        </nav>
-    </div> -->
     <div class="infopart">
         <div class="container">
             <div class="productInfo1">
@@ -281,7 +269,7 @@ body {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>/
         </div>
     </div>
 
