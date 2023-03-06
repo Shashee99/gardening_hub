@@ -51,5 +51,38 @@ class Mailer{
 
     }
 
+    public function sendverificationforpwreset($username,$email,$verification_code)
+    {
+
+        $this->mail->isSMTP();
+        $this->mail->Host = "smtp.gmail.com";
+        $this->mail->SMTPAuth = true;
+        $this->mail->Username = "gardeninghub.official@gmail.com ";
+        $this->mail->Password = "pbiznliwdmdgpglh";
+        $this->mail->SMTPSecure = "tls";
+        $this->mail->Port = 587;
+        $password_reset_url = URLROOT.'/users/passwordchange/'.$email;
+        // Email content
+        $this->mail->setFrom("gardeninghub.official@gmail.com", "Gardening Hub");
+        $this->mail->addAddress($email, $username);
+        $this->mail->isHTML(true);
+        $this->mail->Subject = 'Password Reset Code';
+        $this->mail->Body    =  'Dear ' .'sir/madam'. ',<br><br>'
+            . 'We received a request to reset your account password. Please use the following verification code to proceed:<br><br>'
+            . 'Verification Code: ' . $verification_code . '<br><br>'
+            . 'Please enter the verification code on the password reset page:<br><br>'
+            . 'If you did not request a password reset, please ignore this email and take appropriate security measures to protect your account.<br><br>'
+            . 'Thank you for choosing our service.<br><br>'
+            . 'Best regards,<br>'
+            . '[Gardening Hub Team]';
+        if($this->mail->send()){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
 
 }

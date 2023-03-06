@@ -33,7 +33,7 @@
                         <span><?php echo $data['pass_err']; ?></span>
                     </div>
                 </div>
-                <a href="#">Forget Password ?</a>
+                <a href="<?= URLROOT;?>/users/forgetpassword">Forget Password ?</a>
                 <div class="button">
                     <input type="submit" value="login"   name="login" >
                 </div>
