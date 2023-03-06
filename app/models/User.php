@@ -335,6 +335,13 @@
             $code =  $result->user_state;
             return $code;
         }
+        public function getpasswordresetcodebyemail($email){
+            $this -> db -> query('SELECT * FROM user WHERE email = :email');
+            $this ->db ->bind(':email',$email);
+            $result = $this -> db -> singleRecord();
+            $code =  $result->password_reset_code;
+            return $code;
+        }
 
         public function setuserasregistered($email){
             $this ->db -> query('UPDATE user SET user_state = 1 WHERE email = :email');
@@ -343,11 +350,21 @@
         }
 
         public function changepw($email,$newpw){
+            $hashnew = password_hash($newpw,PASSWORD_DEFAULT);
+
             $this ->db -> query('UPDATE user SET password = :newpw WHERE email = :email');
             $this ->db-> bind(':email',$email);
-            $this ->db-> bind(':newpw',$newpw);
+            $this ->db-> bind(':newpw',$hashnew);
             $this -> db -> execute();
             return true;
+        }
+
+        public function getuseridbyemail($email){
+            $this -> db -> query('SELECT * FROM user WHERE email = :email');
+            $this ->db ->bind(':email',$email);
+            $result = $this -> db -> singleRecord();
+            $code =  $result->user_id;
+            return $code;
         }
 
 

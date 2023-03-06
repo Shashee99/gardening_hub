@@ -20,7 +20,7 @@
 
         <p>Enter your new password.</p>
         <?php flash("register_success"); ?>
-        <form action="<?php echo URLROOT; ?>/users/newpassword" method="post">
+        <form action="<?php echo URLROOT; ?>/users/newpassword/<?=$data['userid']?>" method="post">
 
             <div class="input-box">
                 <input type="password" id='<?php echo (!empty($data['pass_err1'])) ? 'invalid' : ''; ?>' name="new_pass" value="<?php echo $data['new_pass']; ?>" placeholder="Enter your password" >
@@ -34,6 +34,12 @@
                 <i id="pass-status" class="uil uil-eye-slash " onclick="viewPassword()"></i>
                 <div class="error">
                     <span><?php echo $data['pass_err2']; ?></span>
+                </div>
+            </div>
+            <div class="input-box">
+                <input type="text" id='<?php echo (!empty($data['verifycode_err'])) ? 'invalid' : ''; ?>' name="verifycode" value="<?php echo $data['verifycode']; ?>" placeholder="Enter your verification code" >
+                <div class="error">
+                    <span><?php echo $data['verifycode_err']; ?></span>
                 </div>
             </div>
             <div class="button">

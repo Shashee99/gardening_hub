@@ -15,9 +15,9 @@ class Users extends Controller
         $this->userModel = $this->model('User');
         $this->customerModel = $this->model('Customer');
         $this->advisorModel = $this->model('Advisor');
-        $this->sellerModel = $this ->model('Seller');
-        $this ->notiModel = $this ->model('Notification');
-        $this -> mailModel = new Mailer();
+        $this->sellerModel = $this->model('Seller');
+        $this->notiModel = $this->model('Notification');
+        $this->mailModel = new Mailer();
     }
 
     public function customerRegister()
@@ -344,7 +344,7 @@ class Users extends Controller
                 $data['seller_image'] = $newimagename;
                 //Register User
                 if ($this->userModel->sellerRegister($data)) {
-                    $this ->notiModel -> addnotification('Seller');
+                    $this->notiModel->addnotification('Seller');
                     flash('register_success', 'You are registered and can log in');
                     redirect('users/login');
                 } else {
@@ -387,8 +387,7 @@ class Users extends Controller
 
     public function advisorRegister()
     {
-        if ($_SERVER ['REQUEST_METHOD'] == 'POST')
-        {
+        if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
@@ -399,18 +398,16 @@ class Users extends Controller
                 'phone' => trim($_POST['phone']),
                 'email' => trim($_POST['gmail']),
                 'qualification' => trim($_POST['qualification']),
-                'pp'=> $_FILES['photo']['name'],
+                'pp' => $_FILES['photo']['name'],
                 'email_err' => ''
 
             ];
 
-            if($this->userModel->findUser($data['email']))
-            {
+            if ($this->userModel->findUser($data['email'])) {
                 $data['email_err'] = "Email allready exsits";
             }
 
-            if(empty($data['email_err']))
-            {
+            if (empty($data['email_err'])) {
                 //Hashing password
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 // Photo upload
@@ -423,55 +420,49 @@ class Users extends Controller
 
                 $photo = array();
 
-                foreach($_FILES['qfile']['name'] as $key => $value)
-                {
-                    
+                foreach ($_FILES['qfile']['name'] as $key => $value) {
+
                     $img_name1 = $_FILES['qfile']['name'][$key];
                     $tmp_name1 = $_FILES['qfile']['tmp_name'][$key];
-                    $img_type1 = strtolower(pathinfo($img_name1, PATHINFO_EXTENSION)); 
-                    $new_img1 = uniqid('IMG-',true).'.'.$img_type1;
-                    $img_upload_path1 = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/Advisor_Qualification_photos/'.$new_img1;
-                    move_uploaded_file($tmp_name1,$img_upload_path1);
-                    array_push($photo,$new_img1);
+                    $img_type1 = strtolower(pathinfo($img_name1, PATHINFO_EXTENSION));
+                    $new_img1 = uniqid('IMG-', true) . '.' . $img_type1;
+                    $img_upload_path1 = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/Advisor_Qualification_photos/' . $new_img1;
+                    move_uploaded_file($tmp_name1, $img_upload_path1);
+                    array_push($photo, $new_img1);
                 }
 
-                if($this->userModel->advisorRegister($data, $new_img1))
-                {
-                    $this ->notiModel -> addnotification('Advisor');
+                if ($this->userModel->advisorRegister($data, $new_img1)) {
+                    $this->notiModel->addnotification('Advisor');
                     redirect('users/login');
+                } else {
+                    $this->view('users/advisorRegister', $data);
                 }
-                else
-                {
-                    $this->view('users/advisorRegister',$data);
-                }
-            }
-            else
-            {
+            } else {
                 $this->view('users/advisorRegister', $data);
             }
-           
 
-        }
-        else
-        {
+
+        } else {
             $data = [
-                'password' =>'',
+                'password' => '',
                 'fullname' => '',
                 'address' => '',
-                'nic' =>'',
+                'nic' => '',
                 'phone' => '',
                 'email' => '',
                 'qualification' => '',
-                'pp'=> '',
+                'pp' => '',
                 'email_err' => ''
 
             ];
 
-            $this->view('users/advisorRegister',$data);
+            $this->view('users/advisorRegister', $data);
         }
-        
+
     }
-    public function verify(){
+
+    public function verify()
+    {
         // Check for POST request
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -481,7 +472,7 @@ class Users extends Controller
                 'title' => 'Fill following fields to be verified!',
                 'u_name' => trim($_POST['u_name']),
                 'pass' => trim($_POST['pass']),
-                'verify'=>(int)trim($_POST['verify']),
+                'verify' => (int)trim($_POST['verify']),
                 'verify_err' => '',
                 'u_name_err' => '',
                 'pass_err' => ''
@@ -498,64 +489,54 @@ class Users extends Controller
             if (empty($data['verify'])) {
                 $data['verify_err'] = 'Please enter Verification code';
             }
-            $hashedpw = '' ;
+            $hashedpw = '';
             $usertype = '';
             $userstate = '';
             $logged_user = '';
-            $vericode  = '';
+            $vericode = '';
 
-            if(!empty($data['u_name'])){
-                $hashedpw = $this -> userModel -> getuserhashedpasswordbyemail($data['u_name']);
-                $usertype = $this -> userModel -> getusertypebyemail($data['u_name']);
-                $vericode = $this -> userModel -> getuserverificationcodebyemail($data['u_name']);
-                $userstate = $this -> userModel -> getuserstatebyemail($data['u_name']);
-                $logged_user = $this ->userModel -> findUser($data['u_name']);
+            if (!empty($data['u_name'])) {
+                $hashedpw = $this->userModel->getuserhashedpasswordbyemail($data['u_name']);
+                $usertype = $this->userModel->getusertypebyemail($data['u_name']);
+                $vericode = $this->userModel->getuserverificationcodebyemail($data['u_name']);
+                $userstate = $this->userModel->getuserstatebyemail($data['u_name']);
+                $logged_user = $this->userModel->findUser($data['u_name']);
             }
 
-            if(!password_verify($data['pass'], $hashedpw)){
+            if (!password_verify($data['pass'], $hashedpw)) {
                 $data['pass_err'] = "Incorrect Password";
             }
-            if($data['verify'] != $vericode){
+            if ($data['verify'] != $vericode) {
                 $data['verify_err'] = "Incorrect Verification Code";
             }
 
             if (empty($data['u_name_err']) && empty($data['pass_err']) && empty($data['verify_err'])) {
 //                $state = $this->userModel->verify($data['u_name'],$data['pass'],$data['verify']);
 
-                if($usertype == 'seller'){
-                    if($userstate === 0 )
-                    {
-                        $this ->userModel -> setuserasregistered($data['u_name']);
+                if ($usertype == 'seller') {
+                    if ($userstate === 0) {
+                        $this->userModel->setuserasregistered($data['u_name']);
                         $this->createSellerSession($logged_user);
-                    }
-                    elseif($logged_user->user_state === 2)
-                    {
+                    } elseif ($logged_user->user_state === 2) {
                         $data['u_name_err'] = 'Your user account has been deleted';
-                        $this->view('users/login',$data);
-                    }
-                    else
-                    {
+                        $this->view('users/login', $data);
+                    } else {
                         $data['u_name_err'] = 'Your registration is pending';
-                        $this->view('users/login',$data);
+                        $this->view('users/login', $data);
                     }
 
                 }
-                if($usertype == 'advisor'){
-                    if($userstate === 0 )
-                    {
-                        $this ->userModel -> setuserasregistered($data['u_name']);
+                if ($usertype == 'advisor') {
+                    if ($userstate === 0) {
+                        $this->userModel->setuserasregistered($data['u_name']);
                         $advisor_details = $this->advisorModel->advisorDetails($logged_user->user_id);
                         $this->createAdvisorSession($advisor_details);
-                    }
-                    elseif($userstate === 2)
-                    {
+                    } elseif ($userstate === 2) {
                         $data['u_name_err'] = 'Your user account has been deleted';
-                        $this->view('users/login',$data);
-                    }
-                    else
-                    {
+                        $this->view('users/login', $data);
+                    } else {
                         $data['u_name_err'] = 'Your registration is pending';
-                        $this->view('users/login',$data);
+                        $this->view('users/login', $data);
                     }
 
                 }
@@ -571,7 +552,7 @@ class Users extends Controller
                 'pass' => '',
                 'u_name_err' => '',
                 'pass_err' => '',
-                'verify' =>'',
+                'verify' => '',
                 'verify_err' => ''
             ];
             $this->view('users/verify', $data);
@@ -611,16 +592,14 @@ class Users extends Controller
 
                 if ($logged_user) {
 
-                    if ($logged_user->type === 'customer' ) {
-                        if($logged_user->user_state === 1){
+                    if ($logged_user->type === 'customer') {
+                        if ($logged_user->user_state === 1) {
                             $customer_details = $this->customerModel->getCustomerDetails($logged_user->user_id);
                             $this->creatCusSession($logged_user, $customer_details);
                             redirect('customers/viewHomePage');
-                        }
-                        elseif($logged_user->user_state === 2)
-                        {
+                        } elseif ($logged_user->user_state === 2) {
                             $data['u_name_err'] = 'Your user account has been deleted';
-                            $this->view('users/login',$data);
+                            $this->view('users/login', $data);
                         }
 
 
@@ -628,42 +607,29 @@ class Users extends Controller
                         $this->createUserSession($logged_user);
 
 
-                    }
-                    elseif ($logged_user->type === 'seller') {
+                    } elseif ($logged_user->type === 'seller') {
 
-                        if($logged_user->user_state === 1 )
-                        {
+                        if ($logged_user->user_state === 1) {
                             $this->createSellerSession($logged_user);
-                        }
-                        elseif($logged_user->user_state === 2)
-                        {
+                        } elseif ($logged_user->user_state === 2) {
                             $data['u_name_err'] = 'Your user account has been deleted';
-                            $this->view('users/login',$data);
-                        }
-                        else
-                        {
+                            $this->view('users/login', $data);
+                        } else {
                             $data['u_name_err'] = 'Your registration is pending';
-                            $this->view('users/login',$data);
+                            $this->view('users/login', $data);
                         }
-                    }
-                    elseif($logged_user->type === 'advisor')
-                    {
-                        if($logged_user->user_state === 1 )
-                        {
+                    } elseif ($logged_user->type === 'advisor') {
+                        if ($logged_user->user_state === 1) {
                             // print_r($logged_user->user_id);
                             // die();
                             $advisor_details = $this->advisorModel->advisorDetails($logged_user->user_id);
                             $this->createAdvisorSession($advisor_details);
-                        }
-                        elseif($logged_user->user_state === 2)
-                        {
+                        } elseif ($logged_user->user_state === 2) {
                             $data['u_name_err'] = 'Your user account has been deleted';
-                            $this->view('users/login',$data);
-                        }
-                        else
-                        {
+                            $this->view('users/login', $data);
+                        } else {
                             $data['u_name_err'] = 'Your registration is pending';
-                            $this->view('users/login',$data);
+                            $this->view('users/login', $data);
                         }
                     }
 
@@ -718,6 +684,7 @@ class Users extends Controller
         $_SESSION['seller'] = 1;
         redirect('sellers/dashboard');
     }
+
     public function createAdvisorSession($details)
     {
         $_SESSION['advisor_id'] = $details->advisor_id;
@@ -787,7 +754,7 @@ class Users extends Controller
                 $data['u_name_err'] = 'No user found';
             }
 
-            if (empty($data['u_name_err']) ) {
+            if (empty($data['u_name_err'])) {
 
 //                send verification for pw reset
                 //        generating the verification code
@@ -795,28 +762,31 @@ class Users extends Controller
                 $username = "";
                 $this->userModel->insertpwreset($data['u_name'], $verification_code);
 
-             if(   $this ->mailModel -> sendverificationforpwreset($username,$data['u_name'],$verification_code)){
+                if ($this->mailModel->sendverificationforpwreset($username, $data['u_name'], $verification_code)) {
 
-                 $data = [
-                     'title' => 'Reset Password',
-                     'u_name' => trim($_POST['u_name']),
-                     'new_pass' => '',
-                     're_pass' => '',
-                     'pass_err1' => '',
-                     'pass_err2' => ''
+//                    $data = [
+//                        'title' => 'Reset Password',
+//                        'u_name' => trim($_POST['u_name']),
+//                        'new_pass' => '',
+//                        're_pass' => '',
+//                        'pass_err1' => '',
+//                        'pass_err2' => '',
+//                        'verifycode' => '',
+//                        'verifycode_err' => ''
+//
+//                    ];
+//                    $this->view('users/newpassword', $data);
+                    $usermail = $data['u_name'];
+                    $userid = $this->userModel->getuseridbyemail($usermail);
 
-                 ];
-                 $this->view('users/newpassword',$data);
-             }
+                    $location = 'users/newpassword/'.$userid;
+                    redirect($location);
+
+                }
 
 
-
-
-
-
-            }
-            else {
-                  $this -> view('users/forgetpassword',$data);
+            } else {
+                $this->view('users/forgetpassword', $data);
             }
 
 
@@ -826,61 +796,82 @@ class Users extends Controller
                 'u_name' => '',
                 'pass' => '',
                 'u_name_err' => '',
-                'pass_err' => ''
+                'pass_err' => '',
             ];
-              $this -> view('users/forgetpassword',$data);
+            $this->view('users/forgetpassword', $data);
         }
 
 
     }
 
 
-    public function newpassword()
+    public function newpassword($id)
     {
 
 //        $this -> view('users/forgetpassword',$data);
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-
+            $email = $this ->userModel -> getemailbyuserid($id);
             // Process the form data
             $data = [
                 'title' => 'Reset Password',
                 'new_pass' => trim($_POST['new_pass']),
                 're_pass' => trim($_POST['re_pass']),
+                'verifycode' => (int)trim($_POST['verifycode']),
+                'verifycode_err' => '',
                 'pass_err1' => '',
-                'pass_err2' => ''
+                'pass_err2' => '',
+                'userid' => $id
             ];
+
 
             if (empty($data['new_pass'])) {
                 $data['pass_err1'] = 'Please enter your new password';
             }
+            if (empty($data['verifycode'])) {
+                $data['verifycode_err'] = 'Please enter your Verication Code check your email!';
+            }
 
-            if (empty($data['re_pass']) ) {
+            if (empty($data['re_pass'])) {
                 $data['pass_err1'] = 'Please enter your new password';
             }
 
-            if (empty($data['re_pass']) && !empty($data['new_pass']) ) {
+            if (empty($data['re_pass']) && !empty($data['new_pass'])) {
                 $data['pass_err1'] = 'Enter password again';
             }
 
-            if($data['re_pass'] != $data['new_pass']){
+            if ($data['re_pass'] != $data['new_pass']) {
                 $data['pass_err1'] = 'Password didn\'t match';
                 $data['pass_err2'] = 'Password didn\'t match';
             }
-            if (empty($data['re_pass']) && empty($data['new_pass'])) {
-                $email = $data['u_name'];
-                $newpw = $data['new_pass'];
-               if( $this->userModel -> changepw($email,$newpw)) {
-                   flash('register_success', ' ');
-                   $this->view('users/done');
-               } else{
-                   $this -> view('users/newpassword',$data);
-               }
+            if (empty($data['pass_err1']) && empty($data['pass_err2'])) {
 
-            }
-            else {
-                $this -> view('users/done',$data);
+//                check validity of the verification code
+                $verificationcodefromdb = $this->userModel->getpasswordresetcodebyemail($email);
+                if ($data['verifycode'] == $verificationcodefromdb) {
+
+                    $newpw = $data['new_pass'];
+                    if ($this->userModel->changepw($email, $newpw)) {
+                        $this->view('users/done');
+                    } else {
+                        $this->view('users/newpassword', $data);
+                    }
+
+                } else {
+                    $data = [
+                        'verifycode_err' => 'Password Reset Code',
+                        'verifycode_err' => '',
+                        'pass_err1' => '',
+                        'pass_err2' => ''
+                    ];
+
+                    $this->view('users/newpassword', $data);
+
+                }
+
+            } else {
+                $this->view('users/newpassword', $data);
             }
 
 
@@ -890,9 +881,12 @@ class Users extends Controller
                 'new_pass' => '',
                 're_pass' => '',
                 'pass_err1' => '',
-                'pass_err2' => ''
+                'pass_err2' => '',
+                'verifycode' => '',
+                'verifycode_err' => '',
+                'userid' => $id
             ];
-            $this -> view('users/newpassword',$data);
+            $this->view('users/newpassword', $data);
         }
 
 
