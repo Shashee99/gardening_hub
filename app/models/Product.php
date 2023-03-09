@@ -39,50 +39,178 @@
             $sql = "SELECT * FROM seller INNER JOIN seller_product_details ON seller_product_details.seller_id = seller.seller_id 
                     INNER JOIN product_category ON seller_product_details.category_id = product_category.product_id ";
 
-            if($cat != "")
+            if($cat != "" && $sub_cat == "" && $price == 0)
             {
-                $sql .= "AND WHERE product_category.product_category =  ".$cat ;
-                // $this->db->query($sql);
-                // $this->db->bind(':cat',$cat);
+                $sql .= "WHERE product_category.product_category = :cat " ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+                // print_r($sql);
+                // exit();
             }
-            if($sub_cat != "")
+            elseif($cat != "" && $sub_cat != "" && $price == 0)
             {
-                $sql .= "AND WHERE product_category.sub_category =  ".$sub_cat ;
-                // $this->db->query($sql);
-                // $this->db->bind(':sub_cat',$sub_cat);
+                $sql .= "WHERE product_category.product_category = :cat AND product_category.sub_category = :sub_cat" ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+                $this->db->bind(':sub_cat',$sub_cat);
             }
-            if($price != "")
+            elseif($cat == "" && $sub_cat != "" && $price == 0)
             {
-                // $sql .= "WHERE product_category.product_category = :cat " ;
-                // $this->db->query($sql);
-                // $this->db->bind(':cat',$cat);
-                if($price == 100)
-                {
-                    $sql .= "AND WHERE seller_product_details.price BETWEEN 0 AND 100";
-                }
-                elseif($price == 500)
-                {
-                    $sql .= "AND WHERE seller_product_details.price BETWEEN 101 AND 500";
-                }
-                elseif($price == 1000)
-                {
-                    $sql .= "AND WHERE seller_product_details.price BETWEEN 501 AND 1000";
-                }
-                elseif($price == 2000)
-                {
-                    $sql .= "AND WHERE seller_product_details.price BETWEEN 1001 AND 2000";
-                }
-                elseif($price == 5000)
-                {
-                    $sql .= "AND WHERE seller_product_details.price BETWEEN 2001 AND 5000";
-                }
-                else
-                {
-                    $sql .= "AND WHERE seller_product_details.price > 5000";
-                }
-                
+                $sql .= "WHERE product_category.sub_category = :sub_cat" ;
+                $this->db->query($sql);
+                $this->db->bind(':sub_cat',$sub_cat);
             }
-            $this->db->query($sql);
+            elseif($cat == "" && $sub_cat == "" && $price == 100)
+            {
+                $sql .= "WHERE seller_product_details.price BETWEEN 0 AND 100" ;
+                $this->db->query($sql);
+            }
+            elseif($cat == "" && $sub_cat == "" && $price == 500)
+            {
+                $sql .= "WHERE seller_product_details.price BETWEEN 101 AND 500" ;
+                $this->db->query($sql);
+            }
+            elseif($cat == "" && $sub_cat == "" && $price == 1000)
+            {
+                $sql .= "WHERE seller_product_details.price BETWEEN 501 AND 1000" ;
+                $this->db->query($sql);
+            }
+            elseif($cat == "" && $sub_cat == "" && $price == 2000)
+            {
+                $sql .= "WHERE seller_product_details.price BETWEEN 1001 AND 2000" ;
+                $this->db->query($sql);
+            }
+            elseif($cat == "" && $sub_cat == "" && $price == 5000)
+            {
+                $sql .= "WHERE seller_product_details.price BETWEEN 2001 AND 5000" ;
+                $this->db->query($sql);
+            }
+            elseif($cat == "" && $sub_cat == "" && $price == 10000)
+            {
+                $sql .= "WHERE seller_product_details.price > 5000" ;
+                $this->db->query($sql);
+            }
+            elseif($cat != "" && $sub_cat == "" && $price == 100)
+            {
+                $sql .= "WHERE product_category.product_category = :cat AND seller_product_details.price BETWEEN 0 AND 100" ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+            }
+            elseif($cat != "" && $sub_cat == "" && $price == 500)
+            {
+                $sql .= "WHERE product_category.product_category = :cat AND seller_product_details.price BETWEEN 101 AND 500" ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+            }
+            elseif($cat != "" && $sub_cat == "" && $price == 1000)
+            {
+                $sql .= "WHERE product_category.product_category = :cat AND seller_product_details.price BETWEEN 501 AND 1000" ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+            }
+            elseif($cat != "" && $sub_cat == "" && $price == 2000)
+            {
+                $sql .= "WHERE product_category.product_category = :cat AND seller_product_details.price BETWEEN 1001 AND 2000" ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+            }
+            elseif($cat != "" && $sub_cat == "" && $price == 5000)
+            {
+                $sql .= "WHERE product_category.product_category = :cat AND seller_product_details.price BETWEEN 2001 AND 5000" ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+            }
+            elseif($cat != "" && $sub_cat == "" && $price == 10000)
+            {
+                $sql .= "WHERE product_category.product_category = :cat AND seller_product_details.price > 5000" ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+            }
+            elseif($cat == "" && $sub_cat != "" && $price == 100)
+            {
+                $sql .= "WHERE product_category.sub_category = :sub_cat AND seller_product_details.price BETWEEN 0 AND 100" ;
+                $this->db->query($sql);
+                $this->db->bind(':sub_cat',$sub_cat);
+            }
+            elseif($cat == "" && $sub_cat != "" && $price == 500)
+            {
+                $sql .= "WHERE product_category.sub_category = :sub_cat AND seller_product_details.price BETWEEN 101 AND 500" ;
+                $this->db->query($sql);
+                $this->db->bind(':sub_cat',$sub_cat);
+            }
+            elseif($cat == "" && $sub_cat != "" && $price == 1000)
+            {
+                $sql .= "WHERE product_category.sub_category = :sub_cat AND seller_product_details.price BETWEEN 501 AND 1000" ;
+                $this->db->query($sql);
+                $this->db->bind(':sub_cat',$sub_cat);
+            }
+            elseif($cat == "" && $sub_cat != "" && $price == 2000)
+            {
+                $sql .= "WHERE product_category.sub_category = :sub_cat AND seller_product_details.price BETWEEN 1001 AND 2000" ;
+                $this->db->query($sql);
+                $this->db->bind(':sub_cat',$sub_cat);
+            }
+            elseif($cat == "" && $sub_cat != "" && $price == 5000)
+            {
+                $sql .= "WHERE product_category.sub_category = :sub_cat AND seller_product_details.price BETWEEN 2001 AND 5000" ;
+                $this->db->query($sql);
+                $this->db->bind(':sub_cat',$sub_cat);
+            }
+            elseif($cat == "" && $sub_cat != "" && $price == 10000)
+            {
+                $sql .= "WHERE product_category.sub_category = :sub_cat AND seller_product_details.price > 5000" ;
+                $this->db->query($sql);
+                $this->db->bind(':sub_cat',$sub_cat);
+            }
+            elseif($cat != "" && $sub_cat != "" && $price == 100)
+            {
+                $sql .= "WHERE product_category.product_category = :cat AND product_category.sub_category = :sub_cat AND seller_product_details.price BETWEEN 0 AND 100" ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+                $this->db->bind(':sub_cat',$sub_cat);
+            }
+            elseif($cat != "" && $sub_cat != "" && $price == 500)
+            {
+                $sql .= "WHERE product_category.product_category = :cat AND product_category.sub_category = :sub_cat AND seller_product_details.price BETWEEN 101 AND 500" ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+                $this->db->bind(':sub_cat',$sub_cat);
+            }
+            elseif($cat != "" && $sub_cat != "" && $price == 1000)
+            {
+                $sql .= "WHERE product_category.product_category = :cat AND product_category.sub_category = :sub_cat AND seller_product_details.price BETWEEN 501 AND 1000" ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+                $this->db->bind(':sub_cat',$sub_cat);
+            }
+            elseif($cat != "" && $sub_cat != "" && $price == 2000)
+            {
+                $sql .= "WHERE product_category.product_category = :cat AND product_category.sub_category = :sub_cat AND seller_product_details.price BETWEEN 1001 AND 2000" ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+                $this->db->bind(':sub_cat',$sub_cat);
+            }
+            elseif($cat != "" && $sub_cat != "" && $price == 5000)
+            {
+                $sql .= "WHERE product_category.product_category = :cat AND product_category.sub_category = :sub_cat AND seller_product_details.price BETWEEN 2001 AND 5000" ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+                $this->db->bind(':sub_cat',$sub_cat);
+            }
+            elseif($cat != "" && $sub_cat != "" && $price == 10000)
+            {
+                $sql .= "WHERE product_category.product_category = :cat AND product_category.sub_category = :sub_cat AND seller_product_details.price > 5000" ;
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+                $this->db->bind(':sub_cat',$sub_cat);
+            }
+            elseif($cat == "" && $sub_cat == "" && $price == 0)
+            {
+                $this->db->query($sql);
+            }
+            // print_r($sql);
+            // exit();
+           
             $result = $this->db->resultSet();
             return $result;
         }

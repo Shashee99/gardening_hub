@@ -23,9 +23,10 @@
 
         public function orderCountGet($type)
         {
-            $sql =  "SELECT * FROM wishlist WHERE status = :status";
+            $sql =  "SELECT * FROM wishlist WHERE status = :status and customer_id = :id";
             $this->db->query($sql);
             $this->db->bind(':status', $type);
+            $this->db->bind(':id', $_SESSION['cus_id']);
             $this->db->execute();
             $result = $this->db->rowCount();
             return $result;

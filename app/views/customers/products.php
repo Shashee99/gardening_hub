@@ -41,13 +41,13 @@ if(!isset($_SESSION['cus_id']))
             </div>
             <div class="select-price">
                 <select name="price" id="price">
-                    <option value="">All Prices</option>
+                    <option value="0">All Prices</option>
                     <option value="100">Upto Rs.100.00</option>
                     <option value="500">Upto Rs.500.00</option>
                     <option value="1000">Upto Rs.1000.00</option>
                     <option value="2000">Upto Rs.2000.00</option>
                     <option value="5000">Upto Rs.5000.00</option>
-                    <option value="Other">Above Rs.5000.00</option>
+                    <option value="1000">Above Rs.5000.00</option>
                 </select>
             </div>
         </div>
