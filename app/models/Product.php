@@ -41,7 +41,7 @@
 
             if($cat != "")
             {
-                $sql .= "AND WHERE product_category.product_category =  ".$cat ;
+                $sql .= "WHERE product_category.product_category =  ".$cat ;
                 // $this->db->query($sql);
                 // $this->db->bind(':cat',$cat);
             }

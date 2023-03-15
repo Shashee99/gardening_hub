@@ -255,6 +255,21 @@ span {
     color: #FFFFFF;  
 }
 
+#cancel_reason {
+    display: flex;
+    margin: auto;
+    width: 600px;
+    height: 50px;
+    border: 1px solid #FFFFFF;
+    background: none;
+    border-radius: 10px;
+    padding-left: 20px;
+}
+
+#cancel_reason:focus {
+    outline: none; /* to remove outline black corder */
+    caret-color: #FFFFFF; /* to change corsor color */
+}
 </style>
 
 <!-- ---------------------------------------------------------------------- -->
@@ -296,8 +311,8 @@ span {
                                 <div class="msg">
                                 <span>&#128680;</span>
                                     <h2 class="text_msg" id="com_msg">Are you sure ?</h2>
-                                    <h4 class="text_msg">You can confirm this order and return withn the selling time petiod</h4>
-                                    <button type="button" class="order_con" id="b1" name="orderConfirm" type="submit"> Confirm</button>
+                                    <h4 class="text_msg" id="text_msg">You can confirm this order and return withn the selling time petiod</h4>
+                                    <button class="order_con" btn_id="<?php echo $orderData -> product_no . 'b1' ?>" name="orderConfirm" type="submit"> Confirm</button>
                                 </div>
                             </div>
 
@@ -307,9 +322,9 @@ span {
                                 </div>
                                 <div class="msg">
                                     <span>&#10067;</span>
-                                    <h2 class="text_msg" id="com_msg">Are you sure ?</h2>
-                                    <h4 class="text_msg">You want to cancle this order</h4>
-                                    <button type="button" class="order_con" id="b2" name="orderCancle" type="submit">Cancle</button>
+                                    <h2 class="text_msg" id="com_msg">You want to cancle this order</h2>
+                                    <input type='text' id="cancel_reason" placeholder='Reason for cancelation !' />
+                                    <button class="order_con" btn_id="<?php echo $orderData -> product_no . 'b2' ?>" name="orderCancle" type="submit">Cancle</button>
                                 </div>
                             </div>
 
@@ -323,7 +338,7 @@ span {
                                 <span>&#129309;</span>
                                     <h2 class="text_msg" id="com_msg">Successfull</h2></h2>
                                     <h4 class="text_msg">Succesfully complete the order</h4>
-                                    <button type="button" class="order_con" id="b3" onclick="closePopup3()" name="orderComplete" type="submit">Complete</button>
+                                    <button class="order_con" btn_id="<?php echo $orderData -> product_no . 'b3' ?>" onclick="closePopup3()" name="orderComplete" type="submit">Complete</button>
                                 </div>
                             </div>
 
@@ -335,6 +350,49 @@ span {
     </div>
 
     <script>
+        $("button").click(function() {
+            var t = $(this).attr('btn_id');
+            if(t.includes('b1')) {
+                alert(t);
+                var item = t.replace('b1', '');
+                alert(item);
+                var request = new XMLHttpRequest();
+                var url = "http://localhost/gardening_hub/sellers/order_conf";
+                var method = "POST";
+                request.open(method, url, true);
+                request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                request.send("item=" + item);
+                alert(item);
+                disableButton('butn2');
+                closePopup1();
+
+                
+            } else if (t.includes('b2')) {
+                alert(t);
+                var cancel_item = t.replace('b2', '');
+                var request = new XMLHttpRequest();
+                var url = "http://localhost/gardening_hub/sellers/order_cancel";
+                var method = "POST";
+                request.open(method, url, true);
+                request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                var cancel_reason = document.getElementById("cancel_reason").value;
+                alert(cancel_reason);
+                request.send("cancel_item=" + cancel_item + "&cancel_reason=" + cancel_reason);
+                disableButton('butn1');
+                closePopup2();
+            }    
+
+            // function sendData(textAreaValue) {
+            //     var text = new XMLHttpRequest();
+            //     text.open("POST", "http://localhost/gardening_hub/sellers/order_cancel");
+            //     var data = JSON.stringify(textAreaValue);
+            //     alert(data);
+            //     text.send("data=" + data);
+            // }
+    });
+    </script>
+
+    <script>
 
         let popup1 = document.getElementById("popup1");
         let popup2 = document.getElementById("popup2");
@@ -342,18 +400,10 @@ span {
         // let popBack = document.getElementById("infopart");
         let tblVis = document.getElementById("tbl, od");
 
-        document.getElementById("b1").onclick = function() {
-            
-            disableButton('butn2');
-            deletecat();
-            closePopup1();
-            
-        };
+        
 
-        document.getElementById("b2").onclick = function() {
-            disableButton('butn1');
-            closePopup2();
-        };
+        
+
 
         function openPopup1() {
             popup1.classList.add("open-popup");
@@ -395,7 +445,7 @@ span {
             document.getElementById(disableId).disabled = true;
         }
 
-
+        
         // $(document).ready(function(){
         //     $("#b1").click(function(){
         //         $.post("<?php echo URLROOT; ?>/sellers/order", {value: "orderConfirm"}, function(data){
@@ -404,12 +454,14 @@ span {
         //     });
         // });
 
+        
+
 
         function deletecat() {
 
             // let id = e.parentNode.parentNode.children[0].innerHTML;
-            let id = document.getElementById("b1").parentNode.parentNode.parentNode.children[0].innerHTML;
-            alert(id);
+            // let id = document.getElementById("b1").parentNode.parentNode.parentNode.children[0].innerHTML;
+            // alert(id);
 
             // var ajax = new XMLHttpRequest();
             // ajax.open("POST", "http://localhost/gardening_hub/Productcategories/delete", true);
