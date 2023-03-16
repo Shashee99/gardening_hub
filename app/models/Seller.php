@@ -97,8 +97,6 @@ class Seller{
         $this->db->query($sql);
         $this->db->bind(':sell_id', $sell_id);
         $row = $this->db->singleRecord();
-        // print_r($row);
-        // die();
         return $row;
     }
 
@@ -179,7 +177,39 @@ class Seller{
         return $dataset;
 
     }
+    public function recentlyaddedsellers()
+    {
+        $this -> db -> query('SELECT * FROM seller ORDER BY seller_id DESC LIMIT 5; ');
+        $dataset = $this -> db-> resultSet();
+        return $dataset;
+    }
 
 
+
+    
+    public function order_conf($item) {
+        $id =$_SESSION['user_id'];
+        $this -> db -> query('UPDATE wishlist 
+                              SET confirmation = 1
+                              WHERE (seller_id = :id  AND product_no = :item)');
+        
+        $this -> db -> bind(':item', $item);
+        // $this -> db -> bind(':confirmation', $data['confirmation']);
+        // $this -> db -> bind(':order_date', $data['complete_date']);
+        $this -> db-> bind(':id',$id);
+        $this->db->execute();
+    }
+
+    public function order_cancel($product_no, $cancel_reason) {
+        $id =$_SESSION['user_id'];
+        $this -> db -> query('UPDATE wishlist 
+                              SET cancel_reason = :cancel_reason 
+                              WHERE (seller_id = :id  AND product_no = :item)');
+        
+        $this -> db -> bind(':cancel_reason', $cancel_reason);
+        $this -> db -> bind(':item', $product_no);
+        $this -> db-> bind(':id',$id);
+        $this->db->execute();
+    }
 }
 

@@ -70,6 +70,14 @@
             }
 
         }
+        public function recentlyaddedadvisors(){
+
+            $dataset = $this -> advisorModel -> recentlyaddedadvisors();
+            $data = json_encode($dataset);
+            echo $data;
+            exit();
+
+        }
 
         
     }

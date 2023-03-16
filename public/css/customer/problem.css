@@ -125,6 +125,20 @@ body{
     transform: scale(0.99);
     color: #00A778;
 }
+.problem-card .problem .problem-image{
+    width: 90%;
+    padding: 20px;
+    background-color: #efefef;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.problem-card .problem .problem-image img{
+    width: 120px;
+}
 .reply{
     background-color: #efefef;
     width: 85%;

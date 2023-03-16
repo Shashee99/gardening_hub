@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #3BB78F ;
+    position: relative;
+    display: flex;
+}
+#rest{
+    background-color: #efefef;
+    margin-top: 80px;
+    margin-left: 22%;
+    max-height: 100%;
+    width: 78%;
+    border-radius: 25px 0 0 0;
+    overflow-y: scroll;
+    
+}
+#rest .title{
+    margin: 20px;
+}
+#rest .title h2{
+    text-align: center;
+    font-weight: 600;
+}
+.seller-details{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.seller-details .left-side{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.seller-details .right-side{
+    width: 50%;
+    height: 100%;
+}
+.seller-details .left-side .image{
+    margin: 20px auto;
+
+}
+.seller-details .left-side .image img{
+    width: 250px;
+    border-radius: 50%;
+    height: 250px;
+    object-fit: cover;
+    
+}
+.seller-details .left-side .rating-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.seller-details .left-side .rating-button button{
+    width: 150px;
+    height: 40px;
+    background-color: #00a778;
+    color: #fff;
+    border: none;
+    margin-top: 20px;
+    border-radius: 10px;
+
+}
+.seller-details .left-side .rating-button span{
+    margin-top: 8px;
+    color: red;
+    display: none;
+}
+.seller-details .left-side  .review-rating-add{
+    width: 80%;
+    background-color: #fff;
+    height: 300px;
+    margin-top: 20px;
+}
+.review-rating-add{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    display: none;
+}
+.review-rating-add .rating{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.review-rating-add input{
+    display: none;
+}
+.review-rating-add label{
+    font-size: 100%;
+    color: #444;
+    padding: 10px;
+    transition: all 0.2s ease;
+}
+.review-rating-add input:not(:checked) ~ label:hover,
+.review-rating-add input:not(:checked) ~ label:hover ~ label{
+  color: #fd4;
+}
+.review-rating-add input:checked ~ label{
+    color: #fd4;
+}
+.review-rating-add input #rate-5:checked ~ label{
+    color: #fe7;
+    text-shadow: 0 0 20px #952;
+}
+/* .review-rating-add form .textarea{
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+} */
+.review-rating-add form .textarea {
+    margin: 10px auto 20px auto;
+}
+.review-rating-add form .textarea textarea{
+    height: 100px;
+    width: 100%;
+    outline: none;
+    border: 1px solid #333;
+    background: #efefef;
+    padding: 10px;
+    font-size: 16px;
+    resize: none;
+    margin-left: 10%;
+    margin-bottom: 20px;
+}
+.textarea textarea:focus{
+    border-color: #444;
+}
+.review-rating-add form .btn button{
+    height: 40px;
+    width: 60%;
+    border: none;
+    background: #00a778;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 20px auto;
+}
+.seller-details .left-side .top-rated-products .products{
+    padding: 15px 15px;
+    background-color: #fff;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.seller-details .left-side .top-rated-products .products img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.seller-details .right-side .seller-info{
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    margin: 10px 0 10px 30px;
+}
+.seller-details .right-side .seller-info input{
+    margin-top: 5px;
+    width: 90%;
+    padding: 8px 0 8px 15px;
+    border: none;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, .40);
+}
+.seller-details .right-side .seller-info input:focus{
+    outline: none;
+}

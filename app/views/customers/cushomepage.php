@@ -85,7 +85,7 @@
 
                            $dateTime = new DateTime($dateString);
 
-                           $timeInterval = new DateInterval('P7DT23H59M'); // 23 hours and 59 minutes
+                           $timeInterval = new DateInterval('P7DT19H29M'); // 23 hours and 59 minutes
                            
                            $newDateTime = $dateTime->add($timeInterval);
                            //echo $newDateTime->format('Y-m-d H:i:s');

@@ -27,6 +27,14 @@ class NewTechs extends Controller
             $advisor_name = $advisor_details->name;
             $advisor_photo = $advisor_details->photo;
 
+            $photos = $this->techModel->techPhotosbyId($id);
+            $tech_photo = array();
+
+            foreach($photos as $photo)
+            {
+                $tech_photo[] = $photo->imge;
+            }
+
             $data[] = array
             (
                 'advisor_name' => $advisor_name,
@@ -34,7 +42,8 @@ class NewTechs extends Controller
                 'cat' => $cat,
                 'date' => $date,
                 'title' => $title,
-                'content' => $content
+                'content' => $content,
+                'tech_photos' => $tech_photo
             );
 
         }
@@ -70,6 +79,14 @@ class NewTechs extends Controller
                 $advisor_name = $advisor_details->name;
                 $advisor_photo = $advisor_details->photo;
 
+                $photos = $this->techModel->techPhotosbyId($id);
+                $tech_photo = array();
+
+                foreach($photos as $photo)
+                {
+                    $tech_photo[] = $photo->imge;
+                }
+
                 $data[] = array
                 (
                     'advisor_name' => $advisor_name,
@@ -77,7 +94,8 @@ class NewTechs extends Controller
                     'cat' => $cat,
                     'date' => $date,
                     'title' => $title,
-                    'content' => $content
+                    'content' => $content,
+                    'tech_photos' => $tech_photo
                 );
 
             }

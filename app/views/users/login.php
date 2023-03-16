@@ -21,7 +21,7 @@
             <form action="<?php echo URLROOT; ?>/users/login" method="post">
 
                 <div class="input-box">
-                    <input type="text" id='<?php echo (!empty($data['u_name_err'])) ? 'invalid' : ''; ?>' name="u_name" value="<?php echo $data['u_name']; ?>" placeholder="User Name" >
+                    <input type="text" id='<?php echo (!empty($data['u_name_err'])) ? 'invalid' : ''; ?>' name="u_name" value="<?php echo $data['u_name']; ?>" placeholder="Your Email" >
                     <div class="error">
                         <span><?php echo $data['u_name_err']; ?></span>
                     </div>
@@ -33,7 +33,7 @@
                         <span><?php echo $data['pass_err']; ?></span>
                     </div>
                 </div>
-                <a href="#">Forget Password ?</a>
+                <a href="<?= URLROOT;?>/users/forgetpassword">Forget Password ?</a>
                 <div class="button">
                     <input type="submit" value="login"   name="login" >
                 </div>

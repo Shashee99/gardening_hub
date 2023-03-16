@@ -36,7 +36,7 @@
         <?php flash("problem_add_successfuly"); ?>
         <div class="problem-wraper">
 
-            <?php foreach ($data['problems'] as $problems) { ?>
+            <?php foreach ($data as $problems) { ?>
                 <div class="problem-card">
                     <div class="problem">
                         <div class="user-info">
@@ -45,18 +45,28 @@
                             </div>
                             <div class="name-date-time">
                                 <h5><?= $_SESSION['cus_name']; ?></h5>
-                                <h6><?= $problems->date_time; ?></h6>
+                                <h6><?= $problems['date']; ?></h6>
 
                             </div>
                         </div>
-                        <h3><?= $problems->title; ?></h3>
+                        <h3><?= $problems['title']; ?></h3>
                         <div class="problem-content">
                             <p>
-                                <?= $problems->content; ?>
+                                <?= $problems['content']; ?>
                             </p><br>
 
                         </div>
-                        <a href="<?= URLROOT; ?>/problems/viewOneProblem/<?= $problems->problem_id; ?>">Replies ...</a><br>
+                        <div class="problem-image">
+                                <?php
+                                foreach($problems['photos'] as $row1)
+                                {
+                                ?>
+                                    <img src="<?= URLROOT; ?>/img/upload_images/problem_photo/<?= $row1 ; ?>" alt="">
+                                <?php   
+                                }
+                                ?>
+                        </div>
+                        <a href="<?= URLROOT; ?>/problems/viewOneProblem/<?= $problems['id']; ?>">Replies ...</a><br>
 
                     </div>
                 </div>

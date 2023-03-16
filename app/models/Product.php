@@ -140,9 +140,9 @@
             }
             elseif($cat == "" && $sub_cat != "" && $price == 1000)
             {
-                $sql .= "WHERE product_category.sub_category = :sub_cat AND seller_product_details.price BETWEEN 501 AND 1000" ;
+                $sql .= "AND WHERE product_category.product_category =  ".$cat ;
                 $this->db->query($sql);
-                $this->db->bind(':sub_cat',$sub_cat);
+                $this->db->bind(':cat',$cat);
             }
             elseif($cat == "" && $sub_cat != "" && $price == 2000)
             {

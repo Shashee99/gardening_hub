@@ -1,8 +1,8 @@
-<?php 
-
+<?php
 // Base controller calss
     class Controller
     {
+
         // Load paticular model file and create a instance and return it
         public function model($model)
         {
@@ -23,4 +23,6 @@
                 die('View doesn\'t exist');
             }
         }
+
+
     }

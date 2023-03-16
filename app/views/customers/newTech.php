@@ -55,6 +55,17 @@
                         <div class="content">
                             <p><?= $row['content']; ?></p>
                         </div><br>
+                        <div class="tech-photos">
+                            <?php
+                                
+                                foreach($row['tech_photos'] as $row1)
+                                {
+                                ?>
+                                    <img src="<?= URLROOT; ?>/img/upload_images/new_tech_photos/<?= $row1 ; ?>" alt="">
+                                <?php   
+                                }
+                                ?>
+                        </div><br>
             
                     </div>
                     <?php

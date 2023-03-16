@@ -69,6 +69,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="error">
+                        <span><?php echo $data['photo_err']; ?></span>
+                    </div>
                 </div>
                
                 <div class="buttons">

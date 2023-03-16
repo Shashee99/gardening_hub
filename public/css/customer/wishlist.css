@@ -90,6 +90,17 @@ body{
 .wishlist-table table tbody tr:nth-child(even){
     background-color: #efefef;
 }
+.wishlist-table table tbody tr:hover{
+    transition: all .05s ease-in-out;
+    transform: translateY(-5px);
+    box-shadow: 0 20px 30px -20px #000000;
+}
+.wishlist-table table td img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
 
 

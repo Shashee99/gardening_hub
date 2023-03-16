@@ -4,11 +4,13 @@
     {
         private $productModel;
         private $categoryModel;
+        private $ratingModel;
 
         public function __construct()
         {
             $this->productModel = $this->model('Product');
             $this->categoryModel = $this->model('ProductCategory');
+            $this->ratingModel = $this->model('Review');
 
         }
         public function viewProducts()
@@ -24,8 +26,13 @@
         public function viewOneProduct($id)
         {
             $productDetails = $this->productModel->getaProductDetails($id);
+            $reviewDetails = $this->ratingModel->getAproductReviewRating($id);
+            $ratingDetails = $this->ratingModel->overallRatingOfProduct($id);
+
             $data = [
-                'product' => $productDetails
+                'product' => $productDetails,
+                'review' => $reviewDetails,
+                'rating' => $ratingDetails
             ];
             $this->view('customers/oneproductdetails',$data);
             

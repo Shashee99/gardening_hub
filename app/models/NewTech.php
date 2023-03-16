@@ -23,4 +23,12 @@ class NewTech
         $row = $this->db->resultSet($sql);
         return $row;
     }
+    public function techPhotosbyId($id)
+    {
+        $sql = "SELECT * FROM tecpoto WHERE no =:no";
+        $this->db->query($sql);
+        $this->db->bind(':no', $id);
+        $row = $this->db->resultSet($sql);
+        return $row;
+    }
 }

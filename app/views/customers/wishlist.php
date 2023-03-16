@@ -58,7 +58,7 @@
         <div class="wishlist-table">
             <table>
                 <thead>
-                <th>No</th>
+                <th>#</th>
                 <th>Ordered Date & Time</th>
                 <th>Product Name</th>
                 <th>Quantity</th>
@@ -70,10 +70,13 @@
                     <?php 
                     foreach($data['wislist'] as $row)
                     {
-                        $i=0;
                     ?>
                         <tr>
-                        <td><?= ++$i; ?></td>
+                        <td>
+                            <a href="<?= URLROOT; ?>/products/viewOneProduct/<?= $row->product_no; ?>">
+                                <img src="<?= URLROOT; ?>/img/upload_images/product_cover_photo/<?= $row->image;  ?>" alt="">
+                            </a>
+                        </td>
                         <td><?= $row->order_date_time; ?></td>
                         <td><?= $row->title; ?></td>
                         <td><?= $row->count; ?></td>

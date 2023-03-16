@@ -30,17 +30,28 @@
                     </div>
                     <div class="name-date-time">
                         <h5><?= $_SESSION['cus_name']; ?></h5>
-                        <h6><?= $data['problem']->date_time; ?></h6>
+                        <h6><?= $data['date']; ?></h6>
 
                     </div>
                 </div>
-                <h3><?= $data['problem']->title; ?></h3>
+                <h3><?= $data['title']; ?></h3>
                 <div class="problem-content">
                     <p>
-                        <?= $data['problem']->content; ?>
+                        <?= $data['content']; ?>
                     </p><br>
 
                 </div>
+                <div class="problem-image">
+                                <?php
+                                foreach($data['photos'] as $row1)
+                                {
+                                ?>
+                                    <img src="<?= URLROOT; ?>/img/upload_images/problem_photo/<?= $row1 ; ?>" alt="">
+                                <?php   
+                                }
+                                ?>
+                </div>
+            
             </div>
             <div class="user-reply">
                 <div class="user-info">

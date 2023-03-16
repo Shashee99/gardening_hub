@@ -47,7 +47,7 @@ if(!isset($_SESSION['cus_id']))
                     <option value="1000">Upto Rs.1000.00</option>
                     <option value="2000">Upto Rs.2000.00</option>
                     <option value="5000">Upto Rs.5000.00</option>
-                    <option value="1000">Above Rs.5000.00</option>
+                    <option value="10000">Above Rs.5000.00</option>
                 </select>
             </div>
         </div>
@@ -61,7 +61,9 @@ if(!isset($_SESSION['cus_id']))
                             <img src="<?= URLROOT; ?>/img/upload_images/product_cover_photo/<?= $products->image; ?>" alt="">
                         </a>
                         <h4><?= $products->title; ?></h4>
-                        <h5><?= $products->shop_name; ?></h5>
+                        <a href="<?= URLROOT; ?>/sellers/sellerDetails/<?= $products->seller_id; ?>">
+                            <h5><?= $products->shop_name; ?></h5>
+                        </a>
                         <p>Available : <?= $products->quantity; ?></p>
                         <h4>Price Rs.<?= $products->price; ?></h4>
                         <div class="product-add">
