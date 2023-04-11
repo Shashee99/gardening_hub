@@ -45,20 +45,7 @@
             </thead>
 
             <tbody id="customersall">
-            <?php $i =1; ?>
-            <?php foreach ($data['customers'] as $row) : ?>
-                <tr>
-                    <td><?php echo $i++ ?></td>
-                    <td><?php echo $row -> name ?></td>
-                    <td><?php echo $row -> nic_no ?></td>
-                    <td><?php echo $row -> email ?></td>
-                    <td><?php echo $row -> bod ?></td>
-                    <td><?php echo $row -> gramasewa_division ?></td>
-                    <td><?php echo $row -> divisional_secretary ?></td>
-                    <td><?php echo $row -> tel_no ?></td>
-                    <td> <div class="seller-action flex"> <a href="<?= URLROOT;?>/admins/viewcustomer/<?= $row -> customer_id;?>" class="view"> View </a> <div class="delete"> Delete </div> </div></td>
-                </tr>
-            <?php endforeach; ?>
+
             </tbody>
         </table>
 

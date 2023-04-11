@@ -17,6 +17,7 @@
                 <li><b>Mobile Phone : </b> <?=$data['advisor'] -> tel_no; ?></li>
                 <li><b>E-mail : </b> <?=$data['advisor'] -> email; ?></li>
                 <li><b>Qualification : </b> <?=$data['advisor'] -> qualification; ?></li>
+                <li><b>Qualification Documents : </b><a href="<?= URLROOT; ?>/img/upload_images/Advisor_Qualification_docs/<?= $data['advisor']->photo; ?>" download><?= $data['advisor']->photo; ?></a></li>
                 <li class="flex" style="justify-content:space-evenly">
                     <a href="<?= URLROOT;?>/admins/advisorApprove/<?=$data['advisor'] -> advisor_id?>" class="view" >Approve</a>
                     <div class="delete" >Reject</div>

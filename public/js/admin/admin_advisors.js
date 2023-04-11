@@ -19,6 +19,7 @@ function getregadvisorcount(){
 }
 
 getnewadvisorcount();
+
 function getnewadvisorcount(){
     var ajax = new XMLHttpRequest();
 

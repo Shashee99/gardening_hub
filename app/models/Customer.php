@@ -15,12 +15,10 @@
             $this->db->query($sql);
             $this->db->bind(':cus_id', $cus_id);
             $row = $this->db->singleRecord($sql);
-            // print_r($row);
-            // die();
             return $row;
         }
         public function get_all_customers(){
-            $this -> db ->query('SELECT * FROM customer');
+            $this -> db ->query('SELECT * FROM customer WHERE isDeleted = 0');
             $dataset = $this->db->resultSet();
             return $dataset;
         }
@@ -45,6 +43,12 @@
             $this -> db -> query('SELECT * FROM customer ORDER BY customer_id DESC LIMIT 5; ');
             $dataset = $this -> db-> resultSet();
             return $dataset;
+        }
+        public function deletecustomer($id){
+            $this -> db -> query('UPDATE customer SET isDeleted = 1 WHERE customer_id = :id; ');
+            $this -> db -> bind(':id',$id);
+            $this->db->execute();
+            return true;
         }
 
 
