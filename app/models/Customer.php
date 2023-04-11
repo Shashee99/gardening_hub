@@ -48,6 +48,9 @@
             $this -> db -> query('UPDATE customer SET isDeleted = 1 WHERE customer_id = :id; ');
             $this -> db -> bind(':id',$id);
             $this->db->execute();
+            $this -> db ->query('UPDATE user SET user_state = 2 WHERE user_id = :id;');
+            $this -> db -> bind(':id',$id);
+            $this->db->execute();
             return true;
         }
 
