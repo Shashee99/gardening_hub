@@ -53,7 +53,7 @@
                     <td><?php echo $row -> nic_no ?></td>
                     <td><?php echo $row -> email ?></td>
                     <td><?php echo $row -> tel_no ?></td>
-                    <td> <div class="seller-action flex"><a href="<?=URLROOT;?>/admins/viewadvisor/<?= $row -> advisor_id;?>"" class="view"> View </a> <div class="delete"> Delete </div> </div></td>
+                    <td> <div class="seller-action flex"><a href="<?=URLROOT;?>/admins/viewadvisorregistered/<?= $row -> advisor_id;?>"" class="view"> View </a> <div class="delete"> Delete </div> </div></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

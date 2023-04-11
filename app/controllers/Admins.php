@@ -13,6 +13,7 @@ class Admins extends Controller
         $this->sellerModel = $this->model('Seller');
         $this->userModel = $this->model('User');
         $this->advisorModel = $this->model('Advisor');
+        $this->complaintModel = $this -> model('Complaint');
         $this->mailer = new Mailer();
     }
 
@@ -83,7 +84,7 @@ class Admins extends Controller
             'complaints' => $complaints,
             'jsfile' => 'admin_complaint.js'
         ];
-        $this->view('admin/Complains', $data);
+        $this->view('admin/complains', $data);
     }
 
     public function advisors()
@@ -167,6 +168,17 @@ class Admins extends Controller
         ];
         $this->view('admin/advisorpreview', $data);
     }
+    public function viewadvisorregistered($id)
+    {
+        $advisor = $this->advisorModel->getAdvisordetails($id);
+        $data = [
+            'nav' => 'Advisor',
+            'title' => 'Advisors',
+            'advisor' => $advisor,
+            'jsfile' => 'admin_advisors.js'
+        ];
+        $this->view('admin/registeredadvisorpreview', $data);
+    }
 
     public function sellerApprove($id)
     {
@@ -186,6 +198,7 @@ class Admins extends Controller
 
     }
 
+
     public function advisorApprove($id)
     {
 
@@ -203,6 +216,21 @@ class Admins extends Controller
         }
 
     }
+    public function rejectseller($id){
+        $username ='';
+//        get the email
+        $email = $this->userModel->getemailbyuserid($id);
+
+//        remove the user from user table
+        $this ->userModel -> deleteuserbyid($id);
+
+        if ($this->mailer->sendDeclinedRegistrationEmail($username,$email)) {
+            redirect('admins/sellers');
+        }
+
+    }
+
+
 
     public function viewcomplain($complaintID)
     {
@@ -213,7 +241,6 @@ class Admins extends Controller
         $complainant_type = $this->userModel->getUsertype($complaints->posted_user_id);
         $complainee = $this->userModel->getNamebyuserid($complaints->complained_user_id);
         $complainee_type = $this->userModel->getUsertype($complaints->posted_user_id);
-
         $this->complaintModel->viewedcomplain($complaintID);
 
         $data = [
@@ -231,11 +258,6 @@ class Admins extends Controller
     }
 
 
-    public function getlatesadvisors()
-    {
-
-
-    }
 
 
 }

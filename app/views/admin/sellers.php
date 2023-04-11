@@ -51,7 +51,7 @@
                     <td><?php echo $row -> owner_name ?></td>
                     <td><?php echo $row -> email ?></td>
                     <td><?php echo $row -> tel_no ?></td>
-                    <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewseller/<?= $row -> seller_id;?>"" class="view"> View </a> <div class="delete"> Delete </div> </div></td>
+                    <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewseller/<?= $row -> seller_id;?>" class="view"> View </a> <div class="delete"> Delete </div> </div></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

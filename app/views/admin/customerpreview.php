@@ -12,19 +12,24 @@
     <div class="userinfo">
 
         <ul class="userinfo-list">
-            <li><b>Name of the Customers : </b> <?=$data['customerinfo'] -> name; ?></li>
-            <li><b>Mobile Phone : </b> <?=$data['customerinfo'] -> tel_no; ?></li>
-            <li><b>E-mail : </b> <?=$data['customerinfo'] -> email; ?></li>
-            <li><b>NIC : </b> <?=$data['customerinfo'] -> nic_no; ?></li>
-            <li><b>E-mail : </b> <?=$data['customerinfo'] -> email; ?></li>
-            <li><b>Birthday : </b> <?=$data['customerinfo'] -> bod; ?></li>
-            <li><b>Address : </b> <?=$data['customerinfo'] -> address; ?></li>
-            <li><b>Gramasewa division : </b> <?=$data['customerinfo'] -> gramasewa_division; ?></li>
-            <li><b>Divisional Secretary : </b> <?=$data['customerinfo'] -> divisional_secretary; ?></li>
-            <li class="flex" style="justify-content: space-evenly">
-                <div class="view" >Edit</div>
-                <div class="delete" >Remove</div>
-            </li>
+            <table>
+                <tr><td><b>Name of the Customers </td><td>: </b> <?=$data['customerinfo'] -> name; ?></td></tr>
+                <tr><td><b>Mobile Phone </td><td>: </b> <?=$data['customerinfo'] -> tel_no; ?></td></tr>
+                <tr><td><b>E-mail </td><td>: </b> <?=$data['customerinfo'] -> email; ?></td></tr>
+                <tr><td><b>NIC </td><td>: </b> <?=$data['customerinfo'] -> nic_no; ?></td></tr>
+                <tr><td><b>E-mail </td><td>: </b> <?=$data['customerinfo'] -> email; ?></td></tr>
+                <tr><td><b>Birthday </td><td>: </b> <?=$data['customerinfo'] -> bod; ?></td></tr>
+                <tr><td><b>Address </td><td>: </b> <?=$data['customerinfo'] -> address; ?></td></tr>
+                <tr><td><b>Gramasewa division </td><td>: </b> <?=$data['customerinfo'] -> gramasewa_division; ?></td></tr>
+                <tr><td><b>Divisional Secretary </td><td>: </b> <?=$data['customerinfo'] -> divisional_secretary; ?></td></tr>
+                <tr><td>
+                       <div class="flex" style="justify-content: space-evenly">
+                           <div onclick="deletecustomer(<?=$data['customerinfo'] -> customer_id; ?>);" class="delete" >Remove</div>
+                       </div>
+                   </td>
+              </tr>
+            </table>
+
         </ul>
 
 

@@ -64,6 +64,17 @@
             exit();
         }
 
+        public function deletecustomer(){
+            $id = $_POST['id'];
+            $result = $this -> customerModel -> deletecustomer($id);
+            if ($result){
+                echo "Deleted Succefully";
+            }else{
+                die("something went wrong");
+            }
+
+        }
+
 
        
     }

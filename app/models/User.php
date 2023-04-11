@@ -368,4 +368,14 @@
         }
 
 
+        public function deleteuserbyid($id){
+            $this ->db -> query('DELETE FROM user WHERE user_id = :id;');
+            $this ->db-> bind(':id',$id);
+            $this -> db -> execute();
+            return true;
+
+
+        }
+
+
     }

@@ -605,6 +605,7 @@ hr {
     border-radius: 5px;
     color: var(--blue);
     margin-right: 10px;
+    text-decoration: none;
 }
 .delete{
     border: 1px solid var(--red);
@@ -612,6 +613,7 @@ hr {
     text-align: center;
     border-radius: 5px;
     color: var(--red);
+    cursor: pointer;
 }
 
 
