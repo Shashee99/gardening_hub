@@ -1,4 +1,5 @@
 <?php require_once APPROOT . '/views/inc/incAdmin/header.php'; ?>
+<h2>Registered users in the system.</h2>
 <div class="userlist">
 
     <div class="userlist-usercard">
@@ -81,7 +82,6 @@
         <h2>Customers</h2>
 
     </div>
-
     <div class="advisorcards" id="latestcustomers">
 
 

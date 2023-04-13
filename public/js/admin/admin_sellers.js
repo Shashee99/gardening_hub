@@ -77,7 +77,7 @@ function searchbyregisteredshopname() {
             var html = "";
             if(data.length>=1){
 
-                for (var a = 0; a < data.length; a++) {
+                for (var a = 0; a < data.length; a++){
                     html += "<tr>";
                     html += "<td>" + (a+1)+ "</td>";
                     html += "<td>" + data[a].shop_name + "</td>";
@@ -86,7 +86,6 @@ function searchbyregisteredshopname() {
                     html += "<td>" + data[a].tel_no + "</td>";
                     html += `<td> <div class="seller-action flex"> <a href="http://localhost/gardening_hub/admins/viewseller/${data[a].seller_id}" class="view"> View </a> <div class="delete"> Delete </div> </div></td>`;
                     html += "</tr>";
-                    // console.log(html);
                 }
 
             }
@@ -144,3 +143,5 @@ function searchbyunregisteredshopname() {
     };
 
 }
+
+
