@@ -77,5 +77,19 @@
             exit();
         }
 
+        public function deleteadvisors($id){
+
+            if($id == 0000){
+                redirect('admins/advisors');
+            }
+            else{
+                $this -> advisorModel -> delete_advisor($id);
+                redirect('admins/advisors');
+            }
+
+
+
+        }
+
         
     }

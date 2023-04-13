@@ -60,8 +60,7 @@
                     <p class="errcat"></p>
                 </div>
                 <div>
-                    <input type="text" name="category" id="subcategory" class="modelinputfield"
-                           placeholder="Enter Sub category">
+                    <input type="text" name="category" id="subcategory" class="modelinputfield" placeholder="Enter Sub category">
                     <p class="errmsgsub"></p>
                 </div>
                 <input type="submit" class="done"  name="add" id="addcatbuton" value="Add" >

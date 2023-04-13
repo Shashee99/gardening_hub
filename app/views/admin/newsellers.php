@@ -32,15 +32,15 @@
     <hr>
     <br>
     <div class="seller-table-area" style="border: 1px solid black">
-        <table class="table-sellers parentwidth">
+        <table class="usertable">
             <thead>
             <tr>
-                <th>#</th>
-                <th>Shop Name</th>
-                <th>Owner</th>
-                <th>Email</th>
-                <th>Mobile Phone</th>
-                <th>Action</th>
+                <th><b>#</b></th>
+                <th><b>Shop Name</b></th>
+                <th><b>Owner</b></th>
+                <th><b>Email</b></th>
+                <th><b>Mobile Phone</b></th>
+                <th><b>Action</b></th>
             </tr>
             </thead>
             <tbody id="unregisteredsellerstable">
@@ -51,7 +51,7 @@
                 <td><?php echo $row -> owner_name ?></td>
                 <td><?php echo $row -> email ?></td>
                 <td><?php echo $row -> tel_no ?></td>
-                <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewseller/<?= $row -> seller_id;?>" class="view"> View </a> <a href="<?= URLROOT;?>/admins/rejectseller/<?= $row -> seller_id;?>" class="delete"> Delete </a> </div></td>
+                <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewsellerregistered/<?= $row -> seller_id;?>" class="view"> View </a> <a href="<?= URLROOT;?>/admins/rejectseller/<?= $row -> seller_id;?>" class="delete"> Delete </a> </div></td>
             </tr>
             <?php endforeach; ?>
             </tbody>

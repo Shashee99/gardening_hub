@@ -84,7 +84,7 @@ class Mailer{
 
     }
 
-    public function sendDeclinedRegistrationEmail($username, $email) {
+    public function sendDeclinedRegistrationEmail($username, $email, $reason) {
         $this->mail->isSMTP();
         $this->mail->Host = "smtp.gmail.com";
         $this->mail->SMTPAuth = true;
@@ -99,7 +99,7 @@ class Mailer{
         $this->mail->isHTML(true);
         $this->mail->Subject = 'Registration Declined';
         $this->mail->Body = 'Dear ' . $username . ',<br><br>'
-            . 'We regret to inform you that your registration has been declined.<br><br>'
+            . 'We regret to inform you that your registration has been declined for the following reason: ' . $reason . '.<br><br>'
             . 'If you believe this decision was made in error, please contact our support team for assistance.<br><br>'
             . 'Thank you for considering our service.<br><br>'
             . 'Best regards,<br>'

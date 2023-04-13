@@ -26,12 +26,11 @@
                     <td><a href="<?= URLROOT;?>/admins/sellerApprove/<?=$data['sellerinfo'] -> seller_id?>" class="view" >Approve</a></td>
                       <td><a href="<?= URLROOT;?>/admins/rejectseller/<?=$data['sellerinfo'] -> seller_id?>" class="delete" >Reject</a></td>
                   </div>
-
             </ul>
-
-
-        </div>
+       </div>
     </div>
+
+
 
 
 <?php require_once APPROOT . '/views/inc/incAdmin/footer.php'; ?>

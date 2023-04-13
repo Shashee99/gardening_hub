@@ -15,7 +15,6 @@
             <table>
                 <tr><td><b>Name of the Customers </td><td>: </b> <?=$data['customerinfo'] -> name; ?></td></tr>
                 <tr><td><b>Mobile Phone </td><td>: </b> <?=$data['customerinfo'] -> tel_no; ?></td></tr>
-                <tr><td><b>E-mail </td><td>: </b> <?=$data['customerinfo'] -> email; ?></td></tr>
                 <tr><td><b>NIC </td><td>: </b> <?=$data['customerinfo'] -> nic_no; ?></td></tr>
                 <tr><td><b>E-mail </td><td>: </b> <?=$data['customerinfo'] -> email; ?></td></tr>
                 <tr><td><b>Birthday </td><td>: </b> <?=$data['customerinfo'] -> bod; ?></td></tr>

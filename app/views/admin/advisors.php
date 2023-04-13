@@ -32,15 +32,15 @@
     <hr>
     <br>
     <div class="seller-table-area" style="border: 1px solid black; overflow-x: scroll;">
-        <table class="table-sellers parentwidth">
+        <table class="usertable">
             <thead>
             <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>NIC</th>
-                <th>Email</th>
-                <th>Mobile Phone</th>
-                <th>Action</th>
+                <th><b>#</b></th>
+                <th><b>Name</b></th>
+                <th><b>NIC</b></th>
+                <th><b>Email</b></th>
+                <th><b>Mobile Phone</b></th>
+                <th><b>Action</b></th>
             </tr>
             </thead>
 
@@ -53,7 +53,7 @@
                     <td><?php echo $row -> nic_no ?></td>
                     <td><?php echo $row -> email ?></td>
                     <td><?php echo $row -> tel_no ?></td>
-                    <td> <div class="seller-action flex"><a href="<?=URLROOT;?>/admins/viewadvisorregistered/<?= $row -> advisor_id;?>"" class="view"> View </a> <div class="delete"> Delete </div> </div></td>
+                    <td><div class="seller-action flex"><a href="<?=URLROOT;?>/admins/viewadvisorregistered/<?= $row -> advisor_id;?>" class="view"> View </a></div></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

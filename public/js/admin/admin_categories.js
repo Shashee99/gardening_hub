@@ -33,11 +33,8 @@ const btnShowModal = document.querySelector(".category-item3");
 const addcatbutton = document.getElementById("addcatbuton");
 const catform = document.getElementById("catform");
 const editcatform = document.getElementById("editcatform");
-// addcatbutton.addEventListener("click",(e)=>{
-//    e.preventDefault();
-// });
 
-// Show Modal function const showModal
+
 const showModal = function () {
     modal.classList.remove("hidden");
     modal.classList.add("flex");

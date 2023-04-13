@@ -148,13 +148,33 @@ class Admins extends Controller
     public function viewseller($id)
     {
         $sellers = $this->sellerModel->getSellerDetails($id);
+        $complaints = $this ->complaintModel -> getallthecomplaintstothisid($id);
+
+        foreach ($complaints as $rowdata) {
+            $rowdata->posted_user_id = $this->userModel->getNamebyuserid($rowdata->posted_user_id);
+            $rowdata->complained_user_id = $this->userModel->getNamebyuserid($rowdata->complained_user_id);
+        }
+
+
+        $data = [
+            'nav' => 'Sellers',
+            'title' => 'Sellers',
+            'sellerinfo' => $sellers,
+            'jsfile' => 'admin_sellers.js',
+            'complaints' => $complaints
+        ];
+        $this->view('admin/registeredsellerpreview', $data);
+    }
+
+    public function viewsellerregistered($id){
+        $sellers = $this->sellerModel->getSellerDetails($id);
         $data = [
             'nav' => 'Sellers',
             'title' => 'Sellers',
             'sellerinfo' => $sellers,
             'jsfile' => 'admin_sellers.js'
         ];
-        $this->view('admin/sellerpreview', $data);
+        $this->view('admin/registeredsellerpreview', $data);
     }
 
     public function viewadvisor($id)
@@ -171,11 +191,19 @@ class Admins extends Controller
     public function viewadvisorregistered($id)
     {
         $advisor = $this->advisorModel->getAdvisordetails($id);
+        $complaints = $this ->complaintModel -> getallthecomplaintstothisid($id);
+
+        foreach ($complaints as $rowdata) {
+            $rowdata->posted_user_id = $this->userModel->getNamebyuserid($rowdata->posted_user_id);
+            $rowdata->complained_user_id = $this->userModel->getNamebyuserid($rowdata->complained_user_id);
+        }
+
         $data = [
             'nav' => 'Advisor',
             'title' => 'Advisors',
             'advisor' => $advisor,
-            'jsfile' => 'admin_advisors.js'
+            'jsfile' => 'admin_advisors.js',
+            'complaints'=> $complaints
         ];
         $this->view('admin/registeredadvisorpreview', $data);
     }
@@ -217,16 +245,35 @@ class Admins extends Controller
 
     }
     public function rejectseller($id){
-        $username ='';
-//        get the email
-        $email = $this->userModel->getemailbyuserid($id);
 
-//        remove the user from user table
-        $this ->userModel -> deleteuserbyid($id);
+        $email = $this-> userModel -> getemailbyuserid($id);
 
-        if ($this->mailer->sendDeclinedRegistrationEmail($username,$email)) {
-            redirect('admins/sellers');
-        }
+        $data = [
+            'nav' => 'Sellers',
+            'title' => 'Product Sellers',
+            'email' => $email,
+            'sellerid' => $id,
+            'jsfile' => 'admin_sellers.js'
+
+        ];
+
+        $this -> view('admin/sellerreject',$data);
+
+    }
+    public function rejectAdvisor($id){
+
+        $email = $this-> userModel -> getemailbyuserid($id);
+
+        $data = [
+            'nav' => 'Advisors',
+            'title' => 'Advisor',
+            'email' => $email,
+            'sellerid' => $id,
+            'jsfile' => 'admin_advisors.js'
+
+        ];
+
+        $this -> view('admin/sellerreject',$data);
 
     }
 
@@ -236,7 +283,6 @@ class Admins extends Controller
     {
 
         $complaints = $this->complaintModel->getcomplaintbyid($complaintID);
-
         $complainant = $this->userModel->getNamebyuserid($complaints->posted_user_id);
         $complainant_type = $this->userModel->getUsertype($complaints->posted_user_id);
         $complainee = $this->userModel->getNamebyuserid($complaints->complained_user_id);
@@ -257,7 +303,56 @@ class Admins extends Controller
 
     }
 
+    public function rejectauser(){
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $username = "";
+            $usermail = trim($_POST['email']);
+            $reason = trim($_POST['reason']);
+            $id = $this->userModel->getuseridbyemail( $usermail);
+//        remove the user from user table
+            $this ->userModel -> deleteuserbyid($id);
 
+            if ($this ->mailer ->sendDeclinedRegistrationEmail($username,$usermail,$reason)) {
+                redirect('admins/home');
+            }
+            else{
+                die("error");
+            }
+        }
+    }
 
+//delete a seller
+    public function deleteaSeller($id){
+
+        $data = [
+
+            'id' => $id,
+            'nav' => 'Sellers',
+            'title' => 'Delete a Product Seller ?',
+            'jsfile' => 'admin_sellers.js'
+
+            ];
+
+        $this->view('admin/sellerdeleteconfirmation',$data);
+
+    }
+
+//    delete an advisor
+
+    public function deleteaadviser($id){
+
+        $data = [
+
+            'id' => $id,
+            'nav' => 'Advisor',
+            'title' => 'Delete a Advisor ?',
+            'jsfile' => 'admin_advisors.js'
+
+        ];
+
+        $this->view('admin/advisordeleteconfirmation',$data);
+
+    }
 
 }

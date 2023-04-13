@@ -384,4 +384,18 @@ class Sellers extends Controller{
         var_dump($result);
         die();
     }
+
+    public function deleteseller($id){
+
+        if($id == 0000){
+            redirect('admins/sellers');
+        }
+        else{
+            $this -> sellerModel -> delete_seller($id);
+            redirect('admins/sellers');
+        }
+
+
+
+    }
 }

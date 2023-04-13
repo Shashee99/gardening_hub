@@ -13,16 +13,39 @@
 
             <ul class="userinfo-list">
                 <li><b>Name of the Advisor : </b> <?=$data['advisor'] -> name; ?></li>
-                <li><b>Email: </b> <?=$data['advisor'] -> email; ?></li>
                 <li><b>Mobile Phone : </b> <?=$data['advisor'] -> tel_no; ?></li>
                 <li><b>E-mail : </b> <?=$data['advisor'] -> email; ?></li>
                 <li><b>Qualification : </b> <?=$data['advisor'] -> qualification; ?></li>
                 <li><b>Qualification Documents : </b><a href="<?= URLROOT; ?>/img/upload_images/Advisor_Qualification_docs/<?= $data['advisor']->photo; ?>" download><?= $data['advisor']->photo; ?></a></li>
                 <li class="flex" style="justify-content:space-evenly">
-                    <div class="delete" >Remove</div>
+                    <a href="<?= URLROOT;?>/admins/deleteaadviser/<?= $data['advisor'] -> advisor_id;?>" class="delete" >Remove</a>
                 </li>
             </ul>
 
+
+        </div>
+    </div>
+
+    <div>
+        <h2>No of Complaints for this seller : <?= count($data['complaints']);?></h2>
+        <br>
+        <div class="seller-table-area" style="border: 1px solid black; overflow-x: scroll;">
+            <table class="usertable">
+                <thead>
+                <tr>
+                    <th>From</th>
+                    <th>Complaint Date</th>
+                    <th>Reason</th>
+                </tr>
+                </thead>
+                <?php foreach ($data['complaints'] as $row) : ?>
+                    <tr style="border: 1px solid black">
+                        <td><?php echo $row -> posted_user_id ?></td>
+                        <td><?php echo $row -> complain_date ?></td>
+                        <td><?php echo $row -> complain ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
 
         </div>
     </div>

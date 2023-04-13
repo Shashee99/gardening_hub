@@ -29,18 +29,16 @@
     <hr>
     <br>
     <div class="seller-table-area" style="border: 1px solid black; overflow-x: scroll;">
-        <table class="table-sellers parentwidth" >
+        <table class="usertable" >
             <thead>
             <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>NIC</th>
-                <th>Email</th>
-                <th>Birthday</th>
-                <th>Gramasewa division</th>
-                <th>Divisional Secretary</th>
-                <th>Telephone</th>
-                <th>Action</th>
+                <th><b>#</b></th>
+                <th><b>Name</b></th>
+                <th><b>Email</b></th>
+                <th><b>Gramasewa division</b></th>
+                <th><b>Divisional Secretary</b></th>
+                <th><b>Telephone</b></th>
+                <th><b>Action</b></th>
             </tr>
             </thead>
 

@@ -35,9 +35,9 @@ function getallcustomers(){
                 html += "<tr>";
                 html += "<td>" + rcount + "</td>";
                 html += "<td>" + data[a].name + "</td>";
-                html += "<td>" + data[a].nic_no + "</td>";
+
                 html += "<td>" + data[a].email + "</td>";
-                html += "<td>" + data[a].bod + "</td>";
+
                 html += "<td>" + data[a].gramasewa_division + "</td>";
                 html += "<td>" + data[a].divisional_secretary + "</td>";
                 html += "<td>" + data[a].tel_no + "</td>";
@@ -73,9 +73,9 @@ function searchbyname() {
                     html += "<tr>";
                     html += "<td>" + (a+1)+ "</td>";
                     html += "<td>" + data[a].name + "</td>";
-                    html += "<td>" + data[a].nic_no + "</td>";
+
                     html += "<td>" + data[a].email + "</td>";
-                    html += "<td>" + data[a].bod + "</td>";
+
                     html += "<td>" + data[a].gramasewa_division + "</td>";
                     html += "<td>" + data[a].divisional_secretary + "</td>";
                     html += "<td>" + data[a].tel_no + "</td>";

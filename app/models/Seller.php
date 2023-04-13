@@ -76,18 +76,18 @@ class Seller{
 
     }
     public function get_all_sellers(){
-        $this -> db ->query('SELECT * FROM seller');
+        $this -> db ->query('SELECT * FROM seller WHERE is_registered = 1 AND isDeleted = 0;');
         $dataset = $this->db->resultSet();
         return $dataset;
     }
     public function get_non_registered_sellers(){
-        $this->db->query('SELECT * FROM `seller` WHERE is_registered = 0');
+        $this->db->query('SELECT * FROM `seller` WHERE is_registered = 0 AND isDeleted = 0;');
         $dataset = $this->db->resultSet();
         return $dataset;
     }
 
     public function all_registered_sellers(){
-        $this -> db ->query('SELECT * FROM `seller` WHERE is_registered = 1');
+        $this -> db ->query('SELECT * FROM `seller` WHERE is_registered = 1 AND isDeleted = 0;');
         $dataset = $this->db->resultSet();
         return $dataset;
     }
@@ -104,11 +104,7 @@ class Seller{
         $this -> db -> query('SELECT owner_name FROM seller WHERE seller_id = :id');
         $this ->db ->bind(':id',$id);
         $row = $this -> db -> singleRecord();
-
         return $row->owner_name;
-
-
-
     }
 
     public function getItemById($id) {
@@ -163,7 +159,7 @@ class Seller{
     }
     public function searchuserbyname_registeredsellers($name){
         $search_term = $name . '%';
-        $this -> db -> query('SELECT * FROM `seller` WHERE `shop_name` LIKE :search_term AND is_registered = 1');
+        $this -> db -> query('SELECT * FROM `seller` WHERE `shop_name` LIKE :search_term AND is_registered = 1 AND isDeleted = 0;');
         $this ->db ->bind(':search_term',$search_term);
         $dataset = $this->db->resultSet();
         return $dataset;
@@ -171,7 +167,7 @@ class Seller{
     }
     public function searchuserbyname_unregisteredsellers($name){
         $search_term = $name . '%';
-        $this -> db -> query('SELECT * FROM `seller` WHERE `shop_name` LIKE :search_term AND is_registered = 0');
+        $this -> db -> query('SELECT * FROM `seller` WHERE `shop_name` LIKE :search_term AND is_registered = 0 AND isDeleted = 0;');
         $this ->db ->bind(':search_term',$search_term);
         $dataset = $this->db->resultSet();
         return $dataset;
@@ -179,7 +175,7 @@ class Seller{
     }
     public function recentlyaddedsellers()
     {
-        $this -> db -> query('SELECT * FROM seller ORDER BY seller_id DESC LIMIT 5; ');
+        $this -> db -> query('SELECT * FROM seller WHERE is_registered = 0 AND isDeleted = 0 ORDER BY seller_id DESC LIMIT 5; ');
         $dataset = $this -> db-> resultSet();
         return $dataset;
     }
@@ -189,7 +185,7 @@ class Seller{
     
     public function order_conf($item) {
         $id =$_SESSION['user_id'];
-        $this -> db -> query('UPDATE wishlist 
+        $this -> db -> query('UPDATE wishlist  
                               SET confirmation = 1
                               WHERE (seller_id = :id  AND product_no = :item)');
         
@@ -211,5 +207,16 @@ class Seller{
         $this -> db-> bind(':id',$id);
         $this->db->execute();
     }
+
+    public function delete_seller($id){
+
+        $this -> db -> query('UPDATE seller SET isDeleted = 1 WHERE seller_id = :id;');
+        $this -> db -> bind(':id', $id);
+        $this->db->execute();
+        $this -> db -> query('UPDATE user SET user_state = 2 WHERE user_id = :id;');
+        $this -> db -> bind(':id', $id);
+        $this->db->execute();
+    }
+
 }
 
