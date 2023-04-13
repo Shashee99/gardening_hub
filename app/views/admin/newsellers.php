@@ -7,7 +7,7 @@
             <h1 class="font700" id="newsellCount"></h1>
         </div>
         <div class="searcharea flex">
-            <input type="text" name="searchbyshopnameunregistered" id="searchbyshopnameunregistered" class="searchbox" placeholder="Search Category" onkeyup="searchbyunregisteredshopname();">
+            <input type="text" name="searchbyshopnameunregistered" id="searchbyshopnameunregistered" class="searchbox" placeholder="Search by shop name" onkeyup="searchbyunregisteredshopname();">
             <div class="searchbtn bglightgray">
                 <img src="<?= URLROOT; ?>/img/admin/icon/search.png" alt="" width="30px" height="25px" class="searchicon">
             </div>
