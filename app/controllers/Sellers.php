@@ -337,8 +337,6 @@ class Sellers extends Controller{
     }
 
     public function searchbynames_unregisteredseller(){
-
-
         if(isset($_POST['searchbynames_unregisteredseller'])){
             $text = $_POST['searchbynames_unregisteredseller'];
             $dataset = $this->sellerModel -> searchuserbyname_unregisteredsellers($text);
@@ -355,5 +353,11 @@ class Sellers extends Controller{
         }
 
     }
+    public function fun(){
+
+    }
 
 }
+
+
+
