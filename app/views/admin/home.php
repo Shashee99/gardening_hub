@@ -106,5 +106,6 @@
     </div>
     <h3>25</h3>
 </div>
+
 <?php require_once APPROOT . '/views/inc/incAdmin/footer.php'; ?>
 

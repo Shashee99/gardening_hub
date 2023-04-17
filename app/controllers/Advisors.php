@@ -22,6 +22,7 @@
         }
         public function viewHomePage()
         {
+
             $this->view('advisor/homepage');
         }
         public function viewAdvisors()

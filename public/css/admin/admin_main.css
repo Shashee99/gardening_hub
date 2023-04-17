@@ -15,6 +15,14 @@
 .flex {
     display: flex;
 }
+.bars{
+    font-size: 27px;
+    background-color: #FFFFFF;
+    margin-left: 30px;
+    cursor :pointer;
+    z-index: 10;
+}
+
 
 .fontblack {
     color: var(--black);
@@ -77,8 +85,9 @@ html, body {
     position: fixed;
     left: 0;
     background-color: var(--light-gray);
-
+    z-index: 800;
 }
+
 
 .rightbar {
     width: calc(100% - 320px);
@@ -211,12 +220,23 @@ img.photologo {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+.closetimes{
+    position: relative;
+    left: 260px;
+    font-size: 30px;
+    margin-top: 15px;
 
 
+}
+#closesidenav{
+    display: none;
+    cursor: pointer;
 }
 
 .profileinfo {
     gap: 10px;
+    right: 0;
 }
 
 .admindp {
@@ -253,6 +273,9 @@ img.photologo {
     top: 80px;
     position: absolute;
 }
+
+
+
 
 /*dashboard content styling*/
 .userlist-usercard {
@@ -447,9 +470,11 @@ hr {
 .searchbox{
     width: 350px;
     border-radius: 10px;
-    font-size: 25px;
+    font-size: 20px;
     color: var(--black);
-    padding-left: 20px;
+    padding-left: 5px;
+    position: relative;
+    right: 0;
 
 
 }
@@ -459,6 +484,7 @@ hr {
     border-radius: 15px;
     border: 1px solid var(--black);
     cursor: pointer;
+    display: none;
 }
 .cattable{
     /*margin-top: 20px;*/
@@ -870,5 +896,7 @@ hr {
 .usertable tbody tr:nth-child(odd){
     background-color: rgba(217,217,217,0.55);
 }
+
+
 
 

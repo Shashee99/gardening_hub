@@ -22,15 +22,15 @@ class Admins extends Controller
 
         $advisors = $this->advisorModel->all_registered_advisors();
         $customers = $this->customerModel->get_all_customers();
-//        $sellers = $this -> customerModel -> get_all_sellers();
+        $sellers = $this -> sellerModel -> recentlyaddedsellers();
 
         $data = [
             'nav' => 'home',
             'title' => 'Dashboard',
             'advisors' => $advisors,
             'customers' => $customers,
-            'jsfile' => 'admin_home.js'
-//            'sellers' => $sellers
+            'jsfile' => 'admin_home.js',
+            'sellers' => $sellers
 
         ];
         $this->view('admin/home', $data);

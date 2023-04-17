@@ -9,9 +9,6 @@
         </div>
         <div class="searcharea flex">
             <input type="text" name="searchcat" id="searchbyname" class="searchbox" placeholder="Search by name" onkeyup="searchbyname();">
-            <div class="searchbtn bglightgray">
-                <img src="<?= URLROOT; ?>/img/admin/icon/search.png" alt="" width="30px" height="25px" class="searchicon">
-            </div>
         </div>
 
 
@@ -19,11 +16,18 @@
     <hr>
 
     <div class="sortarea parentwidth">
-
-        <div class="sortbtn flex bglightgray" style="width: 300px;height: 60px">
-            <img src="<?= URLROOT; ?>/img/admin/icon/sort.png" alt="" width="25px" height="25px">
-            <p class="font500" style="font-size: 20px">Filter search</p>
-        </div>
+        <label for="sortCustomers">Sort by Name:</label>
+        <select id="sortCustomers" onchange="sortTableByCustomerName()">
+            <option value="">Select</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+        <label for="sortGramasewaDivision">Sort by Name:</label>
+        <select id="sortGramasewaDivision" onchange="sortTableByCustomerName()">
+            <option value="">Select</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
 
     </div>
     <hr>
