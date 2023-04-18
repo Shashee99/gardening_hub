@@ -80,7 +80,9 @@
                         <td><?= $row->order_date_time; ?></td>
                         <td><?= $row->title; ?></td>
                         <td><?= $row->count; ?></td>
-                        <td><?= $row->shop_name; ?></td>
+                        <td>
+                            <a href="<?= URLROOT; ?>/sellers/sellerDetails/<?= $row->seller_id; ?>" class="seller_name"><?= $row->shop_name; ?></a>
+                        </td>
                         <td>
                             <?php
                                 if($row->status === 0)

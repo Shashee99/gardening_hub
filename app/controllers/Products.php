@@ -59,7 +59,7 @@
                 {
                     $data['count_err'] = 'Please enter amonut that do you want from that product';
                 }
-                elseif($data['count'] >= $product_details->quantity)
+                elseif($data['count'] > $product_details->quantity)
                 {
                     $data['count_err'] = 'You can not get more than '.$product_details->quantity.' items';
                 }

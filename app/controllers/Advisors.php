@@ -78,6 +78,11 @@
             exit();
 
         }
+         
+        public function advisorDetails($id)
+        {
+            $this->view('customers/advisorProfile');
+        }
 
         
     }

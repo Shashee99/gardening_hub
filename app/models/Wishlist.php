@@ -31,4 +31,17 @@
             $result = $this->db->rowCount();
             return $result;
         }
+        public function isCustomerPurchaseProduct($id)
+        {
+            $sql = "SELECT * FROM wishlist INNER JOIN seller_product_details ON 
+                    wishlist.product_no = seller_product_details.product_no WHERE
+                    seller_product_details.seller_id = :seller_id AND wishlist.customer_id = :cus_id AND( wishlist.status= 1 OR wishlist.status= 3 )";
+            $this->db->query($sql);
+            $this->db->bind(':cus_id', $_SESSION['cus_id']);
+            $this->db->bind(':seller_id', $id);
+            $result = $this->db->resultSet();
+
+            return $result;
+            
+        }
     }

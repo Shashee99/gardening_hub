@@ -3,6 +3,7 @@ class Sellers extends Controller{
     private $sellerModel;
     private $reviewMoel;
     private $categoryModel;
+    private $wishlistModel;
     public function __construct()
     {
         if (!isSelleerLoggedIn()) {
@@ -15,6 +16,7 @@ class Sellers extends Controller{
         $this->sellerModel = $this->model('Seller');
         $this -> categoryModel = $this ->model('ProductCategory');
         $this->reviewMoel = $this->model('Review');
+        $this->wishlistModel = $this->model('Wishlist');
 
     }
     public function dashboard() {
@@ -364,18 +366,39 @@ class Sellers extends Controller{
     // }
     public function sellerDetails($id)
     {
-        $sellerDetails = $this->sellerModel->getSellerDetails($id);
+        $sellerdetails = $this->sellerModel->getSellerDetails($id);
         $top_rated_products = $this->reviewMoel->topRatedProducts($id);
+        $seller_license = $this->sellerModel->sellerLicense($id);
+        $reviews = $this->reviewMoel->getsASellerReview($id);
+        $rating = $this->reviewMoel->getASellerRating($id);
         $data = [
-            'seller' => $sellerDetails,
-            'top_products' => $top_rated_products
+            'seller' => $sellerdetails,
+            'top_products' => $top_rated_products,
+            'license' => $seller_license,
+            'reviews' => $reviews,
+            'rating' => $rating,
+            'complain_err' => '',
+            'err' => ''
         ];
         $this->view('customers/sellerProfile', $data);
     }
     public function isaddedreview($id)
     {
         $result = $this->reviewMoel->isAddedSellerReview($id);
-        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+        $result2 = $this->wishlistModel->isCustomerPurchaseProduct($id);
+        if($result)
+        {
+            echo json_encode("true1", JSON_UNESCAPED_UNICODE); 
+        }
+        elseif($result2)
+        {
+            echo json_encode("true2", JSON_UNESCAPED_UNICODE); 
+        }
+        else
+        {
+            echo json_encode("true3", JSON_UNESCAPED_UNICODE); 
+        }
+
     }
     public function my($id)
     {

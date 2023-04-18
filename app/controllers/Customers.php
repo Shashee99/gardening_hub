@@ -63,6 +63,14 @@
             echo $data;
             exit();
         }
+        public function myProfile($id)
+        {
+            $cus_details = $this->customerModel->getCustomerFullDetails($id);
+            $data = [
+                'cus_details' => $cus_details
+            ];
+            $this->view('customers/profile',$data);
+        }
 
 
        

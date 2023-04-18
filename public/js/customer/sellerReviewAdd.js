@@ -1,5 +1,6 @@
 const review_btn = document.getElementById("review-btn");
 const err_msg = document.getElementById("error-msg");
+const err_msg2 = document.getElementById("error-msg2");
 const review_modal = document.querySelector(".review-rating-add");
 
 review_btn.addEventListener("click", function()
@@ -14,16 +15,20 @@ review_btn.addEventListener("click", function()
             let response = JSON.parse(this.responseText);
             console.log(response);
 
-            if(response.length == 0)
+            if(response == "true1")
             {
                 console.log("Executed");
+                err_msg.style.display = "block";
+                
+            }
+            else if(response == "true2")
+            {
                 review_modal.style.display = "block";
                 review_btn.style.display = "none";
             }
-            else
+            else if(response == "true3")
             {
-                console.log("Executed2");
-                err_msg.style.display = "block";
+                err_msg2.style.display = "block";
             }
 
         }

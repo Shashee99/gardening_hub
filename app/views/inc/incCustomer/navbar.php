@@ -16,7 +16,7 @@
                 <a href="<?= URLROOT;?>/users/logout">Logout</a>
             </div>
             <div class="profile">
-                <a href="#">
+                <a href="<?= URLROOT; ?>/customers/myprofile/<?= $_SESSION['cus_id']; ?>">
                     <img src="<?= URLROOT; ?>/img/upload_images/customer_pp/<?php echo $_SESSION['cus_photo_path']; ?>" alt="Profile Photo"">
                 </a> 
                 <h3><?php echo $_SESSION['cus_name']; ?></h3>

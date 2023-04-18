@@ -46,6 +46,13 @@
             $dataset = $this -> db-> resultSet();
             return $dataset;
         }
+        public function getCustomerFullDetails($id)
+        {
+            $sql = "SELECT * FROM customer INNER JOIN user ON customer.customer_id= user.user_id WHERE customer.customer_id = :cus_id ";
+            $this->db->query($sql);
+            $this->db->bind(':cus_id', $id);
+            return $this->db->singleRecord();
+        }
 
 
     }

@@ -101,6 +101,15 @@ body{
     object-fit: cover;
     border-radius: 50%;
 }
+.wishlist-table table td .seller_name{
+    text-decoration: none;
+    color: #000000;
+}
+.wishlist-table table td .seller_name:hover{
+    transition: all .1s ease-in-out;
+    transform: scale(1.1);
+    color: #00a778;
+}
 
 
 

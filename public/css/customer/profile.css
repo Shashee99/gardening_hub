@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #3BB78F ;
+    position: relative;
+    display: flex;
+}
+#rest{
+    background-color: #efefef;
+    margin-top: 80px;
+    margin-left: 22%;
+    max-height: 100%;
+    width: 78%;
+    border-radius: 25px 0 0 0;
+    overflow-y: scroll;
+    
+}
+#rest .title{
+    margin: 20px auto;
+    text-align: center;
+}
+.customer_info{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+} 
+.customer_info .first{
+    width: 250px;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-right:2px solid #000 ;
+}
+.customer_info .second{
+    width: 300px;
+    height: 100%;
+}
+.customer_info .third{
+    width: 250px;
+    min-height: 100%;
+    border-left:2px solid #000 ;
+}
+.customer_info .first .pp img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.customer_info .first  input{
+    display: none;
+}
+.customer_info .first span{
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+.customer_info .first .btn{
+    background-color: #00a778;
+    color: #fff;
+    
+}
+.customer_info .first .btn label{
+    padding: 20px 20px;
+    cursor: pointer;
+}
+.second .details{
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    margin: 10px 0 10px 30px;
+}
+
+.second .details input{
+    margin-top: 5px;
+    width: 95%;
+    padding: 8px 0 8px 15px;
+    border: none;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, .40);
+}

@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <div class="showmore">
-                    <a href="">Show more...</a>
+                    <a href="<?= URLROOT; ?>/advisors/advisorDetails/<?= $row->advisor_id; ?>">Show more...</a>
                 </div>
             </div>
             <?php

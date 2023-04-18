@@ -35,11 +35,12 @@
 
         public function customerRegister($data)
         {
-            $sql = "INSERT INTO user (email,password,type) VALUES (:email, :pass, :type)";
+            $sql = "INSERT INTO user (email,password,type,user_state) VALUES (:email, :pass, :type,:state)";
             $this->db->query($sql);
             $this->db->bind(':email', $data['email']);
             $this->db->bind(':pass', $data['password']);
             $this->db->bind(':type', 'customer');
+            $this->db->bind(':state', 1);
 
             if($this->db->execute())
             {
