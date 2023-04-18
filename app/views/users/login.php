@@ -37,9 +37,9 @@
                 <div class="button">
                     <input type="submit" value="login"   name="login" >
                 </div>
-                <div class="button">
+                <a class="button" href="<?= URLROOT;?>/pages/signup" >
                     <input type="button" value="Sign up">
-                </div>
+                </a>
                 <br>
             </form>
 

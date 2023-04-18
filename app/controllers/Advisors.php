@@ -71,11 +71,23 @@
 
         }
         public function recentlyaddedadvisors(){
-
             $dataset = $this -> advisorModel -> recentlyaddedadvisors();
             $data = json_encode($dataset);
             echo $data;
             exit();
+        }
+
+        public function deleteadvisors($id){
+
+            if($id == 0000){
+                redirect('admins/advisors');
+            }
+            else{
+                $this -> advisorModel -> delete_advisor($id);
+                redirect('admins/advisors');
+            }
+
+
 
         }
          

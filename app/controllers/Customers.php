@@ -72,6 +72,17 @@
             $this->view('customers/profile',$data);
         }
 
+        public function deletecustomer(){
+            $id = $_POST['id'];
+            $result = $this -> customerModel -> deletecustomer($id);
+            if ($result){
+                echo "Deleted Successfully";
+            }else{
+                die("something went wrong");
+            }
+
+        }
+
 
        
     }

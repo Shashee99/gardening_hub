@@ -23,14 +23,38 @@
               </table>
                 <br>
                   <div class="flex" style="justify-content:space-evenly">
-                    <td><a href="<?= URLROOT;?>/admins/sellerApprove/<?=$data['sellerinfo'] -> seller_id?>" class="view" >Approve</a></td>
-                      <td><a href="<?= URLROOT;?>/admins/rejectseller/<?=$data['sellerinfo'] -> seller_id?>" class="delete" >Reject</a></td>
+                      <td><a href="<?=URLROOT;?>/admins/deleteaSeller/<?= $data['sellerinfo'] ->seller_id;?>" class="delete" >Remove</a></td>
                   </div>
+
             </ul>
-       </div>
+
+
+        </div>
     </div>
 
+    <div>
+        <h2>No of Complaints for this seller : <?= count($data['complaints']);?></h2>
+        <br>
+        <div class="seller-table-area" style="border: 1px solid black; overflow-x: scroll;">
+            <table class="usertable">
+                <thead>
+                <tr>
+                    <th> <b>From</b> </th>
+                    <th><b>Complaint Date</b></th>
+                    <th><b>Reason</b></th>
+                </tr>
+                </thead>
+                <?php foreach ($data['complaints'] as $row) : ?>
+                    <tr style="border: 1px solid black">
+                        <td><?php echo $row -> posted_user_id ?></td>
+                        <td><?php echo $row -> complain_date ?></td>
+                        <td><?php echo $row -> complain ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </table>
 
+        </div>
+    </div>
 
 
 <?php require_once APPROOT . '/views/inc/incAdmin/footer.php'; ?>

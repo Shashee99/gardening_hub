@@ -54,5 +54,13 @@ class Complaint
         return $result;
     }
 
+    public function getallthecomplaintstothisid($id){
+        $this ->db -> query('SELECT * FROM complain WHERE complained_user_id = :id;');
+        $this -> db -> bind(':id',$id);
+        $dataset = $this->db->resultSet();
+        return $dataset;
+    }
+
+
 
 }

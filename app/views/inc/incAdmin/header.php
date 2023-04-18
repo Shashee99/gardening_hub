@@ -63,15 +63,7 @@
 
                 <a href="<?php echo URLROOT;?>/admins/complains" class="navlinkcontain">
                     <img src="<?= URLROOT;?>/img/admin/icon/comment.png" alt="">
-                    <p class="navtex">Complains</p>
-                </a>
-
-            </li>
-            <li  class="<?php echo (($data['nav']=='report') ? 'liactive' : '')?>">
-
-                <a href="<?php echo URLROOT;?>/admins/reports" class="navlinkcontain">
-                    <img src="<?= URLROOT;?>/img/admin/icon/article.png" alt="">
-                    <p class="navtex">Generate Reports</p>
+                    <p class="navtex">Complaints</p>
                 </a>
 
             </li>

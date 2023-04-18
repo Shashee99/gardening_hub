@@ -8,7 +8,6 @@
 
 <div>
     <div class="userinfo">
-
         <ul class="complaint-list">
             <li><b>Complaint Reference : </b> <?= $data['complaints'] -> complian_no ?>  </li>
             <li><b>Complaint Date : </b> <?= $data['complaints'] -> complain_date ?> </li>
@@ -18,8 +17,6 @@
             <li><b>Complainee_type : </b> <?= $data['complainee_type']?></li>
             <li><b>The matter : </b> <?= $data['complaints']-> complain ?></li>
         </ul>
-
-
     </div>
 
 </div>
