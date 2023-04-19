@@ -1,0 +1,98 @@
+
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+
+body{
+
+padding: 0%;
+margin: 0%;
+height: 100%;
+width: 100%;
+
+}
+/* strat from style */
+.contener{
+    
+    width: 500px;
+    height: 400px;
+    display: flex;
+    overflow: hidden;
+    overflow-y: scroll;
+    flex-direction: column;
+    margin-top: 3rem;
+    margin-left: 18rem;
+    background-color: #bdeec3;
+    box-shadow: 0 3px 20px rgb(35, 33, 33);
+    
+}
+.contener::-webkit-scrollbar{
+  display: none;
+}
+h3{
+  margin-left: 10rem;
+  margin-top: 4rem;
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: rgb(179, 21, 21);
+}
+/* comen input fild style */
+.input-fild-style{
+margin-top: 1rem;
+display: flex;
+margin-left: 6rem;
+flex-direction: column;
+
+
+}
+/* input item style */
+.input-fild-style input[type=text]{
+  width: 300px;
+  height: 30px;
+  border-radius: 5px;
+  
+  
+
+}
+  /* date fild input */
+  .input-fild-style input[type=date]{
+
+    width: 300px;
+    height: 30px;
+    border-radius: 5px;
+  }
+
+  /* input type file */
+  .input-fild-style input[type=file]{
+    width: 300px;
+    height: 30px;
+    margin-top: .5rem;
+    border: 2px solid black;
+    border-radius: 5px;
+  }
+
+  /* tex area style */
+  .input-fild-style textarea{
+    width: 300px;
+    height: 80px;
+    padding-inline: 1rem;
+    padding-top: 1rem;
+    border-radius: 5px;
+    
+  }
+  /* submit button */
+  .input-fild-style button[type=submit]{
+    width: 200px;
+    height: 30px;
+    margin-left: 3rem;
+  }
+
+  /* label style */
+  .input-fild-style label{
+    margin-left: -3rem;
+    font-style:Poppins;
+    color: rgb(179, 21, 21);
+  }

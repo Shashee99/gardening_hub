@@ -6,7 +6,16 @@
 
         public function __construct()
         {
+
+            if (!isAdvisorLogin()) {
+                redirect('users/login');
+            }
+
             $this->advisorModel = $this->model('Advisor');
+         
+
+
+
         }
         public function allregadvisors(){
             $tabledata = $this->advisorModel->all_registered_advisors();
@@ -20,10 +29,13 @@
             echo $tabledata;
             exit();
         }
+        //view home page------------------------
         public function viewHomePage()
         {
-            $this->view('advisor/homepage');
+            $home=[];
+            $this->view('advisor/home',$home);
         }
+        //--------------------------------------
         public function viewAdvisors()
         {
             $details = $this->advisorModel->all_registered_advisors();
@@ -90,6 +102,80 @@
 
 
         }
+      //add tecno lod view--------------
+      public function addtecno(){
+  
+        $addtecno=[];
+    
+       $this->view('advisor/addtecno',$addtecno);
+    
+      }
+
+      //add tecnohlogy for preview--------------
+      public function item_add(){
+
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+           //sanities data
+           $_POST=filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+           $additem=[
+             'title'=> trim($_POST['title']),
+             'catagory'=>trim($_POST['catagory']),
+             'content'=>trim($_POST['content']), 
+             'date'=>$_POST['date'],      
+             'title_error' =>'',
+             'catagory_error' =>'',
+             'content_error'=>'',
+             'date_error'=>''
+            ];
+         //validate title---
+          if(empty($additem['title'])){
+            $additem['title_error']='*enter your title'; 
+          }
+         //validate catagory-----
+         if(empty($additem['catagory'])){
+            $additem['catagory_error']='*enter your catagory'; 
+          }
+        //validate content--------
+        if(empty($additem['content'])){
+            $additem['content_error']='*content is empty'; 
+          }
+
+         //validate date--------- 
+         if(empty($additem['date'])){
+            $additem['date_error']='*date  is empty'; 
+          }
+        //this data put data base-------    
+        if(empty($additem['title_error'])&& empty($additem['catagory_error']) && empty($additem['content_error'])){
+              //die('sucsse');
+
+              redirect('advisors/addtecno');
+
+        }else{
+           $this->view('advisor/item_add',$additem);
+        }
+
+
+        }else{
+            $additem=[
+                'title'=> '',
+                'catagory'=>'',
+                'content'=>'', 
+                'date'=>'',      
+                'title_error' =>'',
+                'catagory_error' =>'',
+                'content_error'=>'',
+                'date_error'=>''
+               ];
+           
+               $this->view('advisor/item_add',$additem);
+
+        }
+
+
+
+      }
+
+
          
         public function advisorDetails($id)
         {
