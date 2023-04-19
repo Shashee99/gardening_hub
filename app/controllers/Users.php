@@ -624,6 +624,7 @@ class Users extends Controller
                             // die();
                             $advisor_details = $this->advisorModel->advisorDetails($logged_user->user_id);
                             $this->createAdvisorSession($advisor_details);
+                           // redirect('Advisor/viewHomePage');
                         } elseif ($logged_user->user_state === 2) {
                             $data['u_name_err'] = 'Your user account has been deleted';
                             $this->view('users/login', $data);

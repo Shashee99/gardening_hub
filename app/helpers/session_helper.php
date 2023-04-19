@@ -36,3 +36,15 @@ function isSelleerLoggedIn(){
         return false;
     }
 }
+
+function isAdvisorLogin(){
+    
+    if(isset($_SESSION['advisor_id'])){
+        return true;
+    }
+    else{
+        return false;
+    }
+
+
+}

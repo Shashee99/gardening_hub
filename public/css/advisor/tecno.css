@@ -1,0 +1,193 @@
+*{
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+   
+   }
+   
+   body{
+    width: 100%;
+    height: 100vh;
+   padding:0;
+   margin:0;
+   
+   }
+   
+   .contener-tecno{
+     width: 100%;
+     height: 100%;
+     overflow: hidden;
+    
+   }
+
+.contener-tecno-2{
+    top: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    
+    
+}
+
+    /* start addtecnology filed style  */
+.addtecno-div{
+    width: 100%;
+    overflow: scroll;
+    height: 100%;
+    
+
+ }
+/* add item filed style */
+.add-item-div{
+
+    width: 90%;
+    height: 10%;
+    margin-left: 3rem;
+    display: flex;
+    border: 2px solid  #00A778;
+    border-style: dashed;
+    margin-top: 5rem ;
+    background-color: #C4EDC9;
+
+}
+.add-item-div a{
+   text-decoration: none;
+   margin-left: 18rem;
+   font-size: 1.2rem;
+   color: black;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      
+
+}
+.add-item-div a:hover{
+    color: rgb(251, 40, 40);
+
+}
+.add-item-div i{
+    padding:1rem;
+    
+}
+/* pri view tecnology div filed style */
+.pri-view-tecno{
+
+    margin-left: 5.5rem;
+    width: 80%;
+    height: 50%;
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+    /* border: 2px solid  #60b096;
+    border-style: dashed; */
+    background-color: #C4EDC9;
+    box-shadow: 0 3px 20px rgb(35, 33, 33);
+
+}
+
+/* pri view filed dising strat now */
+.tecno-title-profile-filed{
+    width: 100%;
+    height: 22%;
+    display: flex;
+    /* background-color: antiquewhite; */
+    
+    
+}
+
+.title-tecno{
+    width: 30%;
+    height: 100%;
+    margin-left: 5rem;
+    display: flex;
+    justify-content: center;
+    
+}
+.title-tecno h3{
+    font-family: Poppins;
+    font-weight: normal;
+    font-size: 1rem;
+}
+.title-tecno h3{
+    font-family: Poppins;
+    margin-left: 1rem;
+    margin-top: 1.3srem;
+}
+.profil-owner{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    
+}
+.profil-owner div{
+    width: 30%;
+    height: 80%;
+    margin-top: 5px;
+    border-radius: 50px;
+    
+}
+.profil-owner img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+
+}
+.profil-owner h6{
+    margin-top: 1rem;
+    font-family:Poppins ;
+    
+}
+
+/* start content style  */
+.content{
+    width: 85%;
+    height: 35%;
+    margin-left: 3rem;
+    padding-inline:2rem;
+    overflow: hidden;
+    overflow-y: scroll;
+    scrollbar-shadow-color: #C4EDC9;
+
+    /* background-color: #00A778; */
+    /* overflow: scroll; */
+   
+}
+.content::-webkit-scrollbar{
+    display: none;
+}
+.content p{
+    font-family: Poppins;
+
+}
+.content i{
+    padding-inline: 1rem;
+}
+.pri-view-tecno h5{
+    margin-left: 18rem;
+    margin-top: 0;
+    font-size: 1rem;
+    font-weight: 0;
+    font-family: Poppins;
+    height:0;
+}
+   /* start  tecno potos filed */
+.tecno-poto{
+    width: 60%;
+    height: 30%;
+    margin-left: 8rem;
+    margin-top: .1rem;
+    display: flex;
+    justify-content: space-around;
+    /* background-color: rgb(46, 94, 135); */
+}
+.tecno-poto div{
+    width: 23%;
+    height: 100%;
+    /* background-color: rgb(171, 119, 40); */
+}   
+.pri-view-tecno a{
+    margin-left:37rem;
+    position: absolute;
+    text-decoration: none;
+    font-family: Poppins;
+    margin-top: 9rem;
+    color: rgb(251, 40, 40);
+}
