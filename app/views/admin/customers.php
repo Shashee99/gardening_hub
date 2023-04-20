@@ -15,22 +15,7 @@
     </div>
     <hr>
 
-    <div class="sortarea parentwidth">
-        <label for="sortCustomers">Sort by Name:</label>
-        <select id="sortCustomers" onchange="sortTableByCustomerName()">
-            <option value="">Select</option>
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-        </select>
-        <label for="sortGramasewaDivision">Sort by Name:</label>
-        <select id="sortGramasewaDivision" onchange="sortTableByCustomerName()">
-            <option value="">Select</option>
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-        </select>
 
-    </div>
-    <hr>
     <br>
     <div class="seller-table-area" style="border: 1px solid black; overflow-x: scroll;">
         <table class="usertable" >

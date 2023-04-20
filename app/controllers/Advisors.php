@@ -87,9 +87,6 @@
                 $this -> advisorModel -> delete_advisor($id);
                 redirect('admins/advisors');
             }
-
-
-
         }
 
         

@@ -19,9 +19,6 @@
             <li><b>The matter : </b> <div style="width: 400px; height: 100px; overflow: scroll;"><?= $data['complaints']-> complain ?></div></li>
             <li>
                 <div class= "inneroption">
-                    <div><a class="delete" style="text-decoration: none" href="<?=URLROOT;?>/admins/viewcomplaineduser/<?=$data['complainantid'];?>">View Complainant Profile</a></div>
-                    <div><a class="delete" style="text-decoration: none"href="<?=URLROOT;?>/admins/viewcomplaineduser/<?=$data['complaineeid'];?>">View Complainanee Profile</a></div>
-                    <div><a class="view" style="text-decoration: none"href="<?=URLROOT;?>/admins/resolvecomplain/<?= $data['complaints'] -> complian_no ?>">Mark as Resolved</a></div>
                     <div><a class="delete" style="text-decoration: none"href="<?=URLROOT;?>/admins/deleteacomplain/<?= $data['complaints'] -> complian_no ?>">Delete</a></div>
                 </div>
             </li>

@@ -18,16 +18,11 @@
     <hr>
 
     <div class="sortarea flex parentwidth">
-        <a href="<?= URLROOT; ?>/admins/sellers" class="sortbtn flex bglightgray text-decoration-none" style="width: 300px;height: 60px">
-            <img src="<?= URLROOT; ?>/img/admin/icon/backbtn.png" alt="" width="25px" height="25px">
-            <p class="font500" style="font-size: 20px">Back to sellers</p>
+        <a href="<?= URLROOT; ?>/admins/sellers" class="sortbtn flex bglightgray text-decoration-none" style="width: 200px;height: 50px">
+            <img src="<?= URLROOT; ?>/img/admin/icon/backbtn.png" alt="" width="15px" height="15px">
+            <p class="font500" style="font-size: 15px">Back to sellers</p>
 
         </a>
-        <div class="sortbtn flex bglightgray" style="width: 300px;height: 60px">
-            <img src="<?= URLROOT; ?>/img/admin/icon/sort.png" alt="" width="25px" height="25px">
-            <p class="font500" style="font-size: 20px">Filter search</p>
-        </div>
-
     </div>
     <hr>
     <br>
@@ -51,7 +46,7 @@
                 <td><?php echo $row -> owner_name ?></td>
                 <td><?php echo $row -> email ?></td>
                 <td><?php echo $row -> tel_no ?></td>
-                <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewsellerregistered/<?= $row -> seller_id;?>" class="view"> View </a> <a href="<?= URLROOT;?>/admins/rejectseller/<?= $row -> seller_id;?>" class="delete"> Delete </a> </div></td>
+                <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewsellernonregistered/<?= $row -> seller_id;?>" class="view"> View </a></div></td>
             </tr>
             <?php endforeach; ?>
             </tbody>

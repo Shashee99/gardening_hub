@@ -1,6 +1,6 @@
 <?php require_once APPROOT . '/views/inc/incAdmin/header.php'; ?>
     <br>
-    <a href="<?= URLROOT;?>/admins/advisors" class="backbutton">Back</a>
+    <a href="<?= URLROOT;?>/admins/newadvisors" class="backbutton">Back</a>
     <br> <br>
     <hr>
     <div class="userdetails parentwidth">
