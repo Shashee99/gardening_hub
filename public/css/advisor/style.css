@@ -1,0 +1,110 @@
+*{
+ box-sizing: border-box;
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ 
+
+}
+
+body{
+padding: 0;
+margin: 0;
+
+}
+
+.contener{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  /* background-color: aqua; */
+
+
+}
+
+
+.contener-2{
+top: 0;
+display: flex;
+width: 100%;
+height: 100vh;
+/* background-color: blueviolet; */
+
+}
+/* strat left contener this have chart and item */
+.home-item-chart-contener-3{
+width: 100%;
+height: 100%;
+display:flex;
+/* background-image: linear-gradient(to top,#2C3E50,#BDC3C7); */
+justify-content:space-around;
+
+
+}
+.problem-display{
+  display: flex;
+  flex-direction: column; 
+  width: 40%;
+  height: 100%;
+  
+
+}
+.chart-some-progess{
+  
+  width: 40%;
+  height: 70%;
+  margin-top: 3rem;
+  /* background-color:#F8E3E3; */
+  background-image: linear-gradient(to right , #00A778,#63D471);
+  border-radius: 40px;
+}
+.card-total-reply{
+margin-top: 5rem;
+box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+margin-bottom: 4rem;
+border-top-right-radius: 30px;
+border-bottom-left-radius: 30px;
+width: 100%;
+height: 20%;
+background-image: linear-gradient(to right , #00A778,#63D471);
+transition: .5s;
+
+}
+.card-total-reply:hover{
+  margin-left: 3rem;
+}
+.card-total-problem{
+  margin-bottom: 4rem;
+  background-image: linear-gradient(to right , #00A778,#63D471);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  width: 100%;
+  height: 20%;
+  transition: 0.5s;
+  
+
+}
+.card-total-problem:hover{
+  margin-left: 3rem;
+
+}
+.card-total-reply p{
+  margin-left: 3rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+.card-total-reply .count{
+  margin-left: 9rem;
+  margin-top: .05rem;
+  font-size: 1.5rem;
+}
+
+.card-total-problem p{
+  margin-left: 3rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+.card-total-problem .count{
+  margin-left: 9rem;
+  margin-top: .05rem;
+  font-size: 1.5rem;
+}

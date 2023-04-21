@@ -55,6 +55,21 @@ body{
 .customer-problem  h3{
     text-align: center;
 }
+.customer-problem .problem-image{
+    width: 90%;
+    padding: 20px;
+    background-color: #efefef;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.customer-problem .problem-image img{
+    width: 120px;
+}
+
 .user-reply{
     background-color: #efefef;
     width: 85%;

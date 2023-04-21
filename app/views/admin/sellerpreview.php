@@ -12,23 +12,25 @@
         <div class="userinfo">
 
             <ul class="userinfo-list">
-                <li><b>Name of the Seller : </b> <?=$data['sellerinfo'] -> owner_name; ?></li>
-                <li><b>Name of the Shop : </b> <?=$data['sellerinfo'] -> shop_name; ?></li>
-                <li><b>Mobile Phone : </b> <?=$data['sellerinfo'] -> tel_no; ?></li>
-                <li><b>E-mail : </b> <?=$data['sellerinfo'] -> email; ?></li>
-                <li><b>Shop Address : </b> <?=$data['sellerinfo'] -> address; ?></li>
-                <li><b>BR no:   </b> <?=$data['sellerinfo'] -> br_no; ?></li>
-                <li><b>BR documentation:   </b> <?=$data['sellerinfo'] -> br_photo; ?></li>
-
-                <li class="flex" style="justify-content:space-evenly">
-                    <a href="<?= URLROOT;?>/admins/sellerApprove/<?=$data['sellerinfo'] -> seller_id?>" class="view" >Approve</a>
-                    <div class="delete" >Reject</div>
-                </li>
+              <table>
+                  <tr><td><b>Name of the Seller</b></td> <td>: <?=$data['sellerinfo'] -> owner_name; ?></tr></td>
+                  <tr><td><b>Name of the Shop </b></td><td>: <?=$data['sellerinfo'] -> shop_name; ?></tr></td>
+                  <tr><td><b>Mobile Phone </b></td><td>: <?=$data['sellerinfo'] -> tel_no; ?></tr></td>
+                  <tr><td><b>E-mail </b></td> <td>: <?=$data['sellerinfo'] -> email; ?></tr></td>
+                  <tr><td><b>Shop Address  </b></td> <td>: <?=$data['sellerinfo'] -> address; ?></tr></td>
+                  <tr><td><b>BR no  </b> </td> <td>: <?=$data['sellerinfo'] -> br_no; ?></tr></td>
+                  <tr><td><b>BR Document </b> </td> <td>: <a href="<?= URLROOT;?>/img/upload_images/seller_doc/<?=$data['sellerinfo'] -> br_photo; ?>" download><?=$data['sellerinfo'] -> br_photo; ?></a></tr></td>
+              </table>
+                <br>
+                  <div class="flex" style="justify-content:space-evenly">
+                    <td><a href="<?= URLROOT;?>/admins/sellerApprove/<?=$data['sellerinfo'] -> seller_id?>" class="view" >Approve</a></td>
+                      <td><a href="<?= URLROOT;?>/admins/rejectseller/<?=$data['sellerinfo'] -> seller_id?>" class="delete" >Reject</a></td>
+                  </div>
             </ul>
-
-
-        </div>
+       </div>
     </div>
+
+
 
 
 <?php require_once APPROOT . '/views/inc/incAdmin/footer.php'; ?>

@@ -63,6 +63,25 @@
             echo $data;
             exit();
         }
+        public function myProfile($id)
+        {
+            $cus_details = $this->customerModel->getCustomerFullDetails($id);
+            $data = [
+                'cus_details' => $cus_details
+            ];
+            $this->view('customers/profile',$data);
+        }
+
+        public function deletecustomer(){
+            $id = $_POST['id'];
+            $result = $this -> customerModel -> deletecustomer($id);
+            if ($result){
+                echo "Deleted Successfully";
+            }else{
+                die("something went wrong");
+            }
+
+        }
 
 
        

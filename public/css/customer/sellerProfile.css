@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #3BB78F ;
+    position: relative;
+    display: flex;
+}
+#rest{
+    background-color: #efefef;
+    margin-top: 80px;
+    margin-left: 22%;
+    max-height: 100%;
+    width: 78%;
+    border-radius: 25px 0 0 0;
+    overflow-y: scroll;
+    
+}
+#rest .title{
+    margin: 20px;
+}
+#rest .title h2{
+    text-align: center;
+    font-weight: 600;
+}
+.seller-details{
+    display: flex;
+    align-items: flex-start;
+}
+.seller-details .left-side{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+.seller-details .right-side{
+    width: 50%;
+    height: 100%;
+}
+.seller-details .left-side .image{
+    margin: 20px auto;
+
+}
+.seller-details .left-side .image img{
+    width: 250px;
+    border-radius: 50%;
+    height: 250px;
+    object-fit: cover;
+    
+}
+.seller-details .left-side .seller_rating{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    background-color: #fff;
+    width: 80%;
+
+
+}
+.seller-details .left-side h4{
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.seller-details .left-side .seller_rating .rating{
+    display: flex;
+    margin: 10px 0 10px 10px;
+}
+.seller-details .left-side .rating-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.seller-details .left-side .rating-button button{
+    width: 150px;
+    height: 40px;
+    background-color: #00a778;
+    color: #fff;
+    border: none;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.seller-details .left-side .rating-button span{
+    margin-top: 8px;
+    color: red;
+    display: none;
+}
+.seller-details .left-side .rating-button #error-msg3{
+    display: block;
+}
+.seller-details .left-side  .review-rating-add{
+    width: 80%;
+    background-color: #fff;
+    height: 400px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.review-rating-add{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 15px;
+    display: none;
+}
+.review-rating-add .rating{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+.review-rating-add input{
+    display: none;
+}
+.review-rating-add label{
+    font-size: 100%;
+    color: #444;
+    padding: 10px;
+    transition: all 0.2s ease;
+}
+.review-rating-add input:not(:checked) ~ label:hover,
+.review-rating-add input:not(:checked) ~ label:hover ~ label{
+  color: #fd4;
+}
+.review-rating-add input:checked ~ label{
+    color: #fd4;
+}
+.review-rating-add input #rate-5:checked ~ label{
+    color: #fe7;
+    text-shadow: 0 0 20px #952;
+}
+/* .review-rating-add form .textarea{
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+} */
+.review-rating-add form .textarea {
+    margin: 10px auto 20px auto;
+    width: 80%;
+}
+.review-rating-add form .textarea textarea{
+    height: 100px;
+    width: 100%;
+    outline: none;
+    border: 1px solid #333;
+    background: #efefef;
+    padding: 10px;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 20px;
+}
+.textarea textarea:focus{
+    border-color: #444;
+}
+.review-rating-add form .btn{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.review-rating-add form .btn button{
+    height: 40px;
+    width: 100px;
+    border: none;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.review-rating-add form .btn #add{
+    background: #00a778;
+    color: #fff;
+}
+.review-rating-add form .btn #cancel{
+    background-color:  red;
+    color: #fff;
+}
+.seller-details .left-side .top-rated-products .products{
+    padding: 15px 15px;
+    background-color: #fff;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.seller-details .left-side .top-rated-products .products img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+.seller-details .right-side .seller-info{
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    margin: 10px 0 10px 30px;
+}
+.seller-details .right-side .seller-info input{
+    margin-top: 5px;
+    width: 90%;
+    padding: 8px 0 8px 15px;
+    border: none;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, .40);
+}
+.seller-details .right-side .seller-info input:focus{
+    outline: none;
+}
+.right-side .certificate .br-certificate{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+    margin-top: 10px;
+}
+.right-side .certificate .br-certificate img{
+    margin-left: 20px;
+    margin-top: 10px;
+    cursor:pointer;
+    transition: all 0.5s ease-in-out;
+    transform: scale(1.05);
+}
+.right-side .certificate .other-certificate{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+    margin-top: 20px;
+}
+.right-side .certificate .other-certificate .images{
+    display: flex;
+    background-color: #fff;
+    padding: 20px;
+    width: 95%;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+.seller-details .right-side .reviews{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 5px;
+    margin-left: 25px;
+    margin-bottom: 20px;
+}
+.seller-details .right-side .reviews .cus_reviews{
+    width: 100%;
+    background-color: #fff;
+    padding: 10px;
+    max-height: 300px;
+    overflow: auto;
+}
+.seller-details .right-side .reviews .cus_reviews .review .user-info{
+    display: flex;
+}
+.seller-details .right-side .reviews .cus_reviews .review .user-info img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.seller-details .right-side .reviews .cus_reviews .review .user-info h4{
+    margin: auto 0 auto 20px;
+}
+.seller-details .right-side .reviews .cus_reviews .review p{
+    padding: 10px;
+}
+.seller-details .right-side .complain button{
+    width: 150px;
+    height: 40px;
+    border: none;
+    background-color: red;
+    color: #fff;
+    margin-left: 25px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.seller-details .right-side .complain{
+    width: 95%;
+}
+.seller-details .right-side .complain .complain_form{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    margin-top: 20px;
+    padding: 20px;
+    display: none;
+    margin-bottom: 20px;
+
+}
+.seller-details .right-side .complain .complain_form textarea{
+    width: 100%;
+    height: 100px;
+    resize: none;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #efefef;
+    border: none;
+    margin-bottom: 20px;
+}
+.seller-details .right-side .complain .complain_form textarea:focus{
+    outline: none;
+}
+.seller-details .right-side .complain .complain_form span{
+    margin-bottom: 10px;
+}
+.seller-details .right-side .complain .complain_form .complain-submit_btn{
+    margin: 20px auto 10px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+}
+.seller-details .right-side .complain .complain_add_btn{
+    display: flex;
+    flex-direction: column;
+}
+.seller-details .right-side .complain .complain_add_btn span{
+    color: red;
+    font-size: 14px;
+    margin: 10px 0 10px 25px;
+}

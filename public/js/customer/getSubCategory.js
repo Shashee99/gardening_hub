@@ -17,7 +17,7 @@ selectMenu.addEventListener("change", function()
 
                 for (var a = 0; a < response.length; a++)
                 {
-                    out += `<option value =\" ${response[a].sub_category} \">${response[a].sub_category}</option>`;
+                    out += `<option value =\"${response[a].sub_category}\">${response[a].sub_category}</option>`;
                 }
                 document.getElementById("sub-cateogry").innerHTML = out;
             };

@@ -55,6 +55,8 @@ function getProducts() {
             }
             product_wraper.innerHTML = out;
 
+            console.log(out);
+
             // products.forEach(function(product) {
             //   const productItem = document.createElement('div');
             //   productItem.classList.add('product-item');

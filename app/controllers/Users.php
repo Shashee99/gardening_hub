@@ -71,7 +71,7 @@ class Users extends Controller
             } elseif (strlen($data['password']) < 8 || strlen($data['password']) > 20) {
                 $data['password_err'] = 'Password length should be between 8 and 20';
             } elseif (!preg_match("/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/", $data['password'])) {
-                $data['password_err'] = 'Password should contaim at least one lowearcase, upperacase, digit and special character';
+                $data['password_err'] = 'Password should contain at least one lowercase, uppercase, digit and special character';
             }
 
             if (empty($data['confirm_pass'])) {
@@ -120,7 +120,7 @@ class Users extends Controller
             } elseif (strlen($data['user_name']) < 6) {
                 $data['user_name_err'] = 'User name should be at least 6 characters';
             } elseif ($this->userModel->findUser($data['user_name'])) {
-                $data['user_name_err'] = 'User name is already exsits';
+                $data['user_name_err'] = 'User name is already exits';
             }
 
             $type = array('png', 'jpg', 'jpeg');
@@ -236,7 +236,7 @@ class Users extends Controller
                 'email' => trim($_POST['email']),
                 'password' => trim($_POST['password']),
                 'confirm_password' => trim($_POST['confirm_password']),
-                'pro_li' => $fileName,
+                'pro_li' => $fileNameNew,
                 'seller_image' => $_FILES['shopimage']['name'],
                 'name_err' => '',
                 'shop_name_err' => '',
@@ -404,7 +404,7 @@ class Users extends Controller
             ];
 
             if ($this->userModel->findUser($data['email'])) {
-                $data['email_err'] = "Email allready exsits";
+                $data['email_err'] = "Email already exits";
             }
 
             if (empty($data['email_err'])) {
@@ -425,8 +425,8 @@ class Users extends Controller
                     $img_name1 = $_FILES['qfile']['name'][$key];
                     $tmp_name1 = $_FILES['qfile']['tmp_name'][$key];
                     $img_type1 = strtolower(pathinfo($img_name1, PATHINFO_EXTENSION));
-                    $new_img1 = uniqid('IMG-', true) . '.' . $img_type1;
-                    $img_upload_path1 = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/Advisor_Qualification_photos/' . $new_img1;
+                    $new_img1 = uniqid('PDF-', true) . '.' . $img_type1;
+                    $img_upload_path1 = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/Advisor_Qualification_docs/' . $new_img1;
                     move_uploaded_file($tmp_name1, $img_upload_path1);
                     array_push($photo, $new_img1);
                 }
@@ -624,6 +624,7 @@ class Users extends Controller
                             // die();
                             $advisor_details = $this->advisorModel->advisorDetails($logged_user->user_id);
                             $this->createAdvisorSession($advisor_details);
+                           // redirect('Advisor/viewHomePage');
                         } elseif ($logged_user->user_state === 2) {
                             $data['u_name_err'] = 'Your user account has been deleted';
                             $this->view('users/login', $data);
@@ -689,7 +690,7 @@ class Users extends Controller
         $_SESSION['advisor_id'] = $details->advisor_id;
         $_SESSION['advisor_name'] = $details->name;
         $_SESSION['advisor_photo_path'] = $details->photo;
-        $_SESSION['Advisor'] = 1;
+        $_SESSION['advisor'] = 1;
         redirect('advisors/viewHomePage');
     }
 
@@ -720,6 +721,16 @@ class Users extends Controller
             unset($_SESSION['user_id']);
             unset($_SESSION['user_email']);
             unset($_SESSION['seller']);
+            session_destroy();
+            redirect('users/login');
+
+        }
+
+        if ($_SESSION['advisor'] == 1) {
+
+            unset($_SESSION['advisor_id']);
+            //unset($_SESSION['user_email']);
+            unset($_SESSION['advisor']);
             session_destroy();
             redirect('users/login');
 
@@ -890,5 +901,6 @@ class Users extends Controller
 
 
     }
+
 
 }

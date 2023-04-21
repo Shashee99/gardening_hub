@@ -35,11 +35,12 @@
 
         public function customerRegister($data)
         {
-            $sql = "INSERT INTO user (email,password,type) VALUES (:email, :pass, :type)";
+            $sql = "INSERT INTO user (email,password,type,user_state) VALUES (:email, :pass, :type,:state)";
             $this->db->query($sql);
             $this->db->bind(':email', $data['email']);
             $this->db->bind(':pass', $data['password']);
             $this->db->bind(':type', 'customer');
+            $this->db->bind(':state', 1);
 
             if($this->db->execute())
             {
@@ -284,8 +285,7 @@
             $this -> db -> query('SELECT * FROM user WHERE user_id = :id');
             $this ->db ->bind(':id',$id);
             $result = $this -> db -> singleRecord();
-            $email =  $result->email;
-            return $email;
+            return $result->email;
         }
 
         public function insertverificationcode($id,$code){
@@ -366,6 +366,14 @@
             $code =  $result->user_id;
             return $code;
         }
+
+
+        public function deleteuserbyid($id){
+            $this ->db -> query('DELETE FROM user WHERE user_id = :id;');
+            $this ->db-> bind(':id',$id);
+            $this -> db -> execute();
+            return true;
+       }
 
 
     }

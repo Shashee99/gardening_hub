@@ -40,6 +40,15 @@ selectMenu.addEventListener("change", function()
                             <div class="content">
                                 <p>${item.content}</p>
                             </div><br>
+
+                            <div class="tech-photos">`
+                                for(let pht of item.tech_photos)
+                                {
+                                    out += ` <img src="http://localhost/gardening_hub/img/upload_images/new_tech_photos/${pht}" alt="">`
+                                    
+                                }
+                        
+                        out += `</div><br>
                 
                         </div>
                     `;
