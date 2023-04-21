@@ -6,14 +6,14 @@
             <form action=" <?php echo URLROOT.'/advisors/item_add';?> "   enctype="multipart/form-data"  method="post">
                   <div class="input-fild-style">
                       <label for=" ">Title:</label>
-                      <input type="text" name="title" id="title" placeholder=Title>
+                      <input type="text" name="title" id="title" value="<?php echo $data['title'];  ?>" placeholder=Title>
                       <label for=" "> <?php echo $data['title_error'];  ?></label>
 
                     </div>
                 
                  <div class="input-fild-style">
                       <label for="">Catagory:</label>
-                      <input type="text" name="catagory" id="title" placeholder=Catagory>
+                      <input type="text" name="catagory" id="title" value="<?php echo $data['catagory'];  ?>" placeholder=Catagory>
                       <label for=""><?php echo $data['catagory_error'];  ?> </label>
 
                     </div>
@@ -22,7 +22,7 @@
 
                 <div class="input-fild-style">
                       <label for="">Images:</label>
-                      <input type="file"  name="photos[]"  onchange="preview()"  multiple>
+                      <input type="file"  name="photos[]"  onchange="preview()"  multiple >
                       <label for=""> <?php echo $data['photo_error'];  ?></label>
 
                    
@@ -30,7 +30,7 @@
 
                 <div class="input-fild-style">
                       <label for="">Content:</label>
-                      <textarea name="content" id="content" cols="30" rows="5"></textarea>
+                      <textarea name="content" id="content" cols="30" rows="5"  value="<?php echo $data['content'];  ?>" ></textarea>
                       <label for=""> <?php echo $data['content_error'];  ?></label>
 
                     </div>
