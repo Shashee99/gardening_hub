@@ -77,6 +77,75 @@
             $this -> db -> bind(':id', $id);
             $this->db->execute();
         }
+        
+        public function addTecno($data,$photo){
+             $sql='INSERT INTO  new_technology(category,date,title,content,advisor_id )VALUES(
+              :catagory,:date,:title,:content,:advisor_id
+            )';
+
+             $this->db->query($sql);
+             $this->db->bind(':catagory', $data['catagory']);
+             $this->db->bind(':date',date('y/m/d'));
+             $this->db->bind(':title',$data['title']);
+             $this->db->bind(':content',$data['content']);
+             $this->db->bind(':advisor_id',$_SESSION['advisor_id']);
+
+           if($this->db->execute()){
+                
+                $sql1 = "SELECT * FROM new_technology WHERE advisor_id = :advisor_id ORDER BY no DESC LIMIT 1";
+                $this->db->query($sql1);
+                $this->db->bind(':advisor_id', $_SESSION['advisor_id'] );
+                $row1 = $this->db->singleRecord();
+
+                if($this->db->rowCount() > 0)
+                {
+                    foreach($photo as $rows)
+                    {
+                        $sql2 = "INSERT INTO tecpoto (no, imge)
+                                VALUES (:no, :image)";
+                        $this->db->query($sql2);
+                        $this->db->bind(':no',$row1->no);
+                        $this->db->bind(':image', $rows);
+                        $this->db->execute();
+
+                    }
+
+                      return true; 
+
+                }else{
+                    return false;
+                }
+
+           }else{
+              return false;
+
+           }
+
+
+
+        }
+
+        public function giveTecno($advisor_id){
+            // SELECT new_technology.no,new_technology.category,new_technology.date,new_technology.content,new_technology.title,
+            // tecpoto.imge FROM new_technology INNER JOIN tecpoto ON new_technology.no=tecpoto.no;
+           
+               $sql='SELECT * FROM new_technology WHERE advisor_id= :advisor_id ';
+               $this->db->query($sql);
+               $this->db->bind(':advisor_id',$advisor_id);
+              return $this->db->resultSet();
+
+        }
+        // we can get potos by this function--------
+        public function tecnoPhotosById($no){
+            $sql = "SELECT * FROM tecpoto WHERE no = :no";
+            $this->db->query($sql);
+            $this->db->bind(':no', $no);
+            return $this->db->resultSet();
+
+
+        }
+
+
 
 
     }

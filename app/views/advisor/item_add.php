@@ -3,7 +3,7 @@
       <div class="contener">
             <h3>Add new tecnhology</h3>
          
-            <form action=" <?php echo URLROOT.'/advisors/item_add';?> "  method="post">
+            <form action=" <?php echo URLROOT.'/advisors/item_add';?> "   enctype="multipart/form-data"  method="post">
                   <div class="input-fild-style">
                       <label for=" ">Title:</label>
                       <input type="text" name="title" id="title" placeholder=Title>
@@ -18,18 +18,12 @@
 
                     </div>
 
-               <div class="input-fild-style">
-                      <label for="">Date:</label>
-                      <input type="date" name="date" id="date" >
-                      <label for=""><?php echo $data['date_error'];  ?> </label>
-
-                   
-                   </div>
+               
 
                 <div class="input-fild-style">
                       <label for="">Images:</label>
-                      <input type="file" name='files[]' multiple id="image" accept="image/*" >
-                      <label for=""> </label>
+                      <input type="file"  name="photos[]"  onchange="preview()"  multiple>
+                      <label for=""> <?php echo $data['photo_error'];  ?></label>
 
                    
                    </div>

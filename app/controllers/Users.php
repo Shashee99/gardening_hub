@@ -690,7 +690,7 @@ class Users extends Controller
         $_SESSION['advisor_id'] = $details->advisor_id;
         $_SESSION['advisor_name'] = $details->name;
         $_SESSION['advisor_photo_path'] = $details->photo;
-        $_SESSION['Advisor'] = 1;
+        $_SESSION['advisor'] = 1;
         redirect('advisors/viewHomePage');
     }
 
@@ -721,6 +721,16 @@ class Users extends Controller
             unset($_SESSION['user_id']);
             unset($_SESSION['user_email']);
             unset($_SESSION['seller']);
+            session_destroy();
+            redirect('users/login');
+
+        }
+
+        if ($_SESSION['advisor'] == 1) {
+
+            unset($_SESSION['advisor_id']);
+            //unset($_SESSION['user_email']);
+            unset($_SESSION['advisor']);
             session_destroy();
             redirect('users/login');
 

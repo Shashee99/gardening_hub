@@ -32,6 +32,7 @@
     /* start addtecnology filed style  */
 .addtecno-div{
     width: 100%;
+    overflow: hidden;
     overflow: scroll;
     height: 100%;
     
@@ -67,12 +68,22 @@
     padding:1rem;
     
 }
+
+/* .card{
+    width: 80%;
+    height: 50%;              
+    margin-top: 2rem;
+    margin-bottom: 5rem;
+  
+
+} */
+ 
 /* pri view tecnology div filed style */
 .pri-view-tecno{
 
     margin-left: 5.5rem;
     width: 80%;
-    height: 50%;
+    height: 50%;              
     margin-top: 2rem;
     margin-bottom: 5rem;
     /* border: 2px solid  #60b096;
@@ -98,6 +109,7 @@
     margin-left: 5rem;
     display: flex;
     justify-content: center;
+    color: rgb(251, 40, 40);
     
 }
 .title-tecno h3{
@@ -134,16 +146,19 @@
     margin-top: 1rem;
     font-family:Poppins ;
     
+    
 }
 
 /* start content style  */
 .content{
-    width: 85%;
-    height: 35%;
+    width: 585px;
+    height: 100px;
     margin-left: 3rem;
-    padding-inline:2rem;
+    padding-inline:3rem;
+    /* padding-block-end: 2rem; */
     overflow: hidden;
     overflow-y: scroll;
+    /* color: rgb(251, 40, 40); */
     scrollbar-shadow-color: #C4EDC9;
 
     /* background-color: #00A778; */
@@ -154,6 +169,7 @@
     display: none;
 }
 .content p{
+   padding-inline-end: 2rem;
     font-family: Poppins;
 
 }
@@ -161,33 +177,41 @@
     padding-inline: 1rem;
 }
 .pri-view-tecno h5{
-    margin-left: 18rem;
+    margin-left: 15rem;
     margin-top: 0;
     font-size: 1rem;
     font-weight: 0;
-    font-family: Poppins;
+    font-family: Georgia, 'Times New Roman', Times, serif;
     height:0;
+    color: rgb(251, 40, 40);
+    
 }
    /* start  tecno potos filed */
 .tecno-poto{
     width: 60%;
     height: 30%;
     margin-left: 8rem;
-    margin-top: .1rem;
+    margin-top: .5rem;
     display: flex;
     justify-content: space-around;
-    /* background-color: rgb(46, 94, 135); */
+    
 }
 .tecno-poto div{
-    width: 23%;
-    height: 100%;
-    /* background-color: rgb(171, 119, 40); */
+    width: 53px;
+    height: 80px;
+    margin-top: .1rem;
+    /* background-color: rgb(232, 215, 189); */
+}
+.poto {
+    width: 53px;
+    height: 60px; 
+
 }   
 .pri-view-tecno a{
     margin-left:37rem;
     position: absolute;
     text-decoration: none;
     font-family: Poppins;
-    margin-top: 9rem;
+    margin-top: -1.5rem;
     color: rgb(251, 40, 40);
 }
