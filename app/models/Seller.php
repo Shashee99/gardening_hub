@@ -64,7 +64,7 @@ class Seller{
 
 
 
-//       $this -> db ->execute();
+//        $this -> db ->execute();
 //
 //        $cus_id =intval($result->product_id);
 //

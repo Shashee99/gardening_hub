@@ -31,10 +31,6 @@
             echo $tabledata;
             exit();
         }
-        public function merge()
-        {
-            echo 'Yes';
-        }
 
         public function searchbynames(){
 

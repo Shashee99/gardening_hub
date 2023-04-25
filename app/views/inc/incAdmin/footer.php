@@ -43,6 +43,21 @@
 </div>
 
 </body>
+
+<script>
+    document.getElementById('sidebars').addEventListener("click", function() {
+        document.querySelector('.sidebar').classList.add("sidebardisplay");
+        console.log("hian")
+    });
+    document.getElementById("closesidenav").addEventListener("click",function (){
+        document.querySelector('.sidebar').classList.remove("sidebardisplay");
+        console.log("cc")
+    })
+
+</script>
+
 <script src="<?php echo URLROOT; ?>/js/admin/<?php echo $data['jsfile'];?>"></script>
 <script src="<?php echo URLROOT; ?>/js/admin/admin_main.js"></script>
+
+
 </html>

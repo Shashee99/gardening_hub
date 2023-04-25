@@ -1,0 +1,253 @@
+    @media screen and (max-width: 1200px) {
+
+        body {
+            font-size: 14px; /* reduce font size for small screens */
+        }
+
+        h1 {
+            font-size: 1.5rem;
+        }
+        h2 {
+            font-size: 1rem;
+        }
+
+        p {
+            font-size: 1rem; /* equivalent to 14px */
+        }
+
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out; /* Add transition property */
+        }
+
+        .sidebardisplay {
+            transform: translateX(0%);
+            transition: transform 0.3s ease-in-out; /* Add transition property */
+        }
+
+        .rightbar {
+            width: 100%;
+            /*border: 5px solid black;*/
+            background-color: var(--white);
+            height: 100%;
+
+        }
+        .navbar {
+            height: 80px;
+            width: 100%;
+
+            position: fixed;
+            top: 0;
+        }
+        .contain {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 78px);
+            top: 80px;
+            background-color: var(--white);
+            overflow-y: auto;
+            padding: 5px 10px;
+            border: 1px solid black;
+        }
+        #closesidenav{
+            display: block;
+        }
+        .searchbox{
+            width: 300px;
+            font-size: 14px;
+        }
+    }
+
+
+    /* For screens up to 1000px */
+    @media screen and (max-width: 1000px) {
+        body {
+            font-size: 13px;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+        }
+        h2 {
+            font-size: 0.875rem;
+        }
+
+        p {
+            font-size: 0.875rem;
+        }
+        .searchbox{
+            width: 300px;
+
+        }
+
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out; /* Add transition property */
+        }
+
+        .sidebardisplay {
+            transform: translateX(0%);
+            transition: transform 0.3s ease-in-out; /* Add transition property */
+        }
+
+        .rightbar {
+            width: 100%;
+            /*border: 5px solid black;*/
+            background-color: var(--white);
+            height: 100%;
+
+        }
+        .navbar {
+            height: 80px;
+            width: 100%;
+
+            position: fixed;
+            top: 0;
+        }
+        .contain {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 78px);
+            top: 80px;
+            background-color: var(--white);
+            overflow-y: auto;
+            padding: 5px 10px;
+            border: 1px solid black;
+        }
+        #closesidenav{
+            display: block;
+        }
+        .searchbox{
+            width: 300px;
+            font-size: 13px;
+        }
+    }
+
+    /* For screens up to 900px */
+    @media screen and (max-width: 900px) {
+        body {
+            font-size: 12px;
+        }
+
+        h1 {
+            font-size: 1rem;
+        }
+        h2 {
+            font-size: 0.75rem;
+        }
+
+        p {
+            font-size: 0.75rem;
+        }
+        .searchbox{
+            width: 300px;
+            font-size: 20px;
+        }
+
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out; /* Add transition property */
+        }
+
+        .sidebardisplay {
+            transform: translateX(0%);
+            transition: transform 0.3s ease-in-out; /* Add transition property */
+        }
+
+        .rightbar {
+            width: 100%;
+            /*border: 5px solid black;*/
+            background-color: var(--white);
+            height: 100%;
+
+        }
+        .navbar {
+            height: 80px;
+            width: 100%;
+
+            position: fixed;
+            top: 0;
+        }
+        .contain {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 78px);
+            top: 80px;
+            background-color: var(--white);
+            overflow-y: auto;
+            padding: 5px 10px;
+            border: 1px solid black;
+        }
+        #closesidenav{
+            display: block;
+        }
+        .searchbox{
+            width: 300px;
+            font-size: 12px;
+
+        }
+    }
+
+    /* For screens up to 800px */
+    @media screen and (max-width: 800px) {
+        body {
+            font-size: 11px;
+        }
+
+        h1 {
+            font-size: 0.875rem;
+        }
+        h2 {
+            font-size: 0.625rem;
+        }
+
+        p {
+            font-size: 0.625rem;
+        }
+        .searchbox{
+            width: 200px;
+            font-size: 20px;
+        }
+
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out; /* Add transition property */
+        }
+
+        .sidebardisplay {
+            transform: translateX(0%);
+            transition: transform 0.3s ease-in-out; /* Add transition property */
+        }
+
+        .rightbar {
+            width: 100%;
+            /*border: 5px solid black;*/
+            background-color: var(--white);
+            height: 100%;
+
+        }
+        .navbar {
+            height: 80px;
+            width: 100%;
+
+            position: fixed;
+            top: 0;
+        }
+        .contain {
+            position: relative;
+            width: 100%;
+            height: calc(100% - 78px);
+            top: 80px;
+            background-color: var(--white);
+            overflow-y: auto;
+            padding: 5px 10px;
+            border: 1px solid black;
+        }
+        #closesidenav{
+            display: block;
+        }
+        .searchbox{
+            width: 200px;
+            font-size: 11px;
+        }
+    }

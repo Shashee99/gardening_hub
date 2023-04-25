@@ -12,7 +12,7 @@ class Sellers extends Controller{
                 redirect('users/login');
             }
         }
-        
+
         $this->sellerModel = $this->model('Seller');
         $this -> categoryModel = $this ->model('ProductCategory');
         $this->reviewMoel = $this->model('Review');
@@ -130,6 +130,14 @@ class Sellers extends Controller{
             $this->view('seller/add2', $data);
         }
     }
+
+    public function recentlyaddedsellers(){
+        $dataset = $this -> sellerModel -> recentlyaddedsellers();
+        $data = json_encode($dataset);
+        echo $data;
+        exit();
+    }
+
 
     public function add3() {
         //Check for POST
@@ -325,6 +333,26 @@ class Sellers extends Controller{
         $this->view('seller/order', $data);
     }
 
+    public function searchbynames_registeredseller(){
+
+
+        if(isset($_POST['searchbynames_registeredseller'])){
+            $text = $_POST['searchbynames_registeredseller'];
+            $dataset = $this->sellerModel -> searchuserbyname_registeredsellers($text);
+            echo json_encode($dataset);
+            unset($_POST['searchbynames_registeredseller']);
+            exit();
+        }
+        else{
+            $tabledata = $this->sellerModel->all_registered_sellers();
+            $tabledata =json_encode($tabledata);
+            echo $tabledata;
+            exit();
+
+        }
+
+    }
+
     public function order_conf() {
         $item = $_POST['item'];
         $result = $this -> sellerModel->order_conf($item);
@@ -344,7 +372,7 @@ class Sellers extends Controller{
 
     public function update($id) {
         $itemData = $this -> sellerModel -> getItemById($id);
-        $productImg = $this -> sellerModel -> getProductImages($id); 
+        $productImg = $this -> sellerModel -> getProductImages($id);
 
         $data = [
             'itemData' => $itemData,
@@ -352,6 +380,24 @@ class Sellers extends Controller{
         ];
 
         $this->view('seller/update', $data);
+    }
+
+    public function searchbynames_unregisteredseller(){
+        if(isset($_POST['searchbynames_unregisteredseller'])){
+            $text = $_POST['searchbynames_unregisteredseller'];
+            $dataset = $this->sellerModel -> searchuserbyname_unregisteredsellers($text);
+            echo json_encode($dataset);
+            unset($_POST['searchbynames_unregisteredseller']);
+            exit();
+        }
+        else{
+            $tabledata = $this->sellerModel->get_non_registered_sellers();
+            $tabledata =json_encode($tabledata);
+            echo $tabledata;
+            exit();
+
+        }
+
     }
 
     // public function delete(){
@@ -418,7 +464,6 @@ class Sellers extends Controller{
             redirect('admins/sellers');
         }
 
-
-
     }
+
 }

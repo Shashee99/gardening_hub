@@ -11,9 +11,12 @@
           rel="stylesheet">
     <title>Administrator</title>
     <link rel="stylesheet" href="<?php echo URLROOT;?>/css/admin/admin_main.css">
+    <link rel="stylesheet" href="<?php echo URLROOT;?>/css/admin/admin_main_responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 <div class="sidebar">
+    <i id="closesidenav"  class="closetimes fas fa-times"></i>
     <div class="photo">
         <img src="<?= URLROOT;?>/img/admin/logo.png" alt="" class="photologo">
     </div>
@@ -82,6 +85,7 @@
 <div class="rightbar">
     <div class="navbar">
         <div class="nav-container">
+            <i id="sidebars" class="bars fa-solid fa-bars"></i>
             <h1 class="sidebarheader"><?php echo $data['title'];?></h1>
             <div class="profiles" >
                 <div class="notiout"  id="notbtn">
@@ -101,4 +105,3 @@
     </div>
     <hr class="navsplitter">
     <div class="contain">
-

@@ -7,7 +7,7 @@ class Admins extends Controller
         if (!isLoggedIn()) {
             redirect('users/login');
         }
-
+        $this ->notiModel = $this -> model('Notification');
         $this->adminModel = $this->model('Admin');
         $this->customerModel = $this->model('Customer');
         $this->sellerModel = $this->model('Seller');
@@ -22,15 +22,15 @@ class Admins extends Controller
 
         $advisors = $this->advisorModel->all_registered_advisors();
         $customers = $this->customerModel->get_all_customers();
-//        $sellers = $this -> customerModel -> get_all_sellers();
+        $sellers = $this -> sellerModel -> recentlyaddedsellers();
 
         $data = [
             'nav' => 'home',
             'title' => 'Dashboard',
             'advisors' => $advisors,
             'customers' => $customers,
-            'jsfile' => 'admin_home.js'
-//            'sellers' => $sellers
+            'jsfile' => 'admin_home.js',
+            'sellers' => $sellers
 
         ];
         $this->view('admin/home', $data);
@@ -45,6 +45,18 @@ class Admins extends Controller
         ];
         $this->view('admin/productcategories', $data);
     }
+
+
+    public function newproductcategories(){
+
+        $data = [
+            'nav' => 'categories',
+            'title' => 'Product Categories',
+            'jsfile' => 'admin_categories.js'
+        ];
+        $this->view('admin/newcategories', $data);
+    }
+
 
     public function customers()
     {
@@ -166,7 +178,7 @@ class Admins extends Controller
         $this->view('admin/registeredsellerpreview', $data);
     }
 
-    public function viewsellerregistered($id){
+    public function viewsellernonregistered($id){
         $sellers = $this->sellerModel->getSellerDetails($id);
         $data = [
             'nav' => 'Sellers',
@@ -174,7 +186,7 @@ class Admins extends Controller
             'sellerinfo' => $sellers,
             'jsfile' => 'admin_sellers.js'
         ];
-        $this->view('admin/registeredsellerpreview', $data);
+        $this->view('admin/sellerpreview', $data);
     }
 
     public function viewadvisor($id)
@@ -212,6 +224,8 @@ class Admins extends Controller
     {
 
         $this->adminModel->sellerApprove($id);
+        $this -> notiModel -> clearthenotificationafterapprove($id);
+
         $username = '';
 //        getting the email of the seller from user table
         $email = $this->userModel->getemailbyuserid($id);
@@ -231,6 +245,7 @@ class Admins extends Controller
     {
 
         $val = $this->adminModel->advisorApprove($id);
+        $this -> notiModel -> clearthenotificationafterapprove($id);
         $username = '';
 //        getting the email of the seller from user table
         $email = $this->userModel->getemailbyuserid($id);
@@ -283,10 +298,12 @@ class Admins extends Controller
     {
 
         $complaints = $this->complaintModel->getcomplaintbyid($complaintID);
+        $posted_id = $complaints->posted_user_id;
+        $complainted_id = $complaints -> complained_user_id;
         $complainant = $this->userModel->getNamebyuserid($complaints->posted_user_id);
         $complainant_type = $this->userModel->getUsertype($complaints->posted_user_id);
         $complainee = $this->userModel->getNamebyuserid($complaints->complained_user_id);
-        $complainee_type = $this->userModel->getUsertype($complaints->posted_user_id);
+        $complainee_type = $this->userModel->getUsertype($complaints->complained_user_id);
         $this->complaintModel->viewedcomplain($complaintID);
 
         $data = [
@@ -297,9 +314,38 @@ class Admins extends Controller
             'complainant_type' => $complainant_type,
             'complainee' => $complainee,
             'complainee_type' => $complainee_type,
-            'jsfile' => 'admin_complaint.js'
+            'jsfile' => 'admin_complaint.js',
+            'complainantid' => $posted_id,
+            'complaineeid' => $complainted_id
         ];
         $this->view('admin/complaintview', $data);
+
+    }
+    public function viewcomplainresolved($complaintID)
+    {
+
+        $complaints = $this->complaintModel->getcomplaintbyid($complaintID);
+        $posted_id = $complaints->posted_user_id;
+        $complainted_id = $complaints -> complained_user_id;
+        $complainant = $this->userModel->getNamebyuserid($complaints->posted_user_id);
+        $complainant_type = $this->userModel->getUsertype($complaints->posted_user_id);
+        $complainee = $this->userModel->getNamebyuserid($complaints->complained_user_id);
+        $complainee_type = $this->userModel->getUsertype($complaints->complained_user_id);
+        $this->complaintModel->viewedcomplain($complaintID);
+
+        $data = [
+            'nav' => 'complaint',
+            'title' => 'Complaints',
+            'complaints' => $complaints,
+            'complainant' => $complainant,
+            'complainant_type' => $complainant_type,
+            'complainee' => $complainee,
+            'complainee_type' => $complainee_type,
+            'jsfile' => 'admin_complaint.js',
+            'complainantid' => $posted_id,
+            'complaineeid' => $complainted_id
+        ];
+        $this->view('admin/complaintviewresolved', $data);
 
     }
 
@@ -309,7 +355,7 @@ class Admins extends Controller
             $username = "";
             $usermail = trim($_POST['email']);
             $reason = trim($_POST['reason']);
-            $id = $this->userModel->getuseridbyemail( $usermail);
+            $id = $this->userModel->getuseridbyemail($usermail);
 //        remove the user from user table
             $this ->userModel -> deleteuserbyid($id);
 
@@ -354,5 +400,79 @@ class Admins extends Controller
         $this->view('admin/advisordeleteconfirmation',$data);
 
     }
+
+    public function viewuserfromnotification($id){
+        $useremail =  $this -> userModel -> getemailbyuserid($id);
+        $usertype = $this -> userModel -> getusertypebyemail($useremail);
+
+
+        if($usertype == "seller")
+        {
+            $this -> viewsellernonregistered($id);
+        }
+        elseif ($usertype == "advisor")
+        {
+            $this -> viewadvisor($id);
+        }
+
+    }
+    public function deleteacomplain($id){
+       if( $this -> complaintModel -> deletecomplaint($id)){
+           redirect('admins/complains');
+       }
+       else{
+           die('Error occured');
+       }
+
+
+    }
+
+    public function resolvecomplain($id){
+        if( $this -> complaintModel -> resolvecomplaint($id)){
+            redirect('admins/complains');
+        }
+        else{
+            die('Error occured');
+        }
+
+    }
+    public function resolvedcomplains(){
+        $complaints = $this->complaintModel->getresolvedAllComplaints();
+
+        foreach ($complaints as $rowdata) {
+            $rowdata->posted_user_id = $this->userModel->getNamebyuserid($rowdata->posted_user_id);
+            $rowdata->complained_user_id = $this->userModel->getNamebyuserid($rowdata->complained_user_id);
+        }
+        $data = [
+            'nav' => 'complaint',
+            'title' => 'Complaints',
+            'complaints' => $complaints,
+            'jsfile' => 'admin_complaint.js'
+        ];
+        $this->view('admin/resolvedcomplains', $data);
+
+
+    }
+
+    public function viewcomplaineduser($id){
+        $useremail =  $this -> userModel -> getemailbyuserid($id);
+        $usertype = $this -> userModel -> getusertypebyemail($useremail);
+
+
+        if($usertype == "seller")
+        {
+
+            $this -> viewseller($id);
+        }
+        elseif ($usertype == "advisor")
+        {
+            $this -> viewadvisor($id);
+        }
+        else{
+            $this -> viewcustomer($id);
+        }
+
+    }
+
 
 }

@@ -1,14 +1,10 @@
 <?php require_once APPROOT . '/views/inc/incAdmin/header.php'; ?>
 
 <div class="approvals">
-    <div class="category flex parentwidth ">
-        <div class="category-item1 flex">
-            <h3 class="font600">Number of complains</h3>
-            <h1 class="font700" id="complaintcount"></h1>
-        </div>
-        <a href="<?= URLROOT; ?>/admins/resolvedcomplains" class="sortbtn flex bglightgray text-decoration-none position-relative" style="width: 220px;height: 50px">
-            <img src="<?= URLROOT; ?>/img/admin/icon/resolve.png" alt="" width="25px" height="25px">
-            <p class="font500" style="font-size: 15px">Resolved Complains</p>
+    <div class="category parentwidth ">
+
+        <a href="<?= URLROOT; ?>/admins/complains" class="sortbtn flex bglightgray text-decoration-none position-relative" style="width: 220px;height: 50px">
+            <p class="font500" style="font-size: 15px"> < Back to complains</p>
         </a>
 
     </div>
@@ -33,7 +29,7 @@
                     <td><?php echo $row -> complain_date ?></td>
                     <td><?php echo $row -> posted_user_id ?></td>
                     <td><?php echo $row -> complained_user_id ?></td>
-                    <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewcomplain/<?php echo $row -> complian_no  ?>" class="view"> View </a>
+                    <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewcomplainresolved/<?php echo $row -> complian_no  ?>" class="view"> View </a>
                 </tr>
             <?php endforeach; ?>
             </tbody>

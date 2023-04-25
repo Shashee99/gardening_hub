@@ -45,18 +45,18 @@ function getallnotifications() {
                 for (var a = 0; a < data.length; a++) {
 
                     notificationBody += `
-                                      <div class="notification-body">
+                                      <div  class="notification-body">
                                         <div class="notification-icon">
                                           <img src="http://localhost/gardening_hub/img/admin/icon/warning.png" height="50px" width="50px" alt="">
                                         </div>
-                                        <div class="notification-message_and_time">
+                                        <a style="text-decoration:none; cursor: pointer;" href="http://localhost/gardening_hub/admins/viewuserfromnotification/${data[a].user_id}" class="notification-message_and_time">
                                           <div class="notification-message">
                                              New ${data[a].user_type} registration found!
                                           </div>
                                           <div class="notification-date">
                                               ${data[a].dateandtime}
                                           </div>
-                                        </div>
+                                        </a>
                                         <div class="notification-delete">
                                           <img src="http://localhost/gardening_hub/img/admin/icon/close.png" height="30px" width="30px" alt="" onclick="clearnotification(${data[a].notifiication_id});">
                                         </div>

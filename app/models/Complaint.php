@@ -8,7 +8,13 @@ class Complaint
         $this->db = new Database;
     }
     public function getAllComplaints(){
-        $this->db->query('SELECT * FROM complain');
+        $this->db->query('SELECT * FROM complain WHERE state != 2;');
+        $dataset = $this->db->resultSet();
+        return $dataset;
+
+    }
+    public function getresolvedAllComplaints(){
+        $this->db->query('SELECT * FROM complain WHERE state = 2;');
         $dataset = $this->db->resultSet();
         return $dataset;
 
@@ -59,6 +65,20 @@ class Complaint
         $this -> db -> bind(':id',$id);
         $dataset = $this->db->resultSet();
         return $dataset;
+    }
+
+    public function resolvecomplaint($complainref){
+        $this->db-> query('UPDATE complain SET state = 2 WHERE complian_no = :compid');
+        $this -> db -> bind(':compid',$complainref);
+        $this -> db -> execute();
+        return true;
+    }
+
+    public function deletecomplaint($complainref){
+        $this->db-> query('DELETE FROM complain WHERE complian_no = :compid');
+        $this -> db -> bind(':compid',$complainref);
+        $this -> db -> execute();
+        return true;
     }
 
 
