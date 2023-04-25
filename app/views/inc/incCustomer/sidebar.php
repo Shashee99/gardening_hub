@@ -25,7 +25,7 @@
             <li><img src="<?php echo URLROOT; ?>/img/customer/harvest.png" alt=""><a href="<?php echo URLROOT; ?>/harvests/viewAddMyHarvest">Harvest</a></li>
             <li><img src="<?php echo URLROOT; ?>/img/customer/progress.png" alt=""><a href="<?php echo URLROOT; ?>/progresses/viewMyProgress">Progress</a></li>
             <li><img src="<?php echo URLROOT; ?>/img/customer/problem.png" alt=""><a href="<?php echo URLROOT; ?>/problems/viewProblems">Problem Forum</a></li>
-            <li><img src="<?php echo URLROOT; ?>/img/customer/chat.png" alt=""><a href="./chat.php">Chat Forum</a></li>
+            <li><img src="<?php echo URLROOT; ?>/img/customer/chat.png" alt=""><a href="<?php echo URLROOT; ?>/customers/chatforum">Chat Forum</a></li>
             <li><img src="<?php echo URLROOT; ?>/img/customer/new.png" alt=""><a href="<?php echo URLROOT; ?>/newTechs/viewNewTech">Technologies</a></li>
             <!-- <li><img src="<?php echo URLROOT; ?>/img/customer/report.png" alt=""><a href="./report.php">Reports</a></li> -->
 

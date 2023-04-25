@@ -79,6 +79,14 @@
 
         }
 
+        public function chatforum(){
 
-       
+            $data = [];
+            $this->view('customers/chatforum',$data);
+
+
+        }
+
+
+
     }
