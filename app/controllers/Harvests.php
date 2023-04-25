@@ -219,7 +219,7 @@
          public function otherHarvests()
          {
 
-            $data = array();
+            //$data = array();
             $result = $this->haervestModel->allOtherHarvest();
             foreach($result as $harvest)
             {

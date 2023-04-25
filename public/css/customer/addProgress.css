@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    width: 100%;
+    background-color: #3BB78F ;
+    position: relative;
+    display: flex;
+}
+
+#side .items li:nth-child(2) {
+    background-color: #3BB78F;
+    border-radius: 0 50px 50px 0;
+    width: 90%;
+}
+#rest{
+    background-color: rgba(239, 239, 239, 0.65);
+    margin-top: 80px;
+    margin-left: 22%;
+    max-height: 100%;
+    width: 78%;
+    border-radius: 25px 0 0 0;
+    overflow-y: scroll;
+    display: flex;
+}
+#rest .progress-form{
+    width: 90%;
+    background-color: #efefef;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+#rest .progress-form h3{
+    text-align: center ;
+    font-weight: 400;
+    padding-top: 20px;
+}
+.progress-form form .input-box{
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+}
+.progress-form  form .input-box input{
+    height: 45px;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+    width: 100%;
+    outline: none;
+    background-color: white;
+    border: none;
+} 
+.progress-form  form .input-box .details {
+    display: block;
+    font-weight: 600;
+    font-size: 18px;
+}
+.progress-form  form .input-box textarea{
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 10px 10px;
+    resize: none;
+    height: 130px;
+}
+.progress-form form  .input-box select{
+    height: 45px;
+    width: 50%;
+    font-size: 16px;
+    border-radius: 10px;
+    padding-left: 15px;
+    transition: all 0.3s ease;
+    background-color: #fff;
+    border: none;
+}
+input::placeholder{
+    color: black;
+}
+textarea::placeholder {
+    color:black
+}
+.progress-form form  .input-box select:focus{
+    outline: none;
+}
+.progress-form .image-upload .image-button img{
+    width: 20px;
+    margin-right: 20px;  
+}
+.progress-form .image-upload {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+}
+.progress-form .image-upload .image-button{
+    background-color: #00a778;
+    width: 200px;
+    padding: 10px;
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+    color: #fff;
+}
+.progress-form .image-upload .image-button input{
+    display: none;
+}
+.progress-form .image-upload .image-button .label-of-image label{
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.progress-form #images{
+    width: 70%;
+    position: relative;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.progress-form figure{
+    width: 20%;
+    margin-bottom: 10px;
+}
+.progress-form img{
+    width: 100%;
+}
+.progress-form figcaption{
+    text-align: center;
+    font-size: 2vmin;
+    margin-top: 0.5vmin;
+}
+.progress-form .image-upload .upload-images{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.progress-form form .buttons{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.progress-form form .buttons .submit-btn input{
+    background-color: #fff;
+    width: 200px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    border: 2px solid #00a778;
+}
+.progress-form form .buttons .submit-btn input:hover{
+    background-color: #00a778;
+    color: #fff;
+    transition: all .1s ease-in-out;
+    transform: scale(0.95);
+}
+.progress-form form .buttons .cancele-btn input{
+    background-color: #fff;
+    width: 200px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    font-size: 16px;
+    border: 2px solid red;
+}
+.progress-form form .buttons .cancele-btn input:hover{
+    background-color: red;
+    color: #fff;
+    transition: all .1s ease-in-out;
+    transform: scale(0.95);
+}
+.input-box #invalid {
+    border: 1px solid red;
+}
+.input-box .error span{
+    color: red;
+    font-size: 12px;
+}

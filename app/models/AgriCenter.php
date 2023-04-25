@@ -8,4 +8,11 @@
         {
             $this->db = new Database;
         }
+        public function agriCenters()
+        {
+            $sql = "SELECT * FROM agricenters";
+            $this->db->query($sql);
+            $result = $this->db->resultSet();
+            return $result;
+        }
     }

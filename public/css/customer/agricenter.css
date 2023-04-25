@@ -58,3 +58,8 @@ body{
     margin: auto;
     margin-top: 10px;
 }
+#map{
+    width: 80%;
+    height: 800px;
+    margin: 0 auto;
+}
