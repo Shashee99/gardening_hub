@@ -8,7 +8,11 @@
         {
 
             if (!isAdvisorLogin()) {
-                redirect('users/login');
+                if(!isset($_SESSION['cus_id']))
+                {
+                    redirect('users/login');
+                }
+
             }
 
             $this->advisorModel = $this->model('Advisor');
