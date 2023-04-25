@@ -10,6 +10,10 @@
         }
         public function viewAgriCenters()
         {
-            $this->view('customers/agricenters');
+            $details = $this->agriModel->agricenters();
+            $data = [
+                'agricenter' => $details
+            ];
+            $this->view('customers/agricenters',$data);
         }
     }

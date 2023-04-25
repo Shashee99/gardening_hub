@@ -1,5 +1,4 @@
-<?php
-
+<?php 
     if(!isset($_SESSION['cus_id']))
     {
         redirect('users/login');
@@ -11,22 +10,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Problem</title>
-    <link rel="stylesheet" href="<?= URLROOT;?>/css/customer/addproblem.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="<?= URLROOT;?>/css/customer/addProgress.css">
 </head>
 <body>
+
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
     <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
 
     <section id="rest">
-        <div class="data-form">
-            <h3>Enter your problem</h3>
-            <form action="<?= URLROOT; ?>/problems/addProblems" method="POST" enctype="multipart/form-data">
+        <div class="progress-form">
+            <h3>Enter Your progress details</h3>
+            <form action="<?= URLROOT; ?>/progresses/addProgress" method="POST" enctype="multipart/form-data">
                 <div class="input-box">
-                    <span class="details">Topic of Problem</span>
+                    <span class="details">Topic of Progress</span>
                     <input id='<?php echo (!empty($data['title_err'])) ? 'invalid' : ''; ?>'
-                            type="text" name="title" value="<?php echo $data['title']; ?>" placeholder="Enter your problem topic">
+                            type="text" name="title" value="<?php echo $data['title']; ?>" placeholder="Enter your progress topic">
                     <div class="error">
                         <span><?php echo $data['title_err']; ?></span>
                     </div>
@@ -44,13 +44,12 @@
                     </div>
                 </div>
                 <div class="input-box">
-                    <span class="details">Problem</span>
-                    <textarea name="problem"  id='<?php echo (!empty($data['problem_err'])) ? 'invalid' : 'description'; ?>' placeholder="Enter Your Problem"  cols="30" rows="10" ></textarea>
+                    <span class="details">Cultivation Progress</span>
+                    <textarea name="progress"  id='<?php echo (!empty($data['progress_err'])) ? 'invalid' : 'description'; ?>' placeholder="Enter Your cultivation Progress"  cols="30" rows="10" ></textarea>
                     <div class="error">
-                        <span><?php echo $data['problem_err']; ?></span>
+                        <span><?php echo $data['progress_err']; ?></span>
                     </div>
                 </div>
-
                 <div class="input-box">
                     <span class="details">Photos</span>
                     <div class="image-upload">
@@ -73,7 +72,6 @@
                         <span><?php echo $data['photo_err']; ?></span>
                     </div>
                 </div>
-               
                 <div class="buttons">
                     <div class="submit-btn">
                         <input type="submit" value="ADD">
@@ -84,11 +82,11 @@
                         </a>
                     </div>
                 </div>
-
             </form>
+           
         </div>
-
     </section>
-    <script src="<?php echo URLROOT; ?>/js/customer/displayimage.js" ></script>
+
+    
 </body>
 </html>

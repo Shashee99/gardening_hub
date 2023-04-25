@@ -53,12 +53,15 @@
                 </div>
             </a>
         </div>
+
+        <?php flash("progress_add_successfuly"); ?>
+        <?php flash("progress_update_successfuly"); ?>
         
         <div class="my-progress-wrapper"> 
         <?php
-            if($data['progress'])
+            if(!empty($data))
             {
-                foreach($data['progress'] as $row)
+                foreach($data as $row)
                 {
                 ?>      
             <div class="my-progress-card">
@@ -68,36 +71,32 @@
                     </div>
                     <div class="date">
                         <h5><?php echo $_SESSION['cus_name']; ?></h5>
-                        <h6><?php echo $row->started_date; ?></h6>
-                        <p>Category : <?php echo $row->category; ?></p>
+                        <h6><?php echo $row['date']; ?></h6>
+                        <p>Category : <?php echo $row['category']; ?></p>
                     </div>
                 </div>
-                <h3><?php echo $row->title; ?></h3>
+                <h3><?php echo $row['title']; ?></h3>
                 <div class="content">
-                    <p><?php echo $row->content; ?></p>
+                    <p><?php echo $row['description']; ?></p>
                 </div>
                 <div class="last">
 
                     <div class="images">
-                        <!-- <?php
-                        foreach($data['harvest_photo'] as $row1)
-                        {
-                                    
-                            if($row1->harvest_id == $row->harvest_id)
-                            {
-                            ?>
-                                <img src="<?= URLROOT; ?>/img/upload_images/harvest_photo/<?php echo $row1->name; ?>" alt="">
-                            <?php
-                            }
+                        <?php
+                        foreach($row['progress_photo'] as $row1)
+                        {            
+                        ?>
+                            <img src="<?= URLROOT; ?>/img/upload_images/progress_photo/<?= $row1; ?>" alt="">
+                        <?php
                         }
-                        ?> -->
+                        ?>
                     </div>
                     <div class="option-button">
                         <div class="delete-button">
-                            <button class="delete_buttons" data-progressID="<?= $row->progress_id; ?>">DELETE</button>                    
+                            <button class="delete_buttons" data-progressID="<?= $row['progress_id']; ?>">DELETE</button>                    
                         </div>
                         <div class="edit-button">
-                            <form action="#">
+                            <form action="<?= URLROOT; ?>/progresses/updateProgress/<?= $row['progress_id']; ?>">
                             <input type="submit" value="Update">
                             </form>
                         </div>

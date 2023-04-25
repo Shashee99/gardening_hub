@@ -40,41 +40,37 @@
         
         <div class="Other-progress-wrapper"> 
         <?php
-            if($data['progress'])
+            if(!empty($data))
             {
-                foreach($data['progress'] as $row)
+                foreach($data as $row)
                 {
                 ?>      
             <div class="other-progress-card">
                 <div class="part1">
                     <div class="photo">
-                        <img src="<?= URLROOT; ?>/img/upload_images/customer_pp/<?php echo $_SESSION['cus_photo_path']; ?>" alt="">
+                        <img src="<?= URLROOT; ?>/img/upload_images/customer_pp/<?= $row['cus_photo']; ?>" alt="">
                     </div>
                     <div class="date">
-                        <h5><?php echo $_SESSION['cus_name']; ?></h5>
-                        <h6><?php echo $row->started_date; ?></h6>
-                        <p>Category : <?php echo $row->category; ?></p>
+                        <h5><?= $row['cus_name']; ?></h5>
+                        <h6><?= $row['date']; ?></h6>
+                        <p>Category : <?php echo $row['category']; ?></p>
                     </div>
                 </div>
-                <h3><?php echo $row->title; ?></h3>
+                <h3><?php echo $row['title']; ?></h3>
                 <div class="content">
-                    <p><?php echo $row->content; ?></p>
+                    <p><?php echo $row['description']; ?></p>
                 </div>
                 <div class="last">
 
                     <div class="images">
-                        <!-- <?php
-                        foreach($data['harvest_photo'] as $row1)
+                        <?php
+                        foreach($row['progress_photo'] as $row1)
                         {
-                                    
-                            if($row1->harvest_id == $row->harvest_id)
-                            {
-                            ?>
-                                <img src="<?= URLROOT; ?>/img/upload_images/harvest_photo/<?php echo $row1->name; ?>" alt="">
-                            <?php
-                            }
+                        ?>
+                            <img src="<?= URLROOT; ?>/img/upload_images/progress_photo/<?php echo $row1['name']; ?>" alt="">
+                        <?php
                         }
-                        ?> -->
+                        ?>
                     </div>   
                 </div><br>
             </div>
