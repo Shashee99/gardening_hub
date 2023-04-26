@@ -8,7 +8,11 @@
         {
 
             if (!isAdvisorLogin()) {
-                redirect('users/login');
+                if(!isset($_SESSION['cus_id']))
+                {
+                    redirect('users/login');
+                }
+                
             }
 
             $this->advisorModel = $this->model('Advisor');
@@ -247,7 +251,12 @@
 
         public function advisorDetails($id)
         {
-            $this->view('customers/advisorProfile');
+            $details = $this->advisorModel->getAdvisordetails($id);
+            $data=[
+                'details' => $details,
+                'documents' => $this->advisorModel->advisorQualificationDocuments($id)
+            ];
+            $this->view('customers/advisorProfile',$data);
         }
 
         

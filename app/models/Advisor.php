@@ -43,6 +43,15 @@
 
             return $row;
         }
+        public function advisorQualificationDocuments($id)
+        {
+            $sql = "SELECT * FROM advisor_document WHERE advisor_id = :id ";
+            $this->db->query($sql);
+            $this->db->bind(':id',$id);
+            $result = $this->db->singleRecord();
+            return $result;
+        }
+
 
         public function searchuserbyname_registeredadvisor($name){
             $search_term = $name . '%';

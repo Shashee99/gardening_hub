@@ -36,6 +36,7 @@
 
     <script>
         var map;
+        var infowindow = null;
         function initMap()
         {
             map = new google.maps.Map(document.getElementById('map'),
@@ -50,18 +51,23 @@
                 title: '<?php echo $place->name; ?>'
             });
 
-                // Add an info window for the marker
-            var infowindow = new google.maps.InfoWindow({
-                content: '<h3><?php echo $place->name; ?></h3>'
-            });
-
             // Add a click event listener for the marker
             marker.addListener('click', function() {
+                // Close any existing info window
+                if (infowindow != null) {
+                    infowindow.close();
+                }
+
+                // Create a new info window for the clicked marker
+                infowindow = new google.maps.InfoWindow({
+                    content: '<h3><?php echo $place->name; ?></h3>'
+                });
                 infowindow.open(map, marker);
             });
 
             <?php } ?>
         }
+
     </script>
     <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
 
