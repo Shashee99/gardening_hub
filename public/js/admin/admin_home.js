@@ -97,9 +97,6 @@ function getrecentadvisors(){
 
     ajax.open("POST", "http://localhost/gardening_hub/advisors/recentlyaddedadvisors", true);
     ajax.send();
-
-
-
     var html = "";
     ajax.onreadystatechange = function () {
 
@@ -116,9 +113,7 @@ function getrecentadvisors(){
                         '<p>' + data[a].name + '</p>' +
                         '<p>' + data[a].email + '</p>' +
                         '</div>';
-
                 }
-
             }
             else{
                 html += '<br><br><h3>No New advisors found!</h3>';

@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+    background-color: none;
+}
+::-webkit-scrollbar-thumb{
+    background-color: black;
+    border-radius: 30px;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    width: 100%;
+    background: linear-gradient(249deg, #0BAB64 2.62%, #3BB78F 96.66%);
+    position: relative;
+    display: flex;
+}
+
+#side .items li:nth-child(9) {
+    background-color: #3BB78F;
+    border-radius: 0 50px 50px 0;
+    width: 90%;
+}
+#rest{
+    background-color: rgba(239, 239, 239, 0.65);
+    margin-top: 80px;
+    margin-left: 22%;
+    max-height: 100%;
+    width: 78%;
+    border-radius: 25px 0 0 0;
+}
+
+.chatcontainer{
+
+    width: 900px;
+    height: 600px;
+    border: 1px solid black;
+    position: relative;
+    top: 40px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 10px;
+    background-color: #efefef;
+
+}
+.chatbox{
+    padding: 5px 10px 0px 10px;
+    overflow-y: scroll;
+    width: 900px;
+    height: 500px;
+}
+.chatpreview,.chatpreviewoutgoing{
+    width: 500px;
+    box-shadow: #ddd 0px 2px 4px;
+    height: max-content;
+    margin: 10px 20px;
+    padding: 15px;
+    position: relative;
+
+}
+.chatpreview{
+    background-color: #ddd;
+    border-radius: 20px 20px 20px 0px;
+}
+
+
+
+.chatpreviewoutgoing{
+    background-color: #9999;
+    margin-left: auto;
+    text-align: left;
+    border-radius: 20px 20px 0px 20px;
+
+}
+
+
+.profileandchat{
+   height: max-content;
+    display: grid;
+    grid-template-columns: 60px auto;
+
+}
+
+.senderprofile img{
+    width: 40px;
+    height: 40px;
+    border: 1px solid;
+    border-radius: 100%;
+}
+
+.senderprofile img{
+    width: 40px;
+    height: 40px;
+    border: 1px solid;
+    border-radius: 100%;
+}
+
+.chatcontent{
+    display: inline-block;
+}
+.chatprompt{
+    width: 900px;
+    height: 60px;
+    padding: 0px 20px 0px 20px;
+    position: absolute;
+    bottom: 0;
+    display: grid;
+    border-radius: 20px;
+    grid-template-columns: 50rem auto;
+}
+
+.msgprompt{
+    padding: 1px 10px 1px 10px;
+    font-size: 1rem;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+.chattime-righ{
+    position: relative;
+    left: 25rem;
+}
+.chatsendbutton{
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
