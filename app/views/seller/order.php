@@ -311,7 +311,7 @@ span {
                                 <div class="msg">
                                 <span>&#128680;</span>
                                     <h2 class="text_msg" id="com_msg">Are you sure ?</h2>
-                                    <h4 class="text_msg" id="text_msg">You can confirm this order and return withn the selling time petiod</h4>
+                                    <h4 class="text_msg" id="text_msg">You can confirm this order and return withn the selling time period</h4>
                                     <button class="order_con" btn_id="<?php echo $orderData -> product_no . 'b1' ?>" name="orderConfirm" type="submit"> Confirm</button>
                                 </div>
                             </div>
@@ -446,38 +446,6 @@ span {
         }
 
         
-        // $(document).ready(function(){
-        //     $("#b1").click(function(){
-        //         $.post("<?php echo URLROOT; ?>/sellers/order", {value: "orderConfirm"}, function(data){
-        //             console.log("Data: " + data);
-        //         });
-        //     });
-        // });
-
-        
-
-
-        function deletecat() {
-
-            // let id = e.parentNode.parentNode.children[0].innerHTML;
-            // let id = document.getElementById("b1").parentNode.parentNode.parentNode.children[0].innerHTML;
-            // alert(id);
-
-            // var ajax = new XMLHttpRequest();
-            // ajax.open("POST", "http://localhost/gardening_hub/Productcategories/delete", true);
-            // ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            // ajax.onreadystatechange = function () {
-            //     if (this.readyState == 4 && this.status == 200)
-            //         alert(this.responseText);
-            // };
-
-            // ajax.send("id=" + id);
-
-            // getData();
-            // return false;
-
-
-}
 
     </script>
 

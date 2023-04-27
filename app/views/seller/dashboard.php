@@ -55,6 +55,38 @@
             padding-bottom: 4px;
         }
 
+        .delete_alert{
+            width: 180px;
+            height: 250px;
+            align-content: center;
+            text-align: center;
+            border-radius: 10px;
+            background-color:rgba(178,161,167,0.47);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding-bottom: 4px;
+            z-index: 100;
+            position: absolute;
+            backdrop-filter: blur(20px);
+            visibility: hidden;
+        }
+
+        #delete_msg{
+            padding: 10px;
+            margin-top: 20px;
+            color: #e5e5e5;
+            font-weight: 1000;
+        }
+
+        .show_delete_alert {
+            visibility: visible;
+        }
+
+        .hide_delete_alert {
+            visibility: hidden;
+        }
+
         main{
             display: flex;
             gap:20px;
@@ -205,7 +237,30 @@
             border: 3px solid #FFFFFF;
             padding: 10px;
         }
+
+        i{
+            font-size: 40px;
+            padding: 15px;
+        }
+
+        #correct{
+            color: #00A778;
+            cursor: pointer;
+        }
         
+        #wrong{
+            color: #ff4c4c;
+            cursor: pointer;
+        }
+
+        .cr_btn{
+            border:none;
+            background: none;
+        }
+
+        i#correct:hover, i#correct:active {font-size: 350%;}
+        i#wrong:hover, i#wrong:active {font-size: 350%;}
+
     </style>
 
 
@@ -216,9 +271,11 @@
             <div class="catgeories">
                 <h4>Categories</h4>
                 <ul class="catlist">
-                    <li><input type="radio" class="radio" name="ch1" id="ch1" value="" checked>All</li>
+                    <li class="dddd"><input type="radio" class="all_items" name="ch1" id="ch1" value="" checked>All</li>
+                    <span class="checkmark"></span>
                     <?php foreach($data['catData'] as $cat_data) : ?>
-                        <li><input type="radio" class="radio" name="ch1" id="ch1" value="<?php echo $cat_data -> product_category; ?>"><?php echo $cat_data -> product_category; ?></li>
+                        <li class="dddd"><input type="radio" class="select_cat" name="ch1" id="select_cat" value="<?php echo $cat_data -> product_category; ?>"><?php echo $cat_data -> product_category; ?></li>
+                        <span class="checkmark"></span>
                     <?php endforeach; ?>
                 </ul>
 
@@ -236,6 +293,17 @@
                 
                 <?php foreach($data['itemData'] as $item_data) : ?>
                     <div class="sampleitem">
+                    <div class="delete_alert" id="<?php echo $item_data -> product_no .'delete_alert' ?>">
+                        <p id="delete_msg">Do you want to permanetly delete this item</p>
+                        <div class="icons">
+                            <button class="cr_btn" btn_id="<?php echo $item_data -> product_no .'correct' ?>" type="submit">
+                                <i id="correct" class="fa-solid fa-circle-check"></i>
+                            </button>
+                            <button class="cr_btn" btn_id="<?php echo $item_data -> product_no .'worng' ?>">
+                                <i id="wrong" class="fa-solid fa-circle-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
                         <div class="sampleimg">
                             <a href="<?php echo URLROOT."/sellers/show/". $item_data -> product_no ?>">
                                 <img src="<?=URLROOT;?>/img/upload_images/product_cover_photo/<?=$item_data->image;?>" alt="Image"> 
@@ -256,9 +324,7 @@
                         <div class="operations">
                             <button class="button" btn_id="<?php echo $item_data -> product_no .'update' ?>"
                             onclick="window.location.href='<?php echo URLROOT.'/sellers/update/'. $item_data -> product_no ?>';">Update</button>
-                            <button class="button del" btn_id="<?php echo $item_data -> product_no .'delete' ?>">Delete</button>
-                            <!-- <input type="button" class="button" value="Update" btn_id="<?php echo $item_data -> product_no .'update' ?>">
-                            <input type="button" class="button del" value="Delete" btn_id="<?php echo $item_data -> product_no .'delete' ?>"> -->
+                            <button class="button del" type="submit" btn_id="<?php echo $item_data -> product_no.'delete' ?>">Delete</button>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -267,32 +333,250 @@
     </main>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 <script>
-    $(document).ready(function(){
-        $('.radio').click(function(){
-            var radio_value = $('.radio:checked').val();
-            
-            if(radio_value != '') {
-                load_content("all", radio_value);
-            }
-            else {
-                load_content();
-            }
-            load_content();
-        });
+
+    // function ajax(div){
+    //     var delete_item_id = div.getAttribute("btn_id");
+    //     console.log(delete_item_id);
+    //     var ajax = new XMLHttpRequest();
+    //     ajax.onreadystatechange=function(){
+    //         if(this.readyState==4 && this.status==200){
+    //             console.log(this.responseText);
+    //         }
+    //     }
+    //     ajax.open("POST","../sellers/delete");
+    //     ajax.send("delete_item_id" + delete_item_id)
+
+
+    // }
+    $("button").click(function(){
+        var t = $(this).attr('btn_id');
+        if(t.includes('delete')) {
+            var delete_item_id = t.replace('delete', '');
+            var delete_msg = delete_item_id.concat("delete_alert");
+            let del = document.getElementById(delete_msg);
+            del.classList.add("show_delete_alert");
+            // var request = new XMLHttpRequest();
+            // var url = "http://localhost/gardening_hub/sellers/delete_item";
+            // var method = "POST";
+            // request.open(method, url, true);
+            // request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            // request.send("delete_item_id=" + delete_item_id);
+            // alert(delete_item_id);
+            // window.location.reload();
+        } else if(t.includes('correct')){
+            var delete_item_id = t.replace('correct', '');
+            var request = new XMLHttpRequest();
+            var url = "http://localhost/gardening_hub/sellers/delete_item";
+            var method = "POST";
+            request.open(method, url, true);
+            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.send("delete_item_id=" + delete_item_id);
+            alert(delete_item_id);
+            window.location.reload();
+        } else if(t.includes('worng')){
+            var delete_item_id = t.replace('worng', '');
+            var delete_msg = delete_item_id.concat("delete_alert");
+            let del = document.getElementById(delete_msg);
+            del.classList.add("hide_delete_alert");
+            window.location.reload();
+        }
     })
 
-    function load_content(type, radio_value) {
-        $.ajax({
-            url: "http://localhost/gardening_hub/Seller",
-            method: "POST",
-            data: {type: type, radio_value: radio_value},
-            success: function(data) {
-                $('tbody').html(data);
-            }
+    // $("button").click(function(){
+    //     var t = $(this).attr('btn_id');
+    //     if(t.includes('delete')) {
+    //         var delete_item_id = t.replace('delete', '');
+    //         // var delete_msg = delete_item_id.concat("delete_alert");
+    //         var request = new XMLHttpRequest();
+    //         var url = "http://localhost/gardening_hub/sellers/delete_item";
+    //         var method = "POST";
+    //         request.open(method, url, true);
+    //         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    //         request.send("delete_item_id=" + delete_item_id);
+    //         alert(delete_item_id);
+    //         window.location.reload();
+    //     }
+    // })
+
+
+    // $(document).ready(function(){
+    //     $('.radio').click(function(){
+    //         var radio_value = $('.radio:checked').val();
+    //         alert(radio_value);
+    //         var request = new XMLHttpRequest();
+    //         var url = "http://localhost/gardening_hub/sellers/radio_select";
+    //         var method = "POST";
+    //         request.open(method, url, true);
+    //         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    //         request.send("radio_value=" + radio_value);
+    //     });
+    // })
+    
+    // let selected_radio = document.querySelector(".all_items");
+    // let change_area = document.querySelector(".itemgrid");
+
+    // selected_radio.addEventListener("change", function()
+    // {
+    //     let httpRequest = new XMLHttpRequest();
+    //     let selected_category = this.value;
+
+    //     httpRequest.onreadystatechange = function()
+    //     {
+    //         if(this.readyState == 4 && this.status == 200)
+    //         {
+    //             let response = JSON.parse(this.responseText);
+    //             let search_result = "";
+    //             if(response.length == 0)
+    //             {
+    //                 search_result += `
+    //                     <div class='empty_record' >
+    //                         <h2>Items can not found</h2>
+    //                     </div>
+    //                 `;
+    //             }
+    //             else
+    //             {
+    //                 for(let item of response){
+    //                     search_result += `
+    //                     <div class="sampleitem">
+    //                 <div class="delete_alert" id="${item.product_no}delete_alert">
+    //                     <p id="delete_msg">Do you want to permanetly delete this item</p>
+    //                     <div class="icons">
+    //                         <button class="cr_btn" btn_id="${item.product_no}correct" type="submit">
+    //                             <i id="correct" class="fa-solid fa-circle-check"></i>
+    //                         </button>
+    //                         <button class="cr_btn" btn_id="${item.product_no}worng">
+    //                             <i id="wrong" class="fa-solid fa-circle-xmark"></i>
+    //                         </button>
+    //                     </div>
+    //                 </div>
+    //                     <div class="sampleimg">
+    //                         <a href="http://localhost/gardening_hub/sellers/show/${item.product_no}">
+                            
+    //                             <img src="http://localhost/gardening_hub/sellers/show/${item.image}" alt="Image"> 
+    //                         </a>
+    //                     </div>
+    //                     <h4>${item.title}h4>
+                        
+    //                     <div class="ratings">
+    //                         <span class="fa fa-star checked"></span>
+    //                         <span class="fa fa-star checked"></span>
+    //                         <span class="fa fa-star checked"></span>
+    //                         <span class="fa fa-star"></span>
+    //                         <span class="fa fa-star"></span>
+    //                     </div>
+                       
+    //                     <div class="price">
+    //                         <span>Price <stron>${item.price}</stron></span>
+    //                     </div>
+    //                     <div class="operations">
+    //                         <button class="button" btn_id="${item.price}update"
+    //                         onclick="window.location.href='http://localhost/gardening_hub/sellers/update/${item.product_no}';">Update</button>
+                            
+    //                         <button class="button del" type="submit" btn_id="${item.product_no}delete">Delete</button>
+    //                     </div>
+    //                 </div>
+    //                     `;
+    //                 }
+    //             }
+    //             container.innerHTML = search_result;
+    //         };
+    //     }
+    //     httpRequest.open('POST', "http://localhost/gardening_hub/sellers/radio_select", true);
+    //     httpRequest.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+    //     httpRequest.send("category="+selected_category);
+    //     alert(selected_category);
+    // });
+
+    let change_area = document.querySelector(".itemgrid");
+
+    document.addEventListener('DOMContentLoaded', function () {
+    var radioButtons = document.querySelectorAll('.select_cat');
+    console.log(radioButtons);
+    radioButtons.forEach(function (radio) {
+    radio.addEventListener("change", function () {
+      var radioValue = document.querySelector('.select_cat:checked').value;
+    //   alert(radioValue);
+
+      let httpRequest = new XMLHttpRequest();
+      httpRequest.onreadystatechange = function()
+        {
+            if(this.readyState == 4 && this.status == 200)
+            {
+                let response = JSON.parse(this.responseText);
+                let search_result = "";
+                if(response.length == 0)
+                {
+                    search_result += `
+                        <div class='empty_record' >
+                            <h2>Items can not found</h2>
+                        </div>
+                    `;
+                }
+                else
+                {
+                    for(let item of response){
+                        search_result += `
+                        <div class="sampleitem">
+                        <div class="delete_alert" id="${item.product_no}delete_alert">
+                        <p id="delete_msg">Do you want to permanetly delete this item</p>
+                        <div class="icons">
+                            <button class="cr_btn" btn_id="${item.product_no}correct" type="submit">
+                                <i id="correct" class="fa-solid fa-circle-check"></i>
+                            </button>
+                            <button class="cr_btn" btn_id="${item.product_no}worng">
+                                <i id="wrong" class="fa-solid fa-circle-xmark"></i>
+                            </button>
+                        </div>
+                    </div>
+                        <div class="sampleimg">
+                            <a href="http://localhost/gardening_hub/sellers/show/${item.product_no}">
+                            
+                                <img src="http://localhost/gardening_hub/img/upload_images/product_cover_photo/${item.image}" alt="Image"> 
+                                
+                            </a>
+                        </div>
+                        <h4>${item.title}</h4>
+                        
+                        <div class="ratings">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                       
+                        <div class="price">
+                            <span>Price <stron>${item.price}</stron></span>
+                        </div>
+                        <div class="operations">
+                            <button class="button" btn_id="${item.product_no}update"
+                            onclick="window.location.href='http://localhost/gardening_hub/sellers/update/${item.product_no}';">Update</button>
+                            
+                            <button class="button del" type="submit" btn_id="${item.product_no}delete">Delete</button>
+                        </div>
+                    </div>
+                        `;
+                    }
+                }
+                change_area.innerHTML = search_result;
+            };
+        }
+        httpRequest.open('POST', "http://localhost/gardening_hub/sellers/radio_select", true);
+        httpRequest.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+        httpRequest.send("category="+radioValue);
+        // alert(radioValue);
+    });
+  });
+});
+
+        let selected_radio = document.querySelector(".all_items");
+        selected_radio.addEventListener("change", function(){
+            window.location.reload();
         });
-    }
+
 </script>
 
     <?php require APPROOT . '/views/inc/incSeller/footer.php'; ?>

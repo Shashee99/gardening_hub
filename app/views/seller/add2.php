@@ -313,11 +313,16 @@
             text-decoration:none;
             margin-left: 500px;
         }
+
+        #cat, #subcat{
+            display: none;
+        }
     </style>
+
+
 </head>
 
 <body>
-
 <div class="container">
     <nav>
         <div class="logo"></div>
@@ -334,12 +339,12 @@
     </nav>
 
     <main>
-    <form action="<?php echo URLROOT; ?>/sellers/add2" method="post">
+    <!-- <form action="<?php echo URLROOT; ?>/sellers/add2" method="post"> -->
             <section class="additem2" id="additem2">
                 <div class="inputgroup">
                 <form action="<?php echo URLROOT; ?>/sellers/add2" method="post" >
-                    <input type="text" name="cat" value="<?= $data['selected_category'] ;?>  "hidden>
-                    <input type="text" name="subcat" value="<?= $data['selected_subcategory'];?>  " hidden>
+                    <input type="text" name="cat" id="cat" value="<?= $data['selected_category'] ;?>  "hidden>
+                    <input type="text" name="subcat" id="subcat" value="<?= $data['selected_subcategory'];?>  " hidden>
         <div>
             <label for="title">Title</label><br>
             <input type="text" name="title" id="title" value="<?php echo $data['title']; ?>">
@@ -373,11 +378,10 @@
 
                 </div>
             </section>
-            </form>
+            <!-- </form> -->
     </main>
 
 </div>
-
 </body>
 
 </html>

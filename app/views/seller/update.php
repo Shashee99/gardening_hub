@@ -157,24 +157,32 @@ h3 {
 
 </style>
 <!-- --------------------------------------------------------------- -->
+
+<form action="<?php echo URLROOT; ?>/sellers/update/<?php echo $data['id']; ?>" method="post" enctype="multipart/form-data">
 <div class="infopart">
         <div class="container">
             <div class="productInfo1" >
                 <div onmousemove="icon_hide()">
                     <div class="name" id="name">
-                        <h2 ><?php echo $data['itemData'] -> title ?></h2>
+                        <input type="text" name="title" value="<?php echo $data['title']; ?>">
                     </div>
                     <div class="edit_icon" id="title_edit">
                         <i class="fa-solid fa-pencil" id="pencil"></i>
                     </div>
                 </div>
-                <img src="<?= URLROOT;?>/img/upload_images/product_cover_photo/<?= $data['itemData'] -> image;?>" alt="Image" class="proimage">
+                <img src="<?= URLROOT;?>/img/upload_images/product_cover_photo/<?= $data['image'];?>" alt="Image" class="proimage">
+                <div id="coverphoto">
+                    <label for="image"><i class="fa-solid fa-upload"></i><br>Cover Photo</label>
+                    <input type="file" name="image" id="image"><br>
+                    <p class="error image_err" style="color:red"> <?php echo '* '.$data['image_err']; ?> </p>
+                </div>
                 <div class="proinfo">
                     <div class="ads">
                     <h3>Rs. </h3>
                         <div>
                             <div class="priceTag" id="priceTag">
-                                <h3 ><?php echo $data['itemData'] -> price ?></h3>
+                                <!-- <h3 ><?php echo $data['price']; ?></h3> -->
+                                <input type="text" name="price" value="<?php echo $data['price']; ?>">
                             </div>
                             <div class="edit_icon" id="price_edit">
                                 <i class="fa-solid fa-pencil" id="pencil"></i>
@@ -198,7 +206,8 @@ h3 {
             <div class="productInfo2" onmousemove="icon_hide()">
                 <div class="productdetails">
                     <p class="disc" id="disc">
-                    <?php echo $data['itemData'] -> description ?>
+                    <!-- <?php echo $data['itemData'] -> description ?> -->
+                    <input type="text" name="description" value="<?php echo $data['description']; ?>">
                     </p>
                     <div class="edit_icon" id="description_edit">
                         <i class="fa-solid fa-pencil" id="pencil"></i>
@@ -206,14 +215,22 @@ h3 {
                 </div>
                 <div class="coverPhotos">
                     <img src="<?= URLROOT;?>/img/upload_images/product_photos/<?= $data['productImg'][0] -> image_name?>" alt="img1" class="cp">
-                    <img src="<?= URLROOT;?>/img/upload_images/product_photos/<?= $data['productImg'][1] -> image_name?>" alt="img1" class="cp">
-                    <img src="<?= URLROOT;?>/img/upload_images/product_photos/<?= $data['productImg'][2] -> image_name?>" alt="img1" class="cp">
-                    <img src="<?= URLROOT;?>/img/upload_images/product_photos/<?= $data['productImg'][3] -> image_name?>" alt="img1" class="cp">
+                    <img src="<?= URLROOT;?>/img/upload_images/product_photos/<?= $data['productImg'][1] -> image_name?>" alt="img2" class="cp">
+                    <img src="<?= URLROOT;?>/img/upload_images/product_photos/<?= $data['productImg'][2] -> image_name?>" alt="img3" class="cp">
+                    <img src="<?= URLROOT;?>/img/upload_images/product_photos/<?= $data['productImg'][3] -> image_name?>" alt="img4" class="cp">
+                </div>
+                <div class="samplephotoare">
+                    <label for="cover_photo"><i class="fa-solid fa-upload"></i><br>Other Photo</label>
+                    <input type="file" name="cover_photos[]" id="cover_photo" multiple>
+                    <p class="error photo_err" style="color:red"> <?php echo '* '.$data['photo_err']; ?> </p>
+                    <br>
                 </div>
             </div>
         </div>
-        <button id="save_buton">Save</button>
+        <!-- <button id="save_buton" type="submit" name="submit">Save</button> -->
+        <input type="submit" name="submit" value="Save">
     </div>
+</form>
 
 
 <script>
@@ -246,7 +263,8 @@ h3 {
         var editable = $(this).parent('div');
         $(this).parent('div').attr('contenteditable', 'true');
         $(this).focus();
-    })
+    });
+
 </script>
 
 <?php require APPROOT . '/views/inc/incSeller/footer.php'; ?>

@@ -24,31 +24,13 @@ class Sellers extends Controller{
     }
 
     public function add1() {
+        error_reporting(E_ERROR | E_PARSE);
         if($_SERVER ['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = [
+                'product_id' => '',
                 'selected_category' => trim($_POST['category']),
                 'selected_subcategory' => trim($_POST['subcat']),
-                'category' => '',
-                'subcategory' => '',
-                'title' => '',
-                'quantity' => '',
-                'description' => '',
-                'price' => '',
-                'title_err' => '',
-                'quantity_err' => '',
-                'price_err' => ''
-
-
-            ];
-            $this->view('seller/add2',$data);
-//            redirect('seller/add2?datas=$data');
-        }
-        else{
-
-            $data = [
-//                'selected_category' => trim($_POST['']),
-//                'selected_subcategory' => trim($_POST['']),
                 'category' => $this->categoryModel->categorydetails(),
                 'subcategory' => '',
                 'title' => '',
@@ -57,7 +39,33 @@ class Sellers extends Controller{
                 'price' => '',
                 'title_err' => '',
                 'quantity_err' => '',
-                'price_err' => ''
+                'price_err' => '',
+                'cat_err' => ''
+            ];
+
+            if(empty($data['selected_category']) && empty($data['selected_subcategory'])){
+                $data['cat_err'] = '* Please enter Ctegory and Subcategory';
+            }
+            if(empty($data['cat_err'])){
+                $this->view('seller/add2',$data);
+            }
+            else {
+                $this->view('seller/add1',$data);
+            }
+        } 
+        else{
+
+            $data = [
+                'category' => $this->categoryModel->categorydetails(),
+                'subcategory' => '',
+                'title' => '',
+                'quantity' => '',
+                'description' => '',
+                'price' => '',
+                'title_err' => '',
+                'quantity_err' => '',
+                'price_err' => '',
+                'cat_err' => ''
 
             ];
             $this->view('seller/add1',$data);
@@ -69,19 +77,20 @@ class Sellers extends Controller{
     }
 
     public function add2() {
-
+        error_reporting(E_ERROR | E_PARSE);
         if($_SERVER ['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
                 'product_id' => '',
-                'category' => $_POST['cat'],
-                'subcategory' => $_POST['subcat'],
+                'selected_category' => $_POST['cat'],
+                'selected_subcategory' => $_POST['subcat'],
                 'title' => trim($_POST['title']),
                 'quantity' => trim($_POST['quantity']),
                 'description' => trim($_POST['description']),
                 'price' => trim($_POST['price']),
                 'title_err' => '',
+                'cat_err' => '',
                 'quantity_err' => '',
                 'price_err' => '',
                 'image' => '',
@@ -102,21 +111,29 @@ class Sellers extends Controller{
             }
 
             if(empty($data['title_err']) && empty($data['quantity_err']) && empty($data['price_err'])) {
+                
 //                price_err$this -> sellerModel -> add2($data);
 //                redirect('sellers/add3');
                  $this -> view('seller/add3', $data);
             } else {
+                
                 $this -> view('seller/add2', $data);
             }
         } else {
             $data = [
-                'title' => '',
-                'quantity' => '',
-                'description' => '',
-                'price' => '',
+                'product_id' => '',
+                'selected_category' => $_POST['cat'],
+                'selected_subcategory' => $_POST['subcat'],
+                'title' => trim($_POST['title']),
+                'quantity' => trim($_POST['quantity']),
+                'description' => trim($_POST['description']),
+                'price' => trim($_POST['price']),
                 'title_err' => '',
+                'cat_err' => '',
                 'quantity_err' => '',
-                'price_err' => ''
+                'price_err' => '',
+                'image' => '',
+                'image_err' => ''
             ];
 
             $this->view('seller/add2', $data);
@@ -150,13 +167,14 @@ class Sellers extends Controller{
             //Init data
             $data = [
                 'product_id' => $product_id,
-                'category' => $_POST['cat'],
-                'subcategory' => $_POST['subcat'],
+                'selected_category' => $_POST['cat'],
+                'selected_subcategory' => $_POST['subcat'],
                 'title' => trim($_POST['title']),
                 'quantity' => trim($_POST['quantity']),
                 'description' => trim($_POST['description']),
                 'price' => trim($_POST['price']),
                 'image' => $fileNameNew,
+                // There is a mistake................................
                 'image_err' => '',
                 'photo_err' => ''
             ];
@@ -238,7 +256,9 @@ class Sellers extends Controller{
                 'image' => '',
                 'photo' =>'',
                 'image_err' => '',
-                'photo_err' => ''
+                'photo_err' => '',
+                'selected_category' => $_POST['cat'],
+                'selected_subcategory' => $_POST['subcat'],
             ];
 
             //Load view
@@ -334,26 +354,198 @@ class Sellers extends Controller{
         }
     }
 
-    public function update($id) {
-        $itemData = $this -> sellerModel -> getItemById($id);
-        $productImg = $this -> sellerModel -> getProductImages($id); 
+    // public function update($id) {
+    //     $itemData = $this -> sellerModel -> getItemById($id);
+    //     $productImg = $this -> sellerModel -> getProductImages($id); 
 
+    //     $data = [
+    //         'itemData' => $itemData,
+    //         'productImg' => $productImg,
+    //         'image_err' => '',
+    //         'photo_err' => ''
+    //     ]; 
+
+    //     $this->view('seller/update', $data);
+    // }
+
+    public function update($id) {
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+            $fileName = $_FILES['image']['name'];
+            $fileTmpName = $_FILES['image']['tmp_name'];
+            $fileSize = $_FILES['image']['size'];
+            $fileError = $_FILES['image']['error'];
+            $fileType = $_FILES['image']['type'];
+
+
+            $fileExt = explode('.', $fileName);
+            $fileActualExt = strtolower(end($fileExt));
+            $fileNameNew = uniqid('',true).".".$fileActualExt;
+            $fileDestinatio = PUBROOT . '/public/img/upload_images/product_cover_photo/'. $fileNameNew;
+            move_uploaded_file($fileTmpName, $fileDestinatio);
+
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            // $product_id = ($this ->categoryModel->getproductid( $_POST['cat'], $_POST['subcat']))->product_id ;
+            $productImg = $this -> sellerModel -> getProductImages($id);
+            $itemData = $this -> sellerModel -> getItemById($id);
+            $data1 = [
+                // 'product_id' => $product_id,
+                'id' => $id,
+                'title' => trim($_POST['title']),
+                'price' => trim($_POST['price']),
+                'description' => trim($_POST['description']),
+                'seller_id' => $_SESSION['user_id'],
+                'image' => $fileNameNew,
+                'productImg' => $productImg,
+                'image_err' => '',
+                'photo_err' => ''    
+            ];
+
+            $allowedTypes = [
+                'image/png' => 'png',
+                'image/jpeg' => 'jpg',
+                'application/pdf' => 'pdf'
+            ];
+
+            if($fileSize === 0) {
+                // $data1['image_err'] = 'Please attach Image';
+                $data1['image'] = $itemData -> image;
+            } elseif($fileSize > 10000000){
+                $data1['image_err'] = 'Image is too large';
+            } elseif(!in_array($fileType, array_keys($allowedTypes))){
+                $data1['image_err'] = 'File not allowed';
+            }
+
+            $filesname = array_filter($_FILES['cover_photos']['name']);
+            $multifileSize = sizeof($_FILES['cover_photos']['name']) ;
+            $filecount = count($_FILES['cover_photos']['name']);
+            $totsize = 0;
+
+            
+
+            if($multifileSize == 0)
+            {
+                $data1['photo_err'] = 'Used the previous images';
+            }
+
+            else {
+
+                if($filecount>4)
+                {
+                    $data1['photo_err'] = 'Can not upload more than 4 images';
+                }
+
+                $type = array ('png', 'jpg', 'jpeg');
+
+                $photo = array();
+                foreach($_FILES['cover_photos']['name'] as $key => $value)
+                {
+                    $img_name = $_FILES['cover_photos']['name'][$key];
+                    $img_type = strtolower(pathinfo($img_name, PATHINFO_EXTENSION));
+                    $totsize += $_FILES['cover_photos']['size'] [$key];
+
+
+                    if($img_type != $type[0]  && $img_type != $type[1] && $img_type != $type[2])
+                    
+                    {
+                        $data1['photo_err'] = 'Image type should be png or jpeg or jpg';
+                        break;
+                    }
+
+                }
+
+                if($totsize > 8388608)
+                {
+                    $data1['photo_err'] = 'Images size should be less than 8MB';
+                }
+
+                //Make sure errors are empty
+                if(empty($data1['image_err']) && empty($data1['photo_err'])){
+                    foreach($_FILES['cover_photos']['name'] as $key => $value) {
+                        $img_name = $_FILES['cover_photos']['name'][$key];
+                        $tmp_name = $_FILES['cover_photos']['tmp_name'][$key];
+                        $img_type = strtolower(pathinfo($img_name, PATHINFO_EXTENSION));
+                        $new_img = uniqid('IMG-', true) . '.' . $img_type;
+                        $img_upload_path = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/product_photos/' . $new_img;
+                        move_uploaded_file($tmp_name, $img_upload_path);
+                        array_push($photo, $new_img);
+                    }
+
+                    if($this -> sellerModel -> updateProductDetails($data1,$photo)) { 
+                        redirect('sellers/dashboard');
+                    } else {
+                        die('Something went wrong');
+                    }
+                } else {
+                    //Load view with errors
+                    $this->view('seller/update', $data1);
+                }
+            }
+
+    } else {
+        $itemData = $this -> sellerModel -> getItemById($id);
+        $productImg = $this -> sellerModel -> getProductImages($id);
+        if($itemData -> seller_id != $_SESSION['user_id']){
+            redirect('sellers/dashboard');
+        }
         $data = [
-            'itemData' => $itemData,
-            'productImg' => $productImg
-        ];
+            'id' => $id,
+            'title' => $itemData -> title,
+            'price' => $itemData -> price,
+            'description' => $itemData -> description,
+            'image' => $itemData -> image,
+            'productImg' => $productImg,
+            'image_err' => '',
+            'photo_err' => ''
+        ]; 
 
         $this->view('seller/update', $data);
     }
 
-    // public function delete(){
-    //     $id = $_POST['id'];
-    //     $result = $this->categoryModel->delete($id);
-    //     if ($result){
-    //         echo "Deleted Succefully";
-    //     }else{
-    //         die("something went wrong");
-    //     }
-
-    // }
+    
 }
+
+public function delete_item(){
+    echo("nhghcnhhgcmh");
+    $delete_item_id = $_POST['delete_item_id'];
+    $this->sellerModel->delete($delete_item_id);
+    header('Location: /gardening_hub/sellers/dashboard');
+
+    }
+
+public function radio_select(){
+    $radio_value = $_POST['category'];
+    $selected_radio_items = $this -> sellerModel -> getSelectedRadioItems($radio_value);
+    // $selected_radio_cat = $this -> sellerModel -> getSelectedRadioCats($radio_value);
+    
+    foreach($selected_radio_items as $item)
+    {
+        $product_no = $item -> product_no;
+        $image = $item -> image;
+        $title = $item -> title;
+        $price = $item -> price;
+
+        $data[] = array(
+            'product_no' => $product_no,
+            'image' => $image,
+            'title' => $title,
+            'price' => $price
+        );
+    }
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
+}
+
+public function request_category(){
+    if($_SERVER ['REQUEST_METHOD'] == 'POST') {
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    }
+
+    $data = [
+        
+    ];
+}
+
+}
+
+
