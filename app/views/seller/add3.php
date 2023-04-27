@@ -384,8 +384,8 @@
                     <form action="<?php echo URLROOT; ?>/sellers/add3" method="post" class="imageForm" enctype="multipart/form-data">
 
 
-                        <input type="text" name="cat" value="<?= $data['category']?>" hidden>
-                        <input type="text" name="subcat" value="<?= $data['subcategory']?>" hidden>
+                        <input type="text" name="cat" value="<?= $data['selected_category']?>" hidden>
+                        <input type="text" name="subcat" value="<?= $data['selected_subcategory']?>" hidden>
                         <input type="text" name="title" value="<?= $data['title']?>" hidden>
                         <input type="text" name="quantity" value="<?= $data['quantity']?>" hidden>
                         <input type="text" name="description" value="<?= $data['description']?>" hidden>

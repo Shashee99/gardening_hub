@@ -207,24 +207,81 @@ class Seller{
         $this -> db-> bind(':id',$id);
         $this->db->execute();
     }
-    public function sellerLicense($id)
-    {
-        $sql = "SELECT * FROM seller_license WHERE seller_id = :seller_id";
-        $this->db->query($sql);
-        $this->db->bind(':seller_id', $id);
-        $result = $this->db->resultSet();
-        return $result;
-    }
 
-    public function delete_seller($id){
+    // public function update($data1) {
+    //     $id =$_SESSION['user_id'];
+    //     $this -> db -> query('UPDATE seller_product_details 
+    //                           SET title = :title, price = :price, description = :description
+    //                           WHERE (seller_id = :id)');
 
-        $this -> db -> query('UPDATE seller SET isDeleted = 1 WHERE seller_id = :id;');
-        $this -> db -> bind(':id', $id);
+    //     $this -> db -> bind(':title' , $data1['title']);
+    //     $this -> db -> bind(':price' , $data1['price']);
+    //     $this -> db -> bind(':description' , $data1['description']);
+    //     $this -> db-> bind(':id',$id);
+    //     $this->db->execute();
+    // }
+
+    public function updateProductDetails($data1,$photo) {
+        $this -> db -> query('UPDATE seller_product_details 
+                              SET title = :title, 
+                                  price = :price, 
+                                  description = :description,
+                                  image = :image
+                              WHERE (product_no = :id)');
+        $this -> db -> bind(':id', $data1['id']);
+        $this -> db -> bind(':title', $data1['title']);
+        $this -> db -> bind(':price', $data1['price']);
+        $this -> db -> bind(':description', $data1['description']);
+        $this -> db -> bind(':image', $data1['image']);
         $this->db->execute();
-        $this -> db -> query('UPDATE user SET user_state = 2 WHERE user_id = :id;');
-        $this -> db -> bind(':id', $id);
-        $this->db->execute();
-    }
 
+        // $sql = 'SELECT * FROM seller_product_details WHERE seller_id = :seller_id ORDER BY product_no DESC LIMIT 1' ;
+        // $sql = 'SELECT * FROM product_photos WHERE product_no = :id' ;
+        // $this ->db ->query($sql);
+        // $this -> db -> bind(':id', $data1['id']);
+        // $res = $this -> db -> singleRecord();
+        // if($res) {
+
+        $this -> db -> query('DELETE FROM product_photos WHERE (product_no = :id)');
+        $this -> db-> bind(':id', $data1['id']);
+        $this->db->execute();
+        foreach ($photo as $photos){
+                $sql1 = 'INSERT INTO product_photos (product_no, image_name) VALUES (:id,:image_name)';
+                $this ->db ->query($sql1);
+                $this -> db -> bind(':id', $data1['id']);
+                $this ->db-> bind(':image_name',$photos);
+                $this -> db ->execute();
+            }
+            return true;
+        }
+
+        public function delete($delete_item_id) {
+            $this -> db -> query('DELETE FROM seller_product_details 
+                                  WHERE (product_no = :delete_item_id)');
+            
+            $this -> db -> bind(':delete_item_id', $delete_item_id);
+            $this->db->execute();
+        }
+            
+    
+        public function getSelectedRadioItems($radio_value) {
+            $id =$_SESSION['user_id'];
+            $this -> db -> query('SELECT * FROM seller_product_details 
+                                    INNER JOIN product_category
+                                    ON seller_product_details.category_id = product_category.product_id
+                                    WHERE product_category.product_category = :category_name 
+                                    AND seller_product_details.seller_id = :id 
+                                    ');
+            $this -> db-> bind(':category_name',$radio_value);
+            $this -> db-> bind(':id',$id);
+            $results = $this -> db -> resultSet();
+            return $results;
+        }
+
+        public function getSelectedRadioCats() {
+            $this -> db -> query('SELECT DISTINCT(product_category) FROM product_category');
+    
+            $catresults = $this -> db -> resultSet();
+            return $catresults;
+        }
 }
-
