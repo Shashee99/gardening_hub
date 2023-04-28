@@ -10,7 +10,6 @@
         </div>
 
         <div class="userinfo">
-
             <ul class="userinfo-list">
                 <li><b>Name of the Advisor : </b> <?=$data['advisor'] -> name; ?></li>
                 <li><b>Mobile Phone : </b> <?=$data['advisor'] -> tel_no; ?></li>
@@ -21,8 +20,6 @@
                     <a href="<?= URLROOT;?>/admins/deleteaadviser/<?= $data['advisor'] -> advisor_id;?>" class="delete" >Remove</a>
                 </li>
             </ul>
-
-
         </div>
     </div>
 

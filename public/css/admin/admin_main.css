@@ -924,6 +924,34 @@ hr {
     background-color: rgba(217,217,217,0.55);
 }
 
+/*new category request section */
+
+.requesttable{
+    border: 1px solid black;
+    height: 400px;
+    width: 300px;
+}
+
+.tableoptions{
+    width: max-content;
+    display: flex;
+}
+
+.tboption:hover{
+    background-color: var(--gray);
+}
+.tboption{
+    border: 1px solid black;
+    padding: 5px;
+    margin: 1px 5px ;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.profileandname{
+    display: grid;
+    grid-template-columns: 40px auto;
+}
 
 
 
