@@ -7,9 +7,10 @@
             <p> <strong>Items  : </strong><?= $data['request'] -> items ?></p>
             <p> <strong><u>Description</u></strong><br><?= $data['request'] -> description ?></p><br>
             <div class="reqactions parentwidth">
-                <a class="view parentwidth">Add new type</a>
-                <a class="view parentwidth">Back</a>
-                <a class="delete">Reject</a>
+                <a id="reqnewadd" class="view parentwidth">Add new type</a>
+                <a href="<?=URLROOT;?>/admins/newproductcategories" class="view parentwidth">Back</a>
+                <a id="reqnewdonebutton" href="<?=URLROOT;?>/admins/newproductcategories_markasdone/<?= $data['reqid'];?>" class="view disabled parentwidth">Done</a>
+                <a href="<?=URLROOT;?>/admins/newproductcategories_markasrejected/<?= $data['reqid'];?>" class="delete <?php echo (($data['request']->status =='Done'|| $data['request']->status =='Canceled') ? 'disabled' : '')?>">Reject</a>
             </div>
         </div>
     </div>

@@ -16,14 +16,18 @@ class ProductCategories extends Controller{
         $cat = $_POST['category'];
         $subcat = $_POST['subcategory'];
 
+//        add new categories to table
         $result = $this->categoryModel->insertcat($cat,$subcat);
         if ($result){
-
+            // Clear the category and subcategory variables from the $_POST array
+            unset($_POST['category']);
+            unset($_POST['subcategory']);
         }else{
             die("something went wrong");
         }
-
     }
+
+
     public function update(){
         $id=$_POST['id'];
         $cat = $_POST['cat'];
@@ -32,6 +36,9 @@ class ProductCategories extends Controller{
         $result = $this->categoryModel->updatecat($id,$cat,$subcat);
         if ($result){
             echo "Updated Succefully!";
+            unset($_POST['id']);
+            unset($_POST['cat']);
+            unset($_POST['subcat']);
         }else{
             die("something went wrong");
         }
@@ -42,6 +49,7 @@ class ProductCategories extends Controller{
         $result = $this->categoryModel->delete($id);
         if ($result){
             echo "Deleted Succefully";
+            unset($_POST['id']);
         }else{
             die("something went wrong");
         }
@@ -53,6 +61,7 @@ class ProductCategories extends Controller{
 
         if ($result){
             echo json_encode($result);
+            unset($_POST['category']);
         }else{
             die("something went wrong");
         }

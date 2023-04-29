@@ -961,7 +961,7 @@ hr {
     position: relative;
     margin: 10px auto;
     padding:20px;
-    box-shadow: 1px 2px 1px 1px #dddddd;
+    box-shadow: 1px 2px 7px 4px #dddddd;
     overflow: auto;
 }
 .req-shopname p{
@@ -974,10 +974,13 @@ hr {
 .reqactions a{
     margin-bottom: 10px;
 }
-
-.req-description{
-
-
+a.disabled {
+    pointer-events: none;
+    opacity: 0.5; /* optional, adds visual cue that the button is disabled */
 }
 
+/*#reqnewadd{*/
+/*    position: relative;*/
+/*    z-index: 999;*/
+/*}*/
 

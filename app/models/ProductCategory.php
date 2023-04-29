@@ -104,7 +104,7 @@ class ProductCategory{
     public function getnewcategoryrequests_cancel(){
         $sql = 'SELECT * FROM new_product_category INNER JOIN seller ON new_product_category.seller_id = seller.seller_id WHERE seller.is_registered = 1 AND seller.isDeleted = 0 AND new_product_category.status = :st ';
         $this->db ->query($sql);
-        $this ->db ->bind(':st','Cancelled');
+        $this ->db ->bind(':st','Canceled');
         $dataset = $this->db->resultSet();
         return $dataset;
     }
@@ -115,6 +115,31 @@ class ProductCategory{
         $this->db-> bind(':id',$id);
         $result = $this ->db->singleRecord();
         return $result;
+    }
+
+    public function markasdone($id){
+        $sql = 'UPDATE new_product_category SET status = "Done" WHERE req_id = :id';
+        $this->db ->query($sql);
+        $this->db-> bind(':id',$id);
+        $result = $this->db->execute();
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+    public function markasrejected($id){
+        $sql = 'UPDATE new_product_category SET status = "Canceled" WHERE req_id = :id';
+        $this->db ->query($sql);
+        $this->db-> bind(':id',$id);
+        $result = $this->db->execute();
+        if($result){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
 

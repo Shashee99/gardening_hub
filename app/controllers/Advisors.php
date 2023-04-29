@@ -6,7 +6,6 @@
 
         public function __construct()
         {
-
             if (!isAdvisorLogin()) {
                 if(!isset($_SESSION['cus_id']))
                 {

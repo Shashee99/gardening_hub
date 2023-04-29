@@ -513,15 +513,38 @@ class Admins extends Controller
         $result = $this -> productcatModel -> getnewcategoryrequestsbyreqid($id);
 
         $data = [
+            'reqid'=> $id,
             'request' => $result,
             'nav' => 'categories',
             'title' => 'Product categories',
-            'jsfile' => 'admin_complaint.js'
+            'jsfile' => 'admin_reqnewcategories.js'
         ];
 
         $this->view('admin/viewnewcategoryrequest',$data);
 
     }
+
+    public function newproductcategories_markasdone($id){
+        $result = $this -> productcatModel -> markasdone($id);
+        if($result){
+            redirect('admins/newproductcategories');
+        }
+        else{
+            die('error occured!');
+        }
+
+    }
+    public function newproductcategories_markasrejected($id){
+        $result = $this -> productcatModel -> markasrejected($id);
+        if($result){
+            redirect('admins/newproductcategories');
+        }
+        else{
+            die('error occured!');
+        }
+
+    }
+
 
 
 }

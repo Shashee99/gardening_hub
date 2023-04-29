@@ -5,7 +5,7 @@
     <a href="<?= URLROOT;?>/admins/newproductcategories"  class="tboption"> <i class="fas fa-inbox"></i> All</a>
     <a href="<?= URLROOT;?>/admins/newproductcategories_pending" class="tboption"> <i class="fas fa-hourglass-end"></i> Pending</a>
     <a href="<?= URLROOT;?>/admins/newproductcategories_done"  class="tboption"> <i class="far fa-check-circle"></i> Done</a>
-    <a href="<?= URLROOT;?>/admins/newproductcategories_cancelled"  class="tboption"> <i class="fas fa-ban"></i> Cancelled</a>
+    <a href="<?= URLROOT;?>/admins/newproductcategories_cancelled"  class="tboption"> <i class="fas fa-ban"></i> Canceled</a>
 </div>
 </div>
 <hr>

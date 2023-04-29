@@ -5,7 +5,7 @@
     <a href="<?= URLROOT;?>/admins/newproductcategories"  class="tboption"> <i class="fas fa-inbox"></i> All</a>
     <a href="<?= URLROOT;?>/admins/newproductcategories_pending" class="tboption"> <i class="fas fa-hourglass-end"></i> Pending</a>
     <a href="<?= URLROOT;?>/admins/newproductcategories_done"  class="tboption"> <i class="far fa-check-circle"></i> Done</a>
-    <a href="<?= URLROOT;?>/admins/newproductcategories_cancelled"  class="tboption"> <i class="fas fa-ban"></i> Cancelled</a>
+    <a href="<?= URLROOT;?>/admins/newproductcategories_cancelled"  class="tboption"> <i class="fas fa-ban"></i> Canceled</a>
 </div>
 </div>
 <hr>
@@ -32,7 +32,7 @@
                     </td>
                     <td><?php echo $row -> date ?></td>
                     <td><?php echo $row -> status ?></td>
-                    <td><a class="view">View</a></td>
+                    <td><a href="<?= URLROOT;?>/admins/viewnewcategoryrequest/<?php echo $row->req_id ?>" class="view">View</a></td>
                 </tr>
             <?php endforeach; ?>
         <?php else : ?>

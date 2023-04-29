@@ -76,9 +76,7 @@
             }else{
                 die("something went wrong");
             }
-
         }
-
 
        
     }

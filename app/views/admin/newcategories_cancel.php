@@ -5,7 +5,7 @@
     <a href="<?= URLROOT;?>/admins/newproductcategories"  class="tboption"> <i class="fas fa-inbox"></i> All</a>
     <a href="<?= URLROOT;?>/admins/newproductcategories_pending" class="tboption"> <i class="fas fa-hourglass-end"></i> Pending</a>
     <a href="<?= URLROOT;?>/admins/newproductcategories_done"  class="tboption"> <i class="far fa-check-circle"></i> Done</a>
-    <a href="<?= URLROOT;?>/admins/newproductcategories_cancelled"  class="tboption"> <i class="fas fa-ban"></i> Cancelled</a>
+    <a href="<?= URLROOT;?>/admins/newproductcategories_cancelled"  class="tboption"> <i class="fas fa-ban"></i> Canceled</a>
 </div>
 </div>
 <hr>
@@ -26,16 +26,13 @@
                     <td><?php echo $i++ ?></td>
                     <td style="text-align: left;">
                         <div class="profileandname" >
-                            <img class="reqprofileimage" src="http://localhost/gardening_hub/img/upload_images/seller_pp/img-seller643fde8de6d8f5.13372545." alt="userimg" width="30px" height="30px">
-                            <h5>ShGroww</h5>
-                        </div>
                             <img class="reqprofileimage" src="http://localhost/gardening_hub/img/upload_images/seller_pp/<?php echo $row -> photo ?>" alt="userimg" width="30px" height="30px">
                             <h5><?php echo $row -> shop_name ?></h5>
                         </div>
                     </td>
                     <td><?php echo $row -> date ?></td>
                     <td><?php echo $row -> status ?></td>
-                    <td><a class="view">View</a></td>
+                    <td><a href="<?= URLROOT;?>/admins/viewnewcategoryrequest/<?php echo $row->req_id ?>" class="view">View</a></td>
                 </tr>
             <?php endforeach; ?>
         <?php else : ?>
