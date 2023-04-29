@@ -12,10 +12,8 @@
             }
 
             $this->advisorModel = $this->model('Advisor');
+            $this ->problemModel = $this -> model('Problem');
          
-
-
-
         }
         public function allregadvisors(){
             $tabledata = $this->advisorModel->all_registered_advisors();
@@ -258,11 +256,65 @@
 
     // chat function ------------------------------------
       public function problem_chat(){
-         $data=[];
+
+         $problems = $this->problemModel ->viewallProblem();
+
+         foreach($problems as $rows)
+            {
+                $problem_photos = array();
+                $photos = $this->problemModel->problemPhotosById($rows->problem_id);
+                foreach($photos as $photo)
+                {
+                    $problem_photos[] = $photo->image;
+                }
+                $data[] = array
+                (
+                    'id' => $rows->problem_id,
+                    'name' => $rows->name,
+                    'date' => $rows->date_time,
+                    'title' => $rows->title ,
+                    'content' => $rows->content,
+                    'photos' => $problem_photos,
+                    'customerpp' => $rows  -> photo
+                );
+
+            }
+
+        
+            // die(var_dump($data));
+
          $this->view('advisor/problem_chat',$data);
  
 
       }
+
+      public function problem_chat_openoneproblem($id){
+
+        $problems = $this->problemModel->getAproblemwithcusinfo($id);
+        $problem_photos = array();
+        $photos = $this->problemModel->problemPhotosById($problems->problem_id);
+            foreach($photos as $photo)
+            {
+                $problem_photos[] = $photo->image;
+            }
+            $data = 
+            [
+                'id' =>$problems->problem_id,
+                'date' => $problems->date_time,
+                'title' =>$problems->title ,
+                'content' => $problems->content,
+                'photos' => $problem_photos,
+                'reply' => '',
+                'customerpp' => $problems -> photo
+            ];
+
+
+
+        $this->view('advisor/problem_chat_onechatpreview',$data);
+
+
+     }
+
 
 
 

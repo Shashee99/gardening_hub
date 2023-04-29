@@ -35,8 +35,7 @@
         </div>
         <?php flash("problem_add_successfuly"); ?>
         <div class="problem-wraper">
-
-            <?php foreach ($data as $problems) { ?>
+        <?php foreach ($data as $problems) { ?>
                 <div class="problem-card">
                     <div class="problem">
                         <div class="user-info">

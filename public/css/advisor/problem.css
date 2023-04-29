@@ -113,13 +113,18 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin-left: 2rem;
   display: flex;
   justify-content: space-around;
-  background-color: aqua;
+  /* background-color: aqua; */
 }
 .image-plants{
   width: 80px;
   height: 80px;
   margin: 0.2rem;
-  background-color: bisque;
+  /* background-color: bisque; */
+}
+.image-plants img{
+  width: 80px;
+  height: 80px;
+
 }
 .reply-view ul{
   padding: 0;
