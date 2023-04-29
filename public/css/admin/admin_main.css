@@ -634,6 +634,7 @@ hr {
     color: var(--blue);
     margin-right: 10px;
     text-decoration: none;
+    cursor: pointer;
 }
 .delete{
     border: 1px solid var(--red);
@@ -952,6 +953,31 @@ hr {
     display: grid;
     grid-template-columns: 40px auto;
 }
+.req-shopname
+{
+   border-radius: 10px;
+    height: max-content;
+    width: 700px;
+    position: relative;
+    margin: 10px auto;
+    padding:20px;
+    box-shadow: 1px 2px 1px 1px #dddddd;
+    overflow: auto;
+}
+.req-shopname p{
+    margin-bottom: 5px;
+}
+.reqactions{
+    display: flex;
+    flex-direction: column;
+}
+.reqactions a{
+    margin-bottom: 10px;
+}
 
+.req-description{
+
+
+}
 
 

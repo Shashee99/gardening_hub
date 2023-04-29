@@ -24,15 +24,18 @@
             <?php foreach ($data['newrequsets'] as $row) : ?>
                 <tr>
                     <td><?php echo $i++ ?></td>
-                    <td>
-                        <div class="profileandname">
+                    <td style="text-align: left;">
+                        <div class="profileandname" >
+                            <img class="reqprofileimage" src="http://localhost/gardening_hub/img/upload_images/seller_pp/img-seller643fde8de6d8f5.13372545." alt="userimg" width="30px" height="30px">
+                            <h5>ShGroww</h5>
+                        </div>
                             <img class="reqprofileimage" src="http://localhost/gardening_hub/img/upload_images/seller_pp/<?php echo $row -> photo ?>" alt="userimg" width="30px" height="30px">
                             <h5><?php echo $row -> shop_name ?></h5>
                         </div>
                     </td>
                     <td><?php echo $row -> date ?></td>
                     <td><?php echo $row -> status ?></td>
-                    <td><a href="<?= URLROOT;?>/admins/viewnewcategoryrequest/<?php echo $row->req_id ?>" class="view">View</a></td>
+                    <td><a class="view">View</a></td>
                 </tr>
             <?php endforeach; ?>
         <?php else : ?>

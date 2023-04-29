@@ -48,7 +48,7 @@
         <form action="#" method="POST" id="catform">
             <div class="modal hidden">
                 <button class="close-modal">&times;</button>
-                <br><br>
+                <br>
                 <h3>Enter new category</h3>
                 <div>
                     <input type="text" name="category" id="category" class="modelinputfield" placeholder="Enter category">
@@ -70,7 +70,7 @@
     <form method="POST" id="editcatform">
         <div class="editmodal hidden">
         <button class="closeedit-modal">&times;</button>
-            <br><br>
+            <br>
         <h3>Edit category</h3>
         <div>
             <input type="text" name="editcategory" id="editcategory" class="modelinputfield" value="" placeholder="Enter category">

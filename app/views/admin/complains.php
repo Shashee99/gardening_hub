@@ -18,7 +18,7 @@
         <table class="usertable">
             <thead>
             <tr>
-                <th><b>Complaint Reference </b> </th>
+                <th><b>#</b> </th>
                 <th><b>Complaint Date</b></th>
                 <th><b>From</b></th>
                 <th><b>To</b></th>

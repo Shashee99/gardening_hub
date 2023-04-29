@@ -32,7 +32,7 @@
                     </td>
                     <td><?php echo $row -> date ?></td>
                     <td><?php echo $row -> status ?></td>
-                    <td><a href="<?= URLROOT;?>/admins/viewnewcategoryrequest/<?php echo $row->req_id ?>" class="view">View</a></td>
+                    <td><a class="view">View</a></td>
                 </tr>
             <?php endforeach; ?>
         <?php else : ?>
