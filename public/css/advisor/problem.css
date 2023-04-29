@@ -1,0 +1,139 @@
+body{
+
+width: 100%;
+height: 100vh;
+padding: 0;
+margin: 0;
+overflow: hidden;
+
+}
+
+*{ 
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      
+
+}
+/* layout  style strat  */
+.chat-contener{
+  width: 100%;
+  height: 100%;
+
+}.chat-contener-2{
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+   flex-direction: row;
+    
+}
+.chat-content{
+
+width: 100%;
+height: 100%;
+/* background-color: rgb(110, 161, 206); */
+overflow: hidden;
+overflow: scroll;
+}
+.chat-pot{
+
+width: 700px;
+height: 350px;
+background-color: rgb(233, 180, 180);
+margin-top: 3rem;
+margin-bottom: 5rem;
+margin-left: 5rem;
+
+
+}
+.user-problem{
+ width:100%;
+ height: 18%;
+ display: flex;
+ background-color: rebeccapurple;
+
+}
+.user-profile{
+  width: 60px;
+  height: 60px;
+  margin-left: 1rem;
+  border-radius: 50px;
+  background-color: antiquewhite;
+}
+
+.user-problem ul{
+  padding: 0;
+  margin: 0;
+  margin-top: 13px;
+  
+  display: flex;
+}
+.user-problem li{
+padding-left: 12rem;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+.user-problem li{
+  list-style: none;
+}
+.user-profile{
+  display: flex;
+}
+.user-profile h5{
+  margin-left: 4rem;
+  margin-top: 1rem;
+}
+.content-problem{
+
+  width: 85%;
+  height: 40%;
+  margin-left: 3.1rem;
+  margin-top: 1rem;
+  padding-inline: 3rem;
+  display: flex;
+  flex-direction: column;
+  background-color: antiquewhite;
+
+}
+.content-problem h5{
+  margin-top: 1rem;
+  margin-left: 13rem;
+}
+.content-problem p{
+  margin-top: 0.5rem;
+  font-size: 13px;
+}
+/* add imge photo */
+.image-problem{
+  width: 90%;
+  height: 25%;
+  margin-top: 0.5rem;
+  margin-left: 2rem;
+  display: flex;
+  justify-content: space-around;
+  background-color: aqua;
+}
+.image-plants{
+  width: 80px;
+  height: 80px;
+  margin: 0.2rem;
+  background-color: bisque;
+}
+.reply-view ul{
+  padding: 0;
+  margin: 0;
+  display: flex;
+  font-size: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  justify-content: space-between;
+ 
+}
+.reply-view li{
+  list-style: none ;
+  
+}
+.reply-view{
+  padding-inline: 1rem;
+}

@@ -14,7 +14,7 @@
           </div>
      
             <div class="profile-logout-function">
-                 <div class="profil"><img src="<?php echo URLROOT;?>/img/advisor/madu.jpeg" alt=""></div>
+                 <div class="profil"><img src="<?= URLROOT; ?>/img/upload_images/advisor_pp/<?php echo $_SESSION['advisor_photo_path']; ?>" alt=""></div>
                  <div class="logout"><h6>R.H.D.D Thilakarathna</h6></div>
 
 

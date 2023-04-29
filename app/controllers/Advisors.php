@@ -256,5 +256,16 @@
             $this->view('customers/advisorProfile');
         }
 
+    // chat function ------------------------------------
+      public function problem_chat(){
+         $data=[];
+         $this->view('advisor/problem_chat',$data);
+ 
+
+      }
+
+
+
+
         
     }
