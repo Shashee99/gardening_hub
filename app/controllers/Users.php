@@ -344,7 +344,7 @@ class Users extends Controller
                 $data['seller_image'] = $newimagename;
                 //Register User
                 if ($this->userModel->sellerRegister($data)) {
-                    $this->notiModel->addnotification('Seller');
+                    // $this->notiModel->addnotification('Seller');
                     flash('register_success', 'You are registered and can log in');
                     redirect('users/login');
                 } else {
@@ -432,7 +432,7 @@ class Users extends Controller
                 }
 
                 if ($this->userModel->advisorRegister($data, $new_img1)) {
-                    $this->notiModel->addnotification('Advisor');
+                    // $this->notiModel->addnotification('Advisor');
                     redirect('users/login');
                 } else {
                     $this->view('users/advisorRegister', $data);

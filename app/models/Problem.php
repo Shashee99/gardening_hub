@@ -8,6 +8,12 @@
         {
             $this->db = new Database;
         }
+        public function viewallProblem()
+        {
+            $sql = 'SELECT * FROM problem INNER JOIN customer ON problem.customer_id = customer.customer_id';
+            $this -> db -> query($sql);
+            return $this->db->resultSet();
+        }
         public function givenUserProblems($id)
         {
             $sql = 'SELECT * FROM problem WHERE customer_id= :cus_id';
@@ -22,6 +28,14 @@
             $this->db->bind(':problem_id', $id);
             return $this->db->singleRecord();
         }
+        public function getAproblemwithcusinfo($id)
+        {
+            $sql = 'SELECT * FROM problem INNER JOIN customer ON problem.customer_id = customer.customer_id  WHERE problem.problem_id = :problem_id';
+            $this->db->query($sql);
+            $this->db->bind(':problem_id', $id);
+            return $this->db->singleRecord();
+        }
+        
         public function  getreplywithuserDetails($problem_id)
         {
             $sql = 'SELECT * FROM problema_reply INNER JOIN ON Advisor WHERE problem_id= :problem_id';

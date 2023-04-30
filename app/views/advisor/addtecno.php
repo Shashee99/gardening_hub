@@ -30,7 +30,7 @@
                                 
                                     <div class="tecno-title-profile-filed">
                                             <div class="profil-owner">
-                                            <div class="imge-oner"><img src="../public/img/advisor/madu.jpeg" alt=""></div>
+                                            <div class="imge-oner"><img src="<?= URLROOT; ?>/img/upload_images/advisor_pp/<?php echo $_SESSION['advisor_photo_path']; ?>" alt=""></div>
                                                 <h6><?=$tecdata['date']?> <br>time:5:30</h6>
                                             </div>
                                         <div class="title-tecno"><h3>Categoly:</h3>
