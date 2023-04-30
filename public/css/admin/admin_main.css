@@ -301,9 +301,9 @@ img.photologo {
 }
 
 .userlist {
-    margin: 20px 0px;
-    display: flex;
-    justify-content: space-around;
+    margin: 20px 10px;
+
+
 }
 
 hr {
@@ -979,6 +979,12 @@ a.disabled {
     opacity: 0.5; /* optional, adds visual cue that the button is disabled */
 }
 
+.barcontainer{
+    width: 750px;
+    height: 380px;
+    box-shadow: 1px 2px 6px 0px var(--black);
+    border-radius: 10px;
+}
 /*#reqnewadd{*/
 /*    position: relative;*/
 /*    z-index: 999;*/
