@@ -1,7 +1,5 @@
  <?php require_once APPROOT . '/views/inc/incAdvisor/inchat_head.php'; ?>
-             
-
-          <!-- chat for problem -->
+ <!-- chat for problem -->
           <div class="chat-contener">
              <?php require_once APPROOT . '/views/inc/incAdvisor/navbar.php'; ?>
                <div class="chat-contener-2">
