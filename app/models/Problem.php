@@ -89,4 +89,44 @@
             $this->db->bind(':id', $id);
             return $this->db->resultSet();
         }
+
+        public function getadvisorreplyforproblemid($id){
+
+            $sql = "SELECT * FROM problem_reply INNER JOIN advisor ON problem_reply.advisor_id = advisor.advisor_id WHERE problem_reply.problem_id = :id";
+            $this->db->query($sql);
+            $this->db->bind(':id', $id);
+            return $this->db->resultSet();
+        }
+
+        public function get_num_of_times_advisor_repliedforaproblem($problem_id,$advisor_id){
+            $sql = "SELECT COUNT(*) AS num_of_replies FROM problem_reply WHERE problem_id = :probid AND advisor_id = :advisorid; ";
+            $this->db->query($sql);
+            $this->db->bind(':probid', $problem_id);
+            $this->db->bind(':advisorid', $advisor_id);
+            return $this->db->singleRecord();
+
+        }
+        public function get_num_of_repliedadvisorsforaproblem($problem_id){
+            $sql = "SELECT COUNT(*) AS num_of_advisors FROM problem_advisors WHERE problem_id = :probid";
+            $this->db->query($sql);
+            $this->db->bind(':probid', $problem_id);
+            return $this->db->singleRecord();
+        }
+
+        public function insertreply($problem_id,$reply,$customer_id,$advisor_id){
+            $sql = "INSERT INTO problem_reply (customer_id,reply,problem_id,advisor_id) VALUES (:cusid,:reply,:probid,:advid)";
+            $this->db->query($sql);
+            $this->db->bind(':probid', $problem_id);
+            $this->db->bind(':reply', $reply);
+            $this->db->bind(':cusid', $customer_id);
+            $this->db->bind(':advid', $advisor_id);
+            $this->db->execute();
+        }
+        public function getreplyfromcustomerid($cusid,$problem_id){
+            $sql = "SELECT * FROM problem_reply INNER JOIN advisor ON problem_reply.advisor_id = advisor.advisor_id WHERE problem_reply.customer_id = :cusid AND problem_reply.problem_id = :probid";
+            $this->db->query($sql);
+            $this->db->bind(':probid', $problem_id);
+            $this->db->bind(':cusid', $cusid);
+            return $this->db->resultSet();
+        }
     }

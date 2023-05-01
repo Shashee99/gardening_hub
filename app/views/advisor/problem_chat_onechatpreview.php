@@ -9,69 +9,62 @@
                      <div class="chat-content">
                                 <div class="chat-pot">
                                       <div class="problem">
-                                          <div class="user-problem">
-                                              <div class="user-profile"><img src="<?= URLROOT; ?>/img/upload_images/customer_pp/<?= $data['customerpp'] ; ?>" alt="" ><h5>Name :  </h5><h5></h5></div>
-                                              <ul>
-
-                                                  <li><h4>category:bonzzy</h4></li>
-                                                  <li><h4>all rady reply</h4></li>
-
-                                              </ul>
+                                          <div class="user-profile">
+                                              <img src="<?= URLROOT; ?>/img/upload_images/customer_pp/<?= $data['customerpp'] ; ?>" alt="" >
+                                              <div>
+                                                  <h5>Name : <?= $data['name'];?> </h5>
+                                                  <h6><?= $data['date'];?></h6>
+                                                  <h6>Category : <?= $data['category'] ; ?></h6>
+                                              </div>
                                           </div>
                                           <div class="content-problem">
-                                              <h5>title: plants</h5>
-                                              <p>saafdgdfgfbvb hutyjgjjjjjjjjjjnhg ery sddddddddddddddfd fdfgs sdgggfdghdf asfasadfrfewt etewter
-                                                  tgytrutryutyyujtyuty rtrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr trrrrrrrrrrrrrrrrrrrrrr
-                                              </p>
+                                              <h3><u><?= $data['title'] ; ?></u> </h3>
+                                              <p><?=$data['content'];?></p>
+
                                           </div>
                                           <div class="image-problem">
-
-                                              <div class="image-plants"><img src="" alt="" ></div>
-
+                                              <?php foreach ($data['photos'] as $row){
+                                                  ?>
+                                                  <div class=" image-plants"><img src="<?= URLROOT; ?>/img/upload_images/problem_photo/<?= $row ; ?> " class="preview-image" alt="" ></div>
+                                                  <?php
+                                              }
+                                              ?>
                                           </div>
                                       </div>
                                       <div id="replybox" class="reply">
-                                          <div class="reply-section">
-                                                <div class="replyview">
-                                                    <div class="replyprofile">
-                                                        <img src="http://localhost/gardening_hub/img/upload_images/customer_pp/IMG-63dcacf4752590.63037904.jpg" width ="42px" height = "42px" alt="">
-                                                    </div>
-                                                    <div class="replyandreplyname">
-                                                        <h6>Name : KALANA</h6>
-                                                        <p>rerejddggkg glgkl fdal</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                          <div class="reply-section">
-                                              <div class="replyview">
-                                                  <div class="replyprofile">
-                                                      <img src="http://localhost/gardening_hub/img/upload_images/customer_pp/IMG-63dcacf4752590.63037904.jpg" width ="42px" height = "42px" alt="">
+                                          <?php if (count($data['reply']) === 0) { ?>
+                                              <p style="margin-left: 20px"><i>There are no replies for this problem.</i></p>
+                                          <?php } else { ?>
+                                              <?php foreach ($data['reply'] as $row) { ?>
+                                                  <div class="reply-section">
+                                                      <div class="replyview">
+                                                          <div class="replyprofile">
+                                                              <img src="http://localhost/gardening_hub/img/upload_images/advisor_pp/<?=$row -> photo;?>" width ="30px" height = "30px" style="border-radius: 100%" alt="">
+                                                          </div>
+                                                          <div class="replyandreplyname">
+                                                              <h6 class="replier">Name : <?=$row -> name ?></h6>
+                                                              <h6 class="replier"><?=$row -> dateandtime ?></h6>
+                                                              <p class="replytext"><?=$row -> reply ?></p>
+                                                          </div>
+                                                      </div>
                                                   </div>
-                                                  <div class="replyandreplyname">
-                                                      <h6>Name : KALANA</h6>
-                                                      <p>rerejddggkg glgkl fdal</p>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                          <div class="reply-section">
-                                              <div class="replyview">
-                                                  <div class="replyprofile">
-                                                      <img src="http://localhost/gardening_hub/img/upload_images/customer_pp/IMG-63dcacf4752590.63037904.jpg" width ="42px" height = "42px" alt="">
-                                                  </div>
-                                                  <div class="replyandreplyname">
-                                                      <h6>Name : KALANA</h6>
-                                                      <p>rerejddggkg glgkl fdal</p>
-                                                  </div>
-                                              </div>
-                                          </div>
+                                              <?php } ?>
+                                          <?php } ?>
+
+
                                       </div>
 
-                                    <div class="replybox">
-                                        <input type="text" id="replybox" placeholder="Enter the reply here">
-                                        <div class="sentbtn">
-                                            Reply
+                                    <form action="<?=URLROOT;?>/advisors/problem_chat_openoneproblem/<?=$data['id'];?>" method="POST" >
+                                        <div class="replybox">
+                                            <div>
+                                                <input width="100%" type="text" id="replybox" name="prompt" placeholder="Enter the reply here">
+                                                <button class="sentbtn">
+                                                    Reply
+                                                </button>
+                                            </div>
+                                            <span class="errormessageforprompt"><?= $data['errormsg'];?></span>
                                         </div>
-                                    </div>
+                                    </form>
 
                                 </div>
                      </div>
@@ -79,7 +72,34 @@
 
            </div>
 
+               <script>
+                   // Get all the image elements with the specified class
+                   var images = document.querySelectorAll('.preview-image');
 
+                   // Loop through each image element
+                   images.forEach(function(image) {
+                       // Create a modal element
+                       var modal = document.createElement('div');
+                       modal.classList.add('modal');
+                       document.body.appendChild(modal);
+
+                       // Create an image element inside the modal
+                       var modalImage = document.createElement('img');
+                       modalImage.src = image.src;
+                       modal.appendChild(modalImage);
+
+                       // Add a click event listener to the image element
+                       image.addEventListener('click', function() {
+                           modal.classList.add('open');
+                       });
+
+                       // Add a click event listener to the modal element to close it
+                       modal.addEventListener('click', function() {
+                           modal.classList.remove('open');
+                       });
+                   });
+
+               </script>
 
 
  <?php require_once APPROOT . '/views/inc/incAdvisor/incfooter_reply.php'; ?>

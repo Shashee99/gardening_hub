@@ -35,6 +35,7 @@
         public function viewOneProblem($id)
         {
             $problems = $this->problemModel->getAproblem($id);
+            $replies = $this ->problemModel ->getreplyfromcustomerid($_SESSION['cus_id'],$id);
             $problem_photos = array();
             $photos = $this->problemModel->problemPhotosById($problems->problem_id);
                 foreach($photos as $photo)
@@ -48,7 +49,7 @@
                     'title' =>$problems->title ,
                     'content' => $problems->content,
                     'photos' => $problem_photos,
-                    'reply' => ''
+                    'reply' => $replies
                 ];
 
             $this->view('customers/viewOneProblem',$data);
