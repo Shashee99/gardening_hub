@@ -121,6 +121,7 @@
                 'catagory'=>$rows->category,
                 'content'=>$rows->content,
                 'date'=>$rows->date,
+                'no'=>$rows->no,
                 'photos' => $problem_photos
             );
 
@@ -246,7 +247,127 @@
 
 
 
-      }
+      } 
+
+    //   update and delete tecno-----
+    function updateTecnhology($id){
+       
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+
+            // die($id);
+            //sanities data
+            $_POST=filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+            $additem=[
+              'title'=> trim($_POST['title']),
+              'catagory'=>trim($_POST['catagory']),
+              'content'=>trim($_POST['content']),      
+              'title_error' =>'',
+              'catagory_error' =>'',
+              'content_error'=>'',
+              'photo_error'=>''
+             ];
+          
+          //validate title---
+             if(empty($additem['title'])){
+                 $additem['title_error']='*enter your title'; 
+             }
+             //validate catagory-----
+             if(empty($additem['catagory'])){
+                 $additem['catagory_error']='*enter your catagory'; 
+             }
+             //validate content--------
+             if(empty($additem['content'])){
+                 $additem['content_error']='*content is empty'; 
+             }
+ 
+           //validate photo----------------    
+             $photoname = array_filter($_FILES['photos']['name']);
+             $photocount = count($_FILES['photos']['name']);
+             $type = array ('png', 'jpg', 'jpeg');
+             $totsize = 0;
+             $photo = array();
+ 
+             if(empty($photoname))
+             {
+                 $additem['photo_error'] = "*Please select at least one image";
+             }
+             elseif( $photocount>4)
+             {
+                 $additem['photo_error'] = '*Can not upload more than 4 images';
+             }
+ 
+             foreach($_FILES['photos']['name'] as $key => $value)
+             {
+                 $img_name = $_FILES['photos']['name'][$key];
+                 $img_type = strtolower(pathinfo($img_name, PATHINFO_EXTENSION));
+                 $totsize += $_FILES['photos']['size'] [$key];
+ 
+                 if($img_type != $type[0]  && $img_type != $type[1] && $img_type != $type[2])
+                 {
+                     $additem['photo_error'] = '*Image type should be png or jpeg or jpg'; 
+                     break;
+                 }
+ 
+             }
+             if($totsize > 8388608)
+             {
+                 $additem['photo_error'] = '*Images size should be less than 8MB';
+             }
+ 
+ 
+ 
+             //this data put data base-------    
+             if(empty($additem['title_error'])&& empty($additem['catagory_error']) && empty($additem['content_error'])&& empty($additem['photo_error'])){
+                
+                 foreach($_FILES['photos']['name'] as $key => $value)
+                 {
+                     $img_name = $_FILES['photos']['name'][$key];
+                     $tmp_name = $_FILES['photos']['tmp_name'][$key];
+                     $img_type = strtolower(pathinfo($img_name, PATHINFO_EXTENSION)); 
+                     $new_img = uniqid('IMG-',true).'.'.$img_type;
+                     $img_upload_path = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/advisor_tecno/'.$new_img;
+                     move_uploaded_file($tmp_name,$img_upload_path);
+                     array_push($photo,$new_img);
+                 }
+ 
+                 if($this->advisorModel->tecnoUpdate($additem,$photo,$id)){
+                     flash('add_new_tecno_successfuly', 'You tecno added successfuly');
+                     redirect('advisors/addtecno');
+                 }else{
+ 
+                 }
+ 
+                
+ 
+             }else{
+             $this->view('advisor/tecnoUpdate',$additem);
+             }
+ 
+ 
+         }else{
+             $additem=[
+                 'title'=> '',
+                 'catagory'=>'',
+                 'content'=>'', 
+                 'date'=>'',      
+                 'title_error' =>'',
+                 'catagory_error' =>'',
+                 'content_error'=>'',
+                 'no'=>$id,
+                 'photo_error'=>''
+ 
+                ];
+
+            
+                $this->view('advisor/tecnoUpdate',$additem);
+            }
+ 
+ 
+
+
+
+
+    }
 
 
          

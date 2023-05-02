@@ -145,6 +145,27 @@
 
         }
 
+        //update tecnhology ------------------------
+        function tecnoUpdate($data,$photo,$id){
+              $sql='UPDATE new_technology SET category =:catagory,date=:date,title=:title,content=:content WHERE advisor_id=:advisor_id AND no=:id';
+             $this->db->query($sql);
+             $this->db->bind(':catagory', $data['catagory']);
+             $this->db->bind(':date',date('y/m/d'));
+             $this->db->bind(':title',$data['title']);
+             $this->db->bind(':content',$data['content']);
+             $this->db->bind(':id',$id);
+             $this->db->bind(':advisor_id',$_SESSION['advisor_id']);
+          
+              if($this->db->execute()){
+                  return true;     
+
+              }else{
+                return false;
+              }
+
+
+        }
+
 
 
 
