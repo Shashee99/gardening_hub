@@ -396,6 +396,7 @@
                     'title' => $rows->title ,
                     'content' => $rows->content,
                     'photos' => $problem_photos,
+                    'category' => $rows->category,
                     'customerpp' => $rows  -> photo
                 );
 
@@ -411,34 +412,94 @@
 
       public function problem_chat_openoneproblem($id){
 
-        $problems = $this->problemModel->getAproblemwithcusinfo($id);
-        $problem_photos = array();
-        $photos = $this->problemModel->problemPhotosById($problems->problem_id);
-            foreach($photos as $photo)
-            {
-                $problem_photos[] = $photo->image;
-            }
-            $data = 
-            [
-                'id' =>$problems->problem_id,
-                'date' => $problems->date_time,
-                'title' =>$problems->title ,
-                'content' => $problems->content,
-                'photos' => $problem_photos,
-                'reply' => '',
-                'customerpp' => $problems -> photo
-            ];
+          if($_SERVER['REQUEST_METHOD']=='POST'){
+
+              $problems = $this->problemModel->getAproblemwithcusinfo($id);
+              $replies = $this -> problemModel -> getadvisorreplyforproblemid($id);
+              $problem_photos = array();
+              $photos = $this->problemModel->problemPhotosById($id);
+              foreach($photos as $photo)
+              {
+                  $problem_photos[] = $photo->image;
+              }
+              $data =
+                  [
+                      'id' =>$problems->problem_id,
+                      'date' => $problems->date_time,
+                      'title' =>$problems->title ,
+                      'name' => $problems->name,
+                      'content' => $problems->content,
+                      'photos' => $problem_photos,
+                      'reply' => $replies,
+                      'customerpp' => $problems -> photo,
+                      'cusid'=> $problems -> customer_id,
+                      'errormsg'=>''
+                  ];
+
+//              check whether the advisor can reply or not
+
+//              maximum number of advisors for a post is 5 and each advisor only able to provide replies for a post are 3 times
+
+              $numofadvisors = ($this ->problemModel -> get_num_of_repliedadvisorsforaproblem($id))->num_of_advisors;
+              $numofrepliedtimes = ($this ->problemModel -> get_num_of_times_advisor_repliedforaproblem($id,$_SESSION['advisor_id']))->num_of_replies;
+
+              if($numofadvisors >= 5 || $numofrepliedtimes >= 3){
+                  if($numofadvisors >= 5){
+                      $data['errormsg'] ="Sorry you can't reply for this problem ";
+                      $this->view('advisor/problem_chat_onechatpreview',$data);
+                  }
+                  else{
+                      $data['errormsg'] = "Maximum number of replies limit reached! ";
+                      $this->view('advisor/problem_chat_onechatpreview',$data);
+                  }
+
+              }
+              else{
+                  //sanities data
+                  $_POST=filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+
+                  $replyfromadvisor = trim($_POST['prompt']);
+                  unset($_POST['prompt']);
+                  $this->problemModel -> insertreply($id,$replyfromadvisor,$data['cusid'],$_SESSION['advisor_id']);
+
+                  redirect('advisors/problem_chat');
+
+              }
 
 
 
-        $this->view('advisor/problem_chat_onechatpreview',$data);
+
+          }
+          else{
+
+              $problems = $this->problemModel->getAproblemwithcusinfo($id);
+              $replies = $this -> problemModel -> getadvisorreplyforproblemid($id);
+              $problem_photos = array();
+              $photos = $this->problemModel->problemPhotosById($id);
+              foreach($photos as $photo)
+              {
+                  $problem_photos[] = $photo->image;
+              }
+              $data =
+                  [
+                      'id' =>$problems->problem_id,
+                      'date' => $problems->date_time,
+                      'title' =>$problems->title ,
+                      'name' => $problems->name,
+                      'category'=> $problems ->category,
+                      'content' => $problems->content,
+                      'photos' => $problem_photos,
+                      'reply' => $replies,
+                      'customerpp' => $problems -> photo,
+                      'cusid'=> $problems -> customer_id,
+                      'errormsg'=>''
+                  ];
+
+             $this->view('advisor/problem_chat_onechatpreview',$data);
+
+          }
 
 
      }
 
-
-
-
-
-        
     }
