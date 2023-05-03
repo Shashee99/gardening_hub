@@ -21,7 +21,7 @@
         <a href="<?= URLROOT; ?>/admins/newadvisors" class="sortbtn flex bglightgray text-decoration-none position-relative" style="width: 220px;height: 50px">
             <img src="<?= URLROOT; ?>/img/admin/icon/addcat.png" alt="" width="15px" height="15px">
             <p class="font500" style="font-size: 15px">New Advisor Requests</p>
-            <div id="newadvisorcountnoti"><h5 id="notiadvisor"></h5></div>
+            <div id="newadvisorcountnoti" class="<?=  count($data['newadvisors']) == 0 ? 'hidden' : ''  ?>"><h5 id="notiadvisor"><?= count($data['newadvisors'])?></h5></div>
         </a>
 
     </div>

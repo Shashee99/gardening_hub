@@ -1,4 +1,12 @@
-
+::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+    background-color: none;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #dcdcdc;
+    border-radius: 30px;
+}
 :root {
     --white: #FFFFFF;
     --gray: rgba(172, 178, 176, 0.43);
@@ -146,7 +154,9 @@ img.photologo {
 .navtex {
     display: inline-block;
 }
-
+.userlist{
+    justify-content: space-between;
+}
 .navlinkcontain img {
     width: 25px;
     height: 25px;
@@ -281,8 +291,8 @@ img.photologo {
 /*dashboard content styling*/
 .userlist-usercard {
     margin: 20px 10px;
-    width: 256px;
-    height: 170px;
+    width: 300px;
+    height: 200px;
     background-color: var(--light-gray);
     border-radius: 30px;
     display: flex;

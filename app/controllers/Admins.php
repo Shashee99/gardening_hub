@@ -25,14 +25,20 @@ class Admins extends Controller
         $advisors = $this->advisorModel->all_registered_advisors();
         $customers = $this->customerModel->get_all_customers();
         $sellers = $this -> sellerModel -> recentlyaddedsellers();
+        $category = $this -> productcatModel -> getnewcategoryrequests_pending();
+        $newsellers = $this -> sellerModel -> get_non_registered_sellers();
+        $newadvisors = $this -> advisorModel -> get_non_registered_advisors();
 
         $data = [
             'nav' => 'home',
             'title' => 'Dashboard',
+            'newcatrequests' => $category,
             'advisors' => $advisors,
             'customers' => $customers,
             'jsfile' => 'admin_home.js',
-            'sellers' => $sellers
+            'sellers' => $sellers,
+            'newsellers' => $newsellers,
+            'newadvisors' => $newadvisors
 
         ];
         $this->view('admin/home', $data);
@@ -40,17 +46,18 @@ class Admins extends Controller
 
     public function productcategories()
     {
+        $category = $this -> productcatModel -> getnewcategoryrequests_pending();
         $data = [
             'nav' => 'categories',
             'title' => 'Product Categories',
-            'jsfile' => 'admin_categories.js'
+            'jsfile' => 'admin_categories.js',
+            'newcatrequests' => $category
         ];
         $this->view('admin/productcategories', $data);
     }
 
 
     public function newproductcategories(){
-
         $newreqs = $this ->productcatModel-> getnewcategoryrequests();
 
         $data = [
@@ -58,6 +65,7 @@ class Admins extends Controller
             'nav' => 'categories',
             'title' => 'Product Categories',
             'jsfile' => 'admin_categories.js'
+
         ];
         $this->view('admin/newcategories', $data);
     }
@@ -142,12 +150,14 @@ class Admins extends Controller
     public function advisors()
     {
         $advisors = $this->adminModel->all_registered_advisors();
+        $newadvisors = $this -> advisorModel -> get_non_registered_advisors();
 
         $data = [
             'nav' => 'advisors',
             'title' => 'Agricultural Advisors',
             'registeredAdvisors' => $advisors,
-            'jsfile' => 'admin_advisors.js'
+            'jsfile' => 'admin_advisors.js',
+            'newadvisors' => $newadvisors
         ];
         $this->view('admin/advisors', $data);
     }

@@ -7,10 +7,9 @@
             <h1 class="font700" id="catCount"></h1>
         </div>
         <a href="<?= URLROOT;?>/admins/newproductcategories" style="text-decoration: none" class="category-item2 bglightgray">
-            <div class="notification"><p class="noticount">20</p></div>
+            <div class="notification <?php echo count($data['newcatrequests']) == 0 ? 'hidden' : '';?>"><p class="noticount"><?= count($data['newcatrequests']);?></p></div>
             <div class="flex">
-                <img src="<?= URLROOT; ?>/img/admin/icon/addcat.png" alt=""
-                     style="width: 15px;height: 15px;margin-right: 10px; padding-top: 5px">
+                <img src="<?= URLROOT; ?>/img/admin/icon/addcat.png" alt="" style="width: 15px;height: 15px;margin-right: 10px; padding-top: 5px">
                 <h4 class="font400" style="font-size: 15px">New Product categories</h4>
             </div>
         </a>

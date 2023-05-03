@@ -1,54 +1,62 @@
 <?php require_once APPROOT . '/views/inc/incAdmin/header.php'; ?>
-<h2>Registered users in the system.</h2>
-<div class="userlist">
+<div class="userlist flex">
 
-   <div class="barcontainer">
-       <canvas id="userChart"></canvas>
-       <script>
-
-           var ctx = document.getElementById('userChart').getContext('2d');
-           var userChart = new Chart(ctx, {
-               type: 'bar',
-               data: {
-                   labels: ['Customers', 'Advisors', 'Sellers'],
-                   datasets: [{
-                       label: 'Number of Users',
-                       data: [10, 20, 30],
-                       backgroundColor: [
-                           'rgba(54, 162, 235, 1)'
-                       ],
-                       borderColor: [
-
-                           'rgba(54, 162, 235, 1)'
-
-                       ],
-                       borderWidth: 1
-                   }]
-               },
-               options: {
-                   scales: {
-                       yAxes: [{
-                           ticks: {
-                               beginAtZero: true,
-                               max: 50
-
-                           }
-                       }]
-                   }
-               }
-           });
-       </script>
-   </div>
-
+    <div class="userlist-usercard">
+        <div class="user">
+            <h2>Customers</h2>
+            <h1 class="usercount" id="customers"><?= count($data['customers']);?></h1>
+        </div>
+        <div class="userphoto">
+            <img src="<?= URLROOT; ?>/img/admin/customers.png" alt="">
+        </div>
+    </div>
+    <div class="userlist-usercard">
+        <div class="user">
+            <h2>Sellers</h2>
+            <h1 class="usercount" id="sellers"><?= count($data['advisors']);?></h1>
+        </div>
+        <div class="userphoto" style="margin-left: 20px">
+            <img src="<?= URLROOT; ?>/img/admin/sellers.png" alt="">
+        </div>
+    </div>
+    <div class="userlist-usercard">
+        <div class="user">
+            <h2>Advisors</h2>
+            <h1 class="usercount" id="advisors"><?= count($data['advisors']);?></h1>
+        </div>
+        <div class="userphoto" style="margin-left: 30px">
+            <img src="<?= URLROOT; ?>/img/admin/advisor.png" alt="">
+        </div>
+    </div>
 </div>
+<hr>
+
+
 
 <div class="newcategoryreq">
     <div class="newcategoryreq-texts">
         <h3>New Category Requests</h3>
         <p><small>Category request form customers</small></p>
     </div>
-    <h3>25</h3>
+    <h3><?= count($data['newcatrequests']);?></h3>
+</div>
+<hr>
+
+<div class="newcategoryreq">
+    <div class="newcategoryreq-texts">
+        <h3>New Seller Requests</h3>
+        <p><small>Go to new sellers and aprove them!</small></p>
+    </div>
+    <h3><?= count($data['newsellers']);?></h3>
+</div>
+<hr>
+
+<div class="newcategoryreq">
+    <div class="newcategoryreq-texts">
+        <h3>New Advisor Requests</h3>
+        <p><small>Go to new advisors and aprove them!</small></p>
+    </div>
+    <h3><?= count($data['newadvisors']);?></h3>
 </div>
 
 <?php require_once APPROOT . '/views/inc/incAdmin/footer.php'; ?>
-
