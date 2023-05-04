@@ -8,8 +8,11 @@
 
         public function __construct()
         {
+            $this->userModel = $this->model('User');
             $this->customerModel = $this->model('Customer');
             $this->wishlistModel = $this->model('Wishlist');
+            $this->mailer = new Mailer();
+
         }
 
         public function viewHomePage()
@@ -70,8 +73,13 @@
 
         public function deletecustomer(){
             $id = $_POST['id'];
+
+            $username = $this ->customerModel ->getCustomerName($id);
+            $email = $this ->userModel ->getemailbyuserid($id);
             $result = $this -> customerModel -> deletecustomer($id);
-            if ($result){
+            $email_result = $this -> mailer ->sendUserDeletingMessage($username,$email);
+
+            if ($result && $email_result){
                 echo "Deleted Successfully";
             }else{
                 die("something went wrong");

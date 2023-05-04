@@ -74,7 +74,6 @@ class ProductCategory{
         $this ->db ->bind(':search_term',$search_term);
         $dataset = $this->db->resultSet();
         return $dataset;
-
     }
 
 

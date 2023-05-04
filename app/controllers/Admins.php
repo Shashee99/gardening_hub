@@ -65,7 +65,6 @@ class Admins extends Controller
             'nav' => 'categories',
             'title' => 'Product Categories',
             'jsfile' => 'admin_categories.js'
-
         ];
         $this->view('admin/newcategories', $data);
     }
@@ -552,6 +551,68 @@ class Admins extends Controller
         else{
             die('error occured!');
         }
+
+    }
+
+    public function userdelete($id){
+
+        $email = $this-> userModel -> getemailbyuserid($id);
+
+        $data = [
+            'nav' => 'sellers',
+            'title' => 'Delete a user',
+            'email' => $email,
+            'jsfile' => 'admin_userdelete.js'
+
+        ];
+
+        $this -> view('admin/delete_an_user',$data);
+
+
+
+    }
+
+    public function userdeleteconfirm(){
+
+            if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $email = trim($_POST['email']);
+                $reason = trim($_POST['reason']);
+
+
+//             user type
+                $usertype = $this -> userModel -> getusertypebyemail($email);
+
+//                user ID
+                $userID = $this ->userModel -> getuseridbyemail($email);
+
+//                user Name
+                $username = $this -> userModel -> getNamebyuserid($userID);
+
+
+
+                if($usertype == "seller"){
+                   $this -> sellerModel -> delete_seller($userID);
+                }
+                elseif($usertype == "advisor"){
+                    $this -> advisorModel -> delete_advisor($userID);
+                }else
+                {
+                   $this -> customerModel -> deletecustomer($userID);
+                }
+
+//                sent email with reason
+
+                $email_result = $this -> mailer ->sendUserDeletingMessage($username,$email,$reason);
+
+                if($email_result){
+                    redirect('admins/home');
+                }
+
+
+            }
+
 
     }
 

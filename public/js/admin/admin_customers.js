@@ -99,17 +99,9 @@ function deletecustomer(e){
 
     let id = e;
     if (confirm(`Are you sure want to delete this user ?`)) {
-        var ajax = new XMLHttpRequest();
-        ajax.open("POST", "http://localhost/gardening_hub/customers/deletecustomer", true);
-        ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        ajax.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200)
-                alert(this.responseText);
-        };
+        // Redirect to a specific URL
+        window.location.href = `http://localhost/gardening_hub/admins/userdelete/${id}`;
 
-        ajax.send("id=" + id);
-        getallcustomers();
-        return false;
     } else {
         alert("Cancelled!")
     }

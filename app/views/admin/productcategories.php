@@ -73,11 +73,11 @@
         <h3>Edit category</h3>
         <div>
             <input type="text" name="editcategory" id="editcategory" class="modelinputfield" value="" placeholder="Enter category">
-            <p class="errcat"></p>
+            <p class="erreditcat"></p>
         </div>
         <div>
             <input type="text" name="editsubcategory" id="editsub" class="modelinputfield" value="" placeholder="Enter Sub category">
-            <p class="errmsgsub"></p>
+            <p class="erreditmsgsub"></p>
         </div>
             <input type="submit" class="done"  name="add" id="editcatbutton" value="Save" >
         </div>

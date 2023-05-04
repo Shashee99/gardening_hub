@@ -84,5 +84,10 @@ class ProductCategories extends Controller{
         }
     }
 
+    public function getnewcategoryrequests(){
+
+
+    }
+
 
 }

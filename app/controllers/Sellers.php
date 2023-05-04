@@ -17,6 +17,8 @@ class Sellers extends Controller{
         $this -> categoryModel = $this ->model('ProductCategory');
         $this->reviewMoel = $this->model('Review');
         $this->wishlistModel = $this->model('Wishlist');
+        $this -> userModel = $this->model('User');
+        $this -> mailer = new Mailer();
 
     }
     public function dashboard() {
@@ -460,8 +462,18 @@ class Sellers extends Controller{
             redirect('admins/sellers');
         }
         else{
+
+            $username = $this -> sellerModel -> getSellerName($id);
+            $email = $this ->userModel ->getemailbyuserid($id);
+            $email_result = $this -> mailer ->sendUserDeletingMessage($username,$email);
+
             $this -> sellerModel -> delete_seller($id);
-            redirect('admins/sellers');
+            if($email_result){
+                redirect('admins/sellers');
+            }else{
+                die("error occured");
+            }
+
         }
 
     }

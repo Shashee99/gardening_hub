@@ -22,8 +22,8 @@ class Mailer{
        $this->mail->isSMTP();
        $this->mail->Host = "smtp.gmail.com";
        $this->mail->SMTPAuth = true;
-       $this->mail->Username = "ghubofficial123@gmail.com";
-       $this->mail->Password = "xqpcsbttvpkqvwua";
+       $this->mail->Username = "gardeninghub.official@gmail.com";
+       $this->mail->Password = "pgdylriyrvtkzbrj";
        $this->mail->SMTPSecure = "tls";
        $this->mail->Port = 587;
         $verification_url = URLROOT.'/users/verify';
@@ -57,8 +57,8 @@ class Mailer{
         $this->mail->isSMTP();
         $this->mail->Host = "smtp.gmail.com";
         $this->mail->SMTPAuth = true;
-        $this->mail->Username = "ghubofficial123@gmail.com";
-        $this->mail->Password = "xqpcsbttvpkqvwua";
+        $this->mail->Username = "gardeninghub.official@gmail.com";
+        $this->mail->Password = "pgdylriyrvtkzbrj";
         $this->mail->SMTPSecure = "tls";
         $this->mail->Port = 587;
         $password_reset_url = URLROOT.'/users/passwordchange/'.$email;
@@ -88,8 +88,8 @@ class Mailer{
         $this->mail->isSMTP();
         $this->mail->Host = "smtp.gmail.com";
         $this->mail->SMTPAuth = true;
-        $this->mail->Username = "ghubofficial123@gmail.com";
-        $this->mail->Password = "xqpcsbttvpkqvwua";
+        $this->mail->Username = "gardeninghub.official@gmail.com";
+        $this->mail->Password = "pgdylriyrvtkzbrj";
         $this->mail->SMTPSecure = "tls";
         $this->mail->Port = 587;
 
@@ -102,6 +102,34 @@ class Mailer{
             . 'We regret to inform you that your registration has been declined for the following reason: ' . $reason . '.<br><br>'
             . 'If you believe this decision was made in error, please contact our support team for assistance.<br><br>'
             . 'Thank you for considering our service.<br><br>'
+            . 'Best regards,<br>'
+            . '[Gardening Hub Team]';
+
+        if($this->mail->send()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function sendUserDeletingMessage($username, $email, $reason) {
+        $this->mail->isSMTP();
+        $this->mail->Host = "smtp.gmail.com";
+        $this->mail->SMTPAuth = true;
+        $this->mail->Username = "gardeninghub.official@gmail.com";
+        $this->mail->Password = "pgdylriyrvtkzbrj";
+        $this->mail->SMTPSecure = "tls";
+        $this->mail->Port = 587;
+
+        // Email content
+        $this->mail->setFrom("gardeninghub.official@gmail.com", "Gardening Hub");
+        $this->mail->addAddress($email, $username);
+        $this->mail->isHTML(true);
+        $this->mail->Subject = 'Account Deletion Notification';
+        $this->mail->Body = 'Dear ' . $username . ',<br><br>'
+            . 'We regret to inform you that your account has been deleted from our system for the following reason: ' . $reason . '.<br><br>'
+            . 'If you believe this decision was made in error, please contact our support team for assistance.<br><br>'
+            . 'Thank you for using our service.<br><br>'
             . 'Best regards,<br>'
             . '[Gardening Hub Team]';
 
