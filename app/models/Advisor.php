@@ -145,6 +145,101 @@
 
         }
 
+        //update tecnhology  ---------------------------------
+        function tecnoUpdate($data,$photo,$id){
+              $sql='UPDATE new_technology SET category =:catagory,date=:date,title=:title,content=:content WHERE advisor_id=:advisor_id AND no=:id';
+             $this->db->query($sql);
+             $this->db->bind(':catagory', $data['catagory']);
+             $this->db->bind(':date',date('y/m/d'));
+             $this->db->bind(':title',$data['title']);
+             $this->db->bind(':content',$data['content']);
+             $this->db->bind(':id',$id);
+             $this->db->bind(':advisor_id',$_SESSION['advisor_id']);
+          
+              if($this->db->execute()){
+
+               
+                      
+                  $sql1='SELECT * FROM tecpoto WHERE no=:id';
+                  $this->db->query($sql1);
+                  $this->db->bind(':id',$id);
+                  $rowImage=$this->db->resultSet();
+                  // die("sucsse");
+                  $imagecount=0;
+                  $photoArray=count($photo);
+                  $beforPhoto=count($rowImage); 
+                //   $rowcount=count($rowImage);
+                  //die($photoArray);
+                
+                  
+
+                 foreach($rowImage as $pic){
+                    if($imagecount<$photoArray){
+                        $sql_2='UPDATE tecpoto SET imge=:image WHERE no=:id AND img_id=:img_id';
+                        $this->db->query($sql_2);
+                        $this->db->bind(':img_id',$pic->img_id);
+                        $this->db->bind(':image',$photo[$imagecount]);
+                        $this->db->bind(':id',$id);
+                        $this->db->execute();
+                        ++$imagecount;
+                    }
+
+
+                 }
+
+                //  if($beforPhoto<$photoArray){
+                //     foreach($photo as $rows)
+                //     { 
+                //         ++$imagecount;
+                //         if( $photoArray>$imagecount){
+                //             $sql3 = "INSERT INTO tecpoto (no, imge)
+                //                     VALUES (:no, :image)";
+                //             $this->db->query($sql3);
+                //             $this->db->bind(':no',$id);
+                //             $this->db->bind(':image', $rows[$imagecount]);
+                //             $this->db ->execute();
+                //         }
+                //     }
+
+                //  }
+
+
+                  return true;     
+
+              }else{
+                return false;
+              }
+
+
+        }
+       //tecno delete --------------------------------
+       function tecnoDelete($id){
+        $sqlDelete='DELETE FROM new_technology WHERE no=:id';
+        $this->db->query($sqlDelete);
+        $this->db->bind(':id',$id);
+        if($this->db->execute()){
+            return true;
+        }else{
+            return false;
+        }
+
+       }
+
+       //edit profile-----------------------------------
+       function editProfile($satat){
+          if($satat==1){
+
+          }else{
+             $sql_getdata="SELECT * FROM advisor WHERE advisor_id=:advisor_id";
+             $this->db->query($sql_getdata);
+             $this->db->bind(':advisor_id',$_SESSION['advisor_id']);
+             $this->db->execute();
+             return $this->db->singleRecord();
+
+          }
+
+
+       }
 
 
 

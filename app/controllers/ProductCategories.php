@@ -13,6 +13,7 @@ class ProductCategories extends Controller{
         exit();
     }
     public function insert(){
+
         $cat = $_POST['category'];
         $subcat = $_POST['subcategory'];
 
@@ -80,7 +81,6 @@ class ProductCategories extends Controller{
             $tabledata =json_encode($tabledata);
             echo $tabledata;
             exit();
-
         }
     }
 
