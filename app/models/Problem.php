@@ -122,11 +122,30 @@
             $this->db->bind(':advid', $advisor_id);
             $this->db->execute();
         }
+
         public function getreplyfromcustomerid($cusid,$problem_id){
             $sql = "SELECT * FROM problem_reply INNER JOIN advisor ON problem_reply.advisor_id = advisor.advisor_id WHERE problem_reply.customer_id = :cusid AND problem_reply.problem_id = :probid";
             $this->db->query($sql);
             $this->db->bind(':probid', $problem_id);
             $this->db->bind(':cusid', $cusid);
             return $this->db->resultSet();
+        }
+
+        public function getproblemswithcategoryandadvisorsid($category,$advisor){
+
+            if($advisor == " "){
+                $sql = "SELECT * FROM problem WHERE category = :category";
+                $this->db->query($sql);
+                $this->db->bind(':category', $category);
+                return $this->db->resultSet();
+            }
+            else{
+                $sql = "SELECT * FROM problem INNER JOIN problem_advisors ON problem.problem_id = problem_advisors.problem_id WHERE problem_advisors.advisor_id = :advid AND problem.category = :category ; ";
+                $this->db->query($sql);
+                $this->db->bind(':category', $category);
+                $this->db->bind(':advid', $advisor);
+                return $this->db->resultSet();
+            }
+
         }
     }

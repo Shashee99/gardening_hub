@@ -13,6 +13,7 @@
 
             $this->advisorModel = $this->model('Advisor');
             $this ->problemModel = $this -> model('Problem');
+            $this -> categoryModel = $this -> model('ProductCategory');
          
         }
         public function allregadvisors(){
@@ -384,7 +385,7 @@
 
     // chat function ------------------------------------
       public function problem_chat(){
-
+         $categories = $this->categoryModel->categorydetails();
          $problems = $this->problemModel ->viewallProblem();
 
          foreach($problems as $rows)
@@ -395,7 +396,7 @@
                 {
                     $problem_photos[] = $photo->image;
                 }
-                $data[] = array
+                $data[0][] = array
                 (
                     'id' => $rows->problem_id,
                     'name' => $rows->name,
@@ -408,7 +409,7 @@
                 );
 
             }
-
+         $data[1]['category_details'] = $categories;
          $this->view('advisor/problem_chat',$data);
  
 
@@ -503,6 +504,46 @@
 
           }
 
+
+     }
+
+     public function filterproblems(){
+
+            $rornot = $_POST['replied'];
+            $category = $_POST['category'];
+
+            $advisor  = $_SESSION['advisor_id'];
+            if($rornot == 'allproblem'){
+
+//                $result = $this -> problemModel -> getproblemswithcategoryandadvisorsid($category," ");
+                echo json_encode($category);
+
+            }
+            else{
+
+//                $result =  $this -> problemModel -> getproblemswithcategoryandadvisorsid($category,$advisor);
+                echo json_encode($rornot);
+            }
+
+     }
+
+     public function filterproblems(){
+
+            $rornot = $_POST['replied'];
+            $category = $_POST['category'];
+
+            $advisor  = $_SESSION['advisor_id'];
+            if($rornot == 'allproblem'){
+
+//                $result = $this -> problemModel -> getproblemswithcategoryandadvisorsid($category," ");
+                echo json_encode($category);
+
+            }
+            else{
+
+//                $result =  $this -> problemModel -> getproblemswithcategoryandadvisorsid($category,$advisor);
+                echo json_encode($rornot);
+            }
 
      }
      

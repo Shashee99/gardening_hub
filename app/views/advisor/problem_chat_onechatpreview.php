@@ -6,6 +6,8 @@
                  
                  <div class="contener2">
                      <?php require_once APPROOT.'/views/inc/incAdvisor/sidebar.php';?>
+
+
                      <div class="chat-content">
                                 <div class="chat-pot">
                                       <div class="problem">
