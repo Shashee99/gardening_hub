@@ -24,7 +24,7 @@
   
   
 }
-.nav-bar-link{
+.nav-bar-link{  
 
   position: absolute;
   margin-left: 10rem;
@@ -52,11 +52,14 @@
 }
   
 .profile-logout-function{
+    position: absolute;
+    right: 0;
   display: flex;
   align-items:center ;
-  width: 10rem;
+  width: 15rem;
   height: 3rem;
-  margin-left: 50rem;
+  margin-right: 5rem;
+    padding: 10px;
 }
 /* profile imge */
 .profil{
