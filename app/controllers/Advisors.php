@@ -174,9 +174,10 @@
             {
                 $additem['photo_error'] = "*Please select at least one image";
             }
-            elseif( $photocount>4)
+            elseif( $photocount!=4)
             {
-                $additem['photo_error'] = '*Can not upload more than 4 images';
+               // die($photocount);
+                $additem['photo_error'] = '*plese uplod 4 images';
             }
 
             foreach($_FILES['photos']['name'] as $key => $value)
@@ -328,6 +329,7 @@
                      move_uploaded_file($tmp_name,$img_upload_path);
                      array_push($photo,$new_img);
                  }
+                
  
                  if($this->advisorModel->tecnoUpdate($additem,$photo,$id)){
                      flash('add_new_tecno_successfuly', 'You tecno added successfuly');
@@ -361,19 +363,24 @@
                 $this->view('advisor/tecnoUpdate',$additem);
             }
  
- 
+    }
+    // delete  add new technology ------------------
 
-
+    function tecnoDelete($id){
+          if($this->advisorModel->tecnoDelete($id)){
+            redirect('advisors/addtecno');
+          }else{
+            die("is not delete");
+          }
+      
 
 
     }
 
-
-         
-        public function advisorDetails($id)
-        {
+    public function advisorDetails($id)
+    {
             $this->view('customers/advisorProfile');
-        }
+    }
 
     // chat function ------------------------------------
       public function problem_chat(){
@@ -401,9 +408,6 @@
                 );
 
             }
-
-        
-            // die(var_dump($data));
 
          $this->view('advisor/problem_chat',$data);
  
@@ -501,5 +505,64 @@
 
 
      }
+     
+     //update advisor profile-------------------------------
+    
+     function profileUpdate(){
+        $satat=0;//idintify post or normel
+       if($_SERVER['REQUEST_METHOD']=='POST'){
+         $satat=1;
+         $_POST=filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+         $getProfile_data=[
+            'userName'=>trim($_POST['user']),
+            'fullName'=>trim($_POST['fname']),
+            'email'=>trim($_POST['email']),
+            'mobile'=>trim($_POST['mobile']),
+            'location'=>trim($_POST['address']),
+            'brithday'=>trim($_POST['date']),
+            'qulification'=>trim($_POST['qulification']),
+            'poto_pp'=>'',
+            'userName_error'=>'',
+            'fullName_error'=>'',
+            'email'=>'',
+            'mobile_erroe'=>'',
+            'location_erroe'=>'',
+            'brithday_error'=>'',
+            'qulification_error'=>'',
+            'poto_pp_error'=>''
+
+          ];
+          //validate user name
+          if(empty($getProfile_data['userName'])){
+            $getProfile_data['userName_error']='*user name is empty';
+          }elseif(4<strlen($getProfile_data['userName'])&& strlen($getProfile_data['userName'])<9){
+            $getProfile_data['userName_error']='*user name should be between 4 and 9 character';
+          }
+
+       }else{
+          $satat=2;
+          $getData=$this->advisorModel->editProfile($satat);
+          $getProfile_data=[
+            'userName'=>$getData->userName,
+            'fullName'=>$getData->name,
+            'email'=>$getData->email,
+            'mobile'=>$getData->tel_no,
+            'location'=>$getData->address,
+            'brithday'=>$getData->dob,
+            'qulification'=>$getData->qualification,
+            'poto_pp'=>$getData->photo
+
+          ];
+
+          $this->view('advisor/advisor_profile',$getProfile_data);
+
+       } 
+
+
+     }
+
+
+
+
 
     }

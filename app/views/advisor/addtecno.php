@@ -50,7 +50,7 @@
                                     <a href="<?=URLROOT?>/advisors/updateTecnhology/<?= $tecdata['no'];?>" style="text-decoration:none;color:black"><div style="display:flex;justify-content:center;align-items:center;border-radius:8px;width:100%;height:100%;background-color:#9dbda0;margin-left:2rem"><label style="font-family:calibri;font-size:1.5em">Update</label></div></a>
                                     </div>
                                     <div class="cardtButton" style="width:20%;height:80%">
-                                    <a href="" style="text-decoration:none;color:black"><div style="display:flex;justify-content:center;align-items:center;border-radius:8px;width:100%;height:100%;background-color:#9dbda0;margin-left:34rem"><label style="font-family:calibri;font-size:1.5em">Delete</label></div></a>
+                                    <a href="<?=URLROOT?>/advisors/tecnoDelete/<?= $tecdata['no'];?>" style="text-decoration:none;color:black"><div style="display:flex;justify-content:center;align-items:center;border-radius:8px;width:100%;height:100%;background-color:#9dbda0;margin-left:34rem"><label style="font-family:calibri;font-size:1.5em">Delete</label></div></a>
                                     </div>
                                 </div>
                             </div> 
