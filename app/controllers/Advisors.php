@@ -527,25 +527,7 @@
 
      }
 
-     public function filterproblems(){
-
-            $rornot = $_POST['replied'];
-            $category = $_POST['category'];
-
-            $advisor  = $_SESSION['advisor_id'];
-            if($rornot == 'allproblem'){
-
-//                $result = $this -> problemModel -> getproblemswithcategoryandadvisorsid($category," ");
-                echo json_encode($category);
-
-            }
-            else{
-
-//                $result =  $this -> problemModel -> getproblemswithcategoryandadvisorsid($category,$advisor);
-                echo json_encode($rornot);
-            }
-
-     }
+    
      
      //update advisor profile-------------------------------
     
@@ -573,6 +555,8 @@
             'poto_pp_error'=>''
 
           ];
+
+          
           //validate user name
           if(empty($getProfile_data['userName'])){
             $getProfile_data['userName_error']='*user name is empty';
