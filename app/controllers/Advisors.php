@@ -6,7 +6,6 @@
 
         public function __construct()
         {
-
             if (!isAdvisorLogin()) {
                 if(!isset($_SESSION['cus_id']))
                 {
@@ -16,6 +15,8 @@
             }
 
             $this->advisorModel = $this->model('Advisor');
+            $this->userModel = $this -> model('User');
+            $this->mailer = new Mailer();
 
         }
         public function allregadvisors(){
@@ -95,10 +96,7 @@
             if($id == 0000){
                 redirect('admins/advisors');
             }
-            else{
-                $this -> advisorModel -> delete_advisor($id);
-                redirect('admins/advisors');
-            }
+
         }
       //add tecno lod view--------------
       public function addtecno(){
@@ -112,7 +110,7 @@
             foreach($photos as $photo)
             {
                 $problem_photos[] = $photo->imge;
-                //die('add postoss');
+                $problem_photos[] = $photo->imge;
             }
             $data[] = array
             (

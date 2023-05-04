@@ -281,11 +281,11 @@
 
         public function getemailbyuserid($id){
 
-
             $this -> db -> query('SELECT * FROM user WHERE user_id = :id');
             $this ->db ->bind(':id',$id);
             $result = $this -> db -> singleRecord();
             return $result->email;
+
         }
 
         public function insertverificationcode($id,$code){

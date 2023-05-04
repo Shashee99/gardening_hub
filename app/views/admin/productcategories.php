@@ -7,10 +7,9 @@
             <h1 class="font700" id="catCount"></h1>
         </div>
         <a href="<?= URLROOT;?>/admins/newproductcategories" style="text-decoration: none" class="category-item2 bglightgray">
-            <div class="notification"><p class="noticount">20</p></div>
+            <div class="notification <?php echo count($data['newcatrequests']) == 0 ? 'hidden' : '';?>"><p class="noticount"><?= count($data['newcatrequests']);?></p></div>
             <div class="flex">
-                <img src="<?= URLROOT; ?>/img/admin/icon/addcat.png" alt=""
-                     style="width: 15px;height: 15px;margin-right: 10px; padding-top: 5px">
+                <img src="<?= URLROOT; ?>/img/admin/icon/addcat.png" alt="" style="width: 15px;height: 15px;margin-right: 10px; padding-top: 5px">
                 <h4 class="font400" style="font-size: 15px">New Product categories</h4>
             </div>
         </a>
@@ -48,7 +47,7 @@
         <form action="#" method="POST" id="catform">
             <div class="modal hidden">
                 <button class="close-modal">&times;</button>
-                <br><br>
+                <br>
                 <h3>Enter new category</h3>
                 <div>
                     <input type="text" name="category" id="category" class="modelinputfield" placeholder="Enter category">
@@ -70,15 +69,15 @@
     <form method="POST" id="editcatform">
         <div class="editmodal hidden">
         <button class="closeedit-modal">&times;</button>
-            <br><br>
+            <br>
         <h3>Edit category</h3>
         <div>
             <input type="text" name="editcategory" id="editcategory" class="modelinputfield" value="" placeholder="Enter category">
-            <p class="errcat"></p>
+            <p class="erreditcat"></p>
         </div>
         <div>
             <input type="text" name="editsubcategory" id="editsub" class="modelinputfield" value="" placeholder="Enter Sub category">
-            <p class="errmsgsub"></p>
+            <p class="erreditmsgsub"></p>
         </div>
             <input type="submit" class="done"  name="add" id="editcatbutton" value="Save" >
         </div>

@@ -76,7 +76,7 @@ function getData() {
         if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(this.responseText);
             document.getElementById("catCount").innerText = data.length;
-            // console.log(data[0]);
+
             var html = "";
             for (var a = 0; a < data.length; a++) {
                 html += "<tr>";
@@ -86,7 +86,7 @@ function getData() {
                 html += "<td><button onClick=\"editCat(this);\">Edit</button>\n" +
                     "<button onClick=\"deletecat(this);\">Delete</button></td>";
                 html += "</tr>";
-                // console.log(html);
+
             }
 
             document.getElementById("categoryTable").innerHTML = html;
@@ -114,9 +114,11 @@ function searchcategories() {
             var data = JSON.parse(this.responseText);
             console.log(data);
             var html = "";
+            let val = 1;
             for (var a = 0; a < data.length; a++) {
+
                 html += "<tr>";
-                html += "<td>" + data[a].product_id + "</td>";
+                html +=  "<td>" + data[a].product_id + "</td>";
                 html += "<td>" + data[a].product_category + "</td>";
                 html += "<td>" + data[a].sub_category + "</td>";
                 html += "<td><button onClick=\"editCat(this);\">Edit</button>\n" +
@@ -223,3 +225,86 @@ editcatform.addEventListener('click', (e) => {
     e.preventDefault();
 });
 
+
+/*for edit form*/
+// Get the input fields
+const editcategoryInput = document.getElementById('editcategory');
+const subeditcategoryInput = document.getElementById('editsub');
+
+// Add event listeners to the input fields
+editcategoryInput.addEventListener('keyup', validateeditCategoryInput);
+subeditcategoryInput.addEventListener('keyup', validateeditSubcategoryInput);
+
+// Validation function for the category input field
+function validateeditCategoryInput() {
+
+    const input = editcategoryInput.value.trim();
+    // Check if the input starts with a number
+    if (/^\d/.test(input)) {
+
+        document.querySelector('.erreditcat').textContent = '*Category cannot start with a number';
+    } else {
+
+        document.querySelector('.erreditcat').textContent = '';
+    }
+    console.log(input);
+}
+
+// Validation function for the subcategory input field
+function validateeditSubcategoryInput() {
+    const input = subeditcategoryInput.value.trim();
+
+    // Check if the input starts with a number
+    if (/^\d/.test(input)) {
+
+        document.querySelector('.erreditmsgsub').textContent = '*Subcategory cannot start with a number';
+    } else {
+
+        document.querySelector('.erreditmsgsub').textContent = '';
+    }
+
+    console.log(input);
+}
+
+
+
+
+/*for new input form*/
+// Get the input fields
+const categoryInput = document.getElementById('category');
+const subcategoryInput = document.getElementById('subcategory');
+
+// Add event listeners to the input fields
+categoryInput.addEventListener('keyup', validateCategoryInput);
+subcategoryInput.addEventListener('keyup', validateSubcategoryInput);
+
+// Validation function for the category input field
+function validateCategoryInput() {
+
+    const input = categoryInput.value.trim();
+    // Check if the input starts with a number
+    if (/^\d/.test(input)) {
+
+        document.querySelector('.errcat').textContent = '*Category cannot start with a number';
+    } else {
+
+        document.querySelector('.errcat').textContent = '';
+    }
+    console.log(input);
+}
+
+// Validation function for the subcategory input field
+function validateSubcategoryInput() {
+    const input = subcategoryInput.value.trim();
+
+    // Check if the input starts with a number
+    if (/^\d/.test(input)) {
+
+        document.querySelector('.errmsgsub').textContent = '*Subcategory cannot start with a number';
+    } else {
+
+        document.querySelector('.errmsgsub').textContent = '';
+    }
+
+    console.log(input);
+}

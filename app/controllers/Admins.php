@@ -7,14 +7,16 @@ class Admins extends Controller
         if (!isLoggedIn()) {
             redirect('users/login');
         }
-        $this ->notiModel = $this -> model('Notification');
+        $this->notiModel = $this -> model('Notification');
         $this->adminModel = $this->model('Admin');
         $this->customerModel = $this->model('Customer');
         $this->sellerModel = $this->model('Seller');
         $this->userModel = $this->model('User');
         $this->advisorModel = $this->model('Advisor');
         $this->complaintModel = $this -> model('Complaint');
+        $this->productcatModel = $this -> model('ProductCategory');
         $this->mailer = new Mailer();
+
     }
 
     public function home()
@@ -23,14 +25,20 @@ class Admins extends Controller
         $advisors = $this->advisorModel->all_registered_advisors();
         $customers = $this->customerModel->get_all_customers();
         $sellers = $this -> sellerModel -> recentlyaddedsellers();
+        $category = $this -> productcatModel -> getnewcategoryrequests_pending();
+        $newsellers = $this -> sellerModel -> get_non_registered_sellers();
+        $newadvisors = $this -> advisorModel -> get_non_registered_advisors();
 
         $data = [
             'nav' => 'home',
             'title' => 'Dashboard',
+            'newcatrequests' => $category,
             'advisors' => $advisors,
             'customers' => $customers,
             'jsfile' => 'admin_home.js',
-            'sellers' => $sellers
+            'sellers' => $sellers,
+            'newsellers' => $newsellers,
+            'newadvisors' => $newadvisors
 
         ];
         $this->view('admin/home', $data);
@@ -38,25 +46,64 @@ class Admins extends Controller
 
     public function productcategories()
     {
+        $category = $this -> productcatModel -> getnewcategoryrequests_pending();
         $data = [
             'nav' => 'categories',
             'title' => 'Product Categories',
-            'jsfile' => 'admin_categories.js'
+            'jsfile' => 'admin_categories.js',
+            'newcatrequests' => $category
         ];
         $this->view('admin/productcategories', $data);
     }
 
 
     public function newproductcategories(){
+        $newreqs = $this ->productcatModel-> getnewcategoryrequests();
 
         $data = [
+            'newrequsets' => $newreqs,
             'nav' => 'categories',
             'title' => 'Product Categories',
             'jsfile' => 'admin_categories.js'
         ];
         $this->view('admin/newcategories', $data);
     }
+    public function newproductcategories_pending(){
 
+        $newreqs = $this ->productcatModel-> getnewcategoryrequests_pending();
+
+        $data = [
+            'newrequsets' => $newreqs,
+            'nav' => 'categories',
+            'title' => 'Product Categories',
+            'jsfile' => 'admin_categories.js'
+        ];
+        $this->view('admin/newcategories_pending', $data);
+    }
+    public function newproductcategories_done(){
+
+        $newreqs = $this ->productcatModel-> getnewcategoryrequests_done();
+
+        $data = [
+            'newrequsets' => $newreqs,
+            'nav' => 'categories',
+            'title' => 'Product Categories',
+            'jsfile' => 'admin_categories.js'
+        ];
+        $this->view('admin/newcategories_done', $data);
+    }
+    public function newproductcategories_cancelled(){
+
+        $newreqs = $this ->productcatModel-> getnewcategoryrequests_cancel();
+
+        $data = [
+            'newrequsets' => $newreqs,
+            'nav' => 'categories',
+            'title' => 'Product Categories',
+            'jsfile' => 'admin_categories.js'
+        ];
+        $this->view('admin/newcategories_cancel', $data);
+    }
 
     public function customers()
     {
@@ -74,7 +121,7 @@ class Admins extends Controller
     {
         $sellers = $this->adminModel->all_registered_sellers();
         $data = [
-            'nav' => 'Sellers',
+            'nav' => 'sellers',
             'title' => 'Product Sellers',
             'sellers' => $sellers,
             'jsfile' => 'admin_sellers.js'
@@ -102,30 +149,25 @@ class Admins extends Controller
     public function advisors()
     {
         $advisors = $this->adminModel->all_registered_advisors();
+        $newadvisors = $this -> advisorModel -> get_non_registered_advisors();
 
         $data = [
             'nav' => 'advisors',
             'title' => 'Agricultural Advisors',
             'registeredAdvisors' => $advisors,
-            'jsfile' => 'admin_advisors.js'
+            'jsfile' => 'admin_advisors.js',
+            'newadvisors' => $newadvisors
         ];
         $this->view('admin/advisors', $data);
     }
 
-    public function reports()
-    {
-        $data = [
-            'nav' => 'report',
-            'title' => 'Reports'
-        ];
-        $this->view('admin/reports', $data);
-    }
+
 
     public function newsellers()
     {
         $newsellers = $this->adminModel->get_non_registered_sellers();
         $data = [
-            'nav' => 'New sellers',
+            'nav' => 'sellers',
             'title' => 'Product Sellers',
             'newsellers' => $newsellers,
             'jsfile' => 'admin_sellers.js'
@@ -137,7 +179,7 @@ class Admins extends Controller
     {
         $newadvisors = $this->adminModel->get_non_registered_advisors();
         $data = [
-            'nav' => 'New advisors',
+            'nav' => 'advisors',
             'title' => 'New Agricultural Advisors',
             'newadvisors' => $newadvisors,
             'jsfile' => 'admin_advisors.js'
@@ -169,7 +211,7 @@ class Admins extends Controller
 
 
         $data = [
-            'nav' => 'Sellers',
+            'nav' => 'sellers',
             'title' => 'Sellers',
             'sellerinfo' => $sellers,
             'jsfile' => 'admin_sellers.js',
@@ -181,7 +223,7 @@ class Admins extends Controller
     public function viewsellernonregistered($id){
         $sellers = $this->sellerModel->getSellerDetails($id);
         $data = [
-            'nav' => 'Sellers',
+            'nav' => 'sellers',
             'title' => 'Sellers',
             'sellerinfo' => $sellers,
             'jsfile' => 'admin_sellers.js'
@@ -193,7 +235,7 @@ class Admins extends Controller
     {
         $advisor = $this->advisorModel->getAdvisordetails($id);
         $data = [
-            'nav' => 'Advisor',
+            'nav' => 'advisors',
             'title' => 'Advisors',
             'advisor' => $advisor,
             'jsfile' => 'admin_advisors.js'
@@ -211,7 +253,7 @@ class Admins extends Controller
         }
 
         $data = [
-            'nav' => 'Advisor',
+            'nav' => 'advisors',
             'title' => 'Advisors',
             'advisor' => $advisor,
             'jsfile' => 'admin_advisors.js',
@@ -264,7 +306,7 @@ class Admins extends Controller
         $email = $this-> userModel -> getemailbyuserid($id);
 
         $data = [
-            'nav' => 'Sellers',
+            'nav' => 'sellers',
             'title' => 'Product Sellers',
             'email' => $email,
             'sellerid' => $id,
@@ -280,7 +322,7 @@ class Admins extends Controller
         $email = $this-> userModel -> getemailbyuserid($id);
 
         $data = [
-            'nav' => 'Advisors',
+            'nav' => 'advisors',
             'title' => 'Advisor',
             'email' => $email,
             'sellerid' => $id,
@@ -374,7 +416,7 @@ class Admins extends Controller
         $data = [
 
             'id' => $id,
-            'nav' => 'Sellers',
+            'nav' => 'sellers',
             'title' => 'Delete a Product Seller ?',
             'jsfile' => 'admin_sellers.js'
 
@@ -391,7 +433,7 @@ class Admins extends Controller
         $data = [
 
             'id' => $id,
-            'nav' => 'Advisor',
+            'nav' => 'advisors',
             'title' => 'Delete a Advisor ?',
             'jsfile' => 'admin_advisors.js'
 
@@ -473,6 +515,107 @@ class Admins extends Controller
         }
 
     }
+
+
+    public function viewnewcategoryrequest($id){
+
+        $result = $this -> productcatModel -> getnewcategoryrequestsbyreqid($id);
+
+        $data = [
+            'reqid'=> $id,
+            'request' => $result,
+            'nav' => 'categories',
+            'title' => 'Product categories',
+            'jsfile' => 'admin_reqnewcategories.js'
+        ];
+
+        $this->view('admin/viewnewcategoryrequest',$data);
+
+    }
+
+    public function newproductcategories_markasdone($id){
+        $result = $this -> productcatModel -> markasdone($id);
+        if($result){
+            redirect('admins/newproductcategories');
+        }
+        else{
+            die('error occured!');
+        }
+
+    }
+    public function newproductcategories_markasrejected($id){
+        $result = $this -> productcatModel -> markasrejected($id);
+        if($result){
+            redirect('admins/newproductcategories');
+        }
+        else{
+            die('error occured!');
+        }
+
+    }
+
+    public function userdelete($id){
+
+        $email = $this-> userModel -> getemailbyuserid($id);
+
+        $data = [
+            'nav' => 'sellers',
+            'title' => 'Delete a user',
+            'email' => $email,
+            'jsfile' => 'admin_userdelete.js'
+
+        ];
+
+        $this -> view('admin/delete_an_user',$data);
+
+
+
+    }
+
+    public function userdeleteconfirm(){
+
+            if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+                $email = trim($_POST['email']);
+                $reason = trim($_POST['reason']);
+
+
+//             user type
+                $usertype = $this -> userModel -> getusertypebyemail($email);
+
+//                user ID
+                $userID = $this ->userModel -> getuseridbyemail($email);
+
+//                user Name
+                $username = $this -> userModel -> getNamebyuserid($userID);
+
+
+
+                if($usertype == "seller"){
+                   $this -> sellerModel -> delete_seller($userID);
+                }
+                elseif($usertype == "advisor"){
+                    $this -> advisorModel -> delete_advisor($userID);
+                }else
+                {
+                   $this -> customerModel -> deletecustomer($userID);
+                }
+
+//                sent email with reason
+
+                $email_result = $this -> mailer ->sendUserDeletingMessage($username,$email,$reason);
+
+                if($email_result){
+                    redirect('admins/home');
+                }
+
+
+            }
+
+
+    }
+
 
 
 }
