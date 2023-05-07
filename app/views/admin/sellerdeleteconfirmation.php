@@ -4,7 +4,7 @@
      <h3>Are you sure want to Delete?</h3>
 <br>
     <div class="yesorno flex parentwidth">
-        <a href="<?= URLROOT; ?>/sellers/deleteseller/<?= $data['id'] ?>" class="view">Yes</a>
+        <a href="<?= URLROOT; ?>/admins/userdelete/<?= $data['id'] ?>" class="view">Yes</a>
         <a href="<?= URLROOT; ?>/sellers/deleteseller/0000" class="delete">No</a>
     </div>
 

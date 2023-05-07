@@ -21,7 +21,8 @@
                 <tr><td><b>Address </td><td>: </b> <?=$data['customerinfo'] -> address; ?></td></tr>
                 <tr><td><b>Gramasewa division </td><td>: </b> <?=$data['customerinfo'] -> gramasewa_division; ?></td></tr>
                 <tr><td><b>Divisional Secretary </td><td>: </b> <?=$data['customerinfo'] -> divisional_secretary; ?></td></tr>
-                <tr><td>
+                <tr>
+                    <td>
                        <div class="flex" style="justify-content: space-evenly">
                            <div onclick="deletecustomer(<?=$data['customerinfo'] -> customer_id; ?>);" class="delete" >Remove</div>
                        </div>

@@ -140,8 +140,7 @@
 
                 if($this->db->rowCount() > 0)
                 {
-                    $sql2 = "INSERT INTO advisor (advisor_id,name,address,email,nic_no,tel_no,qualification,photo,is_registered) 
-                            VALUES (:id,:name,:address,:mail,:nic,:tel,:qualification,:photo,:status)";
+                    $sql2 = "INSERT INTO advisor (advisor_id,name,address,email,nic_no,tel_no,qualification,photo,is_registered) VALUES (:id,:name,:address,:mail,:nic,:tel,:qualification,:photo,:status)";
 
                     $this->db->query($sql2);
                     $this->db->bind(':id', $row1->user_id);
@@ -281,11 +280,11 @@
 
         public function getemailbyuserid($id){
 
-
             $this -> db -> query('SELECT * FROM user WHERE user_id = :id');
             $this ->db ->bind(':id',$id);
             $result = $this -> db -> singleRecord();
             return $result->email;
+
         }
 
         public function insertverificationcode($id,$code){

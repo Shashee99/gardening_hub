@@ -10,6 +10,7 @@
     height: 100vh;
    padding:0;
    margin:0;
+   overflow: hidden;
    
    }
    
@@ -53,7 +54,7 @@
 }
 .add-item-div a{
    text-decoration: none;
-   margin-left: 18rem;
+   margin-left: 26rem;
    font-size: 1.2rem;
    color: black;
    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -69,149 +70,3 @@
     
 }
 
-/* .card{
-    width: 80%;
-    height: 50%;              
-    margin-top: 2rem;
-    margin-bottom: 5rem;
-  
-
-} */
- 
-/* pri view tecnology div filed style */
-.pri-view-tecno{
-
-    margin-left: 5.5rem;
-    width: 80%;
-    height: 50%;              
-    margin-top: 2rem;
-    margin-bottom: 5rem;
-    /* border: 2px solid  #60b096;
-    border-style: dashed; */
-    background-color: #C4EDC9;
-    box-shadow: 0 3px 20px rgb(35, 33, 33);
-
-}
-
-/* pri view filed dising strat now */
-.tecno-title-profile-filed{
-    width: 100%;
-    height: 22%;
-    display: flex;
-    /* background-color: antiquewhite; */
-    
-    
-}
-
-.title-tecno{
-    width: 30%;
-    height: 100%;
-    margin-left: 5rem;
-    display: flex;
-    justify-content: center;
-    color: rgb(251, 40, 40);
-    
-}
-.title-tecno h3{
-    font-family: Poppins;
-    font-weight: normal;
-    font-size: 1rem;
-}
-.title-tecno h3{
-    font-family: Poppins;
-    margin-left: 1rem;
-    margin-top: 1.3srem;
-}
-.profil-owner{
-    width: 20%;
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    
-}
-.profil-owner div{
-    width: 30%;
-    height: 80%;
-    margin-top: 5px;
-    border-radius: 50px;
-    
-}
-.profil-owner img{
-    width: 100%;
-    height: 100%;
-    border-radius: 50px;
-
-}
-.profil-owner h6{
-    margin-top: 1rem;
-    font-family:Poppins ;
-    
-    
-}
-
-/* start content style  */
-.content{
-    width: 585px;
-    height: 100px;
-    margin-left: 3rem;
-    padding-inline:3rem;
-    /* padding-block-end: 2rem; */
-    overflow: hidden;
-    overflow-y: scroll;
-    /* color: rgb(251, 40, 40); */
-    scrollbar-shadow-color: #C4EDC9;
-
-    /* background-color: #00A778; */
-    /* overflow: scroll; */
-   
-}
-.content::-webkit-scrollbar{
-    display: none;
-}
-.content p{
-   padding-inline-end: 2rem;
-    font-family: Poppins;
-
-}
-.content i{
-    padding-inline: 1rem;
-}
-.pri-view-tecno h5{
-    margin-left: 15rem;
-    margin-top: 0;
-    font-size: 1rem;
-    font-weight: 0;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    height:0;
-    color: rgb(251, 40, 40);
-    
-}
-   /* start  tecno potos filed */
-.tecno-poto{
-    width: 60%;
-    height: 30%;
-    margin-left: 8rem;
-    margin-top: .5rem;
-    display: flex;
-    justify-content: space-around;
-    
-}
-.tecno-poto div{
-    width: 53px;
-    height: 80px;
-    margin-top: .1rem;
-    /* background-color: rgb(232, 215, 189); */
-}
-.poto {
-    width: 53px;
-    height: 60px; 
-
-}   
-.pri-view-tecno a{
-    margin-left:37rem;
-    position: absolute;
-    text-decoration: none;
-    font-family: Poppins;
-    margin-top: -1.5rem;
-    color: rgb(251, 40, 40);
-}

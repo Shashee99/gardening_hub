@@ -10,19 +10,16 @@
         </div>
 
         <div class="userinfo">
-
             <ul class="userinfo-list">
                 <li><b>Name of the Advisor : </b> <?=$data['advisor'] -> name; ?></li>
                 <li><b>Mobile Phone : </b> <?=$data['advisor'] -> tel_no; ?></li>
                 <li><b>E-mail : </b> <?=$data['advisor'] -> email; ?></li>
                 <li><b>Qualification : </b> <?=$data['advisor'] -> qualification; ?></li>
-                <li><b>Qualification Documents : </b><a href="<?= URLROOT; ?>/img/upload_images/Advisor_Qualification_docs/<?= $data['advisor']->photo; ?>" download><?= $data['advisor']->photo; ?></a></li>
+                <li><b>Qualification Documents : </b><a href="<?= URLROOT; ?>/img/upload_images/Advisor_Qualification_docs/<?= $data['document']->name; ?>" download><?= $data['document']->name; ?></a></li>
                 <li class="flex" style="justify-content:space-evenly">
                     <a href="<?= URLROOT;?>/admins/deleteaadviser/<?= $data['advisor'] -> advisor_id;?>" class="delete" >Remove</a>
                 </li>
             </ul>
-
-
         </div>
     </div>
 

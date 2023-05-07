@@ -24,7 +24,6 @@ class Seller{
 
     public function add2($data) {
         $this -> db -> query('INSERT INTO seller_product_details (seller_id, title, price, description, quantity) VALUES (:seller_id, :title, :price, :description, :quantity)');
-
         $this -> db -> bind(':title', $data['title']);
         $this -> db -> bind(':price', $data['price']);
         $this -> db -> bind(':description', $data['description']);
@@ -108,7 +107,7 @@ class Seller{
     }
 
     public function getSellerName ($id){
-        $this -> db -> query('SELECT owner_name FROM seller WHERE seller_id = :id');
+        $this -> db -> query('SELECT owner_name FROM seller WHERE seller_id = :id AND isDeleted = 0;');
         $this ->db ->bind(':id',$id);
         $row = $this -> db -> singleRecord();
         return $row->owner_name;
