@@ -36,6 +36,13 @@
             return $row->name;
         }
 
+        public function getAdvisordocuments($id){
+            $this -> db -> query('SELECT * FROM advisor_document WHERE advisor_id = :id');
+            $this ->db ->bind(':id',$id);
+            $row = $this -> db -> singleRecord();
+            return $row;
+        }
+
         public function getAdvisordetails($id){
             $this -> db -> query('SELECT * FROM advisor WHERE advisor_id = :id AND isDeleted = 0;');
             $this ->db ->bind(':id',$id);

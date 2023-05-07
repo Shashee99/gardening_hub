@@ -344,8 +344,8 @@ class Users extends Controller
                 $data['seller_image'] = $newimagename;
                 //Register User
                 if ($this->userModel->sellerRegister($data)) {
-                    // $this->notiModel->addnotification('Seller');
-                    flash('register_success', 'You are registered and can log in');
+
+                    flash('register_success', 'Registration received. Pending admin approval. Please check your email for updates. Thank you.');
                     redirect('users/login');
                 } else {
                     die('Something went wrong');
@@ -425,14 +425,14 @@ class Users extends Controller
                     $img_name1 = $_FILES['qfile']['name'][$key];
                     $tmp_name1 = $_FILES['qfile']['tmp_name'][$key];
                     $img_type1 = strtolower(pathinfo($img_name1, PATHINFO_EXTENSION));
-                    $new_img1 = uniqid('PDF-', true) . '.' . $img_type1;
+                    $new_img1 = uniqid('', true) . '.' . $img_type1;
                     $img_upload_path1 = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/Advisor_Qualification_docs/' . $new_img1;
                     move_uploaded_file($tmp_name1, $img_upload_path1);
                     array_push($photo, $new_img1);
                 }
 
-                if ($this->userModel->advisorRegister($data, $new_img1)) {
-                    // $this->notiModel->addnotification('Advisor');
+                if ($this->userModel->advisorRegister($data,$photo)) {
+                    flash('register_success', 'Registration received. Pending admin approval. Please check your email for updates. Thank you.');
                     redirect('users/login');
                 } else {
                     $this->view('users/advisorRegister', $data);
@@ -624,7 +624,7 @@ class Users extends Controller
                             // die();
                             $advisor_details = $this->advisorModel->advisorDetails($logged_user->user_id);
                             $this->createAdvisorSession($advisor_details);
-                           // redirect('Advisor/viewHomePage');
+                            // redirect('Advisor/viewHomePage');
                         } elseif ($logged_user->user_state === 2) {
                             $data['u_name_err'] = 'Your user account has been deleted';
                             $this->view('users/login', $data);

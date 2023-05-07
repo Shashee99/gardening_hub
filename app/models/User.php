@@ -140,8 +140,7 @@
 
                 if($this->db->rowCount() > 0)
                 {
-                    $sql2 = "INSERT INTO advisor (advisor_id,name,address,email,nic_no,tel_no,qualification,photo,is_registered) 
-                            VALUES (:id,:name,:address,:mail,:nic,:tel,:qualification,:photo,:status)";
+                    $sql2 = "INSERT INTO advisor (advisor_id,name,address,email,nic_no,tel_no,qualification,photo,is_registered) VALUES (:id,:name,:address,:mail,:nic,:tel,:qualification,:photo,:status)";
 
                     $this->db->query($sql2);
                     $this->db->bind(':id', $row1->user_id);

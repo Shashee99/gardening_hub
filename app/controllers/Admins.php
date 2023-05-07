@@ -234,10 +234,12 @@ class Admins extends Controller
     public function viewadvisor($id)
     {
         $advisor = $this->advisorModel->getAdvisordetails($id);
+        $document = $this ->advisorModel ->getAdvisordocuments($id);
         $data = [
             'nav' => 'advisors',
             'title' => 'Advisors',
             'advisor' => $advisor,
+            'document' => $document,
             'jsfile' => 'admin_advisors.js'
         ];
         $this->view('admin/advisorpreview', $data);
@@ -246,7 +248,7 @@ class Admins extends Controller
     {
         $advisor = $this->advisorModel->getAdvisordetails($id);
         $complaints = $this ->complaintModel -> getallthecomplaintstothisid($id);
-
+        $document = $this ->advisorModel ->getAdvisordocuments($id);
         foreach ($complaints as $rowdata) {
             $rowdata->posted_user_id = $this->userModel->getNamebyuserid($rowdata->posted_user_id);
             $rowdata->complained_user_id = $this->userModel->getNamebyuserid($rowdata->complained_user_id);
@@ -257,6 +259,7 @@ class Admins extends Controller
             'title' => 'Advisors',
             'advisor' => $advisor,
             'jsfile' => 'admin_advisors.js',
+            'document' => $document,
             'complaints'=> $complaints
         ];
         $this->view('admin/registeredadvisorpreview', $data);
