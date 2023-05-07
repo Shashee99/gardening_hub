@@ -160,7 +160,7 @@ class Seller{
                                 ON wishlist.customer_id = customer.customer_id
                                 INNER JOIN seller_product_details
                                 ON wishlist.product_no = seller_product_details.product_no
-                                WHERE wishlist.seller_id = :id;
+                                WHERE seller_product_details.seller_id = :id;
         ');
         $this -> db-> bind(':id',$id);
         $orderdetails = $this -> db -> resultSet();
