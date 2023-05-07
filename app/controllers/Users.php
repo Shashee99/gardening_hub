@@ -344,8 +344,8 @@ class Users extends Controller
                 $data['seller_image'] = $newimagename;
                 //Register User
                 if ($this->userModel->sellerRegister($data)) {
-                    $this->notiModel->addnotification('Seller');
-                    flash('register_success', 'You are registered and can log in');
+                    // $this->notiModel->addnotification('Seller');
+                    flash('register_success','You are registered and can log in');
                     redirect('users/login');
                 } else {
                     die('Something went wrong');
@@ -609,17 +609,17 @@ class Users extends Controller
 
                     } elseif ($logged_user->type === 'seller') {
 
-                        if ($logged_user->user_state === 1) {
+                        if ($logged_user->user_state == 1) {
                             $this->createSellerSession($logged_user);
-                        } elseif ($logged_user->user_state === 2) {
+                        } elseif ($logged_user->user_state == 2) {
                             $data['u_name_err'] = 'Your user account has been deleted';
                             $this->view('users/login', $data);
                         } else {
                             $data['u_name_err'] = 'Your registration is pending';
                             $this->view('users/login', $data);
                         }
-                    } elseif ($logged_user->type === 'advisor') {
-                        if ($logged_user->user_state === 1) {
+                    } elseif ($logged_user->type == 'advisor') {
+                        if ($logged_user->user_state == 1) {
                             // print_r($logged_user->user_id);
                             // die();
                             $advisor_details = $this->advisorModel->advisorDetails($logged_user->user_id);

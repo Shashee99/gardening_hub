@@ -2,293 +2,45 @@
 
 <style>
 
-        body{
-            background: linear-gradient(249.92deg, #0BAB64 12.2%, #3BB78F 99.01%);
-
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-
-        }
-
-        main{
-            position: relative;
-        }
-        .checked {
-            color: orange;
-        }
-        .sampleimg{
-            width: 90%;
-            height: 50%;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 5px auto;
-            background-size: 100% 100%;
-        }
-
-        .sampleimg > a> img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-
-        .itemcard{
-            border: 2px dashed #00A778;
-            cursor: pointer;
-        }
-        .itemcard,.sampleitem{
-            width: 180px;
-            height: 250px;
-
-            align-content: center;
-            text-align: center;
-            border-radius: 10px;
-            background-color:rgba(178,161,167,0.47);
-         }
-        .sampleitem{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            padding-bottom: 4px;
-        }
-
-        .delete_alert{
-            width: 180px;
-            height: 250px;
-            align-content: center;
-            text-align: center;
-            border-radius: 10px;
-            background-color:rgba(178,161,167,0.47);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            padding-bottom: 4px;
-            z-index: 100;
-            position: absolute;
-            backdrop-filter: blur(20px);
-            visibility: hidden;
-        }
-
-        #delete_msg{
-            padding: 10px;
-            margin-top: 20px;
-            color: #e5e5e5;
-            font-weight: 1000;
-        }
-
-        .show_delete_alert {
-            visibility: visible;
-        }
-
-        .hide_delete_alert {
-            visibility: hidden;
-        }
-
-        main{
-            display: flex;
-            gap:20px;
-
-
-        }
-        .productmenu{
-            padding: 20px 50px;
-            flex-grow: 1;
-            border: 1px solid white;
-            border-radius: 10px 10px 10px 10px;
-            background-color: #FBF8F3;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            height: 550px;
-        }
-        .products{
-            /* flex-grow: 10; */
-            border: 1px solid white;
-            padding: 20px 32px 20px 50px;
-            border-radius: 10px 10px 10px 10px;
-            background-color: #FBF8F3;
-            height: 550px;
-
-        }
-        .itemgrid{
-            
-            display: grid;
-            grid-gap:10px ;
-            grid-template-columns: repeat(4, 1fr);
-            overflow: scroll;
-            overflow-x: hidden;
-            height: 510px;
-            padding-right: 15px;
-        }
-        .itemcard i{
-            font-size: 40px;
-            margin: 95px auto 5px auto;
-            color: #00A778;
-        }
-        .button {
-            display: inline-block;
-            border-radius: 4px;
-            background-color: #00A778;
-            border: 2px solid #00A778;
-            color: white;
-            text-align: center;
-            cursor: pointer;
-            font-family: 'Source Sans 3';
-            font-style: normal;
-            padding: 5px 10px;
-            margin-top: 3px;
-
-        }
-        .price{
-            font-size: 20px;
-            font-weight: 900;
-        }
-        .del{
-            background-color:rgba(178,161,167,0.47);
-            border: 2px solid #ff253a;
-            color: black;
-        }
-        .catlist{
-            list-style: none;
-            display: grid;
-            grid-gap: 10px;
-            overflow: scroll;
-            overflow-x: hidden;
-            padding: 0px;
-            height: 220px;
-        }
-        .catgeories{
-            background-color:rgba(178,161,167,0.47);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 10px 0px;
-        }
-        .catgeories h4{
-            margin: 10px 0px 20px 0px;
-            font-size: 20px;
-            font-weight: 700;
-            text-align: center;
-            align-items: center;
-        }
-        .catlist input{
-            margin-right: 10px;
-            width: 20px;
-        }
-        .catlist li{
-            font-size: 20px;
-            margin: 7px;
-        }
-        #cusorder,#genreport{
-            width: 100%;
-            padding :20px 30px;
-            font-size: 20px;
-            height: 70px;
-        }
-        #genreport{
-            background-color: white;
-            color: black;
-        }
-
-        .add{
-            background-color: white;
-            color: green;
-            padding: 5px 20px;
-            border-radius: 100%;
-            text-align: center;
-            display: inline-block;
-            font-size: 50px;
-            margin: 10px 10px;
-            cursor: pointer;
-            text-decoration:none;
-            font-weight: 900;
-        }
-
-        .itemgrid::-webkit-scrollbar {
-            width: 15px;
-        }
-
-        .itemgrid::-webkit-scrollbar-track {
-            background: #FFFFFF;
-            border-radius: 100vw;
-        }
-
-        .itemgrid::-webkit-scrollbar-thumb {
-            background: #1d976cb2;
-            border-radius: 100vw;
-            border: 3px solid #FFFFFF;
-            padding: 10px;
-        }
-
-        .catlist::-webkit-scrollbar {
-            width: 15px;
-        }
-
-        .catlist::-webkit-scrollbar-track {
-            background: #FFFFFF;
-            border-radius: 100vw;
-        }
-
-        .catlist::-webkit-scrollbar-thumb {
-            background: #1d976cb2;
-            border-radius: 100vw;
-            border: 3px solid #FFFFFF;
-            padding: 10px;
-        }
-
-        i{
-            font-size: 40px;
-            padding: 15px;
-        }
-
-        #correct{
-            color: #00A778;
-            cursor: pointer;
-        }
         
-        #wrong{
-            color: #ff4c4c;
-            cursor: pointer;
-        }
-
-        .cr_btn{
-            border:none;
-            background: none;
-        }
-
-        i#correct:hover, i#correct:active {font-size: 350%;}
-        i#wrong:hover, i#wrong:active {font-size: 350%;}
-
     </style>
 
 
 <div class="container">
     <main>
         <div class="productmenu">
-            <button class="button" id="cusorder" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/order';"> Customers Orders</button>
+            <div class="order_info_part">
+                <button class="button" id="cusorder" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/order';"> Customers Orders</button>
+                <div id="noti">
+                    <button id="noti_butn" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/order';">
+                        <h3 id="noti_count"><?php echo $data['notificationData'] -> num_noti; ?></h3>
+                    </button>
+                </div>
+            </div>
             <div class="catgeories">
                 <h4>Categories</h4>
                 <ul class="catlist">
-                    <li class="dddd"><input type="radio" class="all_items" name="ch1" id="ch1" value="" checked>All</li>
-                    <span class="checkmark"></span>
+                    <li class="dddd"><input type="radio" class="all_items" name="ch1" id="ch1" value="" checked><span class="checkmark"></span>All</li>
+                    
                     <?php foreach($data['catData'] as $cat_data) : ?>
-                        <li class="dddd"><input type="radio" class="select_cat" name="ch1" id="select_cat" value="<?php echo $cat_data -> product_category; ?>"><?php echo $cat_data -> product_category; ?></li>
-                        <span class="checkmark"></span>
+                        <li class="dddd"><input type="radio" class="select_cat" name="ch1" id="select_cat" value="<?php echo $cat_data -> product_category; ?>"><span class="checkmark"></span><?php echo $cat_data -> product_category; ?></li>
+                        
                     <?php endforeach; ?>
                 </ul>
 
             </div>
-            <input type="button" class="button" id="genreport" value="View Genarate Report">
+            <!-- <input type="button" class="button"  value="View Genarate Report"> -->
+            <button class="button" id="genreport" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/genarate_report';">View Genarate Report</button>
 
         </div>
         <div class="products">
 
             <div class="itemgrid">
                 <div class="itemcard">
-                    <br><br>Add item<br><br>
-                    <a href="<?php echo URLROOT; ?>/sellers/add1" class="add">+</a><br>
+                    <h4 id="additemname">Add item</h4>
+                    <a href="<?php echo URLROOT; ?>/sellers/add1">
+                    <i id="add" class="fa-solid fa-circle-plus"></i>
+                    </a><br>
                 </div>
                 
                 <?php foreach($data['itemData'] as $item_data) : ?>
@@ -309,22 +61,31 @@
                                 <img src="<?=URLROOT;?>/img/upload_images/product_cover_photo/<?=$item_data->image;?>" alt="Image"> 
                             </a>
                         </div>
-                        <h4><?php echo $item_data -> title; ?></h4>
-                        <div class="ratings">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
+                        <div class="first">
+                            <h4 id="itemname"><?php echo $item_data -> title; ?></h4>
+                            <div class="RatingStars" id="<?php echo $item_data -> product_no?>">
+                                <div class="stars-outer-below">
+                                    <h5 id="num_ratings_bolow" class="num_ratings_bolow">(<?php 
+                                        $retrive_data = $item_data -> total_rating;
+                                        $insert_data = ($retrive_data*10000)/10000;
+                                        echo $insert_data; ?>)
+                                    </h5>
+                                    <div class="stars-inner-below"></div>
+                                </div>
+                            </div>
                         </div>
-                       
-                        <div class="price">
-                            <span>Price <stron><?php echo $item_data -> price; ?></stron></span>
+                        <div class="second">
+                            <div class="price">
+                                <span>Rs. <stron><?php echo $item_data -> price; ?></stron></span>
+                            </div>
+                            <div class="avi">
+                                <h6>Available <?php echo '('.$item_data -> quantity.')' ?></h6>
+                            </div>
                         </div>
                         <div class="operations">
-                            <button class="button" btn_id="<?php echo $item_data -> product_no .'update' ?>"
+                            <button class="opbtn" btn_id="<?php echo $item_data -> product_no .'update' ?>"
                             onclick="window.location.href='<?php echo URLROOT.'/sellers/update/'. $item_data -> product_no ?>';">Update</button>
-                            <button class="button del" type="submit" btn_id="<?php echo $item_data -> product_no.'delete' ?>">Delete</button>
+                            <button class="opbtn del" type="submit" btn_id="<?php echo $item_data -> product_no.'delete' ?>">Delete</button>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -357,14 +118,6 @@
             var delete_msg = delete_item_id.concat("delete_alert");
             let del = document.getElementById(delete_msg);
             del.classList.add("show_delete_alert");
-            // var request = new XMLHttpRequest();
-            // var url = "http://localhost/gardening_hub/sellers/delete_item";
-            // var method = "POST";
-            // request.open(method, url, true);
-            // request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            // request.send("delete_item_id=" + delete_item_id);
-            // alert(delete_item_id);
-            // window.location.reload();
         } else if(t.includes('correct')){
             var delete_item_id = t.replace('correct', '');
             var request = new XMLHttpRequest();
@@ -373,7 +126,7 @@
             request.open(method, url, true);
             request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             request.send("delete_item_id=" + delete_item_id);
-            alert(delete_item_id);
+            // alert(delete_item_id);
             window.location.reload();
         } else if(t.includes('worng')){
             var delete_item_id = t.replace('worng', '');
@@ -494,11 +247,11 @@
 
     document.addEventListener('DOMContentLoaded', function () {
     var radioButtons = document.querySelectorAll('.select_cat');
-    console.log(radioButtons);
+    // console.log(radioButtons);
     radioButtons.forEach(function (radio) {
     radio.addEventListener("change", function () {
-      var radioValue = document.querySelector('.select_cat:checked').value;
-    //   alert(radioValue);
+    var radioValue = document.querySelector('.select_cat:checked').value;
+    // alert(radioValue);
 
       let httpRequest = new XMLHttpRequest();
       httpRequest.onreadystatechange = function()
@@ -507,10 +260,11 @@
             {
                 let response = JSON.parse(this.responseText);
                 let search_result = "";
+                // alert(response.length);
                 if(response.length == 0)
                 {
                     search_result += `
-                        <div class='empty_record' >
+                        <div class='sampleitem' >
                             <h2>Items can not found</h2>
                         </div>
                     `;
@@ -538,18 +292,24 @@
                                 
                             </a>
                         </div>
-                        <h4>${item.title}</h4>
-                        
-                        <div class="ratings">
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star checked"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
+                        <div class="first">
+                            <h4 id="itemname">${item.title}</h4>
+                            <div class="RatingStars" id="${item.product_no}">
+                                <div class="stars-outer-below">
+                                    <h5 id="num_ratings_bolow" class="num_ratings_bolow">
+                                        ${((item.total_rating)*10000)/10000}
+                                    </h5>
+                                    <div class="stars-inner-below"></div>
+                                </div>
+                            </div>
                         </div>
-                       
-                        <div class="price">
-                            <span>Price <stron>${item.price}</stron></span>
+                        <div class="second">
+                            <div class="price">
+                                <span>Rs. <stron>${item.price}</stron></span>
+                            </div>
+                            <div class="avi">
+                                <h6>Available(${item.quantity})</h6>
+                            </div>
                         </div>
                         <div class="operations">
                             <button class="button" btn_id="${item.product_no}update"
@@ -577,6 +337,53 @@
             window.location.reload();
         });
 
+
+
+// ---------------------------- Notification Hide ---------------------------//
+
+
+let noti_count = document.getElementById("noti_count").innerHTML;
+let noti_hidden = document.getElementById("noti");
+//console.log(noti_count);
+if(noti_count == 0){
+    noti_hidden.classList.add("hide_noti");
+}
+
+
+// ----------------------------- Itemcard Rating Stars ------------------------//
+
+const star = document.querySelectorAll(".RatingStars");
+const stars_id = [];
+for(let i=0; i<star.length; i++){
+    const arr_val = star[i].id;
+    stars_id.push(arr_val);
+}
+
+const star_count = document.getElementsByTagName("h5");
+const star_counts = [];
+
+for(let i=0; i<star_count.length; i++){
+    const arr_content_num = star_count[i].textContent;
+    const arr_content_num_chars = arr_content_num.match(/\d+/g).join('');
+    const arr_content_num_int = parseInt(arr_content_num_chars); 
+    star_counts.push(arr_content_num_int);
+
+}
+
+document.addEventListener('DOMContentLoaded', getRatings);
+
+
+function getRatings(){
+    for(let star_count in star_counts){
+        const starPercentage = `${(star_counts[star_count]/5) * 100}%`;
+        // console.log(starPercentage);
+        const find = document.getElementById(stars_id[star_count]);
+        console.log(find);
+        (find.childNodes[1].children[1]).style.width = starPercentage;
+    }
+
+    document.getElementById("num_ratings_bolow").innerHTML = "( "+final_total_star+" )";
+}
 </script>
 
     <?php require APPROOT . '/views/inc/incSeller/footer.php'; ?>

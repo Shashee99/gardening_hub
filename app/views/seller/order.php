@@ -3,117 +3,141 @@
 <!-- ---------------------------------------------------------------------- -->
 
 <style>
-    * {
-    box-sizing: border-box;
+
+
+/* -------------------------------------------------------------- */
+/* ----------------------------Tab Menue css--------------------- */
+/* -------------------------------------------------------------- */
+
+*{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    /* background: #ffffe6; */
-    background: linear-gradient(#B7F8DB , #50A7C2);
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.an {
-    font-family: 'Source Sana 3';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 28px;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    padding: 10px;
-    margin-right: 10px;
-    color: #000000;
+.tabscontainer{
+    width: 1000px;
+    padding: 30px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, .1);
+    border-radius: 20px;
+    margin: 30px auto;
 }
 
-.an:hover {
-    border-bottom: 5px solid #EAFFD0;
+.tab_box{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 2px solid green;position: relative;
 }
 
-.infopart {
-    /* background: #fbf8f394; */
-    margin-top: 20px;
-    height: 563px;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    
+.tab_box .tab_btn{
+    font-size: 18px;
+    font-weight: 600;
+    color: #919191;
+    background: none;
+    border: none;
+    padding: 18px;
+    cursor: pointer;
 }
+
+.tab_box .tab_btn.active{
+    color: #7360ff;
+}
+
+.content_box{
+    padding: 20px;
+    display: contents;
+}
+
+.content_box .content{
+    display: none;
+    animation: moving .5s ease;
+}
+
+@keyframes moving {
+    from{transform: translate(50px);opacity: 0;}
+    to{transform: translate(0px);opacity: 1;}
+}
+
+.content_box .content.active{
+    display: block;
+    padding: 30px;
+}
+
+.content_box .content h2{
+    margin-bottom: 10px;
+}
+
+.line{
+    position: absolute;
+    top: 55px;
+    left: 29px;
+    width: 149px;
+    height: 5px;
+    background-color: #7360ff;
+    border-radius: 10px;
+    transition: all .3s ease-in-out;
+}
+
+
+
+
+
+/* -------------------------------------------------------------- */
+/* ----------------------------Table css------------------------- */
+/* -------------------------------------------------------------- */
+
 
 .div1 {
     height: 50px;
-    width: 1150px;
+    width: 900px;
     margin-left:auto; 
     margin-right:auto;
-    margin-top: 40px;
-    box-shadow: 2px 2px 12px rgba(0,0,0,0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 2px 2px 12px rgba(0,0,0,0.2), -1px -1px 8px rgba(0, 0, 0, 0.2); */
 }
 
 .tb1, .tb2 {
     table-layout: fixed;
     text-align: center;
-    width: 1150px;
+    width: 900px;
     height: 50px;
     box-shadow: 2px 2px 12px rgba(0,0,0,0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
 
 .div2 {
-    margin-top: 8px;
+    margin-top: 2px;
     height: 300px;
-    width: 1150px;
+    width: 900px;
     overflow: auto;
     overflow-x: hidden;
     margin-left:auto; 
     margin-right:auto;
     box-shadow: 2px 2px 12px rgba(0,0,0,0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
 }
-th, td {
-    padding: 15px;
+
+#tbl2{
+    margin-top: 2px;
+}
+
+td {
     text-align: center;
-    border-bottom: 1px solid #ddd;
-}
-
-#header {
-    background-color: #1D976C;
-    color: #ddd;
-    opacity: 0.8;
-}
-
-h1 {
-    font-weight: 600;
-    text-align: center;    
-    /* background-color: #1D976C; */
-    /* opacity: 0.8; */
-    color: black;
-    padding: 10px 0px;
-}
-
-tr:hover {
-    background-color: rgba(255, 253, 253, 0.671);
-    transform: scale(1.02);
-    box-shadow: 2px 2px 12px rgba(0,0,0,0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
-}
-
-.div2::-webkit-scrollbar {
-    width: 15px;
-}
-
-.div2::-webkit-scrollbar-track {
-    background: #FFFFFF;
-    border-radius: 100vw;
-}
-
-.div2::-webkit-scrollbar-thumb {
-    background: #1D976C;
-    border-radius: 100vw;
-    border: 3px solid #FFFFFF;
+    height: 50px;
+    border-bottom: 0.1px solid #E5E4E2;
 }
 
 .or_btn {
-    width: 100px;
-    height: 25px;
-    border-radius: 7px;
+    width: 75px;
+    height: 22px;
+    border-radius: 5px;
     background: none;
+    font-size: 10px;
 }
 
 #butn1 {
@@ -148,16 +172,39 @@ tr:hover {
     color: #FFFFFF;   
 }
 
-.popup {
+/* tr:hover {
+    background-color: rgba(255, 253, 253, 0.671);
+    transform: scale(1.02);
+    box-shadow: 2px 2px 12px rgba(0,0,0,0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+} */
+
+.div2::-webkit-scrollbar {
+    width: 10px;
+}
+
+.div2::-webkit-scrollbar-track {
+    background: #FFFFFF;
+    border-radius: 100vw;
+}
+
+.div2::-webkit-scrollbar-thumb {
+    background: #1D976C;
+    border-radius: 100vw;
+    border: 3px solid #FFFFFF;
+}
+
+
+
+
+
+.popup { 
     width: 400px;
-    /* background: #000000; */
     box-shadow: 0 4px 30px rgba(255, 255, 255, 0.17);
     border-radius: 6px;
     position: absolute;
     top: 0;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.1);
-    /* text-align: center; */
     padding: 0 30px 30px;
     color: #333;
     visibility: hidden;
@@ -166,60 +213,71 @@ tr:hover {
 
 }
 
+.open-popup {
+    visibility: visible;
+    top: 65.28%;
+    width: 900px;
+    height: 350px;
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(25px);
+    z-index: 20;
+    margin-left: 10px;
+}
+
 #msg_img {
-    width: 360px;
-    height: 360px;
+    width: 347px;
+    height: 347px;
     padding: 0px;
     opacity: 0.9;
-    border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
 }
 
 .msg {
     flex-grow: 1;
     width: 750px;
-    height: 360px;
+    height: 347px;
     text-align: center;
-}
-
-.open-popup {
-    visibility: visible;
-    top: 61.5%;
-    width: 1150px;
-    height: 361px;
-    transform: translate(-50%, -50%) scale(1);
-    box-shadow: 0 4px 30px rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(25px);
-    z-index: 20;
-    /* -webkit-backdrop-filter: blur(13.5px); */
-}
-
-.back-popup {
-    background: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(25px);
-    z-index: 50;
 }
 
 .tblShow {
     visibility: hidden;
 }
 
+/* .back-popup {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(25px);
+    z-index: 50;
+} */
+
 span {
     font-size:100px;
     padding: 10px;
 }
 
+.text_msg{
+    font-size: 14px;
+}
+
 #com_msg {
-    padding: 30px 0px;
+    padding: 15px 0px;
+    font-size: 21px;
 }
 
 .order_con {
-    width: 200px;
-    height: 36px;
-    margin: 30px;
+    width: 120px;
+    height: 26px;
+    margin: 40px;
     border-radius: 30px;
-    background:none;
-    color: #FFFFFF;  
+    background: none;
+    color: #0e0e0e;
+    font-size: 12px;
+}
+
+.order_con:hover {
+    transform: scale(1.02);
+    color: #FFFFFF;   
 }
 
 #b1 {
@@ -234,11 +292,6 @@ span {
     border: 2px solid #0F52BA;
 }
 
-.order_con:hover {
-    transform: scale(1.02);
-    color: #FFFFFF;   
-}
-
 #b1:hover {
     background-color: #1D976C;
 }
@@ -251,124 +304,245 @@ span {
     background-color: #0F52BA;
 }
 
-.text_msg {
-    color: #FFFFFF;  
-}
-
 #cancel_reason {
     display: flex;
     margin: auto;
-    width: 600px;
-    height: 50px;
+    width: 375px;
+    height: 38px;
     border: 1px solid #FFFFFF;
     background: none;
     border-radius: 10px;
     padding-left: 20px;
+    font-size: 11px;
 }
 
 #cancel_reason:focus {
-    outline: none; /* to remove outline black corder */
-    caret-color: #FFFFFF; /* to change corsor color */
+    outline: none; 
+    caret-color: #FFFFFF; 
 }
+
+
 </style>
 
 <!-- ---------------------------------------------------------------------- -->
 
-    <div class="infopart" id="infopart">
-        <h1 id="od">Order Details</h1>
-        <div class="tbl" id="tbl">
 
-            <div class="div1">
-                <table class="tb1">
-                    <tr id="header">
-                        <th>Product Name</th>
-                        <th>Customer Name</th>
-                        <th>Quantity</th>
-                        <th>Order Date</th>
-                        <th colspan="2">Conformation</th>
-                        <th>Complete</th>
-                    </tr>
-                </table>
+<div class="tabscontainer">
+        <div class="tab_box">
+            <button class="tab_btn active">Order Detaila</button>
+            <button class="tab_btn" id="con_btn">Conformed Orders</button>
+            <button class="tab_btn" id="can_btn">Cancled Orders</button>
+            <button class="tab_btn" id="com_btn">Completed Orders</button>
+            <div class="line"></div>
+        </div>
+        <div class="content_box">
+            <div class="content active">
+                <div class="tbl" id="tbl">
+                    <div class="div1">
+                        <table class="tb1">
+                            <tr id="header">
+                                <th>Order Id</th>
+                                <th>Product Name</th>
+                                <th>Customer Name</th>
+                                <th>Quantity</th>
+                                <th>Order Date</th>
+                                <th colspan="2">Conformation</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="div2">
+                        <table class="tb2" id="tbl2">
+                            <?php foreach($data['orderData'] as $orderData) : ?>
+                                <tr>
+                                    <td><?php echo $orderData -> wishlit_id; ?></td>
+                                    <td><?php echo $orderData -> title; ?></td>
+                                    <td><?php echo $orderData -> name; ?></td>
+                                    <td><?php echo $orderData -> quantity; ?></td>
+                                    <td><?php echo $orderData -> order_date_time; ?></td>
+                                    <td colspan="2">
+                                        <button class="or_btn" id="butn1" onclick="openPopup1()" type="submit">Conform</button>
+                                        <button class="or_btn" id="butn2" onclick="openPopup2()" type="submit">Reject</button>
+                                    </td>
+
+                                    <div class="popup" id="popup1">
+                                        <div id="msg_img">
+                                            <img src="<?= URLROOT;?>/img/seller/orderConfirm.jpg" id="msg_img">
+                                        </div>
+                                        <div class="msg">
+                                        <span>&#128680;</span>
+                                            <h2 class="text_msg" id="com_msg">Are you sure ?</h2>
+                                            <h4 class="text_msg" id="text_msg">You can confirm this order and return withn the selling time period</h4>
+                                            <button class="order_con" id="b1" btn_id="<?php echo $orderData -> wishlit_id . 'b1' ?>" name="orderConfirm" type="submit"> Confirm</button>
+                                        </div>
+                                    </div>
+        
+                                    <div class="popup" id="popup2">
+                                        <div id="msg_img">
+                                            <img src="<?= URLROOT;?>/img/seller/orderCancle.jpg" id="msg_img">
+                                        </div>
+                                        <div class="msg">
+                                            <span>&#10067;</span>
+                                            <h2 class="text_msg" id="com_msg">You want to cancle this order</h2>
+                                            <input type='text' id="cancel_reason" placeholder='Reason for cancelation !' />
+                                            <button class="order_con" id="b2" btn_id="<?php echo $orderData -> wishlit_id . 'b2' ?>" name="orderCancle" type="submit">Cancle</button>
+                                        </div>
+                                    </div>
+                                </tr>
+                            <?php endforeach; ?>
+                        </table>
+                    </div>
+                </div>
+                
             </div>
+        </div>
 
-            <div class="div2">
-                <table class="tb2">
-                    <?php foreach($data['orderData'] as $orderData) : ?>
-                        <tr>
-                            <td><?php echo $orderData -> title; ?></td>
-                            <td><?php echo $orderData -> name; ?></td>
-                            <td><?php echo $orderData -> quantity; ?></td>
-                            <td><?php echo $orderData -> order_date; ?></td>
-                            <td colspan="2">
-                                <button class="or_btn" id="butn1" onclick="openPopup1()" type="submit">Conform</button>
-                                <button class="or_btn" id="butn2" onclick="openPopup2()" type="submit">Reject</button>
-                            </td>
+        <div class="content_box">
+            <div class="content">
+                <div class="tbl" id="tbl">
+                    <div class="div1">
+                        <table class="tb1">
+                            <tr id="header">
+                                <th>Order Id</th>
+                                <th>Product Name</th>
+                                <th>Customer Name</th>
+                                <th>Quantity</th>
+                                <th>Remaining Time</th>
+                                <th>Complete</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="div2">
+                        <table class="tb2" id="tbl2">
+                            <?php foreach($data['conformorderData'] as $conformorderData) : ?>
+                                <tr>
+                                    <td><?php echo $conformorderData -> wishlit_id; ?></td>
+                                    <td><?php echo $conformorderData -> title; ?></td>
+                                    <td><?php echo $conformorderData -> name; ?></td>
+                                    <td><?php echo $conformorderData -> quantity; ?></td>
+                                    <td>
+                                        <?php 
+                                            $exp_time_period = "0-0-3 0:0:0";
+                                            $exp_time_convert = strtotime($exp_time_period);
+                                            $order_start_date = $conformorderData -> order_date_time;
+                                            $order_start_date_convert = strtotime($order_start_date);
+                                            $order_exp_date_convert = $order_start_date_convert + $exp_time_convert;
+                                            $cur_date = date('Y-m-d H:i:s');
+                                            $cur_date_convert = strtotime($cur_date);
+                                            $remaining_time_convert = $order_exp_date_convert - $cur_date_convert;
+                                            $remaining_time = date("d H:i:s", $remaining_time_convert);
+                                            echo $remaining_time; 
+                                        ?>
+                                    </td>
+                                    <td>
+                                        <button class="or_btn" id="butn3" onclick="openPopup3()" type="submit">Complete</button>
+                                    </td>
+                                    <div class="popup" id="popup3">
+                                        <div id="msg_img">
+                                            <img src="<?= URLROOT;?>/img/seller/orderComplete.png" id="msg_img">
+                                        </div>
+                                        <div class="msg">
+                                        <span>&#129309;</span>
+                                            <h2 class="text_msg" id="com_msg">Successfull</h2></h2>
+                                            <h4 class="text_msg">Succesfully complete the order</h4>
+                                            <button class="order_con" id="b3" btn_id="<?php echo $conformorderData -> wishlit_id . 'b3' ?>" onclick="closePopup3()" name="orderComplete" type="submit">Complete</button>
+                                        </div>
+                                    </div>
+                                </tr>
+                            <?php endforeach; ?>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                            <div class="popup" id="popup1">
-                                <div id="msg_img">
-                                    <img src="<?= URLROOT;?>/img/seller/orderConfirm.jpg" id="msg_img">
-                                </div>
-                                <div class="msg">
-                                <span>&#128680;</span>
-                                    <h2 class="text_msg" id="com_msg">Are you sure ?</h2>
-                                    <h4 class="text_msg" id="text_msg">You can confirm this order and return withn the selling time period</h4>
-                                    <button class="order_con" btn_id="<?php echo $orderData -> product_no . 'b1' ?>" name="orderConfirm" type="submit"> Confirm</button>
-                                </div>
-                            </div>
+        <div class="content_box">
+            <div class="content">
+                <div class="tbl" id="tbl">
+                    <div class="div1">
+                        <table class="tb1">
+                            <tr id="header">
+                                <th>Order Id</th>
+                                <th>Product Name</th>
+                                <th>Customer Name</th>
+                                <th>Quantity</th>
+                                <th>Order Date</th>
+                                <th>Cancle Reason</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="div2">
+                        <table class="tb2" id="tbl2">
+                            <?php foreach($data['cancleorderData'] as $cancleorderData) : ?>
+                                <tr>
+                                    <td><?php echo $cancleorderData -> wishlit_id; ?></td>
+                                    <td><?php echo $cancleorderData -> title; ?></td>
+                                    <td><?php echo $cancleorderData -> name; ?></td>
+                                    <td><?php echo $cancleorderData -> quantity; ?></td>
+                                    <td><?php echo $cancleorderData -> order_date_time; ?></td>
+                                    <td><?php echo $cancleorderData -> status_msg; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                            <div class="popup" id="popup2">
-                                <div id="msg_img">
-                                    <img src="<?= URLROOT;?>/img/seller/orderCancle.jpg" id="msg_img">
-                                </div>
-                                <div class="msg">
-                                    <span>&#10067;</span>
-                                    <h2 class="text_msg" id="com_msg">You want to cancle this order</h2>
-                                    <input type='text' id="cancel_reason" placeholder='Reason for cancelation !' />
-                                    <button class="order_con" btn_id="<?php echo $orderData -> product_no . 'b2' ?>" name="orderCancle" type="submit">Cancle</button>
-                                </div>
-                            </div>
-
-                            <td><button class="or_btn" id="butn3" onclick="openPopup3()" type="submit">Complete</button></td>
-
-                            <div class="popup" id="popup3">
-                                <div id="msg_img">
-                                    <img src="<?= URLROOT;?>/img/seller/orderComplete.png" id="msg_img">
-                                </div>
-                                <div class="msg">
-                                <span>&#129309;</span>
-                                    <h2 class="text_msg" id="com_msg">Successfull</h2></h2>
-                                    <h4 class="text_msg">Succesfully complete the order</h4>
-                                    <button class="order_con" btn_id="<?php echo $orderData -> product_no . 'b3' ?>" onclick="closePopup3()" name="orderComplete" type="submit">Complete</button>
-                                </div>
-                            </div>
-
-                        </tr>
-                    <?php endforeach; ?>
-                </table>
+        <div class="content_box">
+            <div class="content">
+                <div class="tbl" id="tbl">
+                    <div class="div1">
+                        <table class="tb1">
+                            <tr id="header">
+                                <th>Order Id</th>
+                                <th>Product Name</th>
+                                <th>Customer Name</th>
+                                <th>Quantity</th>
+                                <th>Completed Date</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="div2">
+                        <table class="tb2" id="tbl2">
+                            <?php foreach($data['completeeorderData'] as $completeeorderData) : ?>
+                                <tr>
+                                    <td><?php echo $completeeorderData -> wishlit_id; ?></td>
+                                    <td><?php echo $completeeorderData -> title; ?></td>
+                                    <td><?php echo $completeeorderData -> name; ?></td>
+                                    <td><?php echo $completeeorderData -> quantity; ?></td>
+                                    <td><?php echo $completeeorderData -> order_date_time; ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 
     <script>
         $("button").click(function() {
             var t = $(this).attr('btn_id');
             if(t.includes('b1')) {
-                alert(t);
+                // alert(t);
                 var item = t.replace('b1', '');
-                alert(item);
+                // alert(item);
                 var request = new XMLHttpRequest();
                 var url = "http://localhost/gardening_hub/sellers/order_conf";
                 var method = "POST";
                 request.open(method, url, true);
                 request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 request.send("item=" + item);
-                alert(item);
+                location.reload(true);
+                // alert(item);
+                rdirectto();
                 disableButton('butn2');
                 closePopup1();
-
+                
                 
             } else if (t.includes('b2')) {
-                alert(t);
+                // alert(t);
                 var cancel_item = t.replace('b2', '');
                 var request = new XMLHttpRequest();
                 var url = "http://localhost/gardening_hub/sellers/order_cancel";
@@ -376,20 +550,59 @@ span {
                 request.open(method, url, true);
                 request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 var cancel_reason = document.getElementById("cancel_reason").value;
-                alert(cancel_reason);
+                // alert(cancel_reason);
                 request.send("cancel_item=" + cancel_item + "&cancel_reason=" + cancel_reason);
+                window.location.reload();
                 disableButton('butn1');
                 closePopup2();
-            }    
+                
+            }  else if (t.includes('b3')) {
+                // alert(t);
+                var compelete_item = t.replace('b3', '');
+                var request = new XMLHttpRequest();
+                var url = "http://localhost/gardening_hub/sellers/order_complete";
+                var method = "POST";
+                request.open(method, url, true);
+                request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                request.send("compelete_item=" + compelete_item);
+                window.location.reload();
+                disableButton('butn1');
+                closePopup2();
+                
+            }   
 
-            // function sendData(textAreaValue) {
-            //     var text = new XMLHttpRequest();
-            //     text.open("POST", "http://localhost/gardening_hub/sellers/order_cancel");
-            //     var data = JSON.stringify(textAreaValue);
-            //     alert(data);
-            //     text.send("data=" + data);
-            // }
     });
+
+    const tabs = document.querySelectorAll('.tab_btn');
+        const all_content = document.querySelectorAll('.content');
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', (e)=>{
+                tabs.forEach(tab=>{tab.classList.remove('active')});
+                tab.classList.add('active');
+
+                var line = document.querySelector('.line');
+            line.style.width = e.target.offsetWidth + "px";
+            line.style.left = e.target.offsetLeft + "px";
+            
+            all_content.forEach(content=>{content.classList.remove('active')});
+            all_content[index].classList.add('active');
+            })
+        })
+
+        // async function rdirectto(){
+        //     const button1 = document.getElementById("b1");
+        //     const button2 = document.getElementById("con_btn");
+        //     window.location.reload();
+        //     await delay(1000);
+        //     button1.addEventListener("click", function() {
+        //         button2.click();
+        //     });
+        // }
+
+        // function delay(ms) {
+        //     return new Promise(resolve => setTimeout(resolve, ms));
+        // }
     </script>
 
     <script>
@@ -445,7 +658,17 @@ span {
             document.getElementById(disableId).disabled = true;
         }
 
-        
+        // function redirectconformtab(){
+        //     document.getElementById('con_btn').click();
+        // }
+
+        // function redirectcanaletab(){
+        //     document.getElementById('can_btn').click();
+        // }
+
+        // function redirectcompletetab(){
+        //     document.getElementById('com_btn').click();
+        // }
 
     </script>
 

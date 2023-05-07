@@ -52,7 +52,6 @@ body {
 .proimage {
     width: 130px;
     height: 130px;
-    border: 1px solid black;
     display: block;
     margin: auto;
 }
@@ -66,7 +65,6 @@ body {
     width: 130px;
     height: 50px;
     margin: 10px auto;
-    border: 1px solid black;
 }
 
 .availablity {
@@ -99,7 +97,6 @@ body {
 .cp {
     width: 130px;
     height: 130px;
-    border: 1px solid black;
     display: inline-block;
     margin: 20px;
 }
@@ -121,9 +118,10 @@ body {
     margin: 15px;
     border-radius: 15px;
     padding: 10px;
+    background: linear-gradient(270deg, #6DD5ED 0%, #2193B0 103.58%);
 }
 
-.s1 {
+/* .s1 {
     background: linear-gradient(270deg, #6DD5ED 0%, #2193B0 103.58%);
 }
 
@@ -133,7 +131,7 @@ body {
 
 .s3 {
     background: linear-gradient(270deg, #61045F 0%, #AA076B 103.58%);
-}
+} */
 
 .p1 {
     height: 70px;
@@ -149,7 +147,6 @@ body {
 
 
 #proImg {
-    border: 1px solid black;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -161,10 +158,9 @@ body {
 }
 
 #ratingstar {
-    border: 1px solid black;
     width: 200px;
     height: 40px;
-    margin-left: 600px;
+    margin-left: 530px;
 }
 
 .p2 {
@@ -187,6 +183,84 @@ body {
     border: 3px solid #FFFFFF;
 }
 
+
+#review_name{
+    font-size: 16px;
+    width: 200px;
+}
+
+#review_date{
+    font-size: 14px;
+}
+
+.num_ratings{
+    /* visibility: hidden; */
+    display: inline-block;
+    margin: auto 10px;
+}
+
+.stars-outer{
+    position: relative;
+    display: inline-block;
+    margin-left: 550px;
+}
+
+.stars-inner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+
+.stars-outer::before{
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 20px;
+    color: #ccc;
+}
+
+.stars-inner::before{
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 20px;
+    color: #f8ce0b;
+}
+
+
+.stars-outer-below{
+    position: relative;
+    display: inline-block;
+}
+
+.stars-inner-below{
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+
+.stars-outer-below::before{
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 20px;
+    color: #ccc;
+}
+
+.stars-inner-below::before{
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 20px;
+    color: #f8ce0b;
+}
+
 </style>
 <!-- ---------------------------------------------------------------------- -->
 
@@ -197,9 +271,13 @@ body {
                 <img src="<?= URLROOT;?>/img/upload_images/product_cover_photo/<?= $data['itemData'] -> image;?>" alt="Image" class="proimage">
                 <div class="proinfo">
                     <h3 class="priceTag">Price  <?php echo $data['itemData'] -> price ?></h3>
-                    <div class="ratingStars"></div>
-                    <h4>(276)</h4>
-                    <h3 class="availablity">Available : 15</h3>
+                    <div class="ratingStars" id="ratingStars">
+                        <div class="stars-outer-below">
+                            <h5 id="num_ratings_bolow"></h5>
+                            <div class="stars-inner-below"></div>
+                        </div>
+                    </div>
+                    <h3 class="availablity">Available : <?php echo $data['itemData'] -> quantity ?></h3>
                 </div>
             </div>
             <div class="productInfo2">
@@ -217,60 +295,81 @@ body {
                 <h3 class="revtitle">Reviews</h3>
                 <div class="reviews">
                     <div class="reviewarea">
-                        <div class="review s1">
-                            <div class="p1">
-                                <div class="rev" id="proImg">
+                        <?php foreach($data['reviewData'] as $reviewData) : ?>
+                            <div class="review" id="<?= $reviewData -> 	customer_id ;?>">
+                                <div class="p1">
+                                    <div >
+                                        <img src="<?= URLROOT;?>/img/upload_images/customer_pp/<?= $reviewData -> photo;?>" alt="Image" class="rev" id="proImg">
+                                    </div>
+                                    <div id="mainInfo" class="rev">
+                                        <h3 id="review_name"><?php echo $reviewData -> name ?></h3>
+                                        <h4 id="review_date">12.08.2022</h4>
+                                    </div>
+                                    <!-- <div id="ratingstar" class="rev"> -->
+                                    <div class="stars-outer">
+                                        <h6 class="num_ratings">( <?php echo $reviewData -> rating ?> )</h6>
+                                        <div class="stars-inner"></div>
+                                    </div>
                                 </div>
-                                <div id="mainInfo" class="rev">
-                                    <h3>Kamal Perera</h3>
-                                    <h4>12.08.2022</h4>
-                                </div>
-                                <div id="ratingstar" class="rev">
-    
-                                </div>
+                                <p class="p2">
+                                    <?php echo $reviewData -> review ?>
+                                </p>
                             </div>
-                            <p class="p2">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus veritatis earum consequatur repudiandae rerum. Doloremque qui nihil dolore ad sed magnam esse! Maxime libero quis modi excepturi commodi voluptate odit?
-                            </p>
-                        </div>
-    
-                        <div class="review s2">
-                            <div class="p1">
-                                <div class="rev" id="proImg">
-                                </div>
-                                <div id="mainInfo" class="rev">
-                                    <h3>Kamal Perera</h3>
-                                    <h4>12.08.2022</h4>
-                                </div>
-                                <div id="ratingstar" class="rev">
-    
-                                </div>
-                            </div>
-                            <p class="p2">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus veritatis earum consequatur repudiandae rerum. Doloremque qui nihil dolore ad sed magnam esse! Maxime libero quis modi excepturi commodi voluptate odit?
-                            </p>
-                        </div>
-    
-                        <div class="review s3">
-                            <div class="p1">
-                                <div class="rev" id="proImg">
-                                </div>
-                                <div id="mainInfo" class="rev">
-                                    <h3>Kamal Perera</h3>
-                                    <h4>12.08.2022</h4>
-                                </div>
-                                <div id="ratingstar" class="rev">
-    
-                                </div>
-                            </div>
-                            <p class="p2">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus veritatis earum consequatur repudiandae rerum. Doloremque qui nihil dolore ad sed magnam esse! Maxime libero quis modi excepturi commodi voluptate odit?
-                            </p>
-                        </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>/
         </div>
     </div>
+    
 
+    <script>
+
+    // ------------------- Ratings in Review Box---------------------  //
+
+        const stars = document.querySelectorAll(".review");
+        const stars_id = [];
+        for(let i=0; i<stars.length; i++){
+            const arr_content = stars[i].id;
+            stars_id.push(arr_content);
+        }
+        
+        const star_count = document.getElementsByTagName("h6");
+        const star_counts = [];
+
+        let total_star_count =  0;
+
+        for(let i=0; i<star_count.length; i++){
+            const arr_content_num = star_count[i].textContent;
+            const arr_content_num_chars = arr_content_num.match(/\d+/g).join('');
+            const arr_content_num_int = parseInt(arr_content_num_chars); 
+            star_counts.push(arr_content_num_int);
+
+            total_star_count += arr_content_num_int;
+        }
+        
+        let final_total_star = total_star_count/star_count.length;
+        // console.log(final_total_star);
+        const final_total_star_percentage = `${(final_total_star/5) * 100}%`;
+
+        document.addEventListener('DOMContentLoaded', getRatings);
+
+        function getRatings(){
+            for(let star_count in star_counts){
+                const starPercentage = `${(star_counts[star_count]/5) * 100}%`;
+                // console.log(starPercentage);
+                const find = document.getElementById(stars_id[star_count]);
+                // console.log(find);
+                (find.children[0].children[2].childNodes[3]).style.width = starPercentage;
+            }
+            const final_rating = document.getElementById("ratingStars");
+            (final_rating.childNodes[1].children[1]).style.width = final_total_star_percentage;
+
+            document.getElementById("num_ratings_bolow").innerHTML = "( "+final_total_star+" )";
+        }
+
+
+        // ------------------- Ratings below item---------------------  //
+
+    </script>
 <?php require APPROOT . '/views/inc/incSeller/footer.php'; ?>

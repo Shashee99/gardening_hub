@@ -23,11 +23,17 @@ class Sellers extends Controller{
         //Get item details
         $itemData = $this -> sellerModel ->getItemData();
         $catData = $this -> sellerModel -> getCatData();
+        $notificationData = $this -> sellerModel -> getNotificationCount();
+        // $ratingStarData = $this -> sellerModel -> getratingStarData();
+
         $data = [
             'itemData' => $itemData,
-            'catData' => $catData
+            'catData' => $catData,
+            'notificationData' => $notificationData
+            // 'ratingStarData' => $ratingStarData
         ];
-
+        // print($data);
+        // var_dump($data['notificationData']);
         $this -> view('seller/dashboard', $data);
     }
 
@@ -306,10 +312,12 @@ class Sellers extends Controller{
 
         $itemData = $this -> sellerModel -> getItemById($id);
         $productImg = $this -> sellerModel -> getProductImages($id); 
+        $reviewData = $this -> sellerModel -> getReviewData($id);
 
         $data = [
             'itemData' => $itemData,
-            'productImg' => $productImg
+            'productImg' => $productImg,
+            'reviewData' => $reviewData
         ];
         
 
@@ -320,10 +328,15 @@ class Sellers extends Controller{
     public function order(){
 
         $orderData = $this -> sellerModel -> getOrderData();
+        $cancleorderData = $this -> sellerModel -> getcancleOrderData();
+        $conformorderData = $this -> sellerModel -> getconformOrderData();
+        $completeeorderData = $this -> sellerModel -> getcompleteOrderData();
         $data =[
-            'orderData' => $orderData
+            'orderData' => $orderData,
+            'conformorderData' => $conformorderData,
+            'cancleorderData' => $cancleorderData,
+            'completeeorderData' => $completeeorderData
         ];
-
         if($_SERVER ['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $today = date("Y-m-d");
@@ -382,13 +395,22 @@ class Sellers extends Controller{
     }
 
     public function order_cancel() {
-        $product_no = $_POST['cancel_item'];
+        $order_no = $_POST['cancel_item'];
         $cancel_reason = $_POST['cancel_reason'];
-        $result = $this -> sellerModel->order_cancel($product_no, $cancel_reason);
+        $result = $this -> sellerModel->order_cancel($order_no, $cancel_reason);
         if ($result){
             echo "Confirm Suceccfully";
         }
     }
+
+    public function order_complete() {
+        $compete_order_no = $_POST['compelete_item'];
+        $result = $this -> sellerModel->order_complete($compete_order_no);
+        if ($result){
+            echo "Confirm Suceccfully";
+        }
+    }
+
 
     // public function update($id) {
     //     $itemData = $this -> sellerModel -> getItemById($id);
@@ -546,11 +568,9 @@ class Sellers extends Controller{
 }
 
 public function delete_item(){
-    echo("nhghcnhhgcmh");
     $delete_item_id = $_POST['delete_item_id'];
     $this->sellerModel->delete($delete_item_id);
-    header('Location: /gardening_hub/sellers/dashboard');
-
+    // header('Location: /gardening_hub/sellers/dashboard');
     }
 
 public function radio_select(){
@@ -564,12 +584,17 @@ public function radio_select(){
         $image = $item -> image;
         $title = $item -> title;
         $price = $item -> price;
+        $quantity = $item -> quantity;
+        $total_rating = $item -> total_rating;
+        
 
         $data[] = array(
             'product_no' => $product_no,
             'image' => $image,
             'title' => $title,
-            'price' => $price
+            'price' => $price,
+            'quantity' => $quantity,
+            'total_rating' => $total_rating
         );
     }
     echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -578,11 +603,39 @@ public function radio_select(){
 public function request_category(){
     if($_SERVER ['REQUEST_METHOD'] == 'POST') {
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-    }
+        $data = [
+            'items' => $_POST['items'],
+            'description' => $_POST['description']
+        ];
 
+        if($this -> sellerModel -> addNewCategory($data)){
+            redirect('sellers/dashboard');
+        } else{
+            $this->view('seller/request_category');
+        }
+    } else {
+        $data = [
+            'items' => '',
+            'description' => ''
+        ];
+        $this->view('seller/request_category');
+    }
+}
+
+public function genarate_report(){
+
+    $this -> view('seller/genarate_report');
+}
+
+public function genarate_pdf(){
+
+    $reportData = $this -> sellerModel -> getreportData();
+    $totalIncome = $this -> sellerModel -> gettotalIncome();
     $data = [
-        
+        'reportData' => $reportData,
+        'totalIncome' => $totalIncome
     ];
+    $this -> view('seller/genarate_pdf', $data);
 }
 
 }
