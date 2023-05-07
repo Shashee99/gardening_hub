@@ -160,56 +160,7 @@ class Seller{
                                 ON wishlist.customer_id = customer.customer_id
                                 INNER JOIN seller_product_details
                                 ON wishlist.product_no = seller_product_details.product_no
-                                WHERE seller_product_details.seller_id = :id
-                                AND wishlist.status = 0;
-        ');
-        $this -> db-> bind(':id',$id);
-        $orderdetails = $this -> db -> resultSet();
-        return $orderdetails;
-    }
-
-    public function getNotificationCount(){
-        $id =$_SESSION['user_id'];
-        $this -> db -> query('SELECT COUNT(wishlit_id) AS num_noti FROM wishlist
-                                INNER JOIN customer
-                                ON wishlist.customer_id = customer.customer_id
-                                INNER JOIN seller_product_details
-                                ON wishlist.product_no = seller_product_details.product_no
-                                WHERE seller_product_details.seller_id = :id
-                                AND wishlist.status = 0;
-        ');
-        $this -> db-> bind(':id',$id);
-        $orderdetails = $this -> db -> singleRecord();
-        // var_dump($orderdetails);
-        return $orderdetails;
-    }
-
-
-    public function getratingStarData(){
-        $id =$_SESSION['user_id'];
-        $this -> db -> query('SELECT * FROM product_rating_review
-                                INNER JOIN seller_product_details
-                                ON product_rating_review.product_id = seller_product_details.product_no
-                                INNER JOIN seller_product_details
-                                ON wishlist.product_no = seller_product_details.product_no
-                                WHERE seller_product_details.seller_id = :id
-                                AND wishlist.status = 0;
-        ');
-        $this -> db-> bind(':id',$id);
-        $orderdetails = $this -> db -> singleRecord();
-        // var_dump($orderdetails);
-        return $orderdetails;
-    }
-
-    public function getconformOrderData() {
-        $id =$_SESSION['user_id'];
-        $this -> db -> query('SELECT * FROM wishlist
-                                INNER JOIN customer
-                                ON wishlist.customer_id = customer.customer_id
-                                INNER JOIN seller_product_details
-                                ON wishlist.product_no = seller_product_details.product_no
-                                WHERE seller_product_details.seller_id = :id
-                                AND wishlist.status = 1;
+                                WHERE wishlist.seller_id = :id;
         ');
         $this -> db-> bind(':id',$id);
         $orderdetails = $this -> db -> resultSet();
