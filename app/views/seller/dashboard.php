@@ -1,10 +1,5 @@
 <?php require APPROOT . '/views/inc/incSeller/header.php'; ?>
 
-<style>
-
-        
-    </style>
-
 
 <div class="container">
     <main>

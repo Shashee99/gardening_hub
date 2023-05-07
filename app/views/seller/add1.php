@@ -1,12 +1,50 @@
 <?php require APPROOT . '/views/inc/incSeller/header.php'; ?>
 
+<!-- ---------------------------- Progress Bar---------------------------- -->
+
+<div class="progressbar">
+        <ul class="ulpro">
+            <li class="ulli">
+                <div class="progress one">
+                    <i class="icon uil fa-solid fa-carrot"></i>
+                    <i class="uill fa-solid fa-check"></i>
+                </div>
+                <p class="text">Select Category</p>
+            </li>
+            <li class="ulli">
+                <div class="progress two">
+                    <i class="icon uil fa-solid fa-pen"></i>
+                    <i class="uill fa-solid fa-check"></i>
+                </div>
+                <p class="text">Add Product Details</p>
+            </li>
+            <li class="ulli">
+                <div class="progress three">
+                    <i class="icon uil fa-solid fa-image"></i>
+                    <i class="uill fa-solid fa-check"></i>
+                </div>
+                <p class="text">Add Images</p>
+            </li>
+            <li class="ulli">
+                <div class="progress four">
+                    <i class="icon uil fa-solid fa-thumbs-up"></i>
+                    <i class="uill fa-solid fa-check"></i>
+                </div>
+                <p class="text">Completed</p>
+            </li>
+        </ul>
+
+    </div>
+
+<!-- --------------------------------------------------------------------- -->
 
 <div class="add1main">
     <div class="bgimg">
-        <img id="add1img" src="<?= URLROOT; ?>/img/seller/add1cat.png" alt="">
+        <img id="add1img" src="<?= URLROOT; ?>/img/seller/im1.png" alt="">
     </div>
     <div class="contentadd1">
         <form action="<?= URLROOT; ?>/sellers/add1" method="POST">
+        <div class="opdrop">
             <div class="option1">
                 <select name="category" id="category" size="1" onchange="makeSubmenu(this.value)">
                     <option value="" disabled selected>Choose Category</option>
@@ -22,6 +60,7 @@
                     <option></option>
                 </select>
             </div>
+        </div>
 
 
             <div id="btn_area">
@@ -104,5 +143,45 @@
     //     document.getElementById("category").selectedIndex = 0;
     //     document.getElementById("categorySelect").selectedIndex = 0;
     // }
+
+
+    // ---------------------------------------------------------//
+    // --------------- Progress Bar ----------------------------//
+
+    const one = document.querySelector(".one");
+    const two = document.querySelector(".two");
+    const three = document.querySelector(".three");
+    const four = document.querySelector(".four");
+    // const five = document.querySelector(".five");
+
+    one.onclick = function() {
+        one.classList.add("active");
+        two.classList.remove("active");
+        three.classList.remove("active");
+        four.classList.remove("active");
+        five.classList.remove("active");
+    }
+
+    two.onclick = function() {
+        one.classList.add("active");
+        two.classList.add("active");
+        three.classList.remove("active");
+        four.classList.remove("active");
+        five.classList.remove("active");
+    }
+    three.onclick = function() {
+        one.classList.add("active");
+        two.classList.add("active");
+        three.classList.add("active");
+        four.classList.remove("active");
+        five.classList.remove("active");
+    }
+    four.onclick = function() {
+    one.classList.add("active");
+    two.classList.add("active");
+    three.classList.add("active");
+    four.classList.add("active");
+    five.classList.remove("active");
+}
 </script>
 <?php require APPROOT . '/views/inc/incSeller/footer.php'; ?>
