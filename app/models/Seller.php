@@ -160,13 +160,27 @@ class Seller{
                                 ON wishlist.customer_id = customer.customer_id
                                 INNER JOIN seller_product_details
                                 ON wishlist.product_no = seller_product_details.product_no
-                                WHERE wishlist.seller_id = :id;
+                                WHERE seller_product_details.seller_id = :id
+                                AND wishlist.status = 0;
         ');
         $this -> db-> bind(':id',$id);
         $orderdetails = $this -> db -> resultSet();
         return $orderdetails;
     }
-
+    public function getconformOrderData()  {
+        $id =$_SESSION['user_id'];
+        $this -> db -> query('SELECT * FROM wishlist
+                                INNER JOIN customer
+                                ON wishlist.customer_id = customer.customer_id
+                                INNER JOIN seller_product_details
+                                ON wishlist.product_no = seller_product_details.product_no
+                                WHERE seller_product_details.seller_id = :id
+                                AND wishlist.status = 1;
+        ');
+        $this -> db-> bind(':id',$id);
+        $orderdetails = $this -> db -> resultSet();
+        return $orderdetails;
+    }
     public function getcancleOrderData() {
         $id =$_SESSION['user_id'];
         $this -> db -> query('SELECT * FROM wishlist
@@ -191,6 +205,21 @@ class Seller{
                                 ON wishlist.product_no = seller_product_details.product_no
                                 WHERE seller_product_details.seller_id = :id
                                 AND wishlist.status = 3;
+        ');
+        $this -> db-> bind(':id',$id);
+        $orderdetails = $this -> db -> resultSet();
+        return $orderdetails;
+    }
+
+    public function getNotificationCount() {
+        $id =$_SESSION['user_id'];
+        $this -> db -> query('SELECT COUNT(wishlit_id) AS num_noti FROM wishlist
+                                INNER JOIN customer
+                                ON wishlist.customer_id = customer.customer_id
+                                INNER JOIN seller_product_details
+                                ON wishlist.product_no = seller_product_details.product_no
+                                WHERE seller_product_details.seller_id = :id
+                                AND wishlist.status = 0;
         ');
         $this -> db-> bind(':id',$id);
         $orderdetails = $this -> db -> resultSet();
@@ -248,6 +277,7 @@ class Seller{
         // $this -> db -> bind(':order_date', $data['complete_date']);
         $this->db->execute();
     }
+
 
     public function order_cancel($order_no, $cancel_reason) {
         $this -> db -> query('UPDATE wishlist 

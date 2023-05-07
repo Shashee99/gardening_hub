@@ -28,9 +28,6 @@ class Sellers extends Controller
         $catData = $this -> sellerModel -> getCatData();
         $notificationData = $this -> sellerModel -> getNotificationCount();
         // $ratingStarData = $this -> sellerModel -> getratingStarData();
-
-        $itemData = $this->sellerModel->getItemData();
-        $catData = $this->sellerModel->getCatData();
         $data = [
             'itemData' => $itemData,
             'catData' => $catData,
@@ -38,6 +35,7 @@ class Sellers extends Controller
             // 'ratingStarData' => $ratingStarData
         ];
 
+        // var_dump($data['notificationData'][0] -> num_noti);
         $this->view('seller/dashboard', $data);
     }
 
@@ -407,6 +405,14 @@ class Sellers extends Controller
     }
 
 
+    public function order_complete() {
+        $product_no = $_POST['compelete_item'];
+        $result = $this->sellerModel->order_complete($product_no);
+        if ($result) {
+            echo "Confirm Suceccfully";
+        }
+    }
+
     // public function update($id) {
     //     $itemData = $this -> sellerModel -> getItemById($id);
     //     $productImg = $this -> sellerModel -> getProductImages($id);
@@ -556,7 +562,6 @@ class Sellers extends Controller
 
     public function delete_item()
     {
-        echo("nhghcnhhgcmh");
         $delete_item_id = $_POST['delete_item_id'];
         $this->sellerModel->delete($delete_item_id);
         header('Location: /gardening_hub/sellers/dashboard');

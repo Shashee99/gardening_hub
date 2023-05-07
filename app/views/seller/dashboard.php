@@ -8,7 +8,7 @@
                 <button class="button" id="cusorder" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/order';"> Customers Orders</button>
                 <div id="noti">
                     <button id="noti_butn" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/order';">
-                        <h3 id="noti_count"><?php echo $data['notificationData'] -> num_noti; ?></h3>
+                        <h3 id="noti_count"><?php echo $data['notificationData'][0] -> num_noti; ?></h3>
                     </button>
                 </div>
             </div>
