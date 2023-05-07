@@ -411,7 +411,7 @@ class Seller{
                                             AND DATEDIFF(CURRENT_TIMESTAMP(), wishlist.complete_date_time)<30
                                             GROUP BY seller_product_details.product_no
                                         ) AS item_income_table;
-            ');  
+            ');
             
             $this -> db -> bind(':id',$id);
             $results = $this -> db -> singleRecord();
