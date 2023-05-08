@@ -29,8 +29,11 @@
     margin-left: 30px;
     cursor :pointer;
     z-index: 10;
-}
 
+}
+#sidebars{
+    display: none;
+}
 
 .fontblack {
     color: var(--black);
@@ -94,6 +97,7 @@ html, body {
     left: 0;
     background-color: var(--light-gray);
     z-index: 800;
+
 }
 
 
@@ -671,7 +675,6 @@ hr {
     width: 300px;
     height: 300px;
     border-radius: 100%;
-
     border: 1px solid black;
 }
 .backbutton{
@@ -856,7 +859,6 @@ hr {
     display: grid;
     grid-auto-flow: row;
     grid-template-raws: 80px 20px;
-
 }
 
 .rejectemail{
@@ -995,10 +997,7 @@ a.disabled {
     box-shadow: 1px 2px 6px 0px var(--black);
     border-radius: 10px;
 }
-/*#reqnewadd{*/
-/*    position: relative;*/
-/*    z-index: 999;*/
-/*}*/
+
 
 .erreditcat,.erreditmsgsub,.errmsgsub,.errcat{
     font-weight: 200;

@@ -593,34 +593,26 @@ class Admins extends Controller
 //                user Name
                 $username = $this -> userModel -> getNamebyuserid($userID);
 
-                $email_result = $this -> mailer ->sendUserDeletingMessage($username,$email,$reason);
-
 
                 if($usertype == "seller") {
                     $sellerName = ($this ->sellerModel -> getSellerDetails($userID))->shop_name;
                     $this->sellerModel->delete_seller($userID);
 
-
-//                   send message to order confirmed customers
-
+                 // Send message to confirmed customers
                     $results = $this->sellerModel->sellerconfirmedorders($userID);
-
-
-
-                    foreach ($results as $res)
-                    {
+                    $mailer1 = new Mailer();
+                    foreach ($results as $res) {
                         $cusid = $res->customer_id;
                         $customerEmail = $this->userModel->getemailbyuserid($cusid);
                         $customerName = $this->userModel->getNamebyuserid($cusid);
-                        $emailsent = $this->mailer->sendSellerRemovalNotification($customerName, $customerEmail, $sellerName, $reason);
-                        if($emailsent){
-                            continue;
-                        }
-                        else{
+                        $emailsent = $mailer1->sendSellerRemovalNotification($customerName, $customerEmail, $sellerName, $reason);
+                        if(!$emailsent){
                             die("Error occured!");
                         }
                     }
+                    $mailer1 = null;
                 }
+
                 elseif($usertype == "advisor"){
                     $this -> advisorModel -> delete_advisor($userID);
                 }else
@@ -630,9 +622,10 @@ class Admins extends Controller
 
 
 //                sent email with reason
+                $emailsent = $this -> mailer ->sendUserDeletingMessage($username,$email,$reason);
 
 
-                if($email_result){
+                if($emailsent){
                     redirect('admins/home');
                 }
 

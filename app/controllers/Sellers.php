@@ -617,16 +617,16 @@ public function genarate_report(){
     $this -> view('seller/genarate_report');
 }
 
-public function genarate_pdf(){
+    public function genarate_pdf(){
 
-    $reportData = $this -> sellerModel -> getreportData();
-    $totalIncome = $this -> sellerModel -> gettotalIncome();
-    $data = [
-        'reportData' => $reportData,
-        'totalIncome' => $totalIncome
-    ];
-    $this -> view('seller/genarate_pdf', $data);
-}
+        $reportData = $this -> sellerModel -> getreportData();
+        $totalIncome = $this -> sellerModel -> gettotalIncome();
+        $data = [
+            'reportData' => $reportData,
+            'totalIncome' => $totalIncome
+        ];
+        $this -> view('seller/genarate_pdf', $data);
+    }
 
     public function deleteseller($id)
     {
@@ -637,5 +637,6 @@ public function genarate_pdf(){
 
 
     }
+
 
 }

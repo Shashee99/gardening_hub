@@ -1,4 +1,7 @@
     @media screen and (max-width: 1200px) {
+        #sidebars{
+            display: block;
+        }
 
         body {
             font-size: 14px; /* reduce font size for small screens */
@@ -61,6 +64,9 @@
 
     /* For screens up to 1000px */
     @media screen and (max-width: 1000px) {
+        #sidebars{
+            display: block;
+        }
         body {
             font-size: 13px;
         }
@@ -125,6 +131,9 @@
 
     /* For screens up to 900px */
     @media screen and (max-width: 900px) {
+        #sidebars{
+            display: block;
+        }
         body {
             font-size: 12px;
         }
@@ -190,6 +199,9 @@
 
     /* For screens up to 800px */
     @media screen and (max-width: 800px) {
+        #sidebars{
+            display: block;
+        }
         body {
             font-size: 11px;
         }

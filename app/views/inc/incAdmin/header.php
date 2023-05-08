@@ -40,7 +40,7 @@
                 </a>
 
             </li>
-            <li  class="<?php echo (($data['nav']=='sellers') ? 'liactive' : '')?>">
+            <li  class="<?php echo (($data['nav'] =='sellers') ? 'liactive' : '')?>">
 
                 <a href="<?php echo URLROOT;?>/admins/sellers" class="navlinkcontain">
                     <img src="<?= URLROOT;?>/img/admin/icon/storefront.png" alt="">
@@ -48,7 +48,7 @@
                 </a>
 
             </li>
-            <li  class="<?php echo (($data['nav']=='advisors') ? 'liactive' : '')?>">
+            <li  class="<?php echo (($data['nav'] =='advisors') ? 'liactive' : '')?>">
 
                 <a href="<?php echo URLROOT;?>/admins/advisors" class="navlinkcontain">
                     <img src="<?= URLROOT;?>/img/admin/icon/local_library.png" alt="">

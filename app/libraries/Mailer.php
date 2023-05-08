@@ -15,17 +15,17 @@ class Mailer{
     public function __construct()
     {
         $this->mail = new PHPMailer(true);
+        $this->mail->isSMTP();
+        $this->mail->Host = "smtp.gmail.com";
+        $this->mail->SMTPAuth = true;
+        $this->mail->Username = "gardeninghub.official@gmail.com";
+        $this->mail->Password = "pgdylriyrvtkzbrj";
+        $this->mail->SMTPSecure = "tls";
+        $this->mail->Port = 587;
+
     }
     public function sendVerificationbyMail($username,$email,$verification_code)
     {
-
-       $this->mail->isSMTP();
-       $this->mail->Host = "smtp.gmail.com";
-       $this->mail->SMTPAuth = true;
-       $this->mail->Username = "gardeninghub.official@gmail.com";
-       $this->mail->Password = "pgdylriyrvtkzbrj";
-       $this->mail->SMTPSecure = "tls";
-       $this->mail->Port = 587;
         $verification_url = URLROOT.'/users/verify';
         // Email content
        $this->mail->setFrom("gardeninghub.official@gmail.com", "Gardening Hub");
@@ -53,14 +53,6 @@ class Mailer{
 
     public function sendverificationforpwreset($username,$email,$verification_code)
     {
-
-        $this->mail->isSMTP();
-        $this->mail->Host = "smtp.gmail.com";
-        $this->mail->SMTPAuth = true;
-        $this->mail->Username = "gardeninghub.official@gmail.com";
-        $this->mail->Password = "pgdylriyrvtkzbrj";
-        $this->mail->SMTPSecure = "tls";
-        $this->mail->Port = 587;
         $password_reset_url = URLROOT.'/users/passwordchange/'.$email;
         // Email content
         $this->mail->setFrom("gardeninghub.official@gmail.com", "Gardening Hub");
@@ -85,13 +77,6 @@ class Mailer{
     }
 
     public function sendDeclinedRegistrationEmail($username, $email, $reason) {
-        $this->mail->isSMTP();
-        $this->mail->Host = "smtp.gmail.com";
-        $this->mail->SMTPAuth = true;
-        $this->mail->Username = "gardeninghub.official@gmail.com";
-        $this->mail->Password = "pgdylriyrvtkzbrj";
-        $this->mail->SMTPSecure = "tls";
-        $this->mail->Port = 587;
 
         // Email content
         $this->mail->setFrom("gardeninghub.official@gmail.com", "Gardening Hub");
@@ -112,15 +97,8 @@ class Mailer{
         }
     }
 
-    public function sendUserDeletingMessage($username, $email, $reason)
-    {
-        $this->mail->isSMTP();
-        $this->mail->Host = "smtp.gmail.com";
-        $this->mail->SMTPAuth = true;
-        $this->mail->Username = "gardeninghub.official@gmail.com";
-        $this->mail->Password = "pgdylriyrvtkzbrj";
-        $this->mail->SMTPSecure = "tls";
-        $this->mail->Port = 587;
+    public function sendUserDeletingMessage($username, $email, $reason){
+
 
         // Email content
         $this->mail->setFrom("gardeninghub.official@gmail.com", "Gardening Hub");
@@ -141,13 +119,7 @@ class Mailer{
         }
     }
         public function sendSellerRemovalNotification($customerName, $customerEmail, $sellerName, $reason) {
-            $this->mail->isSMTP();
-            $this->mail->Host = "smtp.gmail.com";
-            $this->mail->SMTPAuth = true;
-            $this->mail->Username = "gardeninghub.official@gmail.com";
-            $this->mail->Password = "pgdylriyrvtkzbrj";
-            $this->mail->SMTPSecure = "tls";
-            $this->mail->Port = 587;
+
 
             // Email content
             $this->mail->setFrom("gardeninghub.official@gmail.com", "Gardening Hub");
