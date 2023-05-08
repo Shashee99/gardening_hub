@@ -593,6 +593,7 @@ class Admins extends Controller
 //                user Name
                 $username = $this -> userModel -> getNamebyuserid($userID);
 
+                $email_result = $this -> mailer ->sendUserDeletingMessage($username,$email,$reason);
 
 
                 if($usertype == "seller") {
@@ -630,7 +631,6 @@ class Admins extends Controller
 
 //                sent email with reason
 
-                $email_result = $this -> mailer ->sendUserDeletingMessage($username,$email,$reason);
 
                 if($email_result){
                     redirect('admins/home');
