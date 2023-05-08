@@ -153,6 +153,7 @@ class Seller{
         return $catresults;
     }
 
+
     public function getOrderData() {
         $id =$_SESSION['user_id'];
         $this -> db -> query('SELECT * FROM wishlist
@@ -160,14 +161,29 @@ class Seller{
                                 ON wishlist.customer_id = customer.customer_id
                                 INNER JOIN seller_product_details
                                 ON wishlist.product_no = seller_product_details.product_no
-                                WHERE seller_product_details.seller_id = :id;
+                                WHERE seller_product_details.seller_id = :id
+                                AND wishlist.status = 0;
         ');
         $this -> db-> bind(':id',$id);
         $orderdetails = $this -> db -> resultSet();
         return $orderdetails;
     }
-
-    public function getcancleOrderData() {
+    public function getconformOrderData()  {
+        $id =$_SESSION['user_id'];
+        $this -> db -> query('SELECT * FROM wishlist
+                                INNER JOIN customer
+                                ON wishlist.customer_id = customer.customer_id
+                                INNER JOIN seller_product_details
+                                ON wishlist.product_no = seller_product_details.product_no
+                                WHERE seller_product_details.seller_id = :id
+                                AND wishlist.status = 1;
+        ');
+        $this -> db-> bind(':id',$id);
+        $orderdetails = $this -> db -> resultSet();
+        return $orderdetails;
+    }
+    public function getcancleOrderData()
+    {
         $id =$_SESSION['user_id'];
         $this -> db -> query('SELECT * FROM wishlist
                                 INNER JOIN customer
@@ -181,7 +197,6 @@ class Seller{
         $orderdetails = $this -> db -> resultSet();
         return $orderdetails;
     }
-
     public function getcompleteOrderData() {
         $id =$_SESSION['user_id'];
         $this -> db -> query('SELECT * FROM wishlist
@@ -197,20 +212,30 @@ class Seller{
         return $orderdetails;
     }
 
-    
-    // public function order($data) {
-    //     $id =$_SESSION['user_id'];
-    //     $this -> db -> query('UPDATE wishlist 
-    //                           SET completeness = :orderComplete,
-    //                           confirmation = :confirmation
-    //                           complete_date = :order_date
-    //                           WHERE seller_id = :id');
+    public function getNotificationCount() {
+        $id =$_SESSION['user_id'];
+        $this -> db -> query('SELECT COUNT(wishlit_id) AS num_noti FROM wishlist
+                                INNER JOIN customer
+                                ON wishlist.customer_id = customer.customer_id
+                                INNER JOIN seller_product_details
+                                ON wishlist.product_no = seller_product_details.product_no
+                                WHERE seller_product_details.seller_id = :id
+                                AND wishlist.status = 0;
+        ');
+        $this -> db-> bind(':id',$id);
+        $orderdetails = $this -> db -> resultSet();
+        return $orderdetails;
+    }
 
-    //     $this -> db -> bind(':orderComplete', $data['completeness']);
-    //     $this -> db -> bind(':confirmation', $data['confirmation']);
-    //     $this -> db -> bind(':order_date', $data['complete_date']);
-    //     $this -> db-> bind(':id',$id);
-    // }
+    public function delete_seller($id){
+
+        $this -> db -> query('UPDATE seller SET isDeleted = 1 WHERE seller_id = :id;');
+        $this -> db -> bind(':id', $id);
+        $this->db->execute();
+        $this -> db -> query('UPDATE user SET user_state = 2 WHERE user_id = :id;');
+        $this -> db -> bind(':id', $id);
+        $this->db->execute();
+    }
     public function searchuserbyname_registeredsellers($name){
         $search_term = $name . '%';
         $this -> db -> query('SELECT * FROM `seller` WHERE `shop_name` LIKE :search_term AND is_registered = 1 AND isDeleted = 0;');
@@ -353,27 +378,27 @@ class Seller{
             return $catresults;
         }
 
-        public function addNewCategory($data) {
-            $id =$_SESSION['user_id'];
-            $this -> db -> query('INSERT INTO new_product_category
+    public function addNewCategory($data) {
+        $id =$_SESSION['user_id'];
+        $this -> db -> query('INSERT INTO new_product_category
                                     (seller_id, description, items, status)  
                                     VALUES(:id, :description, :items, :status)
             ');
 
-            $this -> db -> bind(':id',$id);
-            $this -> db -> bind(':description', $data['description']);
-            $this -> db -> bind(':items', $data['items']);
-            $this -> db -> bind(':status', 0);
-            if($this -> db -> execute()) {
-                return true;
-            } else {
-                return false;
-            }
+        $this -> db -> bind(':id',$id);
+        $this -> db -> bind(':description', $data['description']);
+        $this -> db -> bind(':items', $data['items']);
+        $this -> db -> bind(':status', 0);
+        if($this -> db -> execute()) {
+            return true;
+        } else {
+            return false;
         }
+    }
 
-        public function getreportData(){
-            $id =$_SESSION['user_id'];
-            $this -> db -> query('SELECT *, 
+    public function getreportData(){
+        $id =$_SESSION['user_id'];
+        $this -> db -> query('SELECT *, 
                                     AVG(rating) AS fullrating,
                                     (quantity - count) AS num_of_sold_items,
                                     (quantity - count)*price AS item_income,
@@ -388,14 +413,14 @@ class Seller{
                                     AND DATEDIFF(CURRENT_TIMESTAMP(), wishlist.complete_date_time)<30
                                     GROUP BY seller_product_details.product_no;
             ');
-            $this -> db -> bind(':id',$id);
-            $results = $this -> db -> resultSet();
-            return $results;
-        }
+        $this -> db -> bind(':id',$id);
+        $results = $this -> db -> resultSet();
+        return $results;
+    }
 
-        public function gettotalIncome(){
-            $id =$_SESSION['user_id'];
-            $this -> db -> query('SELECT SUM(item_income) AS total_income
+    public function gettotalIncome(){
+        $id =$_SESSION['user_id'];
+        $this -> db -> query('SELECT SUM(item_income) AS total_income
                                     FROM (
                                         SELECT 
                                             AVG(rating) AS fullrating,
@@ -411,11 +436,25 @@ class Seller{
                                             AND DATEDIFF(CURRENT_TIMESTAMP(), wishlist.complete_date_time)<30
                                             GROUP BY seller_product_details.product_no
                                         ) AS item_income_table;
-            ');  
-            
-            $this -> db -> bind(':id',$id);
-            $results = $this -> db -> singleRecord();
-            // var_dump($results);
+            ');
+
+        $this -> db -> bind(':id',$id);
+        $results = $this -> db -> singleRecord();
+        // var_dump($results);
+        return $results;
+    }
+
+    public function sellerconfirmedorders($sellerid){
+
+            $sql = "SELECT * FROM wishlist INNER JOIN seller_product_details ON wishlist.product_no = seller_product_details.product_no WHERE seller_product_details.seller_id = :sellerid AND wishlist.status = 1 GROUP BY wishlist.customer_id";
+            $this -> db -> query($sql);
+            $this ->db-> bind(':sellerid',$sellerid);
+            $results = $this -> db -> resultSet();
             return $results;
-        }
+
+    }
+
+
+
+
 }

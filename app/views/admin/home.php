@@ -13,7 +13,7 @@
     <div class="userlist-usercard">
         <div class="user">
             <h2>Sellers</h2>
-            <h1 class="usercount" id="sellers"><?= count($data['advisors']);?></h1>
+            <h1 class="usercount" id="sellers"><?= count($data['sellers']);?></h1>
         </div>
         <div class="userphoto" style="margin-left: 20px">
             <img src="<?= URLROOT; ?>/img/admin/sellers.png" alt="">
@@ -45,7 +45,7 @@
 <div class="newcategoryreq">
     <div class="newcategoryreq-texts">
         <h3>New Seller Requests</h3>
-        <p><small>Go to new sellers and aprove them!</small></p>
+        <p><small>Go to new sellers and approve them!</small></p>
     </div>
     <h3><?= count($data['newsellers']);?></h3>
 </div>
@@ -54,7 +54,7 @@
 <div class="newcategoryreq">
     <div class="newcategoryreq-texts">
         <h3>New Advisor Requests</h3>
-        <p><small>Go to new advisors and aprove them!</small></p>
+        <p><small>Go to new advisors and approve them!</small></p>
     </div>
     <h3><?= count($data['newadvisors']);?></h3>
 </div>

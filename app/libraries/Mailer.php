@@ -112,7 +112,8 @@ class Mailer{
         }
     }
 
-    public function sendUserDeletingMessage($username, $email, $reason) {
+    public function sendUserDeletingMessage($username, $email, $reason)
+    {
         $this->mail->isSMTP();
         $this->mail->Host = "smtp.gmail.com";
         $this->mail->SMTPAuth = true;
@@ -133,12 +134,41 @@ class Mailer{
             . 'Best regards,<br>'
             . '[Gardening Hub Team]';
 
-        if($this->mail->send()) {
+        if ($this->mail->send()) {
             return true;
         } else {
             return false;
         }
     }
+        public function sendSellerRemovalNotification($customerName, $customerEmail, $sellerName, $reason) {
+            $this->mail->isSMTP();
+            $this->mail->Host = "smtp.gmail.com";
+            $this->mail->SMTPAuth = true;
+            $this->mail->Username = "gardeninghub.official@gmail.com";
+            $this->mail->Password = "pgdylriyrvtkzbrj";
+            $this->mail->SMTPSecure = "tls";
+            $this->mail->Port = 587;
+
+            // Email content
+            $this->mail->setFrom("gardeninghub.official@gmail.com", "Gardening Hub");
+            $this->mail->addAddress($customerEmail, $customerName);
+            $this->mail->isHTML(true);
+            $this->mail->Subject = 'Seller Removal Notification';
+            $this->mail->Body = 'Dear ' . $customerName . ',<br><br>'
+                . 'We regret to inform you that the seller ' . $sellerName . ' has been removed from our system due to the following reason: ' . $reason . '.<br><br>'
+                . 'As a result, you will not be able to purchase any items from this seller on our platform. We apologize for any inconvenience this may cause you.<br><br>'
+                . 'If you have any questions or concerns regarding this matter, please do not hesitate to contact our support team for assistance. Thank you for your understanding.<br><br>'
+                . 'Best regards,<br>'
+                . '[Gardening Hub Team]';
+
+            if($this->mail->send()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+
 
 
 

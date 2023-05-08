@@ -24,7 +24,7 @@ class Admins extends Controller
 
         $advisors = $this->advisorModel->all_registered_advisors();
         $customers = $this->customerModel->get_all_customers();
-        $sellers = $this -> sellerModel -> recentlyaddedsellers();
+        $sellers = $this -> sellerModel -> all_registered_sellers();
         $category = $this -> productcatModel -> getnewcategoryrequests_pending();
         $newsellers = $this -> sellerModel -> get_non_registered_sellers();
         $newadvisors = $this -> advisorModel -> get_non_registered_advisors();
@@ -595,8 +595,30 @@ class Admins extends Controller
 
 
 
-                if($usertype == "seller"){
-                   $this -> sellerModel -> delete_seller($userID);
+                if($usertype == "seller") {
+                    $sellerName = ($this ->sellerModel -> getSellerDetails($userID))->shop_name;
+                    $this->sellerModel->delete_seller($userID);
+
+
+//                   send message to order confirmed customers
+
+                    $results = $this->sellerModel->sellerconfirmedorders($userID);
+
+
+
+                    foreach ($results as $res)
+                    {
+                        $cusid = $res->customer_id;
+                        $customerEmail = $this->userModel->getemailbyuserid($cusid);
+                        $customerName = $this->userModel->getNamebyuserid($cusid);
+                        $emailsent = $this->mailer->sendSellerRemovalNotification($customerName, $customerEmail, $sellerName, $reason);
+                        if($emailsent){
+                            continue;
+                        }
+                        else{
+                            die("Error occured!");
+                        }
+                    }
                 }
                 elseif($usertype == "advisor"){
                     $this -> advisorModel -> delete_advisor($userID);
@@ -604,6 +626,7 @@ class Admins extends Controller
                 {
                    $this -> customerModel -> deletecustomer($userID);
                 }
+
 
 //                sent email with reason
 
@@ -618,6 +641,8 @@ class Admins extends Controller
 
 
     }
+
+
 
 
 
