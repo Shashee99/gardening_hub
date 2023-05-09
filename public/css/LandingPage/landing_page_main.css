@@ -102,7 +102,7 @@ header {
 }
 
 .container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -188,6 +188,7 @@ header {
 }
 
 .introtext {
+    margin-top: 150px;
     font-size: 60px;
 }
 

@@ -6,28 +6,7 @@
                 <p class="font500 fontblack">Planting a <span class="font500 fontgreen">Garden</span> is Similar to
                     Believe in Tomorrow
                 </p>
-                <div class="users">
-                    <div class="userlist">
-                        <img class="faces" src="<?= URLROOT; ?>/img/landingPage/avi.jpg" alt="">
-                        <img class="faces" src="<?= URLROOT; ?>/img/landingPage/dasiya.jpg" alt="">
-                        <img class="faces" src="<?= URLROOT; ?>/img/landingPage/kavidu.jpg" alt="">
-                        <img class="faces" src="<?= URLROOT; ?>/img/landingPage/Nancy.jpg" alt="">
-                        <img class="faces" src="<?= URLROOT; ?>/img/landingPage/jenna.jpg" alt="">
-                        <img class="faces" src="<?= URLROOT; ?>/img/landingPage/danu.png" alt="">
-                    </div>
 
-                    <div class="revies">
-                        <div>Our happy customers</div>
-                        <div class="revi grid">
-                            <div class="str">
-                                <img src="<?= URLROOT; ?>/img/landingPage/Star.png" width="30px" height="32px" alt="">
-                            </div>
-                            <div class="revitxt"> <i><span class="font800">4.9 </span> <span class="font400">[2.5k Reviews]</span></i>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="intropic">
                 <img src="<?= URLROOT; ?>/img/landingPage/intropic.png" alt="">
@@ -65,26 +44,7 @@
             </div>
         </div>
     </section>
-    <section class="aboutus flex">
-        <div class="aboutimg">
-            <img src="<?= URLROOT; ?>/img/landingPage/about.png" width="100%" height="100%" alt="">
-        </div>
-        <div class="abouttext">
-            <p class="abouttext-1">
-                About Us
-            </p>
-            <br>
-            <p class="abouttext-2">
-                You are here with friendly <span class="fontgreen">Gardeners</span>, <span
-                        class="fontgreen">Product Sellers</span> and <span class="fontgreen">Instructors</span>.
-            </p>
-            <br>
-            <p class="abouttext-3">
-                Simply It is an online web system which provides helps to overcome problems that
-                are occurs when home gardening.
-            </p>
-        </div>
-    </section>
+
     <section class="products container">
 
         <img src="<?php echo URLROOT; ?>/img/landingPage/brands.png" width="100%" height="100%" alt="">
@@ -212,15 +172,27 @@
         </div>
 
     </section>
-    <section class="intro2">
-        <img src="<?php echo URLROOT; ?>/img/landingPage/intro2.png" alt="" width="100%" height="100%">
-        <div class="textonpic">
-            Our Best Reliable
-            <span class="fontgreen">Gardening</span> and <span class="fontgreen">Product Selling</span>
-            Service
+    <section class="aboutus flex">
+        <div class="aboutimg">
+            <img src="<?= URLROOT; ?>/img/landingPage/about.png" width="100%" height="100%" alt="">
         </div>
-
+        <div class="abouttext">
+            <p class="abouttext-1">
+                About Us
+            </p>
+            <br>
+            <p class="abouttext-2">
+                You are here with friendly <span class="fontgreen">Gardeners</span>, <span
+                        class="fontgreen">Product Sellers</span> and <span class="fontgreen">Instructors</span>.
+            </p>
+            <br>
+            <p class="abouttext-3">
+                Simply It is an online web system which provides helps to overcome problems that
+                are occurs when home gardening.
+            </p>
+        </div>
     </section>
+
 
 
 </main>
