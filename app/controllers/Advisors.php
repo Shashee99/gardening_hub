@@ -7,7 +7,7 @@
         public function __construct()
         {
             if (!isAdvisorLogin()) {
-                if(!isset($_SESSION['cus_id']))
+                if(!isset($_SESSION['cus_id']) && !isset($_SESSION['user_id']))
                 {
                     redirect('users/login');
                 }
@@ -47,13 +47,16 @@
             $this->view('customers/advisors',$data);
         }
 
+
+
         public function searchbynames_registeredadvisor(){
 
-            if(isset($_GET['searchbynames_registeredadvisor'])){
-                $text = $_GET['searchbynames_registeredadvisor'];
-                die($text);
+
+            if(isset($_POST['searchbynames_registeredadvisor'])){
+                $text = $_POST['searchbynames_registeredadvisor'];
                 $dataset = $this->advisorModel -> searchuserbyname_registeredadvisor($text);
                 echo json_encode($dataset);
+                unset($_POST['searchbynames_registeredadvisor']);
                 exit();
             }
             else{
@@ -61,7 +64,9 @@
                 $tabledata =json_encode($tabledata);
                 echo $tabledata;
                 exit();
+
             }
+
         }
         public function searchbynames_unregisteredadvisor(){
 
@@ -81,6 +86,10 @@
             }
 
         }
+
+
+
+
         public function recentlyaddedadvisors(){
             $dataset = $this -> advisorModel -> recentlyaddedadvisors();
             $data = json_encode($dataset);
@@ -378,7 +387,7 @@
     }
 
     // chat function ------------------------------------
-      public function problem_chat(){
+    public function problem_chat(){
          $categories = $this->categoryModel->categorydetails();
          $problems = $this->problemModel ->viewallProblem();
 
@@ -406,9 +415,7 @@
          $data[1]['category_details'] = $categories;
          $this->view('advisor/problem_chat',$data);
  
-
-      }
-
+    }
       public function problem_chat_openoneproblem($id){
 
           if($_SERVER['REQUEST_METHOD']=='POST'){
@@ -579,6 +586,8 @@
 
 
      }
+
+
 
 
 

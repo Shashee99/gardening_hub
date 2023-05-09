@@ -1,13 +1,14 @@
-
-//search by username (registered advisor)
-function searchbyregisteredadvisors() {
+//search by user name (registered advisor)
+function searchbyregisteredseller() {
 
     let search = document.getElementById('searchbyadviosrregistered').value;
 
     var ajax = new XMLHttpRequest();
 
-    ajax.open("GET", `http://localhost/gardening_hub/advisors/searchbynames_registeredadvisor?searchbynames_registeredadvisor=${search}`, true);
+    ajax.open("POST", "http://localhost/gardening_hub/advisors/searchbynames_registeredadvisor", true);
 
+    ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    ajax.send("searchbynames_registeredadvisor=" + search);
     ajax.onreadystatechange = function () {
 
         if (this.readyState == 4 && this.status == 200) {
@@ -28,16 +29,17 @@ function searchbyregisteredadvisors() {
 
             }
             else {
-                html += "<tr> Sorry no records found!! </tr>";
+                html += "<tr> <td colspan=\"6\" style=\"text-align:center;\">No advisors found.</td> </tr>";
             }
             document.getElementById("advisorstableregistered").innerHTML = html;
         }
 
     };
-    ajax.send();
+
 }
-//search by username (unregistered advisor)
-function searchbyunregisteredadvisor() {
+
+//search by user name (unregistered advisor)
+function searchbyunregisteredseller() {
 
     let search = document.getElementById('searchbyadviosrunregistered').value;
 
@@ -67,7 +69,7 @@ function searchbyunregisteredadvisor() {
 
             }
             else {
-                html += "<tr> Sorry no records found!! </tr>";
+                html += "<tr> <td colspan=\"6\" style=\"text-align:center;\">No new advisors found.</td> </tr>";
             }
             document.getElementById("advisorstableunregistered").innerHTML = html;
         }

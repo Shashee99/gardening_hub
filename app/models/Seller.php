@@ -229,16 +229,16 @@ class Seller{
 
     public function delete_seller($id){
 
-        $this -> db -> query('UPDATE seller SET isDeleted = 1 WHERE seller_id = :id;');
+        $this -> db -> query('UPDATE seller SET isDeleted = 1 WHERE seller_id = :id');
         $this -> db -> bind(':id', $id);
         $this->db->execute();
-        $this -> db -> query('UPDATE user SET user_state = 2 WHERE user_id = :id;');
+        $this -> db -> query('UPDATE user SET user_state = 2 WHERE user_id = :id');
         $this -> db -> bind(':id', $id);
         $this->db->execute();
     }
     public function searchuserbyname_registeredsellers($name){
         $search_term = $name . '%';
-        $this -> db -> query('SELECT * FROM `seller` WHERE `shop_name` LIKE :search_term AND is_registered = 1 AND isDeleted = 0;');
+        $this -> db -> query('SELECT * FROM `seller` WHERE `shop_name` LIKE :search_term AND is_registered = 1 AND isDeleted = 0');
         $this ->db ->bind(':search_term',$search_term);
         $dataset = $this->db->resultSet();
         return $dataset;

@@ -140,7 +140,7 @@ class Admins extends Controller
             $rowdata->complained_user_id = $this->userModel->getNamebyuserid($rowdata->complained_user_id);
         }
         $data = [
-            'nav' => 'complaint',
+            'nav' => 'complain',
             'title' => 'Complaints',
             'complaints' => $complaints,
             'jsfile' => 'admin_complaint.js'
@@ -578,7 +578,8 @@ class Admins extends Controller
 
     }
 
-    public function userdeleteconfirm(){
+    public function userdeleteconfirm()
+    {
 
             if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);

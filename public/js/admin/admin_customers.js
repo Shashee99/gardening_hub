@@ -12,7 +12,6 @@ function getcustomercount() {
         if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(this.responseText);
             document.getElementById("cuscount").innerText = data.length;
-            // console.log(data[0]);
         }
     };
 }
@@ -26,24 +25,27 @@ function getallcustomers(){
 
         if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(this.responseText);
-
             var html = "";
-            for (var a = 0; a < data.length; a++) {
+            if (data.length > 0) {
+                for (var a = 0; a < data.length; a++) {
 
-                let rcount = a+1;
+                    let rcount = a + 1;
 
-                html += "<tr>";
-                html += "<td>" + rcount + "</td>";
-                html += "<td>" + data[a].name + "</td>";
-                html += "<td>" + data[a].email + "</td>";
-                html += "<td>" + data[a].gramasewa_division + "</td>";
-                html += "<td>" + data[a].divisional_secretary + "</td>";
-                html += "<td>" + data[a].tel_no + "</td>";
-                html += `<td> <div class="seller-action flex"> <a href="http://localhost/gardening_hub/admins/viewcustomer/${data[a].customer_id}" class="view"> View </a> <div onclick="deletecustomer(${data[a].customer_id});" class="delete"> Delete </div> </div></td>`;
-                html += "</tr>";
-                // console.log(html);
+                    html += "<tr>";
+                    html += "<td>" + rcount + "</td>";
+                    html += "<td>" + data[a].name + "</td>";
+                    html += "<td>" + data[a].email + "</td>";
+                    html += "<td>" + data[a].gramasewa_division + "</td>";
+                    html += "<td>" + data[a].divisional_secretary + "</td>";
+                    html += "<td>" + data[a].tel_no + "</td>";
+                    html += `<td> <div class="seller-action flex"> <a href="http://localhost/gardening_hub/admins/viewcustomer/${data[a].customer_id}" class="view"> View </a> <div onclick="deletecustomer(${data[a].customer_id});" class="delete"> Delete </div> </div></td>`;
+                    html += "</tr>";
+
+                }
+
+            } else {
+                    html += "<tr><td colspan=\"7\"> No Customers found </td></tr>";
             }
-
             document.getElementById("customersall").innerHTML = html;
         }
     };

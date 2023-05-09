@@ -50,7 +50,6 @@
 
             return $row;
         }
-
         public function searchuserbyname_registeredadvisor($name){
             $search_term = $name . '%';
             $this -> db -> query('SELECT * FROM `advisor` WHERE `name` LIKE :search_term AND is_registered = 1 AND isDeleted = 0;');

@@ -78,16 +78,20 @@ function getData() {
             document.getElementById("catCount").innerText = data.length;
 
             var html = "";
-            for (var a = 0; a < data.length; a++) {
-                html += "<tr>";
-                html += "<td>" + data[a].product_id + "</td>";
-                html += "<td>" + data[a].product_category + "</td>";
-                html += "<td>" + data[a].sub_category + "</td>";
-                html += "<td><button onClick=\"editCat(this);\">Edit</button>\n" +
-                    "<button onClick=\"deletecat(this);\">Delete</button></td>";
-                html += "</tr>";
+           if(data.length>0){
+               for (var a = 0; a < data.length; a++) {
+                   html += "<tr>";
+                   html += "<td>" + data[a].product_id + "</td>";
+                   html += "<td>" + data[a].product_category + "</td>";
+                   html += "<td>" + data[a].sub_category + "</td>";
+                   html += "<td><button onClick=\"editCat(this);\">Edit</button>\n" +
+                       "<button onClick=\"deletecat(this);\">Delete</button></td>";
+                   html += "</tr>";
 
-            }
+               }
+           }else{
+               html += "<tr> <td colspan=\"4\" style=\"text-align:center;\">No records found.</td> </tr>"
+           }
 
             document.getElementById("categoryTable").innerHTML = html;
         }
@@ -115,17 +119,21 @@ function searchcategories() {
             console.log(data);
             var html = "";
             let val = 1;
-            for (var a = 0; a < data.length; a++) {
+            if(data.length>0){
+                for (var a = 0; a < data.length; a++) {
+                    html += "<tr>";
+                    html += "<td>" + data[a].product_id + "</td>";
+                    html += "<td>" + data[a].product_category + "</td>";
+                    html += "<td>" + data[a].sub_category + "</td>";
+                    html += "<td><button onClick=\"editCat(this);\">Edit</button>\n" +
+                        "<button onClick=\"deletecat(this);\">Delete</button></td>";
+                    html += "</tr>";
 
-                html += "<tr>";
-                html +=  "<td>" + data[a].product_id + "</td>";
-                html += "<td>" + data[a].product_category + "</td>";
-                html += "<td>" + data[a].sub_category + "</td>";
-                html += "<td><button onClick=\"editCat(this);\">Edit</button>\n" +
-                    "<button onClick=\"deletecat(this);\">Delete</button></td>";
-                html += "</tr>";
-                // console.log(html);
+                }
+            }else{
+                html += "<tr> <td colspan=\"4\" style=\"text-align:center;\">No records found.</td> </tr>"
             }
+
 
             document.getElementById("categoryTable").innerHTML = html;
         }
