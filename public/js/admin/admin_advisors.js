@@ -1,68 +1,13 @@
 
-getnewadvisorcountfornotification();
-getregadvisorcount();
-
-function getregadvisorcount(){
-    var ajax = new XMLHttpRequest();
-
-    ajax.open("POST", "http://localhost/gardening_hub/advisors/allregadvisors", true);
-    ajax.send();
-
-    ajax.onreadystatechange = function () {
-
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            document.getElementById("regadcount").innerText = data.length;
-            // console.log(data.length);
-        }
-    };
-}
-
-getnewadvisorcount();
-function getnewadvisorcount(){
-    var ajax = new XMLHttpRequest();
-
-    ajax.open("POST", "http://localhost/gardening_hub/advisors/allnewadvisors", true);
-    ajax.send();
-
-    ajax.onreadystatechange = function () {
-
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            document.getElementById("newadcount").innerText = data.length;
-
-            // console.log(data.length);
-        }
-    };
-}
-function getnewadvisorcountfornotification(){
-    var ajax = new XMLHttpRequest();
-
-    ajax.open("POST", "http://localhost/gardening_hub/advisors/allnewadvisors", true);
-    ajax.send();
-
-    ajax.onreadystatechange = function () {
-
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-
-            document.getElementById("notiadvisor").innerText = data.length;
-            // console.log(data.length);
-        }
-    };
-}
-
-//search by user name (registered advisor)
-function searchbyregisteredseller() {
+//search by username (registered advisor)
+function searchbyregisteredadvisors() {
 
     let search = document.getElementById('searchbyadviosrregistered').value;
 
     var ajax = new XMLHttpRequest();
 
-    ajax.open("POST", "http://localhost/gardening_hub/advisors/searchbynames_registeredadvisor", true);
+    ajax.open("GET", `http://localhost/gardening_hub/advisors/searchbynames_registeredadvisor?searchbynames_registeredadvisor=${search}`, true);
 
-    ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    ajax.send("searchbynames_registeredadvisor=" + search);
     ajax.onreadystatechange = function () {
 
         if (this.readyState == 4 && this.status == 200) {
@@ -89,11 +34,10 @@ function searchbyregisteredseller() {
         }
 
     };
-
+    ajax.send();
 }
-
-//search by user name (unregistered advisor)
-function searchbyunregisteredseller() {
+//search by username (unregistered advisor)
+function searchbyunregisteredadvisor() {
 
     let search = document.getElementById('searchbyadviosrunregistered').value;
 

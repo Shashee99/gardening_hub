@@ -49,12 +49,11 @@
 
         public function searchbynames_registeredadvisor(){
 
-
-            if(isset($_POST['searchbynames_registeredadvisor'])){
-                $text = $_POST['searchbynames_registeredadvisor'];
+            if(isset($_GET['searchbynames_registeredadvisor'])){
+                $text = $_GET['searchbynames_registeredadvisor'];
+                die($text);
                 $dataset = $this->advisorModel -> searchuserbyname_registeredadvisor($text);
                 echo json_encode($dataset);
-                unset($_POST['searchbynames_registeredadvisor']);
                 exit();
             }
             else{
@@ -62,9 +61,7 @@
                 $tabledata =json_encode($tabledata);
                 echo $tabledata;
                 exit();
-
             }
-
         }
         public function searchbynames_unregisteredadvisor(){
 

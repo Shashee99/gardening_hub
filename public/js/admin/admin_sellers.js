@@ -1,20 +1,4 @@
 
-getregsellercount();
-function getregsellercount() {
-    var ajax = new XMLHttpRequest();
-
-    ajax.open("POST", "http://localhost/gardening_hub/sellers/allregsellers", true);
-    ajax.send();
-
-    ajax.onreadystatechange = function () {
-
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            document.getElementById("sellCount").innerText = data.length;
-            console.log(data.length);
-        }
-    };
-}
 
 
 //search by username (registered seller)

@@ -7,7 +7,7 @@
             <h1 class="font700" id="regadcount"><?= count($data['registeredAdvisors']);?></h1>
         </div>
         <div class="searcharea flex">
-            <input type="text" name="searchbyadviosrregistered" id="searchbyadviosrregistered" class="searchbox" placeholder="Search by Name" onkeyup="searchbyregisteredseller();">
+            <input type="text" name="searchbyadviosrregistered" id="searchbyadviosrregistered" class="searchbox" placeholder="Search by Name" onkeyup="searchbyregisteredadvisors();">
             <div class="searchbtn bglightgray">
                 <img src="<?= URLROOT; ?>/img/admin/icon/search.png" alt="" width="30px" height="25px" class="searchicon">
             </div>
