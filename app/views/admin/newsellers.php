@@ -4,7 +4,7 @@
     <div class="category parentwidth flex">
         <div class="category-item1 flex">
             <h3 class="font600">New Product Sellers</h3>
-            <h1 class="font700" id="newsellCount"></h1>
+            <h1 class="font700" id="newsellCount"><?= count($data['newsellers']); ?></h1>
         </div>
         <div class="searcharea flex">
             <input type="text" name="searchbyshopnameunregistered" id="searchbyshopnameunregistered" class="searchbox" placeholder="Search by shop name" onkeyup="searchbyunregisteredshopname();">
@@ -39,17 +39,24 @@
             </tr>
             </thead>
             <tbody id="unregisteredsellerstable">
-            <?php foreach ($data['newsellers'] as $row) : ?>
-            <tr>
-                <td><?php echo $row -> seller_id ?></td>
-                <td><?php echo $row -> shop_name ?></td>
-                <td><?php echo $row -> owner_name ?></td>
-                <td><?php echo $row -> email ?></td>
-                <td><?php echo $row -> tel_no ?></td>
-                <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewsellernonregistered/<?= $row -> seller_id;?>" class="view"> View </a></div></td>
-            </tr>
-            <?php endforeach; ?>
+            <?php if (empty($data['newsellers'])) : ?>
+                <tr>
+                    <td colspan="6" style="text-align:center;">No New sellers found.</td>
+                </tr>
+            <?php else : ?>
+                <?php foreach ($data['newsellers'] as $row) : ?>
+                    <tr>
+                        <td><?php echo $row -> seller_id ?></td>
+                        <td><?php echo $row -> shop_name ?></td>
+                        <td><?php echo $row -> owner_name ?></td>
+                        <td><?php echo $row -> email ?></td>
+                        <td><?php echo $row -> tel_no ?></td>
+                        <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewsellernonregistered/<?= $row -> seller_id;?>" class="view"> View </a></div></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
             </tbody>
+
         </table>
 
     </div>

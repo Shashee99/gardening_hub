@@ -762,6 +762,8 @@ class Users extends Controller
                 $data['u_name_err'] = 'Please enter user name';
             } elseif (!$this->userModel->findUser($data['u_name'])) {
                 $data['u_name_err'] = 'No user found';
+            }elseif($this ->userModel -> getuserstatebyemail($data['u_name']) == 2){
+                $data['u_name_err'] = 'This user account has been deleted from the system!';
             }
 
             if (empty($data['u_name_err'])) {

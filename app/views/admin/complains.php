@@ -18,7 +18,7 @@
         <table class="usertable">
             <thead>
             <tr>
-                <th><b>#</b> </th>
+                <th><b>RefID</b> </th>
                 <th><b>Complaint Date</b></th>
                 <th><b>From</b></th>
                 <th><b>To</b></th>
@@ -27,16 +27,27 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($data['complaints'] as $row) : ?>
+            <?php if (count($data['complaints']) === 0) : ?>
                 <tr>
-                    <td><?php echo $row -> complian_no  ?></td>
-                    <td><?php echo $row -> complain_date ?></td>
-                    <td><?php echo $row -> posted_user_id ?></td>
-                    <td><?php echo $row -> complained_user_id ?></td>
-                    <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewcomplain/<?php echo $row -> complian_no  ?>" class="view"> View </a>
+                    <td colspan="5">No complaints found.</td>
                 </tr>
-            <?php endforeach; ?>
+            <?php else : ?>
+                <?php foreach ($data['complaints'] as $row) : ?>
+                    <tr>
+                        <td><?php echo $row -> complian_no  ?></td>
+                        <td><?php echo $row -> complain_date ?></td>
+                        <td><?php echo $row -> posted_user_id ?></td>
+                        <td><?php echo $row -> complained_user_id ?></td>
+                        <td>
+                            <div class="seller-action flex">
+                                <a href="<?=URLROOT;?>/admins/viewcomplain/<?php echo $row -> complian_no  ?>" class="view"> View </a>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
             </tbody>
+
         </table>
 
     </div>

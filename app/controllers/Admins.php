@@ -120,10 +120,12 @@ class Admins extends Controller
     public function sellers()
     {
         $sellers = $this->adminModel->all_registered_sellers();
+        $newsellers = $this -> sellerModel ->get_non_registered_sellers();
         $data = [
             'nav' => 'sellers',
             'title' => 'Product Sellers',
             'sellers' => $sellers,
+            'newsellers' => $newsellers,
             'jsfile' => 'admin_sellers.js'
         ];
         $this->view('admin/sellers', $data);
@@ -166,6 +168,7 @@ class Admins extends Controller
     public function newsellers()
     {
         $newsellers = $this->adminModel->get_non_registered_sellers();
+
         $data = [
             'nav' => 'sellers',
             'title' => 'Product Sellers',

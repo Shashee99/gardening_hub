@@ -4,7 +4,7 @@
     <div class="category parentwidth flex">
         <div class="category-item1 flex">
             <h3 class="font600">All Advisors</h3>
-            <h1 class="font700" id="regadcount"></h1>
+            <h1 class="font700" id="regadcount"><?= count($data['registeredAdvisors']);?></h1>
         </div>
         <div class="searcharea flex">
             <input type="text" name="searchbyadviosrregistered" id="searchbyadviosrregistered" class="searchbox" placeholder="Search by Name" onkeyup="searchbyregisteredseller();">
@@ -41,18 +41,25 @@
             </thead>
 
             <tbody id="advisorstableregistered">
-            <?php $i = 1; ?>
-            <?php foreach ($data['registeredAdvisors'] as $row) : ?>
+            <?php if (count($data['registeredAdvisors']) > 0) : ?>
+                <?php $i = 1; ?>
+                <?php foreach ($data['registeredAdvisors'] as $row) : ?>
+                    <tr>
+                        <td><?php echo $i++ ?></td>
+                        <td><?php echo $row -> name ?></td>
+                        <td><?php echo $row -> nic_no ?></td>
+                        <td><?php echo $row -> email ?></td>
+                        <td><?php echo $row -> tel_no ?></td>
+                        <td><div class="seller-action flex"><a href="<?=URLROOT;?>/admins/viewadvisorregistered/<?= $row -> advisor_id;?>" class="view"> View </a></div></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else : ?>
                 <tr>
-                    <td><?php echo $i++ ?></td>
-                    <td><?php echo $row -> name ?></td>
-                    <td><?php echo $row -> nic_no ?></td>
-                    <td><?php echo $row -> email ?></td>
-                    <td><?php echo $row -> tel_no ?></td>
-                    <td><div class="seller-action flex"><a href="<?=URLROOT;?>/admins/viewadvisorregistered/<?= $row -> advisor_id;?>" class="view"> View </a></div></td>
+                    <td colspan="6" style="text-align:center;">No advisors found.</td>
                 </tr>
-            <?php endforeach; ?>
+            <?php endif; ?>
             </tbody>
+
         </table>
 
     </div>

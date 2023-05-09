@@ -3,7 +3,7 @@
         <div class="category parentwidth flex">
         <div class="category-item1 flex">
             <h3 class="font600">All Product Sellers</h3>
-            <h1 class="font700" id="sellCount"></h1>
+            <h1 class="font700" id="sellCount"><?= count($data['sellers']) ?></h1>
         </div>
         <div class="searcharea flex">
             <input type="text" name="searchbyshopnameregistered" id="searchbyshopnameregistered" class="searchbox" placeholder="Search by Shop Name" onkeyup="searchbyregisteredshopname();">
@@ -20,7 +20,7 @@
         <a href="<?= URLROOT; ?>/admins/newsellers" class="sortbtn flex bglightgray text-decoration-none position-relative" style="width: 200px;height: 50px">
             <img src="<?= URLROOT; ?>/img/admin/icon/addcat.png" alt="" width="15px" height="15px">
             <p class="font500" style="font-size: 15px">New Sellers Request</p>
-            <div id="newsellercountnoti"><h5 id="notiseller"></h5></div>
+            <div id="newsellercountnoti" class="<?=  count($data['newsellers']) == 0 ? 'hidden' : ''  ?>" ><h5 id="notiseller"><?= count($data['newsellers']) ?></h5></div>
         </a>
 
 
@@ -40,18 +40,25 @@
             </tr>
             </thead>
             <tbody id="registeredsellerstable" class="cattable">
-            <?php $i =1; ?>
-            <?php foreach ($data['sellers'] as $row) : ?>
+            <?php if (empty($data['sellers'])) : ?>
                 <tr>
-                    <td><?php echo $i++ ?></td>
-                    <td><?php echo $row -> shop_name ?></td>
-                    <td><?php echo $row -> owner_name ?></td>
-                    <td><?php echo $row -> email ?></td>
-                    <td><?php echo $row -> tel_no ?></td>
-                    <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewseller/<?= $row -> seller_id;?>" class="view"> View </a></div></td>
+                    <td colspan="6" style="text-align:center;">No registered sellers found.</td>
                 </tr>
-            <?php endforeach; ?>
+            <?php else : ?>
+                <?php $i =1; ?>
+                <?php foreach ($data['sellers'] as $row) : ?>
+                    <tr>
+                        <td><?php echo $i++ ?></td>
+                        <td><?php echo $row -> shop_name ?></td>
+                        <td><?php echo $row -> owner_name ?></td>
+                        <td><?php echo $row -> email ?></td>
+                        <td><?php echo $row -> tel_no ?></td>
+                        <td> <div class="seller-action flex"> <a href="<?=URLROOT;?>/admins/viewseller/<?= $row -> seller_id;?>" class="view"> View </a></div></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php endif; ?>
             </tbody>
+
         </table>
 
     </div>

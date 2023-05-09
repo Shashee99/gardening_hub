@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="button">
-                <input type="submit" value="Send Verification Code"   name="login" >
+                <input type="submit" value="Send Verification Code"   name="login" style="font-size: 14px" >
             </div>
             <br>
         </form>

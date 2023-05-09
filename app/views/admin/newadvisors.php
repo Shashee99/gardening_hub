@@ -4,7 +4,7 @@
         <div class="category parentwidth flex">
             <div class="category-item1 flex">
                 <h3 class="font600">New Advisors</h3>
-                <h1 class="font700" id="newadcount"></h1>
+                <h1 class="font700" id="newadcount"><?= count($data['newadvisors'])?></h1>
             </div>
             <div class="searcharea flex">
                 <input type="text" name="searchbyadviosrunregistered" id="searchbyadviosrunregistered" class="searchbox" placeholder="Search Category" onkeyup="searchbyunregisteredseller();">
@@ -19,7 +19,7 @@
 
         <div class="sortarea flex parentwidth">
             <a href="<?= URLROOT; ?>/admins/advisors" class="sortbtn flex bglightgray text-decoration-none" style="width: 200px;height: 50px">
-                <img src="<?= URLROOT; ?>/img/admin/icon/addcat.png" alt="" width="15px" height="15px">
+                <img src="<?= URLROOT; ?>/img/admin/icon/backbtn.png" alt="" width="15px" height="15px">
                 <p class="font500" style="font-size: 15px">Back to Advisors</p>
             </a>
 
@@ -40,21 +40,28 @@
                 </thead>
 
                 <tbody id="advisorstableunregistered">
-                <?php $i = 1; ?>
-                <?php foreach ($data['newadvisors'] as $row) : ?>
+                <?php if (count($data['newadvisors']) > 0) : ?>
+                    <?php $i = 1; ?>
+                    <?php foreach ($data['newadvisors'] as $row) : ?>
+                        <tr>
+                            <td><?php echo $i++ ?></td>
+                            <td><?php echo $row -> name ?></td>
+                            <td><?php echo $row -> nic_no ?></td>
+                            <td><?php echo $row -> email ?></td>
+                            <td><?php echo $row -> tel_no ?></td>
+                            <td> <div class="seller-action flex">
+                                    <a href="<?=URLROOT;?>/admins/viewadvisor/<?= $row -> advisor_id;?>" class="view"> View </a>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else : ?>
                     <tr>
-                        <td><?php echo $i++ ?></td>
-                        <td><?php echo $row -> name ?></td>
-                        <td><?php echo $row -> nic_no ?></td>
-                        <td><?php echo $row -> email ?></td>
-                        <td><?php echo $row -> tel_no ?></td>
-                        <td> <div class="seller-action flex">
-                                <a href="<?=URLROOT;?>/admins/viewadvisor/<?= $row -> advisor_id;?>" class="view"> View </a>
-                            </div>
-                        </td>
+                        <td colspan="6" style="text-align:center;">No new advisors found.</td>
                     </tr>
-                <?php endforeach; ?>
+                <?php endif; ?>
                 </tbody>
+
             </table>
 
         </div>

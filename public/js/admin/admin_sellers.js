@@ -1,6 +1,4 @@
 
-getnewsellercount();
-getnewsellercountfornotification();
 getregsellercount();
 function getregsellercount() {
     var ajax = new XMLHttpRequest();
@@ -17,45 +15,7 @@ function getregsellercount() {
         }
     };
 }
-function getnewsellercount() {
-    var ajax = new XMLHttpRequest();
-    let tot;
-    ajax.open("POST", "http://localhost/gardening_hub/sellers/allnewsellers", true);
-    ajax.send();
 
-    ajax.onreadystatechange = function () {
-
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            document.getElementById("newsellCount").innerText = data.length;
-
-            // console.log(data.length);
-        }
-
-
-    };
-
-
-}
-function getnewsellercountfornotification() {
-    var ajax = new XMLHttpRequest();
-    let tot;
-    ajax.open("POST", "http://localhost/gardening_hub/sellers/allnewsellers", true);
-    ajax.send();
-
-    ajax.onreadystatechange = function () {
-
-        if (this.readyState == 4 && this.status == 200) {
-            var data = JSON.parse(this.responseText);
-            document.getElementById("notiseller").innerText = data.length;
-            // console.log(data.length);
-        }
-
-
-    };
-
-
-}
 
 //search by username (registered seller)
 
@@ -90,7 +50,7 @@ function searchbyregisteredshopname() {
 
             }
             else {
-                html += "<tr> Sorry no records found!! </tr>";
+                html += "<tr>  <td colspan=\"6\">No Records found.</td> </tr>";
             }
             document.getElementById("registeredsellerstable").innerHTML = html;
         }
@@ -135,7 +95,7 @@ function searchbyunregisteredshopname() {
 
             }
             else {
-                html += "<tr> Sorry no records found!! </tr>";
+                html += "<tr>  <td colspan=\"6\">No Records found.</td> </tr>";
             }
             document.getElementById("unregisteredsellerstable").innerHTML = html;
         }

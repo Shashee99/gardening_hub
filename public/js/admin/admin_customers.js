@@ -84,7 +84,7 @@ function searchbyname() {
 
             }
             else {
-                html += "<tr> Sorry no records found!! </tr>";
+                html += "<tr>  <td colspan=\"7\">No Records found</td> </tr>";
             }
             document.getElementById("customersall").innerHTML = html;
         }
