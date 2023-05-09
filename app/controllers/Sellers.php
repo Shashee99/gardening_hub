@@ -387,6 +387,23 @@ class Sellers extends Controller
         }
 
     }
+    public function searchbynames_unregisteredseller(){
+        if(isset($_POST['searchbynames_unregisteredseller'])){
+            $text = $_POST['searchbynames_unregisteredseller'];
+            $dataset = $this->sellerModel -> searchuserbyname_unregisteredsellers($text);
+            echo json_encode($dataset);
+            unset($_POST['searchbynames_unregisteredseller']);
+            exit();
+        }
+        else{
+            $tabledata = $this->sellerModel->get_non_registered_sellers();
+            $tabledata =json_encode($tabledata);
+            echo $tabledata;
+            exit();
+
+        }
+
+    }
 
 
     public function order_conf()
@@ -406,24 +423,6 @@ class Sellers extends Controller
             echo "Confirm Suceccfully";
         }
     }
-
-
-    // public function update($id) {
-    //     $itemData = $this -> sellerModel -> getItemById($id);
-    //     $productImg = $this -> sellerModel -> getProductImages($id);
-    // public function update($id) {
-    //     $itemData = $this -> sellerModel -> getItemById($id);
-    //     $productImg = $this -> sellerModel -> getProductImages($id); 
-
-    //     $data = [
-    //         'itemData' => $itemData,
-    //         'productImg' => $productImg,
-    //         'image_err' => '',
-    //         'photo_err' => ''
-    //     ]; 
-
-    //     $this->view('seller/update', $data);
-    // }
 
     public function update($id)
     {
