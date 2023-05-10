@@ -9,14 +9,16 @@
 
 left: 0;
 top: 0;
-width: 220px;
+width: 230px;
 height:100%;
+box-shadow: 0 18px 25px 0 rgba(234, 143, 143, 0.06), 0 2px 10px 0 rgba(0, 0, 0, 0.02);
 background-color:#C4EDC9;
 }
 .side-bar-function ul{
  margin-left: 0rem;
  padding: 0%;
  display: flex;
+ padding-inline: 0;
  flex-direction: column;
  
 }
@@ -24,12 +26,14 @@ background-color:#C4EDC9;
 list-style: none;
 margin-bottom: .1rem;
 
+
 }
 .side-bar-function li a{
-margin-top: 1rem; 
+margin-top: 2rem; 
 margin-left: 1.5rem;  
 width: 13rem;
 text-decoration: none;
+font-size: 20px;
 border-top-right-radius: 30px;
 border-bottom-right-radius: 30px;
 color: rgb(9, 10, 9);
@@ -42,9 +46,9 @@ transition: .5s;
 }
 .side-bar-function li i{
 
-margin-left:1rem;
+margin-left:.1rem;
 padding: 10px;
-font-size:1rem;
+font-size:15px;
 
 }
 

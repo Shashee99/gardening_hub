@@ -40,9 +40,9 @@ if(!isset(($_SESSION['advisor_id']))){
                                   <form action=" <?php echo URLROOT.'/advisors/profileUpdate';?>" method="POST" enctype="multipart/form-data">
                                        <div class="input-box">
                                           <span>Full Name</span>
-                                          <input class="type-input" type="text" name="fname" id=""  placeholder="Enter your name" value="<?php echo $data['fullName'];?>">
+                                          <input class="type-input" type="text" name="fname" id=""  placeholder="Enter your name" value="<?php echo $data['fullName'];?>" readonly>
                                              <div class="error">
-                                                <span> </span>
+                                                <span><?php echo $data['fullName_error'];?> </span>
                                              </div>
                                         </div>
 
@@ -50,7 +50,7 @@ if(!isset(($_SESSION['advisor_id']))){
                                           <span>Address</span>
                                           <input class="type-input" type="text" name="address" id=""   placeholder="Enter your Address" value="<?php echo $data['location'];?>">
                                              <div class="error">
-                                                <span> </span>
+                                                <span> <?php echo $data['location_error'];?></span>
                                              </div>
                                         </div>
 
@@ -59,7 +59,7 @@ if(!isset(($_SESSION['advisor_id']))){
                                           <span>User Name</span>
                                           <input class="type-input" type="text" name="user" id=""   placeholder="Enter your user name" value="<?php echo $data['userName'];?>">
                                              <div class="error">
-                                                <span> </span>
+                                                <span> <?php echo $data['userName_error'];?> </span>
                                              </div>
                                         </div>
 
@@ -68,7 +68,7 @@ if(!isset(($_SESSION['advisor_id']))){
                                           <span>Email</span>
                                           <input class="type-input" type="text" name="email" id=""   placeholder="Enter your email" value="<?php echo $data['email'];?>">
                                              <div class="error">
-                                                <span> </span>
+                                                <span><?php echo $data['email_error'];?> </span>
                                              </div>
                                         </div>
 
@@ -76,7 +76,7 @@ if(!isset(($_SESSION['advisor_id']))){
                                           <span>Mobile number</span>
                                           <input class="type-input" type="text" name="mobile" id=""   placeholder="Enter your mobile number" value="<?php echo $data['mobile'];?>">
                                              <div class="error">
-                                                <span> </span>
+                                                <span><?php echo $data['mobile_error'];?> </span>
                                              </div>
                                         </div>
 
@@ -84,25 +84,25 @@ if(!isset(($_SESSION['advisor_id']))){
                                           <span>Brithday</span>
                                           <input class="type-input" type="date" name="date" id=""  value="<?php echo $data['brithday'];?>">
                                              <div class="error">
-                                                <span> </span>
+                                                <span><?php echo $data['brithday_error'];?> </span>
                                              </div>
                                         </div>
 
                                         <div class="input-box">
-                                          <span>Qulification</span>
-                                          <textarea  class="type-input" id="" name="qulification" rows="4" cols="50"  placeholder="Enter your qulification" value="<?php echo $data['qulification'];?>"></textarea>
+                                          <span>About me</span>
+                                          <textarea  class="type-input" id="" name="about" rows="4" cols="50"  placeholder="write about yourself" value="<?php echo $data['about_me'];?>"></textarea>
 
                                              <div class="error">
-                                                <span> </span>
+                                                <span><?php echo $data['about_error'];?> </span>
                                              </div>
                                         </div>
 
                                         
                                         <div class="input-box">
                                           <span>Profile photo</span>
-                                          <input class="type-input" type="file" name="profile" id=""   placeholder="Enter your mobile number">
+                                          <input class="type-input" type="file" name="profile" id=""   placeholder="Enter your mobile number"   value="<?php echo $data['poto_pp'];?>" >
                                              <div class="error">
-                                                <span> </span>
+                                                <span><?php echo $data['poto_pp_error'];?> </span>
                                              </div>
                                         </div>
                                         <div class="but">

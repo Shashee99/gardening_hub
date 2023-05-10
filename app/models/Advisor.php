@@ -128,13 +128,38 @@
         public function giveTecno($advisor_id){
             // SELECT new_technology.no,new_technology.category,new_technology.date,new_technology.content,new_technology.title,
             // tecpoto.imge FROM new_technology INNER JOIN tecpoto ON new_technology.no=tecpoto.no;
+            //print_r($category);
            
-               $sql='SELECT * FROM new_technology WHERE advisor_id= :advisor_id ';
-               $this->db->query($sql);
-               $this->db->bind(':advisor_id',$advisor_id);
-              return $this->db->resultSet();
+                //print_r($category);
+                $sql='SELECT * FROM new_technology WHERE advisor_id= :advisor_id ';
+                $this->db->query($sql);
+                $this->db->bind(':advisor_id',$advisor_id);
+               // $this->db->bind(':category',$category);
+               return $this->db->resultSet();
+ 
+
+            //  }else{
+            //      //print_r($category);
+
+            //     $sql='SELECT * FROM new_technology WHERE advisor_id= :advisor_id AND category=:category';
+            //     $this->db->query($sql);
+            //     $this->db->bind(':advisor_id',$advisor_id);
+            //     $this->db->bind(':category',$category);
+            //     return $this->db->resultSet();
+
+            //  }
+
+              
 
         }
+         //get category ------------------------
+         public function getCategory($advisor_id){
+            $sql_cat='SELECT category FROM new_technology WHERE advisor_id=:advisor_id';
+            $this->db->qurey($sql_cat);
+            $this->db->bind(':advisor_id',$advisor_id);
+            return $this->db->resultSet();
+         }
+
         // we can get potos by this function--------
         public function tecnoPhotosById($no){
             $sql = "SELECT * FROM tecpoto WHERE no = :no";
@@ -147,6 +172,7 @@
 
         //update tecnhology  ---------------------------------
         function tecnoUpdate($data,$photo,$id){
+             //die($id);
               $sql='UPDATE new_technology SET category =:catagory,date=:date,title=:title,content=:content WHERE advisor_id=:advisor_id AND no=:id';
              $this->db->query($sql);
              $this->db->bind(':catagory', $data['catagory']);
@@ -165,7 +191,7 @@
                   $this->db->bind(':id',$id);
                   $rowImage=$this->db->resultSet();
                   // die("sucsse");
-                  $imagecount=0;
+                  $imagecount=0; 
                   $photoArray=count($photo);
                   $beforPhoto=count($rowImage); 
                 //   $rowcount=count($rowImage);
@@ -226,21 +252,45 @@
        }
 
        //edit profile-----------------------------------
-       function editProfile($satat){
-          if($satat==1){
+      function getProfile(){
+        $sql_getdata="SELECT * FROM advisor WHERE advisor_id=:advisor_id";
+        $this->db->query($sql_getdata);
+        $this->db->bind(':advisor_id',$_SESSION['advisor_id']);
+        $this->db->execute();
+        return $this->db->singleRecord();
 
+      }
+
+      function  editProfile($getProfile_data){
+
+          $sql_update_advisor='UPDATE advisor SET name=:fullName,address=:location,email=:email
+          ,tel_no=:mobile,photo=:poto_pp,userName=:userName,dob=:birthday,about_me=:about_me
+           WHERE advisor_id=:id';
+          $this->db->query($sql_update_advisor);
+          $this->db->bind(':fullName',$getProfile_data['fullName']);
+          $this->db->bind(':location',$getProfile_data['location']);
+          $this->db->bind(':email',$getProfile_data['email']);
+          $this->db->bind(':mobile',$getProfile_data['mobile']);
+          $this->db->bind(':poto_pp',$getProfile_data['poto_pp']);
+          $this->db->bind(':userName',$getProfile_data['userName']);
+          $this->db->bind(':birthday',$getProfile_data['brithday']);
+          $this->db->bind(':about_me',$getProfile_data['about_me']);
+          $this->db->bind(':id',$_SESSION['advisor_id']);
+          if($this->db->execute()){
+          
+            return true;
           }else{
-             $sql_getdata="SELECT * FROM advisor WHERE advisor_id=:advisor_id";
-             $this->db->query($sql_getdata);
-             $this->db->bind(':advisor_id',$_SESSION['advisor_id']);
-             $this->db->execute();
-             return $this->db->singleRecord();
-
+            die("data is not update");
           }
 
 
-       }
+
+        
+
+      }
 
 
 
     }
+
+    

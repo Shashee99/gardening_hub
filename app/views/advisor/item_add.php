@@ -1,54 +1,76 @@
 <?php require_once APPROOT.'/views/inc/incAdvisor/item_add_head.php';?>
 
-      <div class="contener">
-            <h3>Add new tecnhology</h3>
-         
-            <form action=" <?php echo URLROOT.'/advisors/item_add';?> "   enctype="multipart/form-data"  method="post">
-                  <div class="input-fild-style">
-                      <label for=" ">Title:</label>
-                      <input type="text" name="title" id="title" value="<?php echo $data['title'];  ?>" placeholder=Title>
-                      <label for=" "> <?php echo $data['title_error'];  ?></label>
+<div class="contener">
+         <?php require_once APPROOT.'/views/inc/incAdvisor/navbar.php';?>    
 
-                    </div>
-                
-                 <div class="input-fild-style">
-                      <label for="">Catagory:</label>
-                      <input type="text" name="catagory" id="title" value="<?php echo $data['catagory'];  ?>" placeholder=Catagory>
-                      <label for=""><?php echo $data['catagory_error'];  ?> </label>
+            <div class="contener-2">
+            <?php require_once APPROOT.'/views/inc/incAdvisor/sidebar.php';?> 
+               <div class="item_add_files">
+                  <div class="form">
+                        <div class="form-layout">
+                              <div class="title"><span>Enter your new technology</span></div>
+                              <div class="inpu-filed-div">
+                                   <form action="<?php echo URLROOT.'/advisors/item_add';?>" method="post" enctype="multipart/form-data">
+                                         <div class="input-box">
+                                            <span>Topic new technology</span>
+                                             <input class="type-input" type="text" name="title" id=""  placeholder="Entenr your technology" value="<?php echo $data['title'];  ?>">
+                                             <div class="error">
+                                                <span><?php echo $data['title_error'];  ?></span>
+                                             </div>
+ 
+                                        </div>
+                                        <div class="input-box">
+                                            <span>Select your category</span>
+                                            <select name='category' class="type-cetagory"   value="<?php echo $data['catagory'];  ?>" >
+                                                <option value="" selected hidden>select category</option>
+                                                <option value="vegetable">Vegetable</option>
+                                                <option value="fruits">Fruits</option>
+                                                <option value="flowers">Flowers</option>
+                                           </select>
+                                             <div class="error">
+                                                <span><?php echo $data['catagory_error'];  ?> </span>
+                                             </div>
+                                          </div>  
 
-                    </div>
+                                          <div class="input-box">
+                                             <span>Enter your content</span>
+                                              <textarea  class="type-content"  name="content"    placeholder="Enter your content" ></textarea>
+                                             <div class="error">
+                                                <span><?php echo $data['content_error'];  ?></span>
+                                             </div>
+                                        </div>
+                                        <div class="input-box">
+                                            <span>Enter your technology photo</span>
+                                            <input type="file"  class="type-input"  name="photos[]"  onchange="preview()"  multiple >
+                                             <div class="error">
+                                                <span> <?php echo $data['photo_error'];  ?></span>
+                                             </div>
+ 
+                                        </div>
 
-               
+                                        <div class="buttons">
+                                            <div class="submit-btn">
+                                                <input type="submit" value="ADD">
+                                            </div>
+                                            <div class="cancele-btn">
+                                                <a href="<?php echo URLROOT.'/advisors/addtecno';?>">
+                                                <input type="button" value="Cancele">
+                                                </a>
+                                            </div>
+                                       </div>
 
-                <div class="input-fild-style">
-                      <label for="">Images:</label>
-                      <input type="file"  name="photos[]"  onchange="preview()"  multiple >
-                      <label for=""> <?php echo $data['photo_error'];  ?></label>
+                                   </form>
 
-                   
-                   </div>
+                        
+                              </div>
+                        </div>
+                  </div>
+               </div>
 
-                <div class="input-fild-style">
-                      <label for="">Content:</label>
-                      <textarea name="content" id="content" cols="30" rows="5"  value="<?php echo $data['content'];  ?>" ></textarea>
-                      <label for=""> <?php echo $data['content_error'];  ?></label>
+     
+             </div> 
+</div>
 
-                    </div>
-                    
-               
-                   <div class="input-fild-style"> <button type="submit" name='submit'>save</button></div>   
-                  
-                               <!-- item add form  -->
-
-              </form>
-
-
-
-
-
-
-
-       </div>
 
 
 <?php require_once APPROOT.'/views/inc/incAdvisor/item_add_footer.php';?>

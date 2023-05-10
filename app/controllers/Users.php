@@ -125,7 +125,7 @@ class Users extends Controller
 
             $type = array('png', 'jpg', 'jpeg');
             $img_type = strtolower(pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION));
-            //echo $img_type;
+            
 
 
             if (empty($data['photo'])) {
@@ -391,28 +391,159 @@ class Users extends Controller
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
             $data = [
-                'password' => trim($_POST['password']),
+                'password' => trim($_POST['pass']),
+                'cpassword'=>trim($_POST['cpass']),
                 'fullname' => trim($_POST['fname']),
+                'user_name'=>trim($_POST['user']),
                 'address' => trim($_POST['address']),
-                'nic' => trim($_POST['nic']),
-                'phone' => trim($_POST['phone']),
-                'email' => trim($_POST['gmail']),
-                'qualification' => trim($_POST['qualification']),
-                'pp' => $_FILES['photo']['name'],
-                'email_err' => ''
+                'nic' => trim($_POST['id_no']),
+                'dob'=>trim($_POST['dob']),
+                'phone' => trim($_POST['mobile']),
+                'email' => trim($_POST['email']),
+                'qualification' => trim($_POST['qulafication']),
+                'pp' => $_FILES['poto']['name'],
+                'qualifi_poto'=>'',
+                'password_err'=>'',
+                'cpassword_err'=>'',
+                'fullname_err'=>'',
+                'user_name_err'=>'',
+                'address_err'=>'',
+                'nic_err'=>'',
+                'dob_err'=>'',
+                'phone_err'=>'',
+                'email_err' => '',
+                'qulification_err'=>'',
+                'pp_err'=>'',
+                'qualifi_poto_err'=>''
 
             ];
-
-            if ($this->userModel->findUser($data['email'])) {
-                $data['email_err'] = "Email already exits";
+            //validate password
+            if (empty($data['password'])) {
+                $data['password_err'] = '*Please enter passowrd';
+            } elseif (strlen($data['password']) < 8 || strlen($data['password']) > 20) {
+                $data['password_err'] = '*Password length should be between 8 and 20';
+            } elseif (!preg_match("/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?]{8,20}$/", $data['password'])) {
+                $data['password_err'] = '*Password should contain at least one lowercase, uppercase, digit and special character';
             }
+
+            //validate conforme password
+            if (empty($data['cpassword'])) {
+                $data['cpassword_err'] = '*Please confirm passowrd';
+            } else {
+                if ($data['password'] != $data['cpassword']) {
+                    $data['cpassword_err'] = '*Passwords don\'t match';
+                }
+            }
+            //validate full name
+            if (empty($data['fullname'])) {
+                $data['fullname_err'] = '*Please enter name';
+            } elseif (strlen($data['fullname']) > 15) {
+                $data['fullname_err'] = '*Name should at least 15 characters';
+            }
+            //validate user name
+            if (empty($data['user_name'])) {
+                $data['user_err'] = '*Please enter name';
+            } elseif (strlen($data['user_name']) < 5) {
+                $data['user_err'] = '*Name should at least 5 characters';
+            }
+            //validate address
+            if(empty($data['address'])){
+                $data['address_err']='*please enter address';
+            }
+            //validate nic
+            if (empty($data['nic'])) {
+                $data['nic_err'] = '*Please enter id no';
+            } elseif (strlen($data['nic']) != 10 && strlen($data['nic']) != 12) {
+                $data['nic_err'] = '*Id number length should not matched';
+            } elseif (!preg_match("/^[1-9]{1}+[0-9]{8}+[vV]{1}$/", $data['nic']) && !preg_match("/^[1-2]{1}+[0-9]{11}$/", $data['nic'])) {
+                $data['nic_err'] = '*Invalid id number';
+            }
+            //validate dob
+            if (empty($data['dob'])) {
+                $data['dob_err'] = '*Please enter birthday';
+            } elseif ((date("Y") - 15) < date("Y", strtotime($data['dob'])) || (date("Y") - 100) > date("Y", strtotime($data['dob']))) {
+                $data['dob_err'] = '*Birthday should be bettween ' . (date("Y") - 100) . ' and ' . (date("Y") - 15);
+            }
+            //mobile number
+            if (empty($data['phone'])) {
+                $data['phone_err'] = '*Please enter mobile number';
+            } elseif (!preg_match("/^[0]{1}+[1-9]{1}+[0-9]{8}$/", $data['phone'])) {
+                $data['phone_err'] = '*Invalid mobile number';
+            }
+            //validate email
+
+            if (empty($data['email'])) {
+                $data['email_err'] = '*Please enter email';
+            } elseif (!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/", $data['email'])) {
+                $data['email_err'] = '*Invalid email or email type';
+            }
+            if ($this->userModel->findUser($data['email'])) {
+                $data['email_err'] = "*Email already exits";
+            }
+            //qualification
+            if(empty($data['qualification'])){
+                $data['qualification_err']='*pleas enter qualification';
+            }elseif(strlen($data['qualification'])<150){
+                $data['qualification_err']='*qualification should at least 150 characters';
+            }
+
+                 //validate photo----------------    
+                 $photoname = array_filter($_FILES['photos']['name']);
+                 $photocount = count($_FILES['photos']['name']);
+                 $type = array ('png', 'jpg', 'jpeg');
+                 $totsize = 0;
+                 $photo = array();
+     
+                 if(empty($photoname))
+                 {
+                     $data['qualifi_poto_err'] = "*Please select at least one image";
+                 }
+                 elseif( $photocount>4)
+                 {
+                     $data['qualifi_poto_err'] = '*Can not upload more than 4 images';
+                 }
+     
+                 foreach($_FILES['photos']['name'] as $key => $value)
+                 {
+                     $img_name = $_FILES['photos']['name'][$key];
+                     $img_type = strtolower(pathinfo($img_name, PATHINFO_EXTENSION));
+                     $totsize += $_FILES['photos']['size'] [$key];
+     
+                     if($img_type != $type[0]  && $img_type != $type[1] && $img_type != $type[2])
+                     {
+                         $data['qualifi_poto_err'] = '*Image type should be png or jpeg or jpg'; 
+                         break;
+                     }
+     
+                 }
+                 if($totsize > 8388608)
+                 {
+                     $data['photo_error'] = '*Images size should be less than 8MB';
+                 }
+
+                 //validate pp
+                 if(empty($data['pp'])){
+                    $data['pp_err']='*please enter your profile photo';
+                 }
+
+                 $img_name = $_FILES['poto']['name'];
+                 $img_type = strtolower(pathinfo($img_name, PATHINFO_EXTENSION));
+                 //$totsize += $_FILES['photos']['size'];
+ 
+                 if($img_type != $type[0]  && $img_type != $type[1] && $img_type != $type[2])
+                 {
+                     $data['pp_err'] = '*Image type should be png or jpeg or jpg'; 
+                    
+                 }
+ 
+     
 
             if (empty($data['email_err'])) {
                 //Hashing password
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 // Photo upload
-                $tmp_name = $_FILES['photo']['tmp_name'];
-                $img_type = strtolower(pathinfo($_FILES['photo']['name'], PATHINFO_EXTENSION));
+                $tmp_name = $_FILES['poto']['tmp_name'];
+                $img_type = strtolower(pathinfo($_FILES['poto']['name'], PATHINFO_EXTENSION));
                 $new_img = uniqid('IMG-', true) . '.' . $img_type;
                 $img_upload_path = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/advisor_pp/' . $new_img;
                 move_uploaded_file($tmp_name, $img_upload_path);
@@ -420,10 +551,10 @@ class Users extends Controller
 
                 $photo = array();
 
-                foreach ($_FILES['qfile']['name'] as $key => $value) {
+                foreach ($_FILES['photos']['name'] as $key => $value) {
 
-                    $img_name1 = $_FILES['qfile']['name'][$key];
-                    $tmp_name1 = $_FILES['qfile']['tmp_name'][$key];
+                    $img_name1 = $_FILES['photos']['name'][$key];
+                    $tmp_name1 = $_FILES['photos']['tmp_name'][$key];
                     $img_type1 = strtolower(pathinfo($img_name1, PATHINFO_EXTENSION));
                     $new_img1 = uniqid('PDF-', true) . '.' . $img_type1;
                     $img_upload_path1 = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/Advisor_Qualification_docs/' . $new_img1;
@@ -431,7 +562,7 @@ class Users extends Controller
                     array_push($photo, $new_img1);
                 }
 
-                if ($this->userModel->advisorRegister($data, $new_img1)) {
+                if ($this->userModel->advisorRegister($data, $photo)) {
                     // $this->notiModel->addnotification('Advisor');
                     redirect('users/login');
                 } else {
@@ -444,15 +575,30 @@ class Users extends Controller
 
         } else {
             $data = [
-                'password' => '',
-                'fullname' => '',
+                'password' =>'',
+                'cpassword'=>'',
+                'fullname' =>'',
+                'user_name'=>'',
                 'address' => '',
                 'nic' => '',
+                'dob'=>'',
                 'phone' => '',
                 'email' => '',
-                'qualification' => '',
-                'pp' => '',
-                'email_err' => ''
+                'qualification' =>'',
+                'pp' =>'',
+                'qualifi_poto'=>'',
+                'password_err'=>'',
+                'cpassword_err'=>'',
+                'fullname_err'=>'',
+                'user_name_err'=>'',
+                'address_err'=>'',
+                'nic_err'=>'',
+                'dob_err'=>'',
+                'phone_err'=>'',
+                'email_err' => '',
+                'qulification_err'=>'',
+                'pp_err'=>'',
+                'qualifi_poto_err'=>''
 
             ];
 
