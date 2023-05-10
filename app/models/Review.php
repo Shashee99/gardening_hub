@@ -51,6 +51,14 @@
             return $result;
 
         }
+        public function overallRatingOfAllProduct()
+        {
+            $sql ="SELECT product_id,AVG(rating) AS rate, COUNT(*) As count FROM product_rating_review GROUP BY product_id";
+            $this->db->query($sql);
+            $result = $this->db->resultSet();
+            return $result;
+
+        }
         public function isAddedSellerReview($id)
         {
             $sql = "SELECT * FROM seller_rating_review WHERE seller_id = :seller_id AND customer_id = :cus_id LIMIT 1";
@@ -63,7 +71,7 @@
         public function topRatedProducts($id)
         {
             $sql = "SELECT seller_product_details.image, AVG(product_rating_review.rating) AS rating FROM seller_product_details INNER JOIN product_rating_review  ON seller_product_details.product_no = product_rating_review.product_id 
-                    WHERE seller_product_details.seller_id = :seller_id GROUP BY product_rating_review.product_id ORDER BY product_rating_review.rating DESC LIMIT 4 ";
+                    WHERE seller_product_details.seller_id = :seller_id  GROUP BY product_rating_review.product_id ORDER BY product_rating_review.rating DESC LIMIT 4 ";
 
             $this->db->query($sql);            
             $this->db->bind(':seller_id', $id);
@@ -88,7 +96,7 @@
         }
         public function getASellerRating($id)
         {
-            $sql = "SELECT AVG(service) AS service_rate, AVG(products) AS products_rate, AVG(overall) AS overall FROM seller_rating_review   WHERE seller_id = :seller_id";
+            $sql = "SELECT AVG(service) AS service_rate, AVG(products) AS products_rate, AVG(overall) AS overall, COUNT(*) As count FROM seller_rating_review   WHERE seller_id = :seller_id";
             $this->db->query($sql);            
             $this->db->bind(':seller_id', $id);
             $result = $this->db->singleRecord();

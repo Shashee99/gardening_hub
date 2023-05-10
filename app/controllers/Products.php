@@ -17,9 +17,12 @@
         {
             $categories = $this->categoryModel->categorydetails();
             $productDetails = $this->productModel->productdetails();
+            $ratings = $this->ratingModel->overallRatingOfAllProduct();
+            
             $data = [
                 'category' => $categories,
-                'products' => $productDetails
+                'products' => $productDetails,
+                'ratings' => $ratings
             ];
             $this->view('customers/products', $data);
         }
@@ -53,25 +56,11 @@
                     'product_id' => $product_id,
                     'count' =>  (int)trim($_POST['no_of_items']),
                     'Products_details' => $product_details,
-                    'count_err' => ''
                 ];
-                if(empty($data['count']))
-                {
-                    $data['count_err'] = 'Please enter amonut that do you want from that product';
-                }
-                elseif($data['count'] > $product_details->quantity)
-                {
-                    $data['count_err'] = 'You can not get more than '.$product_details->quantity.' items';
-                }
-                if(empty($data['count_err']))
-                {
-                    $this->productModel->addProductToWislist($data);
-                    redirect('Products/viewProducts');
-                }
-                else
-                {
-                    $this->view('customers/addproduct',$data);
-                }
+
+                $this->productModel->addProductToWislist($data);
+                flash('item_add_successfuly', 'You item added successfuly to the wishlist');
+                redirect('Products/viewProducts');
 
             }
             else

@@ -1,47 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
-}
-body{
-    width: 100%;
-    background-color: #3BB78F ;
-    position: relative;
-    display: flex;
-}
-#rest{
-    background-color: #efefef;
-    margin-top: 80px;
-    margin-left: 22%;
-    max-height: 100%;
-    width: 78%;
+.rest{
+    background-color: rgba(239, 239, 239, 0.75);
+    margin-top: 90px;
+    margin-left: 270px;
+    height: fit-content;
+    width: calc(100% - 270px);
     border-radius: 25px 0 0 0;
-    overflow-y: scroll;
-    
+    position: fixed;
+    overflow-y: auto;
+    height: 100%;
 }
-#rest .title{
+.rest .title{
     margin: 20px;
 }
-#rest .title h2{
+.rest .title h2{
     text-align: center;
     font-weight: 600;
 }
 .seller-details{
     display: flex;
     align-items: flex-start;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 120px;
 }
 .seller-details .left-side{
-    width: 50%;
+    width: 400px;
     height: 100%;
     display: flex;
     justify-content:flex-start;
     align-items: center;
     flex-direction: column;
+    padding: 10px;
 }
 .seller-details .right-side{
-    width: 50%;
+    width: 400px;
     height: 100%;
 }
 .seller-details .left-side .image{
@@ -60,9 +53,19 @@ body{
     flex-direction: column;
     margin-top: 10px;
     background-color: #fff;
-    width: 80%;
+    width: 360px;
 
 
+}
+.seller-details .left-side .seller_rating .rating .ratings{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 7px;
+    margin-left: 20px;
+}
+.seller-details .left-side .seller_rating .rating h5{
+    margin-left: 10px;
 }
 .seller-details .left-side h4{
     text-align: left;
@@ -190,21 +193,39 @@ body{
     background-color:  red;
     color: #fff;
 }
+
 .seller-details .left-side .top-rated-products .products{
     padding: 15px 15px;
     background-color: #fff;
+    width: 90%;
     margin-top: 10px;
     display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
 }
-.seller-details .left-side .top-rated-products .products img{
-    width: 100px;
-    height: 100px;
+.seller-details .left-side .top-rated-products .products .ratings{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 7px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+.seller_rating .rating .ratings img{
+    width: 18px;
+}
+.seller-details .left-side .top-rated-products .products .ratings img{
+    width: 18px;
+}
+.seller-details .left-side .top-rated-products .products .product_photo{
+    width: 120px;
+    height: 120px;
     object-fit: cover;
 }
+
 .seller-details .right-side .seller-info{
     display: flex;
     justify-content: start;

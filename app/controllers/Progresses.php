@@ -264,4 +264,95 @@
 
             
         }
+        public function filterMyProgress()
+        {
+            if(isset($_POST['category']))
+            {
+                $category = $_POST['category'];
+
+                $result = $this->progressModel->filterMyProgress($category);
+
+                $arr = array();
+
+                foreach($result as $progress)
+                {
+                    $progress_id = $progress->progress_id;
+                    $title = $progress->title;
+                    $content = $progress->content;
+                    $date = $progress->started_date;
+                    $update_date = $progress->updated_date;
+                    $cat = $progress->category;
+    
+                    $photos = $this->progressModel->progressPhotosbyId($progress_id);
+                    $progress_photo = array();
+    
+                    foreach($photos as $photo)
+                    {
+                        $progress_photo[] = $photo->name;
+                    }
+    
+                    $arr[] = array 
+                    (
+                        'progress_id' => $progress_id,
+                        'cus_name' => $_SESSION['cus_name'],
+                        'photo_path' => $_SESSION['cus_photo_path'],
+                        'title' => $title,
+                        'description' => $content,
+                        'date' => $date,
+                        'up_date' => $update_date,
+                        'category' => $cat,
+                        'progress_photo' => $progress_photo
+                    );
+                }
+                echo json_encode($arr, JSON_UNESCAPED_UNICODE);
+                
+            }
+        }
+        public function filterOthersProgress()
+        {
+            if(isset($_POST['category']))
+            {
+                $category = $_POST['category'];
+
+                $result = $this->progressModel->filterOthersProgress($category);
+
+                $arr = array();
+
+                foreach($result as $progress)
+                {
+                    $progress_id = $progress->progress_id;
+                    $title = $progress->title;
+                    $content = $progress->content;
+                    $date = $progress->started_date;
+                    $update_date = $progress->updated_date;
+                    $cat = $progress->category;
+                    $cus_details = $this->cusModel->getCustomerDetails($progress->customer_id);
+                    $cus_name = $cus_details->name;
+                    $cus_photo = $cus_details->photo;
+    
+                    $photos = $this->progressModel->progressPhotosbyId($progress_id);
+                    $progress_photo = array();
+    
+                    foreach($photos as $photo)
+                    {
+                        $progress_photo[] = $photo->name;
+                    }
+    
+                    $arr[] = array 
+                    (
+                        'progress_id' => $progress_id,
+                        'cus_name' => $cus_name,
+                        'cus_photo' => $cus_photo,
+                        'title' => $title,
+                        'description' => $content,
+                        'date' => $date,
+                        'up_date' => $update_date,
+                        'category' => $cat,
+                        'progress_photo' => $progress_photo
+                    );
+                }
+                echo json_encode($arr, JSON_UNESCAPED_UNICODE);
+                
+            }
+        }
     }

@@ -17,9 +17,7 @@
 
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
-
-    <section id="rest">
+    <div class="rest">
         <div class="update-form">
             <h3>Update Your progress details</h3>
             <form action="<?= URLROOT; ?>/progresses/updateProgress/<?= $data['id']; ?>" method="POST" enctype="multipart/form-data">
@@ -88,7 +86,7 @@
                         <input type="submit" value="UPDATE">
                     </div>
                     <div class="cancele-btn">
-                        <a href="<?= URLROOT; ?>/problems/viewProblems">
+                        <a href="<?= URLROOT; ?>/progresses/viewMyProgress">
                             <input type="button" value="Cancel">
                         </a>
                     </div>
@@ -96,7 +94,9 @@
             </form>
         </div>
 
-    </section>
+    </div>
     
+    <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
+
 </body>
 </html>

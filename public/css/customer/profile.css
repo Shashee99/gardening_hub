@@ -1,27 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
-}
-body{
-    width: 100%;
-    background-color: #3BB78F ;
-    position: relative;
-    display: flex;
-}
-#rest{
-    background-color: #efefef;
-    margin-top: 80px;
-    margin-left: 22%;
-    max-height: 100%;
-    width: 78%;
+.rest{
+    background-color: rgba(239, 239, 239, 0.75);
+    margin-top: 100px;
+    margin-left: 270px;
+    height: fit-content;
+    width: calc(100% - 270px);
     border-radius: 25px 0 0 0;
-    overflow-y: scroll;
-    
+    position: fixed;
+    overflow-y: auto;
+    height: 100%;
 }
-#rest .title{
+.rest .title{
     margin: 20px auto;
     text-align: center;
 }
@@ -29,6 +17,7 @@ body{
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    margin-bottom: 120px;
 
 } 
 .customer_info .first{
@@ -38,7 +27,6 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-right:2px solid #000 ;
 }
 .customer_info .second{
     width: 300px;
@@ -47,7 +35,6 @@ body{
 .customer_info .third{
     width: 250px;
     min-height: 100%;
-    border-left:2px solid #000 ;
 }
 .customer_info .first .pp img{
     width: 200px;

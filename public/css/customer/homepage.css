@@ -1,30 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
-}
-body{
-    widows: 100%;
-    background-color: #3BB78F ;
-    position: relative;
-    display: flex;
-}
 
-#side .items li:nth-child(1) {
-    background-color: #3BB78F;
+#item1{
+    background-color: #6ffb60;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
-#rest{
-    background-color: #efefef;
-    margin-top: 80px;
-    margin-left: 22%;
-    max-height: 100%;
-    width: 78%;
+.rest{
+    background-color: rgba(239, 239, 239, 0.75);
+    margin-top: 90px;
+    margin-left: 270px;
+    height: fit-content;
+    width: calc(100% - 270px);
     border-radius: 25px 0 0 0;
-    overflow-y: scroll;
+    position: fixed;
+    overflow-y: auto;
+    height: 100%;
 }
 .order-details{
     padding: 30px 30px 0 30px;
@@ -32,6 +21,7 @@ body{
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    gap: 20px;
 }
 .order-details #d1{
     background: linear-gradient(90deg, #EF629F 5.88%, #EECDA3 100%);
@@ -49,12 +39,9 @@ body{
     background: linear-gradient(90deg, #FF5F6D 0%, #FFC371 100%);
     box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
 }
-
-
 .order-details .valbox{
-    width: 250px;
-    height: 100px;
     margin-bottom: 20px;
+    width: 250px;
     padding: 16px 20px;
     border-radius: 10px;
     display: flex;
@@ -86,9 +73,37 @@ h2{
     font-weight: 400;
     font-size: 18px;
 }
+.chart_table{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin-bottom: 100px;
+}
+.chart_table .chart{
+    width: 400px;
+    margin: 0 auto 150px auto;
+}
+.chart_table .chart img{
+    width: 400px;
+}
 .not-complete-orders{
-    width: 60%;
-    margin: 20px 15px;
+    width: 600px;
+    margin: 20px 10px 0 10px;
+    overflow-x: auto;
+}
+th.fixed-column,
+td.fixed-cell {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+}
+tr:nth-child(even) td.fixed-cell{
+    background-color: #fff;
+}
+tr:nth-child(odd) td.fixed-cell{
+    background-color: #4cee98;
 }
 .not-complete-orders table thead{
     border-radius: 10px 10px 0 0;
@@ -114,7 +129,55 @@ h2{
 .not-complete-orders table tbody tr:nth-child(even){
     background-color: #fff;
 }
+.not-complete-orders table tbody tr:nth-child(odd){
+    background-color: #4cee98;
+}
 #d3 h3, #d3 span{
     color: #fff;
     font-weight: 600;
+}
+@media (max-width: 768px){
+    .not-complete-orders table td, .not-complete-orders table th{
+        padding: 7px 10px;
+        font-size: 13px;
+    }
+    .not-complete-orders table thead tr th{
+        font-size: 13px;
+    }
+    .order-details .valbox h3{
+        font-size: 17px;
+    }
+    .order-details .valbox span{
+        font-size: 17px;
+    }
+    .not-complete-orders{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .order-details .valbox img{
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        margin-top: 5px;
+    }
+    .order-details .valbox{
+        width: 220px;
+        padding: 12px 16px;
+    }
+}
+@media (max-width: 480px){
+    .not-complete-orders table td, .not-complete-orders table th{
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+    .not-complete-orders table thead tr th{
+        font-size: 12px;
+    }
+    .order-details .valbox h3{
+        font-size: 16px;
+    }
+    .order-details .valbox span{
+        font-size: 16px;
+    }
+    
 }

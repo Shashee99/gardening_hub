@@ -18,9 +18,7 @@
 
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
-
-    <section id="rest">
+    <div class="rest">
 
         <div class="search-bar">
             <div class="search-img">
@@ -32,7 +30,7 @@
             
         </div>
 
-    </section>
+    </div>
 
     <script>
         var map;
@@ -69,13 +67,10 @@
         }
 
     </script>
-    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
-
     
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YNc82y-3LAvVLgv_v7Mmi2EFjqNHQP0&callback=initMap" async defer>
-
-    </script>
+    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+    <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YNc82y-3LAvVLgv_v7Mmi2EFjqNHQP0&callback=initMap" async defer></script>
 
 </body>
 </html>

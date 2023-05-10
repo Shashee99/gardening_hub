@@ -8,9 +8,6 @@ function getProducts() {
     const cat = category.value;
     const subcat = sub_category.value;
     const amount = price.value;
-    console.log(cat);
-    console.log(subcat);
-    console.log(amount);
   
     // Make an AJAX request to get the filtered products
     const xhr = new XMLHttpRequest();
@@ -44,9 +41,9 @@ function getProducts() {
                             <p>Available : ${item.quantity}</p>
                             <h4>Price Rs.${item.price}</h4>
                             <div class="product-add">
-                                <a href="http://localhost/gardening_hub/products/addProductToWishlist/${item.product_no}">
-                                    <input type="submit" name="add-btn" value="Add to Wishlist">
-                                </a>
+                            <a id="wishlitaddbtn" href="#" onclick="popupmodal('${item.product_no}','${item.quantity}')">
+                                <input type="submit" name="add-btn" value="Add to Wishlist">
+                            </a>
                             </div>
 
                         </div>

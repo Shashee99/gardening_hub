@@ -17,9 +17,7 @@
 <body>
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
-
-    <section id="rest">
+    <div class="rest" id="blur">
         <div class="problem-filter">
             <select name="category" id="category">
                 <option value="">All</option>
@@ -29,7 +27,7 @@
             </select>
         </div>
         <div class="problem-add">
-            <div class="border">
+            <div class="border" onclick="problemaddModel();">
                 <a href="<?= URLROOT; ?>/problems/addProblems">Add a new problem</a>
             </div>
         </div>
@@ -66,7 +64,14 @@
                                 }
                                 ?>
                         </div>
-                        <a href="<?= URLROOT; ?>/problems/viewOneProblem/<?= $problems['id']; ?>">Replies ...</a><br>
+                        
+                        <a href="<?= URLROOT; ?>/problems/viewOneProblem/<?= $problems['id']; ?>">
+                            <div class="reply-link">
+                                <img src="<?= URLROOT; ?>/img/customer/reply.png" alt="">
+                                <img id="green" src="<?= URLROOT; ?>/img/customer/reply_1.png" alt="">
+                                <span>Replies...</span>
+                            </div>
+                        </a><br>
 
                     </div>
                 </div>
@@ -75,7 +80,8 @@
         
         </div>
 
-    </section>
+        </div>
+        <script src="http://localhost/gardening_hub/js/customer/menu-bar-toogle.js"></script>
 
 </body>
 </html>

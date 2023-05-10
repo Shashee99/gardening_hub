@@ -17,9 +17,7 @@
 
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
-
-    <section id="rest">
+    <div class="rest">
         <div class="progress-form">
             <h3>Enter Your progress details</h3>
             <form action="<?= URLROOT; ?>/progresses/addProgress" method="POST" enctype="multipart/form-data">
@@ -63,7 +61,7 @@
                             <div class="label-of-image">
                                 <label for="photo">
                                     <img src="<?= URLROOT; ?>/img/customer/upload-2.png" alt="">
-                                    Upload fiels
+                                    <p>Upload fiels</p> 
                                 </label>
                             </div>
                         </div>
@@ -81,12 +79,14 @@
                             <input type="button" value="Cancele">
                         </a>
                     </div>
-                </div>
+                </div><br>
             </form>
            
         </div>
-    </section>
+    </div>
 
-    
+    <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
+    <script src="<?php echo URLROOT; ?>/js/customer/displayimage.js"></script>
+
 </body>
 </html>

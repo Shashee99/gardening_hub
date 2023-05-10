@@ -75,4 +75,10 @@
             $this->db->bind(':id', $id);
             return $this->db->resultSet();
         }
+        public function getreplyfromcustomerid($cusid,$problem_id){
+            $sql = "SELECT * FROM problem_reply INNER JOIN advisor ON problem_reply.advisor_id = advisor.advisor_id WHERE problem_reply.problem_id = :probid";
+            $this->db->query($sql);
+            $this->db->bind(':probid', $problem_id);
+            return $this->db->resultSet();
+        }
     }

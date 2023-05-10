@@ -18,53 +18,52 @@
 <body>
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
-
-    <section id="rest">
+    <div class="rest">
         <div class="wislist-option">
             <div class="date-filter">
                 <div class="from-to">
                     <h4>From</h4>
-                    <input type="date" value="">
+                    <input type="date" id="from">
                 </div>
                 <div class="from-to">
                     <h4>To</h4>
-                    <input type="date" value="">
+                    <input type="date" id="to">
                 </div>
             </div>
             <div class="filter-option">
                 <div class="options">
                     <p>Pending</p>
-                    <input type="checkbox" name="pending">
-                </div>
-                <div class="options">
-                    <p>Confrimed</p>
-                    <input type="checkbox" name=confirm">
+                    <input type="checkbox" name="pending" id="option1">
                 </div>
                 <div class="options">
                     <p>Rejected</p>
-                    <input type="checkbox" name="rejected">
+                    <input type="checkbox" name="rejected" id="option2">
+                </div>
+                <div class="options">
+                    <p>Confrimed</p>
+                    <input type="checkbox" name="confirm" id="option3">
                 </div>
                 <div class="options">
                     <p>Completed</p>
-                    <input type="checkbox" name="completed">
+                    <input type="checkbox" name="completed" id="option4">
                 </div>
                 <div class="options">
                     <p>Not Completed</p>
-                    <input type="checkbox" name="not-completed">
+                    <input type="checkbox" name="not-completed" id="option5">
                 </div>
             </div>
         </div>
         <div class="wishlist-table">
             <table>
                 <thead>
-                <th>#</th>
+                <th class="fixed-column">#</th>
                 <th>Ordered Date & Time</th>
                 <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Seller</th>
                 <th>Status</th>
                 <th>Status Message</th>
+                <th>Action</th>
                 </thead>
                 <tbody>
                     <?php 
@@ -72,7 +71,7 @@
                     {
                     ?>
                         <tr>
-                        <td>
+                        <td class="fixed-cell">
                             <a href="<?= URLROOT; ?>/products/viewOneProduct/<?= $row->product_no; ?>">
                                 <img src="<?= URLROOT; ?>/img/upload_images/product_cover_photo/<?= $row->image;  ?>" alt="">
                             </a>
@@ -121,94 +120,22 @@
                                 }
                             ?>
                         </td>
+                        <td class="last">
+                            <a  class="cancel" href="">Cancel</a>
+                            <a class="delete" href="">Delete</a>
+                        </td>
                 </tr>
                     <?php
                     }
                     ?>
-                <tr>
-                    <td>1</td>
-                    <td>2020/10/01 10.53</td>
-                    <td>Composte 5kg</td>
-                    <td>3</td>
-                    <td>Fresh Shop</td>
-                    <td>Completed</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2020/10/01 10.53</td>
-                    <td>Composte 5kg</td>
-                    <td>3</td>
-                    <td>Fresh Shop</td>
-                    <td>Completed</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>2020/10/01 10.53</td>
-                    <td>Composte 5kg</td>
-                    <td>3</td>
-                    <td>Fresh Shop</td>
-                    <td>Completed</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>2020/10/01 10.53</td>
-                    <td>Composte 5kg</td>
-                    <td>3</td>
-                    <td>Fresh Shop</td>
-                    <td>Completed</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>2020/10/01 10.53</td>
-                    <td>Composte 5kg</td>
-                    <td>3</td>
-                    <td>Fresh Shop</td>
-                    <td>Completed</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>2020/10/01 10.53</td>
-                    <td>Composte 5kg</td>
-                    <td>3</td>
-                    <td>Fresh Shop</td>
-                    <td>Completed</td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>2020/10/01 10.53</td>
-                    <td>Composte 5kg</td>
-                    <td>3</td>
-                    <td>Fresh Shop</td>
-                    <td>Completed</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>2020/10/01 10.53</td>
-                    <td>Composte 5kg</td>
-                    <td>3</td>
-                    <td>Fresh Shop</td>
-                    <td>Completed</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>2020/10/01 10.53</td>
-                    <td>Composte 5kg</td>
-                    <td>3</td>
-                    <td>Fresh Shop</td>
-                    <td>Completed</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>2020/10/01 10.53</td>
-                    <td>Composte 5kg</td>
-                    <td>3</td>
-                    <td>Fresh Shop</td>
-                    <td>Completed</td>
-                </tr>
+               
                 </tbody>
             </table>
         </div>
-    </section>
+    </div>
+
+    <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
+    <script src="<?php echo URLROOT; ?>/js/customer/filterwishlist.js"></script>
 
 </body>
 </html>
