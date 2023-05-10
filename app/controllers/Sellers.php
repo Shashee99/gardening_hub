@@ -638,5 +638,8 @@ public function genarate_report(){
 
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature_advisor
 }

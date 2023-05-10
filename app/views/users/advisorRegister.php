@@ -1,93 +1,158 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="<?= URLROOT;?>/css/RegistrationPages/advisorRegister.css">
+    <link rel="stylesheet" href="<?= URLROOT;?>/css/advisor/navbar_2.css">
+    <title><?php echo SITENAME;?></title>
 </head>
 <body>
-    
-    <div class="navbg"></div>
-    <div class="container">
-        <nav>
-            <div class="logo"><img src="<?= URLROOT; ?>/img/login-registration/logo.png" alt="text" width="" hight="" ></div>
-            <div class="navs">
-                <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Contact Us</a></li>
-                </ul>
-            </div>
-        </nav>
-        <main>
-            <h3>Fill and submit your information</h3>
-            <div class="formcard">
-                <form action="<?= URLROOT;?>/users/advisorRegister" method="POST" enctype="multipart/form-data">
-                    <div class="form">
-                        <div class="col1">
-                            <input type="text" name="gmail" id="gmail" placeholder="Email" ><br>
-                            <label for="" id="username-label"><?= $data['email_err']; ?></label><br>
-                        
-                        <input type="text" name="password" id="password"placeholder="Password"  ><br>
-                        <label for="" id="passwordlable"></label><br>
+   
 
-                        <input type="text" name="pa" id="cpass"placeholder="conform Password"  ><br>
-                        <label for="" id="cpass_lable"> </label><br>
+  <div class="contener">
+     <?php require_once APPROOT.'/views/inc/incAdvisor/navbar_2.php';?> 
+     <div class="contener-2">
+         <div class="imge-1">
+              <div class="pic-1"><img  style=" width: 200px; height: 400px; border-radius: 15px;" src="../public/img/advisor/man_1.jpg" alt=""></div>
+         </div>
+
+           <div class="from">
+                <div class="hedar"><span> Sign up </span></div>
+                  <div class="from-div">
+                     <form action="<?php echo URLROOT;?>/users/advisorRegister" method="post" enctype="multipart/form-data">
+
+                                <div class="input-box">
+                                    <span>Full Name</span>
+                                        <input class="type-input" type="text" name="fname"   placeholder="Enter your full name" value="<?php echo $data['fullname']; ?>" >
+                                        <div class="error">
+                                             <span><?php echo  $data['fullname_err'] ;?></span>
+                                         </div>
+                                 </div>
+
+                                 <div class="input-box">
+                                    <span>User Name</span>
+                                        <input class="type-input" type="text" name="user"   placeholder="Enter your user name" value="<?php echo $data['user_name'] ; ?>" >
+                                        <div class="error">
+                                             <span><?php echo  $data['user_name_err'] ;?></span>
+                                         </div>
+                                 </div>
+
+                                 <div class="input-box">
+                                    <span>Address</span>
+                                        <input class="type-input" type="text" name="address"   placeholder="Enter your Address " value="<?php echo $data['address']; ?>" >
+                                        <div class="error">
+                                             <span><?php echo $data['address_err'] ;?></span>
+                                         </div>
+                                 </div>
+
+                                 <div class="input-box">
+                                    <span>ID Number</span>
+                                        <input class="type-input" type="text" name="id_no"   placeholder="Enter your ID number "  value="<?php echo $data['nic'] ; ?>" >
+                                        <div class="error">
+                                             <span><?php echo   $data['nic_err'] ;?></span>
+                                         </div>
+                                 </div>
+
+                                 <div class="input-box">
+                                    <span>Brithday</span>
+                                        <input class="type-input" type="date" name="dob"   placeholder="Enter your ID number "  value="<?php echo $data['dob']; ?>" >
+                                        <div class="error">
+                                             <span> <?php echo   $data['dob_err']  ;?></span>
+                                         </div>
+                                 </div>
+
+                                 <div class="input-box">
+                                    <span>Mobile Number</span>
+                                        <input class="type-input" type="text" name="mobile"   placeholder="Enter your mobile number "   value="<?php echo$data['phone'] ; ?>"  >
+                                        <div class="error">
+                                             <span><?php echo $data['phone_err'] ;?></span>
+                                         </div>
+                                 </div>
+
+                                 <div class="input-box">
+                                    <span>Email</span>
+                                        <input class="type-input" type="text" name="email"   placeholder="Enter your email "  value="<?php echo $data['email']; ?>"  >
+                                        <div class="error">
+                                             <span><?php echo  $data['email_err'] ;?></span>
+                                         </div>
+                                 </div>
 
 
-                        <input type="text" name="fname" id="fname" placeholder="Full Name"  required > <br>
-                        
-                        <input type="text"  name="nic" id ="nic" placeholder="NIC_NO"  required ><br>
-                        <label for="" id="nic-lable"> </label><br>
+                                 <div class="input-box">
+                                    <span>Password</span>
+                                        <input class="type-input" type="password" name="pass"   placeholder="Enter your password "   value="<?php echo $data['password']; ?>" >
+                                        <div class="error">
+                                             <span> <?php echo  $data['password_err'] ;?></span>
+                                         </div>
+                                 </div>
 
-                        <input type="text" name="phone" id="phone" placeholder="Mobile Number"  required ><br>
-                        <label for="" id="phone_lable"> </label><br> 
-                            
-                            
-                        
-                        </div>
-                        <div class="col2"></div>
-                        <div class="col3">
+                                 <div class="input-box">
+                                    <span>Confirm Password</span>
+                                        <input class="type-input" type="password" name="cpass"   placeholder="Enter your  password again "  value="<?php echo $data['cpassword']; ?>" >
+                                        <div class="error">
+                                             <span> <?php echo   $data['cpassword_err'] ;?> </span>
+                                         </div>
+                                 </div>
 
-                        <input type="text" name="address" id="addre" placeholder="Address"  required ><br>
-                        <label for="" id="phone_lable"> </label><br> 
-                            
-                            <input type="file" name="photo" id="pp" placeholder="Profile photo " required ><br>
-                            <br>
-                            <label for="" id="email-label"> </label><br>
-                            <br>
+                                 <div class="input-box">
+                                          <span>Qualification</span>
+                                          <textarea  class="type-input" id="" name="qulafication" rows="5" cols="50"  placeholder="write your qualification"  value="<?php echo $data['qualification'] ; ?>" ></textarea>
 
-                            
-                            <textarea cols=40 rows=14  class="tearea" placeholder="Describe your Qualifications here"  name="qualification"   >
-                            </textarea>
+                                             <div class="error">
+                                                <span><?php echo  $data['qulification_err'] ;?> </span>
+                                             </div>
+                                        </div>
+                                        <div class="input-box">
+                                          <span>Profile photo</span>
+                                           <input class="type-input" type="file" name="poto"   placeholder="Enter your pp " value="<?php echo $data['pp']  ; ?>"  >
+                                          <div class="error">
+                                             <span> <?php echo  $data['pp_err'] ;?> </span>
+                                          </div>
+                                         
+                                        </div>
 
-                            <div class="fileup">
-                                <br>
-                                
-                                <h6> up load  qualification</h6>
-                                <input type="file" name="qfile[]" id="qfile" value="input" multiple  required>
-                                <br>
-                                
-                            <!-- </div>
-                            <div class="fileup">
-                            
-                                <input type="file" name="inputbtn" id="inputbtn" value="input"  required >
-                                <br>
-                                
-                            </div>
-                        </div> -->
-                    </div>
-                    <div class="submitsection">
-                        <input type="submit"  name="submint" id="sub" value="Submit" class="button">
-                        <!-- <input type="submit"  name="cancel"   value="Cancel" class="button btncancel"> -->
-                    </div>
+                                        <div class="input-box">
+                                          <span>Qualification photo</span>
+                                           <input class="type-input" type="file" name="photos[]"   placeholder="Enter your email "  multiple   >
+                                          <div class="error">
+                                             <span><?php echo    $data['qualifi_poto_err'] ;?> </span>
+                                          </div>
+                                         
+                                        </div>
 
-                </form>
+                                        <div class="but">
+                                           <div class="button">
+                                             <input class="type-button" type="submit" value="register">
+                                           </div>
+                                          
+                                     </div>
 
-            </div>
-        </main>
-    </div>
-    <script src="<?php echo URLROOT; ?>/js/advisor/validate.js" ></script>
+
+
+                     </form>
+
+
+                  </div>
+
+
+           </div>
+
+             <div class="imge-2">
+                <div class="pic-2"><img  style=" width: 200px; height: 400px;border-raius:15px; border-radius: 15px;"  src="../public/img/advisor/man_2.jpg" alt=""></div>
+             </div>
+
+
+     </div>
+      
+
+  </div>
+
+
+
+
+
+
 </body>
 </html>

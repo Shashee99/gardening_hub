@@ -1,0 +1,89 @@
+.header_nav{
+    width: 100%;
+    height: 20%;
+    background-color: rgb(111, 169, 227);
+}
+.functions{
+    width: 100%;
+    height: 56%;
+    display: flex;
+    background-color: antiquewhite;
+}
+.profile{
+    width: 100%;
+    height: 44%;
+    display: flex;
+    background-color: rgb(221, 169, 102); 
+}
+.functions>.logo{
+    width: 23%;
+    height: 100%;
+    background-color: aqua;
+}
+.functions>.function-div{
+    width: 54%;
+    height: 100%;
+    background-color: black;
+}
+.functions>.siteName{
+    width: 23%;
+    height: 100%;
+    background-color: aqua;
+}
+.profile>.empty-div{
+    width: 23%;
+    height: 100%;
+    background-color: azure;
+}
+.profile>.profile-filtercategory-username{
+    height: 100%;
+    width: 77%;
+    background-color: blueviolet;
+}
+.logo>.logo-div{
+    width: 70px;
+    height: 70px;
+    margin-left: 6rem;
+    border-radius: 50px;
+    background-color: rgb(237, 240, 242);
+}
+.logo-div img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+}
+.nameSite{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.siteName span{
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* functions  style */
+.function-div ul{
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    margin-top: 3rem;
+    display: flex;
+}
+.function-div li{
+    list-style: none;
+    padding-left: 10px;
+}
+.function-div a{
+    text-decoration: none;
+}
+.style-function{
+    width: 95%;
+    height: 100%;
+    margin-left: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: antiquewhite;
+}

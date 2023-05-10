@@ -1,9 +1,7 @@
 <?php require APPROOT . '/views/inc/incAdvisor/headare.php'; ?>
 
-  <!-- head  nave bar-->
- 
-
-   <div class="contener">
+  <!-- home page -->
+  <div class="contener">
          <?php require_once APPROOT.'/views/inc/incAdvisor/navbar.php';?>    
 
             <div class="contener-2">
@@ -34,5 +32,8 @@
 
 
    </div>  
+
+  
+
 
    <?php require APPROOT . '/views/inc/incAdvisor/footer.php'; ?>

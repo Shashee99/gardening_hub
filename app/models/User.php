@@ -140,7 +140,8 @@
 
                 if($this->db->rowCount() > 0)
                 {
-                    $sql2 = "INSERT INTO advisor (advisor_id,name,address,email,nic_no,tel_no,qualification,photo,is_registered) VALUES (:id,:name,:address,:mail,:nic,:tel,:qualification,:photo,:status)";
+                    $sql2 = "INSERT INTO advisor (advisor_id,name,address,email,nic_no,tel_no,qualification,photo,is_registered,userName,dob) 
+                            VALUES (:id,:name,:address,:mail,:nic,:tel,:qualification,:photo,:status,:user,:dob)";
 
                     $this->db->query($sql2);
                     $this->db->bind(':id', $row1->user_id);
@@ -151,6 +152,8 @@
                     $this->db->bind(':tel',$data['phone']);
                     $this->db->bind(':qualification',$data['qualification']);  
                     $this->db->bind(':photo',$data['pp']);
+                    $this->db->bind(':user',$data['user_name']);
+                    $this->db->bind(':dob',$data['dob']);
                     $this->db->bind(':status',0); 
                     
                     if($this -> db -> execute()) 
