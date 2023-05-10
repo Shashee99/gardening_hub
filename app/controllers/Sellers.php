@@ -54,14 +54,20 @@ class Sellers extends Controller
                 'quantity' => '',
                 'description' => '',
                 'price' => '',
+                'validate_period' => '',
                 'title_err' => '',
                 'quantity_err' => '',
                 'price_err' => '',
-                'cat_err' => ''
+                'validate_period_err' => '',
+                'cat_err' => '',
+                'err_symbol' => ''
             ];
 
             if (empty($data['selected_category']) && empty($data['selected_subcategory'])) {
-                $data['cat_err'] = '* Please enter Ctegory and Subcategory';
+                // $data['cat_err'] = "\u{26A0}".'  Please enter Ctegory and Subcategory';
+                $data['cat_err'] = 'Please enter Ctegory and Subcategory';
+                $data['err_symbol'] = "\u{f06a}";
+
             }
             if (empty($data['cat_err'])) {
                 $this->view('seller/add2', $data);
@@ -76,11 +82,14 @@ class Sellers extends Controller
                 'title' => '',
                 'quantity' => '',
                 'description' => '',
+                'validate_period' => '',
                 'price' => '',
                 'title_err' => '',
                 'quantity_err' => '',
                 'price_err' => '',
-                'cat_err' => ''
+                'validate_period_err' => '',
+                'cat_err' => '',
+                'err_symbol' => ''
 
             ];
             $this->view('seller/add1', $data);
@@ -99,32 +108,53 @@ class Sellers extends Controller
                 'product_id' => '',
                 'selected_category' => $_POST['cat'],
                 'selected_subcategory' => $_POST['subcat'],
+                'unitvalue' => trim($_POST['unitvalue']),
                 'title' => trim($_POST['title']),
                 'quantity' => trim($_POST['quantity']),
                 'description' => trim($_POST['description']),
                 'price' => trim($_POST['price']),
+                'validate_period' => trim($_POST['validate_period']),
                 'title_err' => '',
+                'validate_period_err' => '',
                 'cat_err' => '',
                 'quantity_err' => '',
                 'price_err' => '',
                 'image' => '',
-                'image_err' => ''
-
+                'image_err' => '',
+                'unitvalue_err',
+                'err_symbol1' => '',
+                'err_symbol2' => '',
+                'err_symbol3' => '',
+                'err_symbol4' => '',
+                'err_symbol5' => ''
             ];
 
             if (empty($data['title'])) {
                 $data['title_err'] = 'Please enter product title';
+                $data['err_symbol1'] = "\u{f06a}";
             }
 
             if (empty($data['quantity'])) {
                 $data['quantity_err'] = 'Please enter quantity';
+                $data['err_symbol3'] = "\u{f06a}";
             }
 
             if (empty($data['price'])) {
                 $data['price_err'] = 'Please enter product price';
+                $data['err_symbol4'] = "\u{f06a}";
             }
 
-            if (empty($data['title_err']) && empty($data['quantity_err']) && empty($data['price_err'])) {
+            if (empty($data['unitvalue'])) {
+                $data['unitvalue_err'] = 'Please enter individual product unit';
+                $data['err_symbol2'] = "\u{f06a}";
+            }
+
+            if (empty($data['validate_period'])) {
+                $data['validate_period_err'] = 'Please enter validate period';
+                $data['err_symbol5'] = "\u{f06a}";
+            }
+
+            if (empty($data['title_err']) && empty($data['quantity_err']) && empty($data['price_err']) && empty($data['unitvalue_err']) && empty($data['validate_period_err'])) {
 
 //                price_err$this -> sellerModel -> add2($data);
 //                redirect('sellers/add3');
@@ -139,15 +169,24 @@ class Sellers extends Controller
                 'selected_category' => $_POST['cat'],
                 'selected_subcategory' => $_POST['subcat'],
                 'title' => trim($_POST['title']),
+                'unitvalue' => trim($_POST['unitvalue']),
                 'quantity' => trim($_POST['quantity']),
                 'description' => trim($_POST['description']),
                 'price' => trim($_POST['price']),
+                'validate_period' => trim($_POST['validate_period']),
                 'title_err' => '',
+                'validate_period_err' => '',
                 'cat_err' => '',
                 'quantity_err' => '',
+                'unitvalue_err' => '',
                 'price_err' => '',
                 'image' => '',
-                'image_err' => ''
+                'image_err' => '',
+                'err_symbol1' => '',
+                'err_symbol2' => '',
+                'err_symbol3' => '',
+                'err_symbol4' => '',
+                'err_symbol5' => ''
             ];
 
             $this->view('seller/add2', $data);
@@ -195,12 +234,17 @@ class Sellers extends Controller
                 'selected_subcategory' => $_POST['subcat'],
                 'title' => trim($_POST['title']),
                 'quantity' => trim($_POST['quantity']),
+                'unitvalue' => trim($_POST['unitvalue']),
                 'description' => trim($_POST['description']),
                 'price' => trim($_POST['price']),
+                'validate_period' => trim($_POST['validate_period']),
                 'image' => $fileNameNew,
-                // There is a mistake................................
                 'image_err' => '',
-                'photo_err' => ''
+                'validate_period_err' => '',
+                'unitvalue_err' => '',
+                'photo_err' => '',
+                'err_symbol1' => '',
+                'err_symbol2' => '',
             ];
             $filesname = array_filter($_FILES['cover_photos']['name']);
             $filecount = count($_FILES['cover_photos']['name']);
@@ -208,8 +252,10 @@ class Sellers extends Controller
 
             if ($filecount == 0) {
                 $data['photo_err'] = "Please select at least one image";
+                $data['err_symbol2'] = "\u{f06a}";
             } elseif ($filecount > 4) {
                 $data['photo_err'] = 'Can not upload more than 4 images';
+                $data['err_symbol2'] = "\u{f06a}";
             }
 
             $type = array('png', 'jpg', 'jpeg');
@@ -222,10 +268,13 @@ class Sellers extends Controller
 
             if ($fileSize === 0) {
                 $data['image_err'] = 'Please attach Product Licens';
+                $data['err_symbol1'] = "\u{f06a}";
             } elseif ($fileSize > 10000000) {
                 $data['image_err'] = 'File is too large';
+                $data['err_symbol1'] = "\u{f06a}";
             } elseif (!in_array($fileType, array_keys($allowedTypes))) {
                 $data['image_err'] = 'File not allowed';
+                $data['err_symbol1'] = "\u{f06a}";
             }
             $photo = array();
             foreach ($_FILES['cover_photos']['name'] as $key => $value) {
@@ -234,8 +283,9 @@ class Sellers extends Controller
                 $totsize += $_FILES['cover_photos']['size'] [$key];
 
 
-                if ($img_type != $type[0] && $img_type != $type[1] && $img_type != $type[2]) {
+                if ($img_type != $type[0] && $img_type != $type[1] && $img_type != $type[2] && $img_type != '') {
                     $data['photo_err'] = 'Image type should be png or jpeg or jpg';
+                    $data['err_symbol2'] = "\u{f06a}";
                     break;
                 }
 
@@ -243,6 +293,7 @@ class Sellers extends Controller
 
             if ($totsize > 8388608) {
                 $data['photo_err'] = 'Images size should be less than 8MB';
+                $data['err_symbol2'] = "\u{f06a}";
             }
 
             //Make sure errors are empty
@@ -275,6 +326,8 @@ class Sellers extends Controller
                 'photo' => '',
                 'image_err' => '',
                 'photo_err' => '',
+                'err_symbol1' => '',
+                'err_symbol2' => '',
                 'selected_category' => $_POST['cat'],
                 'selected_subcategory' => $_POST['subcat'],
             ];
@@ -457,6 +510,7 @@ class Sellers extends Controller
                 'id' => $id,
                 'title' => trim($_POST['title']),
                 'price' => trim($_POST['price']),
+                'quantity' => trim($_POST['quantity']),
                 'description' => trim($_POST['description']),
                 'seller_id' => $_SESSION['user_id'],
                 'image' => $fileNameNew,
@@ -547,6 +601,7 @@ class Sellers extends Controller
                 'id' => $id,
                 'title' => $itemData->title,
                 'price' => $itemData->price,
+                'quantity' => $itemData->quantity,
                 'description' => $itemData->description,
                 'image' => $itemData->image,
                 'productImg' => $productImg,

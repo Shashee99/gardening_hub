@@ -55,27 +55,33 @@
                 </select>
             </div>
             <div class="option2">
-                <select id="categorySelect" name="subcat" size="1">
+                <select id="categorySelect" name="subcat" size="1" onchange="fillprogressbar()">
                     <option value="" disabled selected>Choose Subcategory</option>
                     <option></option>
                 </select>
             </div>
         </div>
-
-
+            <div class="errrr">
+                <p  id="symbol_err"><?php echo $data['err_symbol']; ?></p>
+                <p class="error title_err" id="cat_err"><?php echo $data['cat_err']; ?> </p>
+            </div>
             <div id="btn_area">
-                
+
                 <div class="buton">
-                    <input type="submit" class="btn_nxt" id="btn_nxt"></input>
+                    <input type="submit" class="btn_nxt" id="btn_nxt_add1"></input>
                 </div>
                 
             </div><br><br>
-            <p style="color:red" class="error title_err" id="cat_err"> <?php echo $data['cat_err']; ?> </p>
+            
         </form>
         <div id="btn_area">
-            <div class="buton">
+            <div class="buton" id="req_buton">
                 <button class="req_cat" id="req_cat" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/request_category';">Request for new categorys</button>
-            </div>
+                <div class="req_msg">
+                    <p>If you do not have a sutable category in the list, Then you can requset for a new category name that related for your items. We wish to 
+                        Complete your request soon and inform it through a e-mail. Please wait little while. Thankyou. </p>
+                </div>
+            </div>   
         </div>
         
     </div>
@@ -91,8 +97,9 @@
     function makeSubmenu(value) {
 
         let category = value;
-        // console.log(category);
+        console.log(category);
         var ajax = new XMLHttpRequest();
+        
 
 
         ajax.open("POST", "http://localhost/gardening_hub/ProductCategories/getsubcategory", true);
@@ -126,6 +133,22 @@
         //     }
         //     document.getElementById("categorySelect").innerHTML = citiesOptions;
         // }
+
+        
+
+    }
+
+    function fillprogressbar(){
+        const one = document.querySelector(".one");
+        const two = document.querySelector(".two");
+        const three = document.querySelector(".three");
+        const four = document.querySelector(".four");
+        // one.onclick = function() {
+        one.classList.add("active");
+        two.classList.remove("active");
+        three.classList.remove("active");
+        four.classList.remove("active");
+        five.classList.remove("active");
     }
 
     // function displaySelected() {
@@ -148,40 +171,37 @@
     // ---------------------------------------------------------//
     // --------------- Progress Bar ----------------------------//
 
-    const one = document.querySelector(".one");
-    const two = document.querySelector(".two");
-    const three = document.querySelector(".three");
-    const four = document.querySelector(".four");
+    
     // const five = document.querySelector(".five");
 
-    one.onclick = function() {
-        one.classList.add("active");
-        two.classList.remove("active");
-        three.classList.remove("active");
-        four.classList.remove("active");
-        five.classList.remove("active");
-    }
+//     one.onclick = function() {
+//         one.classList.add("active");
+//         two.classList.remove("active");
+//         three.classList.remove("active");
+//         four.classList.remove("active");
+//         five.classList.remove("active");
+//     }
 
-    two.onclick = function() {
-        one.classList.add("active");
-        two.classList.add("active");
-        three.classList.remove("active");
-        four.classList.remove("active");
-        five.classList.remove("active");
-    }
-    three.onclick = function() {
-        one.classList.add("active");
-        two.classList.add("active");
-        three.classList.add("active");
-        four.classList.remove("active");
-        five.classList.remove("active");
-    }
-    four.onclick = function() {
-    one.classList.add("active");
-    two.classList.add("active");
-    three.classList.add("active");
-    four.classList.add("active");
-    five.classList.remove("active");
-}
+//     two.onclick = function() {
+//         one.classList.add("active");
+//         two.classList.add("active");
+//         three.classList.remove("active");
+//         four.classList.remove("active");
+//         five.classList.remove("active");
+//     }
+//     three.onclick = function() {
+//         one.classList.add("active");
+//         two.classList.add("active");
+//         three.classList.add("active");
+//         four.classList.remove("active");
+//         five.classList.remove("active");
+//     }
+//     four.onclick = function() {
+//     one.classList.add("active");
+//     two.classList.add("active");
+//     three.classList.add("active");
+//     four.classList.add("active");
+//     five.classList.remove("active");
+// }
 </script>
 <?php require APPROOT . '/views/inc/incSeller/footer.php'; ?>

@@ -38,7 +38,7 @@ class Seller{
     }
 
     public function addProductDetails($data,$photo) {
-        $sql = 'INSERT INTO seller_product_details (seller_id,category_id,price,title,description,quantity,image) values (:seller_id,:cat_id,:price,:title,:description,:quantity,:image)';
+        $sql = 'INSERT INTO seller_product_details (seller_id,category_id,price,title,description,quantity,image,unitvalue,validate_time) values (:seller_id,:cat_id,:price,:title,:description,:quantity,:image,:unitvalue, :validate_period)';
         $this->db->query($sql);
         $this -> db -> bind(':cat_id', $data['product_id']);
         $this -> db -> bind(':title', $data['title']);
@@ -47,6 +47,8 @@ class Seller{
         $this -> db -> bind(':quantity', $data['quantity']);
         $this -> db -> bind(':seller_id', $_SESSION['user_id']);
         $this -> db -> bind(':image', $data['image']);
+        $this -> db -> bind(':unitvalue', $data['unitvalue']);
+        $this -> db -> bind(':validate_period', $data['validate_period']);
         $this->db->execute();
 
         $sql = 'SELECT * FROM seller_product_details WHERE seller_id = :seller_id ORDER BY product_no DESC LIMIT 1' ;
