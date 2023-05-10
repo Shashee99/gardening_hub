@@ -8,7 +8,7 @@
                 <button class="button" id="cusorder" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/order';"> Customers Orders</button>
                 <div id="noti">
                     <button id="noti_butn" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/order';">
-                        <h3 id="noti_count"><?php echo $data['notificationData'] -> num_noti; ?></h3>
+                        <h3 id="noti_count"><?php echo $data['notificationData'][0] -> num_noti; ?></h3>
                     </button>
                 </div>
             </div>
@@ -60,10 +60,10 @@
                             <h4 id="itemname"><?php echo $item_data -> title; ?></h4>
                             <div class="RatingStars" id="<?php echo $item_data -> product_no?>">
                                 <div class="stars-outer-below">
-                                    <h5 id="num_ratings_bolow" class="num_ratings_bolow">(<?php 
+                                    <h5 id="num_ratings_bolow" class="num_ratings_bolow"><?php 
                                         $retrive_data = $item_data -> total_rating;
                                         $insert_data = ($retrive_data*10000)/10000;
-                                        echo $insert_data; ?>)
+                                        echo $insert_data; ?>
                                     </h5>
                                     <div class="stars-inner-below"></div>
                                 </div>
@@ -359,9 +359,13 @@ const star_counts = [];
 
 for(let i=0; i<star_count.length; i++){
     const arr_content_num = star_count[i].textContent;
-    const arr_content_num_chars = arr_content_num.match(/\d+/g).join('');
-    const arr_content_num_int = parseInt(arr_content_num_chars); 
-    star_counts.push(arr_content_num_int);
+    const arr_content_num_float = parseFloat(arr_content_num).toFixed(1);
+    console.log(arr_content_num_float);
+    // const arr_content_num_chars = arr_content_num.match(/\d+/g).join('');
+    
+    // const arr_content_num_int = parseInt(arr_content_num_chars).toFixed(1); 
+    star_counts.push(arr_content_num_float);
+    // console.log(arr_content_num_int);
 
 }
 
@@ -371,13 +375,14 @@ document.addEventListener('DOMContentLoaded', getRatings);
 function getRatings(){
     for(let star_count in star_counts){
         const starPercentage = `${(star_counts[star_count]/5) * 100}%`;
-        // console.log(starPercentage);
+        console.log(starPercentage);
         const find = document.getElementById(stars_id[star_count]);
-        console.log(find);
+        // console.log(find);
         (find.childNodes[1].children[1]).style.width = starPercentage;
+        find.childNodes[1].childNodes[1].innerHTML = "( "+star_counts[star_count]+" )";
     }
 
-    document.getElementById("num_ratings_bolow").innerHTML = "( "+final_total_star+" )";
+    // document.getElementById("num_ratings_bolow").innerHTML = "( "+final_total_star+" )";
 }
 </script>
 

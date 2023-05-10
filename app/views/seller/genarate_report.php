@@ -27,12 +27,12 @@
     padding-top: 30px;
 }
 
-h3{
+#pdftitle{
     margin: 100px;
     font-size: 25px;
 }
 
-button{
+.pdfbuton{
     margin: 70px auto;
     width: 200px;
     height: 35px;
@@ -52,11 +52,11 @@ button{
 <body>
     <div class="info">
         <div class="input_container">
-            <h3>Monthly selling details</h3>
-            <button id="view">
+            <h3 id="pdftitle">Monthly selling details</h3>
+            <button id="view" class="pdfbuton">
                 <a href="<?= URLROOT; ?>/sellers/genarate_pdf"> View Online </a>
             </button>
-            <button id="down">
+            <button id="down" class="pdfbuton">
                 <a href="<?= URLROOT; ?>/sellers/genarate_pdf"> Download Report </a>
             </button>
         </div>

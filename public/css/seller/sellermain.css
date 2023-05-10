@@ -100,7 +100,7 @@ nav {
 
 .progressbar{
     width: 100%;
-    height: 20vh;
+    height: 16vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -142,7 +142,7 @@ nav {
     place-items: center;
     color: #fff;
     position: relative;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 .progress::after{
     content: " ";
@@ -521,6 +521,7 @@ i#wrong:hover, i#wrong:active {font-size: 350%;}
 .stars-outer-below{
     position: relative;
     display: inline-block;
+    /* border: 1px solid black; */
 }
 
 .stars-inner-below{
@@ -530,6 +531,7 @@ i#wrong:hover, i#wrong:active {font-size: 350%;}
     white-space: nowrap;
     overflow: hidden;
     width: 0;
+    /* border: 1px solid red; */
 }
 
 .stars-outer-below::before{
@@ -551,6 +553,8 @@ i#wrong:hover, i#wrong:active {font-size: 350%;}
 .num_ratings_bolow{
     font-size: 9px;
     display: inline;
+    position: absolute;
+    right: -26px;
 }
 
 #itemname{
@@ -565,7 +569,7 @@ i#wrong:hover, i#wrong:active {font-size: 350%;}
 .RatingStars{
     display: flex;
     margin-left: auto;
-    padding-right: 10px;
+    padding-right: 40px;
 }
 
 .first{
@@ -633,6 +637,7 @@ i#wrong:hover, i#wrong:active {font-size: 350%;}
 
 .add1main{
     display: flex;
+    justify-content: center;
 }
 
 
@@ -724,34 +729,6 @@ select{
     position: relative;
 } */
 
-.btn_nxt {
-    background-color: white;
-    color: green;
-    padding: 5px 10px;
-    border-radius: 10px;
-    text-align: center;
-    display: inline-block;
-    font-size: 15px;
-    margin: 10px 30px;
-    cursor: pointer;
-    text-decoration: none;
-    width: 220px;
-}
-
-.req_cat {
-    background-color: white;
-    color: green;
-    padding: 5px 10px;
-    border-radius: 10px;
-    text-align: center;
-    display: inline-block;
-    font-size: 15px;
-    /* margin: px 30px; */
-    cursor: pointer;
-    text-decoration: none;
-    width: 220px;
-}
-
 #category:focus{
     background-color: #fff8f0;
     padding: 10px;
@@ -770,19 +747,132 @@ select{
     color: #00A778;
 }
 
-#btn_area {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: space-around;
-    justify-content: center;
-}
-
 .bgimg {
     opacity: 0.85;
     width: 40%;
     height: 500px;
 }
-#cat_err {
+
+.errrr{
+    display: flex;
     text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px;
+    -webkit-animation: hideafteronesec 0s ease-in 2.5s forwards;
+}
+
+@keyframes hideafteronesec {
+    to{
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+@-webkit-keyframes hideafteronesec {
+    to{
+        width: 0;
+        height: 0;
+        visibility: hidden;
+    }
+}
+#cat_err {
+    /* text-align: center; */
+    border: none;
+    /* margin: 60px auto 0px auto; */
+    width: fit-content;
+    height: 35px;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: red;
+    /* background-color: #FFD6D5; */
+    letter-spacing: 1px;
+}
+
+#symbol_err{
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    /* margin: auto; */
+    position: relative;
+    /* top: 5.5px; */
+    /* left: 5px; */
+    right: 10px;
+    font-size: 20px;
+    color: red;
+}
+
+/* #cat_err::before{
+    content: '\f06a';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+
+#err_symbol{
+    content: '\f06a';
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+} */
+
+#btn_nxt_add1 {
+    /* padding-top: 20px; */
+    width: 230px;
+    height: 26px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 50px;
+    background-color:#00A778;
+    color: #fbfbfb;
+    cursor: pointer;
+}
+#req_cat{
+    width: 230px;
+    height: 26px;
+    border: 1px solid #00A778;
+    border-radius: 4px;
+    /* margin-top: 20px; */
+    background-color: transparent;
+    color: #00A778;
+    cursor: pointer;
+}
+.req_msg {
+    text-align: justify;
+    width: 604px;
+    height: 120px;
+    background: #fff8f0;
+    padding: 30px;
+    border-radius: 4px;
+    margin: 20px auto;
+    color: #282A3A;
+    opacity: 0;
+    pointer-events: none;
+    position: relative;
+    right: 180px;
+}
+
+#req_cat:hover .req_msg {
+    opacity: 1;;
+    pointer-events: auto;
+}
+
+#btn_area{
+    margin: auto;
+}
+
+#btn_area .buton .req_msg{
+    opacity: 0;
+    pointer-events: none;
+}
+
+#btn_area .buton:hover .req_msg{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#req_buton{
+    width: 230px;
+    height: 26px;
+    margin: auto;
 }

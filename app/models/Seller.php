@@ -38,7 +38,7 @@ class Seller{
     }
 
     public function addProductDetails($data,$photo) {
-        $sql = 'INSERT INTO seller_product_details (seller_id,category_id,price,title,description,quantity,image) values (:seller_id,:cat_id,:price,:title,:description,:quantity,:image)';
+        $sql = 'INSERT INTO seller_product_details (seller_id,category_id,price,title,description,quantity,image,unitvalue,validate_time) values (:seller_id,:cat_id,:price,:title,:description,:quantity,:image,:unitvalue, :validate_period)';
         $this->db->query($sql);
         $this -> db -> bind(':cat_id', $data['product_id']);
         $this -> db -> bind(':title', $data['title']);
@@ -47,6 +47,8 @@ class Seller{
         $this -> db -> bind(':quantity', $data['quantity']);
         $this -> db -> bind(':seller_id', $_SESSION['user_id']);
         $this -> db -> bind(':image', $data['image']);
+        $this -> db -> bind(':unitvalue', $data['unitvalue']);
+        $this -> db -> bind(':validate_period', $data['validate_period']);
         $this->db->execute();
 
         $sql = 'SELECT * FROM seller_product_details WHERE seller_id = :seller_id ORDER BY product_no DESC LIMIT 1' ;
@@ -182,8 +184,9 @@ class Seller{
         $orderdetails = $this -> db -> resultSet();
         return $orderdetails;
     }
-    public function getcancleOrderData()
-    {
+    
+
+    public function getcancleOrderData() {
         $id =$_SESSION['user_id'];
         $this -> db -> query('SELECT * FROM wishlist
                                 INNER JOIN customer
@@ -226,6 +229,15 @@ class Seller{
         $orderdetails = $this -> db -> resultSet();
         return $orderdetails;
     }
+
+    
+    // public function order($data) {
+    //     $id =$_SESSION['user_id'];
+    //     $this -> db -> query('UPDATE wishlist 
+    //                           SET completeness = :orderComplete,
+    //                           confirmation = :confirmation
+    //                           complete_date = :order_date
+    //                           WHERE seller_id = :id');
 
     public function delete_seller($id){
 
@@ -273,6 +285,7 @@ class Seller{
         // $this -> db -> bind(':order_date', $data['complete_date']);
         $this->db->execute();
     }
+
 
     public function order_cancel($order_no, $cancel_reason) {
         $this -> db -> query('UPDATE wishlist 
@@ -445,11 +458,15 @@ class Seller{
     }
 
     public function sellerconfirmedorders($sellerid){
-
+            $id =$_SESSION['user_id'];
             $sql = "SELECT * FROM wishlist INNER JOIN seller_product_details ON wishlist.product_no = seller_product_details.product_no WHERE seller_product_details.seller_id = :sellerid AND wishlist.status = 1 GROUP BY wishlist.customer_id";
             $this -> db -> query($sql);
             $this ->db-> bind(':sellerid',$sellerid);
             $results = $this -> db -> resultSet();
+            
+            $this -> db -> bind(':id',$id);
+            $results = $this -> db -> singleRecord();
+            // var_dump($results);
             return $results;
 
     }
