@@ -562,13 +562,10 @@ class Users extends Controller
                     array_push($photo, $new_img1);
                 }
 
-<<<<<<< HEAD
+
                 if ($this->userModel->advisorRegister($data,$photo)) {
                     flash('register_success', 'Registration received. Pending admin approval. Please check your email for updates. Thank you.');
-=======
-                if ($this->userModel->advisorRegister($data, $photo)) {
-                    // $this->notiModel->addnotification('Advisor');
->>>>>>> feature_advisor
+
                     redirect('users/login');
                 } else {
                     $this->view('users/advisorRegister', $data);
