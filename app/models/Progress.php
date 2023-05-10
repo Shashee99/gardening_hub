@@ -106,6 +106,7 @@
         {
             $sql = "UPDATE progress SET title=:title, content=:content, updated_date=:update_d WHERE progress_id=:id";
             $this->db->query($sql);
+            date_default_timezone_set('Asia/Colombo');
             $this->db->bind(':title',$data['title'] );
             $this->db->bind(':content',$data['progress'] );
             $this->db->bind(':update_d',date('Y-m-d'));
@@ -120,5 +121,43 @@
                 return false;
             }
         }
-
+        public function filterMyProgress($cat)
+        {
+            if($cat === '')
+            {
+                $sql = "SELECT * FROM progress WHERE customer_id = :id AND is_delete = :delete ORDER BY updated_date DESC";
+                $this->db->query($sql);
+            }
+            else
+            {
+                $sql = "SELECT * FROM progress WHERE customer_id = :id AND is_delete = :delete AND category = :cat ORDER BY updated_date DESC";
+                $this->db->query($sql);
+                $this->db->bind(':cat',$cat);
+            }
+            
+            $this->db->bind(':id',$_SESSION['cus_id']);
+            $this->db->bind(':delete',0);
+            $result = $this->db->resultSet();
+            return $result;
+            
+        }
+        public function filterOthersProgress($category)
+        {
+            if($category === '')
+            {
+                $sql = "SELECT * FROM progress WHERE customer_id != :id AND is_delete = :delete ORDER BY updated_date DESC";
+                $this->db->query($sql);
+            }
+            else
+            {
+                $sql = "SELECT * FROM progress WHERE customer_id != :id AND is_delete = :delete AND category = :cat ORDER BY updated_date DESC";
+                $this->db->query($sql);
+                $this->db->bind(':cat',$category);
+            }
+            
+            $this->db->bind(':id',$_SESSION['cus_id']);
+            $this->db->bind(':delete',0);
+            $result = $this->db->resultSet();
+            return $result;
+        }
     }

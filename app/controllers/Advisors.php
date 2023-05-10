@@ -253,6 +253,16 @@
 
       } 
 
+      public function advisorDetails($id)
+      {
+          $details = $this->advisorModel->getAdvisordetails($id);
+          $data=[
+              'details' => $details,
+              'documents' => $this->advisorModel->advisorQualificationDocuments($id)
+          ];
+          $this->view('customers/advisorProfile',$data);
+      }
+
     //   update and delete tecno-----
     function updateTecnhology($id){
        
@@ -379,11 +389,6 @@
       
 
 
-    }
-
-    public function advisorDetails($id)
-    {
-            $this->view('customers/advisorProfile');
     }
 
     // chat function ------------------------------------
@@ -586,11 +591,4 @@
 
 
      }
-
-
-
-
-
-
-
-    }
+}

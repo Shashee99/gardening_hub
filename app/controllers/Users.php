@@ -608,6 +608,8 @@ class Users extends Controller
 
 
                     } elseif ($logged_user->type === 'seller') {
+                        // var_dump($logged_user->user_state);
+                        // die();
 
                         if ($logged_user->user_state == 1) {
                             $this->createSellerSession($logged_user);

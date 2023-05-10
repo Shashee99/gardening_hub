@@ -9,23 +9,27 @@
     justify-content: center;
     position: fixed;
     right: 0;
-    margin-right: 20px;
+    margin-right: 10px;
+    width: 100%;
 }
-#interface .navbar .logout{
-    margin-right: 40px;
+#interface .navbar .menu{
+    position: relative;
+    left: 25%;
 }
-#interface .navbar .logout a{
-    cursor: pointer;
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
+#interface .navbar .menu img{
+    width: 30px;
 }
 #interface .navbar .profile img{
     width: 40px;
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
-    margin-right: 30px;
+    margin-right: 20px;
+}
+#interface .navbar .profile #logout{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
 }
 #interface .navbar .profile{
     display: flex;
@@ -35,7 +39,7 @@
     margin-right: 0;
 }
 #interface .navbar .profile h3{
-    margin-right: 10px;
+    margin-right: 20px;
     font-weight: 500;
     font-size: 18px;
 }

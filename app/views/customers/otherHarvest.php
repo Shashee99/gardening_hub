@@ -20,9 +20,7 @@
     
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
-
-    <section id="rest" >
+    <div class="rest" >
         <div class="options">
             <div class="btn" id="btn1">
                 <a href="<?= URLROOT;?>/harvests/viewAddMyHarvest">MY Harvest</a>
@@ -96,7 +94,9 @@
             ?>
 
         </div>
-    </section>
+    </div>
     <script src="<?php echo URLROOT; ?>/js/customer/OtherHarvestFilter.js"></script>
+    <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
+
 </body>
 </html>

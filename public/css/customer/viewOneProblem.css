@@ -1,34 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
+.rest{
+    background-color: rgba(239, 239, 239, 0.75);
+    margin-top: 100px;
+    margin-left: 270px;
+    height: fit-content;
+    width: calc(100% - 270px);
+    border-radius: 25px 0 0 0;
+    position: fixed;
+    overflow-y: auto;
+    height: 100%;
 }
-body{
-    width: 100%;
-    background-color: #3BB78F ;
-    position: relative;
-    display: flex;
-}
-
-#side .items li:nth-child(8) {
-    background-color: #3BB78F;
+#item7{
+    background-color: #6ffb60;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
-#rest{
-    background-color: rgba(239, 239, 239, 0.65);
-    margin-top: 80px;
-    margin-left: 22%;
-    max-height: 100%;
-    width: 78%;
-    border-radius: 25px 0 0 0;
-    overflow-y: scroll;
-}
 .one-problem-card{
     width: 90%;
-    margin: 40px auto 10px auto ;
+    margin: 40px auto 120px auto ;
     background-color: #fff;
     border-radius: 10px;
 }
@@ -95,4 +83,9 @@ body{
 }
 .user-reply .reply-content{
     margin: 10px 10px;
+}
+@media (max-width: 480px){
+    #item6{
+        width: 55px;
+    }
 }

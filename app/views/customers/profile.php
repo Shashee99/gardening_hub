@@ -13,11 +13,10 @@
     <link rel="stylesheet" href="<?= URLROOT; ?>/css/customer/profile.css">
 </head>
 <body>
+
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
-
-    <section id="rest">
+    <div class="rest">
         <div class="title">
             <h2>My Profile</h2>
         </div>
@@ -67,7 +66,10 @@
             </div>
         </div>
 
-    </section>
+    </div>
+    
+    <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
+
     
 </body>
 </html>

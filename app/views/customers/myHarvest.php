@@ -19,8 +19,6 @@
 <body>
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
-
     <div class="confirm-delete-popup" id="delete-modal">
         <div class="modal-content">
             <p>Are you sure you want to delete this item?</p>
@@ -31,7 +29,7 @@
         </div>
     </div>
 
-   <section class="rest" id="blur" >
+   <div class="rest" id="blur" >
         <div class="options">
             <div class="btn" id="btn1">
                 <a href="<?= URLROOT; ?>/harvests/viewAddMyHarvest">MY Harvest</a>
@@ -53,7 +51,6 @@
         
 
         <div class="add-harvest-card">
-            <h3>Add Your harvest</h3>
             <div class="harvest">
                 <form action="<?php echo URLROOT; ?>/harvests/viewAddMyHarvest" method="POST" enctype="multipart/form-data">
                     <div class="input-box">
@@ -148,9 +145,10 @@
                                 }
                                 ?>
                             </div>                            
-                            <div class="delete_btn"  >
+                            
+                        </div>
+                        <div class="delete_btn"  >
                                 <button class="delete_buttonsaa" data-wishlistID="<?= $row->harvest_id; ?>">DELETE</button>                               
-                            </div>
                         </div><br>
                 
                     </div>
@@ -169,11 +167,14 @@
         
        
 
-   </section>
+        
+    </div>
 
    <script src="<?php echo URLROOT; ?>/js/customer/displayimage.js" ></script>
    <script src="<?php echo URLROOT; ?>/js/customer/harvestFilter.js"></script>
    <script src="<?php echo URLROOT; ?>/js/customer/delete_wishlist_modal.js"></script>
+   <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
+
    
 </body>
 </html>

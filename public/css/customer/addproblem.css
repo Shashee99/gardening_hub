@@ -1,41 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
+.rest{
+    background-color: rgba(239, 239, 239, 0.75);
+    margin-top: 100px;
+    margin-left: 270px;
+    height: fit-content;
+    width: calc(100% - 270px);
+    border-radius: 25px 0 0 0;
+    position: fixed;
+    overflow-y: auto;
+    height: 100%;
 }
-body{
-    width: 100%;
-    background: linear-gradient(249deg, #0BAB64 2.62%, #3BB78F 96.66%);
-    position: relative;
-    display: flex;
-}
-
-#side .items li:nth-child(8) {
-    background-color: #3BB78F;
+#item6{
+    background-color: #6ffb60;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
-#rest{
-    background-color: rgba(239, 239, 239, 0.65);
-    margin-top: 80px;
-    margin-left: 22%;
-    max-height: 100%;
-    width: 78%;
-    border-radius: 25px 0 0 0;
-    overflow-y: scroll;
-}
-#rest .data-form{
+.data-form{
     width: 90%;
     background-color: #efefef;
-    margin: 20px auto;
+    margin: 20px auto 120px auto;
     border-radius: 10px;
 }
-#rest .data-form h3{
+.data-form h3{
     text-align: center ;
     font-weight: 400;
     padding-top: 20px;
+    margin-bottom: 10px;
 }
 .data-form form .input-box{
     width: 90%;
@@ -121,20 +110,19 @@ textarea::placeholder {
     cursor: pointer;
 }
 #images{
-    width: 70%;
-    position: relative;
-    margin: auto;
+    width: 90%;
     display: flex;
     justify-content: space-evenly;
     gap: 20px;
     flex-wrap: wrap;
 }
 figure{
-    width: 20%;
     margin-bottom: 10px;
 }
-img{
-    width: 100%;
+#images img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
 }
 figcaption{
     text-align: center;
@@ -150,6 +138,9 @@ figcaption{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding-bottom: 20px;
 }
 .data-form form .buttons .submit-btn input{
     background-color: #fff;
@@ -157,7 +148,6 @@ figcaption{
     padding: 10px;
     border: none;
     cursor: pointer;
-    margin-bottom: 20px;
     border-radius: 20px;
     font-size: 16px;
     border: 2px solid #00a778;
@@ -174,7 +164,6 @@ figcaption{
     padding: 10px;
     border: none;
     cursor: pointer;
-    margin-bottom: 20px;
     border-radius: 20px;
     font-size: 16px;
     border: 2px solid red;
@@ -191,4 +180,61 @@ figcaption{
 .input-box .error span{
     color: red;
     font-size: 12px;
+}
+@media (max-width: 768px){
+    #images img{
+        width: 120px;
+        height: 120px;
+    }
+    .data-form form .input-box textarea{
+        height: 200px;
+    }
+    .data-form form  .input-box select{
+        width: 70%;
+    }
+}
+@media (max-width: 480px){
+    #item6{
+        width: 55px;
+    }
+    .data-form h3{
+        font-size: 15px;
+    }
+    .data-form form .input-box .details {
+        display: block;
+        font-weight: 600;
+        font-size: 15px;
+    }
+    .data-form form .input-box input{
+        font-size: 14px;
+    } 
+    .data-form form .input-box textarea{
+        font-size: 14px;
+        height: 250px;
+    }
+    .data-form form  .input-box select{
+        width: 100%;
+        font-size: 14px;
+    }
+    .image-upload .image-button img{
+        width: 15px;
+        margin-right: 10px;
+    }
+    .image-upload .image-button .label-of-image label{
+        font-size: 14px;
+    }
+    .image-upload .image-button{
+        width: 150px;
+        margin-left: 10px;
+    }
+    .data-form form .buttons .submit-btn input{
+        width: 150px;
+    }
+    .data-form form .buttons .cancele-btn input{
+        width: 150px;
+    }
+    #images img{
+        width: 100px;
+        height: 100px;
+    }
 }

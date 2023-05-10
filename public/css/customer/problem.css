@@ -1,30 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
+.rest{
+    background-color: rgba(239, 239, 239, 0.75);
+    margin-top: 100px;
+    margin-left: 270px;
+    height: fit-content;
+    width: calc(100% - 270px);
+    border-radius: 25px 0 0 0;
+    position: fixed;
+    overflow-y: auto;
+    height: 100%;
 }
-body{
-    width: 100%;
-    background: linear-gradient(249deg, #0BAB64 2.62%, #3BB78F 96.66%);
-    position: relative;
-    display: flex;
-}
-
-#side .items li:nth-child(8) {
-    background-color: #3BB78F;
+#item6{
+    background-color: #6ffb60;
     border-radius: 0 50px 50px 0;
     width: 90%;
-}
-#rest{
-    background-color: rgba(239, 239, 239, 0.65);
-    margin-top: 80px;
-    margin-left: 22%;
-    max-height: 100%;
-    width: 78%;
-    border-radius: 25px 0 0 0;
-    overflow-y: scroll;
 }
 .problem-filter{
     margin: 20px auto 0 50px;
@@ -78,6 +66,9 @@ body{
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
+}
+.problem-wraper{
+    margin-bottom: 120px;
 }
 .problem-card{
     width: 90%;
@@ -139,7 +130,38 @@ body{
 .problem-card .problem .problem-image img{
     width: 120px;
 }
-.reply{
+.problem a{
+    width: 100px;
+}
+.problem a:hover .reply-link #green{
+    display: block;
+}
+.problem a:hover .reply-link img{
+    display: none;
+}
+.reply-link{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 10px;
+}
+.reply-link img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    margin-top: 10px;
+}
+.reply-link span{
+    margin-top: 12px;
+    font-size: 14px;
+}
+.reply-link #green{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    margin-top: 10px;
+    display: none;
+}
+/* .reply{
     background-color: #efefef;
     width: 85%;
     margin: 0 0 10px 10% ;
@@ -165,6 +187,10 @@ body{
 }
 .reply .reply-content{
     margin: 10px 10px;
+} */
+
+.data-form{
+    display: none;
 }
 .allert{
     background-color: lightgreen;
@@ -179,4 +205,9 @@ body{
 }
 .allert p{
     font-size: 15px;
+}
+@media (max-width: 480px){
+    #item6{
+        width: 55px;
+    }
 }

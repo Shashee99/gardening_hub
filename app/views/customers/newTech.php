@@ -19,9 +19,7 @@
 <body>
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
-
-    <section  class="rest" id="blur">
+    <div class="rest" id="blur">
         <div class="new-tech-option">
             <div class="cat-option">
                 <select name="category" id="category">
@@ -80,8 +78,10 @@
             
             ?>
         </div>
-    </section>
+    </div>
     <script src="<?php echo URLROOT; ?>/js/customer/newTechFilter.js"></script>
+    <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
+
 
 
 </body>

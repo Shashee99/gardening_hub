@@ -1,40 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
+.rest{
+    background-color: rgba(239, 239, 239, 0.75);
+    margin-top: 100px;
+    margin-left: 270px;
+    height: fit-content;
+    width: calc(100% - 270px);
+    border-radius: 25px 0 0 0;
+    position: fixed;
+    overflow-y: auto;
+    height: 100%;
 }
-body{
-    width: 100%;
-    background-color: #3BB78F ;
-    position: relative;
-    display: flex;
-}
-
-#side .items li:nth-child(2) {
-    background-color: #3BB78F;
+#item4{
+    background-color: #6ffb60;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
-#rest{
-    background-color: rgba(239, 239, 239, 0.65);
-    margin-top: 80px;
-    margin-left: 22%;
-    max-height: 100%;
-    width: 78%;
-    border-radius: 25px 0 0 0;
-    overflow-y: scroll;
-    display: flex;
-}
-#rest .update-form{
+.rest .update-form{
     width: 90%;
     background-color: #efefef;
-    margin: 20px auto;
+    margin: 20px auto 100px auto;
     border-radius: 10px;
     height: fit-content;
 }
-#rest .update-form h3{
+.rest .update-form h3{
     text-align: center ;
     font-weight: 400;
     padding-top: 20px;
@@ -132,7 +119,8 @@ textarea::placeholder {
 #message{
     color: red;
     font-size: 14px;
-    margin: 0 0 20px 50px;
+    margin: 0 10px 20px 50px;
+    width: 90%;
 }
 .update-form .image-button img{
     width: 20px;
@@ -162,7 +150,6 @@ textarea::placeholder {
     width: 120px;
     height: 120px;
     object-fit: cover;
-
 }
 .update-form figure{
     width: 20%;
@@ -228,4 +215,35 @@ textarea::placeholder {
 .input-box .error span{
     color: red;
     font-size: 12px;
+}
+@media (max-width: 480px){
+    .rest .update-form h3{
+        font-size: 15px;
+    }
+    .update-form  form .input-box .details {
+        font-weight: 500;
+        font-size: 15px;
+    }
+    .update-form form .input-box input{
+        height: 50px;
+        font-size: 14px;
+    } 
+    .update-form  form .input-box textarea{
+        font-size: 14px;
+        height: 300px;
+    }
+    .update-form form  .input-box select{
+        width: 100%;
+        font-size: 14px;
+    }
+    .update-form #images img{
+        width: 80px;
+        height: 80px;
+    }
+    .update-form .dates{
+        display: block;
+    }
+    #item4{
+        width: 55px;
+    }
 }

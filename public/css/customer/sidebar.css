@@ -1,4 +1,4 @@
-#side{
+/* #side{
     background-color: #fff ;
     width: 20%;
     height: 100%;
@@ -12,7 +12,7 @@
     margin-left: auto;
     margin-right: auto;    
 } */
-#side .logo img{
+/* #side .logo img{
     width: 90px;
     margin-top: 10px;
     display: block;
@@ -27,7 +27,6 @@
     list-style: none;
     padding: 12px 0;
     font-size:18px;
-    /* margin: -5px 0; */
     
 }
 #side .items li a{
@@ -47,4 +46,337 @@ li img{
     background-color: #3BB78F;
     border-radius: 0 50px 50px 0;
     width: 90%;
+} */ 
+::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+    background-color: none;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #259529;
+    border-radius: 30px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    width: 100%;
+    background: linear-gradient(249deg, #0BAB64 2.62%, #3BB78F 96.66%);
+    position: relative;
+    display: flex;
+}
+.logo{
+    position: fixed;
+    top: 8px;
+    left: 80px;
+    z-index: -1;
+
+}
+.logo img{
+    width: 80px;
+}
+.navigation{
+    width: 270px;
+    position: relative;
+    overflow-y: auto;
+    margin-top: 90px;
+    z-index: 1;
+}
+li:nth-child(1){
+    margin-top: 10px;
+}
+.navigation .item{
+    margin-bottom: 5px;
+    padding-left: 25px;
+}
+.navigation .item img{
+    width: 30px;
+    padding-top: 10px;
+}
+.navigation .item li{
+    list-style: none;
+}
+.navigation .item li a{
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    width: 100%;
+}
+.navigation .item:hover{
+    background-color: #6ffb60;
+    border-radius: 0 50px 50px 0;
+    width: 95%;
+    transition: all .05s ease-in-out;
+    transform: scale(0.95); 
+}
+.navigation .item li a span{
+    margin-left: 30px;
+    position: relative;
+    top: -10px;
+}
+.navigation.active .item li a span{
+    display: none;
+}
+.navigation.active{
+    width: 80px;
+}
+.top-bar{
+    color: #fff;
+    height: 90px;
+    position: fixed;
+    right: 0;
+    display: flex;
+    top: -5px;
+    /* left: 250px;  */
+    
+    
+}
+.top-bar .menu{
+    position: fixed;
+    left: 280px;
+    z-index: 800;
+    top: 5px;
+}
+.top-bar .menu img{
+    width: 30px;
+    height: 30px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.top-bar .items{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    position: relative;
+    right:  20px;
+}
+.top-bar .p-photo img{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-left: 20;
+}
+.top-bar a img{
+    width: 30px;
+    margin-left: 20px;
+}
+
+.rest.active{
+    margin-left: 90px;
+    width: calc(100% - 90px)
+}
+.logo.active{
+    display: none;
+}
+.top-bar.active .menu{
+    left: 25px;
+}
+@media (max-width: 992px){
+    .logo{
+        display: none;
+    }
+    .top-bar .menu{
+        left: 25px;
+    }
+    .navigation{
+        width: 80px;
+    }
+    .navigation .item li a span{
+        display: none;
+    }
+    .top-bar .menu{
+        left: 25px;
+    }
+    .rest{
+        margin-left: 90px;
+        margin-top: 90px;
+        width: calc(100% - 90px);
+    }
+    .navigation .item img{
+        width: 30px;
+        padding-top: 10px;
+    }
+    .navigation.active{
+        width: 270px;
+        background-color: #3BB78F;
+    }
+    .navigation.active .item li a span{
+        display: inline-block;
+    }
+    .logo.active{
+        display: block;
+    }
+    .top-bar.active .menu{
+        left: 280px;
+    }
+    .rest.active{
+        margin-top: 90px;
+    }
+    .navigation.active .item img{
+        width: 30px;
+    }
+    
+}
+@media (max-width: 767px){
+    .navigation .item img{
+        width: 25px;
+    }
+    .top-bar .menu img{
+        width: 25px;
+        height: 25px;
+    }
+    .top-bar .items h3{
+        display: none;
+    }
+    .navigation.active .item img{
+        width: 25px;
+    }
+    .navigation.active .item li a span{
+        margin-left: 20px;
+        top: -6px;
+    }
+    .navigation.active{
+        width: 220px;
+    }
+    .top-bar.active .menu{
+        left: 230px;
+    }
+    .rest{
+        margin-top: 90px;
+    }
+}
+/* @media (max-width: 767px){
+    .top-bar .items h3{
+        display: none;
+    }
+    .logo{
+        display: none;
+    }
+    .top-bar .menu{
+        left: 25px;
+    }
+    .navigation{
+        width: 80px;
+    }
+    .navigation .item li a span{
+        display: none;
+    }
+    .top-bar .menu{
+        left: 25px;
+    }
+    .rest{
+        margin-left: 90px;
+        margin-top: 80px;
+        width: calc(100% - 90px);
+    }
+    .navigation .item img{
+        width: 25px;
+        padding-top: 10px;
+    }
+    .top-bar .menu img{
+        width: 25px;
+        height: 25px;
+    }
+    .top-bar .p-photo img{
+        width: 40px;
+        height: 40px;
+    }
+    .top-bar a img{
+        width: 20px
+    }
+    .navigation.active{
+        display: none;
+    }
+    .rest.active{
+        margin-left: 0;
+        width: 100%;
+    }
+    .navigation .item:hover{
+        background-color: #6ffb60;
+        border-radius: 0 50px 50px 0;
+        width: 70px;
+        transition: all .05s ease-in-out;
+        transform: scale(0.95); 
+    }
+    .top-bar .items{
+        margin-top: -10px;
+    }
+    .top-bar .menu img{
+        margin-top: 25px;
+    }
+    .logo.active{
+        display: none;
+    }
+    .top-bar.active .menu{
+        left: 25px;
+    }
+} */
+/* @media (max-width: 480px){
+    .navigation .item{
+        padding-left: 10px;
+        width: 55px;
+    }
+    .navigation .item img{
+        width: 20px;
+    }
+    .navigation .item:hover{
+        width: 55px;
+    }
+    .top-bar .menu{
+        left: 15px;
+    }
+    .top-bar .menu img{
+        width: 20px;
+        height: 20px;
+    }
+    .rest{
+        margin-left: 65px;
+        width: calc(100% - 65px);
+    }
+} */
+
+@media (max-width: 480px){
+    .navigation{
+        display: none;
+    }
+    .rest{
+        margin-left: 0;
+        width: 100%;
+    }
+    .top-bar .menu{
+        top: 5px;
+        transition: ease-in-out 1s;
+    }
+    .top-bar .menu img{
+        width: 20px;
+        height: 20px;
+    }
+    .navigation.active{
+        display: block;
+        width: 190px;
+    }
+    .navigation.active .item img{
+        width: 20px;
+    }
+    .navigation .item li a span{
+        margin-left: 15px;
+        top: -5px;
+        font-size: 16px;
+    }
+    .navigation .item{
+        padding-left: 15px;
+    }
+    .logo.active{
+        display: none;
+    }
+    .top-bar.active .menu{
+        left: 25px;
+        top: 5px;
+
+    }
 }

@@ -50,6 +50,16 @@
 
             return $row;
         }
+        public function advisorQualificationDocuments($id)
+        {
+            $sql = "SELECT * FROM advisor_document WHERE advisor_id = :id ";
+            $this->db->query($sql);
+            $this->db->bind(':id',$id);
+            $result = $this->db->singleRecord();
+            return $result;
+        }
+
+
         public function searchuserbyname_registeredadvisor($name){
             $search_term = $name . '%';
             $this -> db -> query('SELECT * FROM `advisor` WHERE `name` LIKE :search_term AND is_registered = 1 AND isDeleted = 0;');

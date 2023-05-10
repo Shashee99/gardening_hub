@@ -1,44 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins',sans-serif;
-}
-body{
-    widows: 100%;
-    background-color: #3BB78F ;
-    position: relative;
-    display: flex;
-}
-
-#side .items li:nth-child(7) {
-    background-color: #3BB78F;
-    border-radius: 0 50px 50px 0;
-    width: 90%;
-}
-#rest{
-    background-color: rgba(239, 239, 239, 0.65);
-    margin-top: 80px;
-    margin-left: 22%;
-    max-height: 100%;
-    width: 78%;
+.rest{
+    background-color: rgba(239, 239, 239, 0.75);
+    margin-top: 100px;
+    margin-left: 270px;
+    height: fit-content;
+    width: calc(100% - 270px);
     border-radius: 25px 0 0 0;
     position: fixed;
     overflow-y: auto;
     height: 100%;
-
+}
+#item4{
+    background-color: #6ffb60;
+    border-radius: 0 50px 50px 0;
+    width: 90%;
 }
 .filter-options{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     margin-top: 40px;
     margin-left: 50px;
     margin-right: 50px;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0 10px
 }
 .filter-options .btn{
-    width: 300px;
+    width: 220px;
     height: 55px;
     background-color: #fff;
     text-align: center;
@@ -85,13 +73,13 @@ body{
     background-color: #fff;
     border-radius: 10px;
     border: none;
-    width: 100%;
+    width: 220px;
 }
 select:focus{
     outline: none;
 }
 .progress-add{
-    width: 60%;
+    width: 450px;
     height: 80px;
     background-color: #efefef;
     margin: 30px auto 0 auto;
@@ -101,7 +89,7 @@ select:focus{
     border-radius: 10px;
 }
 .progress-add .progress-border{
-    width: 580px;
+    width: 430px;
     height: 60px;
     border: #00a778 dashed 3px;
     display: flex;
@@ -153,44 +141,48 @@ select:focus{
 .my-progress-card h3{
     text-align: center;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 .my-progress-card .content p{
     margin-left: 20px;
     margin-right: 20px;
 }
-.my-progress-card .last{
+/* .my-progress-card .last{
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 .my-progress-card .last .images{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     align-items: center;
-    margin-top: 20px;
-    width:80%;
-    height: 150px;
+    margin: 20px auto;
+    width:90%;
+    padding: 15px;
     background-color: #efefef;
     border-radius: 10px;
-    margin-left: 20px;
+    gap: 10px;
 }
 .my-progress-card .last .images img{
-    width: 120px;
-    max-height: 50PX;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
     border-radius: 5px;
-    margin: 0 auto 0 auto;
+
 }
-.my-progress-card .last .option-button{
+.my-progress-card  .option-button{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
+    flex-wrap: wrap;
+    gap: 30px;
 } 
-.my-progress-card .last .delete-button button,.my-progress-card .last .edit-button input{
+.my-progress-card .delete-button button,.my-progress-card .edit-button input{
     height: 40px;
-    width: 100px;
+    width: 200px;
     background-color: #fff;
     font-size: 16px;
     font-weight: 500;
@@ -200,19 +192,19 @@ select:focus{
     border-radius: 10px;
     margin: 10px auto;
 }
-.my-progress-card .last .delete-button button {
+.my-progress-card .delete-button button {
     border: 2px solid red;
 }
-.my-progress-card .last .edit-button input{
+.my-progress-card .edit-button input{
     border: 2px solid #00a778; 
 }
-.my-progress-card .last .delete-button button:hover{
+.my-progress-card .delete-button button:hover{
     transform: scale(0.95);
     transition: all .3s ease-in-out;
     background: red;
     color: #fff;
 }
-.my-progress-card .last .edit-button input:hover{
+.my-progress-card .edit-button input:hover{
     transform: scale(0.95);
     transition: all .3s ease-in-out;
     background: #00a778;
@@ -266,7 +258,9 @@ select:focus{
 
 .confirm-progress-delete-popup .modal-content .modal-buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 .confirm-progress-delete-popup .modal-content .modal-buttons #confirm-delete{
     background-color: red;
@@ -299,6 +293,52 @@ select:focus{
 }
 .allert p{
     font-size: 15px;
+}
+@media (max-width: 992px){
+    .my-progress-card .last .images img{
+        width: 120px;
+        height: 120px;
+    
+    }
+}
+@media (max-width: 768px){
+    .my-progress-card .delete-button button,.my-progress-card .edit-button input{
+        height: 40px;
+        width: 100px;
+        font-size: 15px;
+    }
+    .my-progress-card h3{
+        font-size: 16px;
+        font-weight: 700;
+    }
+    .my-progress-card .part1 .date p{
+        font-size: 13px;
+    }
+    .my-progress-card .content p{
+        font-size: 15px;
+    }
+    .progress-add{
+        width: 200px;
+        height: 70px;
+    }
+    .progress-add .progress-border{
+        width: 180px;
+        height: 50px;
+    }
+    .my-progress-card .last .images img{
+        width: 100px;
+        height: 100px;
+    }
+    .confirm-progress-delete-popup .modal-content {
+        width: 200px; /* Could be more or less, depending on screen size */
+        margin-top: 200px
+    }
+
+}
+@media (max-width: 480px){
+    .rest{
+        border-radius: 25px 25px 0 0;
+    } 
 }
 
 

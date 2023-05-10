@@ -18,9 +18,7 @@
     
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
-
-    <section id="rest">
+    <div class="rest">
 
         <div class="advisor-filter-option">
             <div class="cat-option">
@@ -64,7 +62,9 @@
             
         </div>
 
-    </section>
+    </div>
+
+    <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
 
 </body>
 </html>

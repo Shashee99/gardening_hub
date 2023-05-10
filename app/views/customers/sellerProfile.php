@@ -18,9 +18,7 @@
 <body>
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
-
-    <section id="rest">
+    <div class="rest">
         <div class="title">
             <h2>Seller Profile</h2>
         </div>
@@ -35,28 +33,170 @@
                 <div class="top-rated-products">
                     <h3>Top Rated Products</h3>
                     <div class="products">
+                        
                         <?php foreach($data['top_products'] as $products){
                         ?>
-                            <img src="<?= URLROOT; ?>/img/upload_images/Product_cover_photo/<?= $products->image; ?>" alt="">
+                        <div class="one_product">
+                            <img  class="product_photo" src="<?= URLROOT; ?>/img/upload_images/Product_cover_photo/<?= $products->image; ?>" alt="">
+                            <div class="ratings">
+                                <?php
+                                    $found = 0;
+                            
+                                   
+                                        $rateofproduct = $products->rating;
+                                        $round_rate = round($rateofproduct,1);
+                                        $full_stars = intval($round_rate);
+                                        $half_star =0;
+                                        for($i=0; $i<$full_stars; $i++)
+                                        {
+                                        ?>
+                                            <img src="<?= URLROOT; ?>/img/customer/star.png" alt="">
+
+                                        <?php
+                                        }
+                                        $fraction = fmod($round_rate,1);
+                                        if($fraction >= 0.3 && $fraction <=0.9)
+                                        {
+                                        ?>
+                                            <img src="<?= URLROOT; ?>/img/customer/rating.png" alt="">
+                                        <?php
+                                            $half_star =1;
+                                        }
+                                        $empty_star = 5-$full_stars-$half_star;
+                                        for($i=0; $i<$empty_star; $i++)
+                                        {
+                                        ?>
+                                            <img src="<?= URLROOT; ?>/img/customer/star1.png" alt="">
+
+                                        <?php
+                                        }
+                                ?>
+                            </div>
+                        </div>
                         <?php    
                         }
                         ?>
+                        
+                        
                     </div>
                 </div>
-                <h4>Ratings</h4>
+                <h4>Ratings (<?= $data['rating']->count; ?>)</h4>
                 <div class="seller_rating">
 
                     <div class="rating">
-                        <span>Customer Service</span>
+                        <span>Customer Service </span>
                         <h5>( <?= round($data['rating']->service_rate,1);?> )</h5>
+                        <div class="ratings">
+                                <?php
+                                    $found = 0;
+                            
+                                   
+                                        $rateofproduct = $data['rating']->service_rate;
+                                        $round_rate = round($rateofproduct,1);
+                                        $full_stars = intval($round_rate);
+                                        $half_star =0;
+                                        for($i=0; $i<$full_stars; $i++)
+                                        {
+                                        ?>
+                                            <img src="<?= URLROOT; ?>/img/customer/star.png" alt="">
+
+                                        <?php
+                                        }
+                                        $fraction = fmod($round_rate,1);
+                                        if($fraction >= 0.3 && $fraction <=0.9)
+                                        {
+                                        ?>
+                                            <img src="<?= URLROOT; ?>/img/customer/rating.png" alt="">
+                                        <?php
+                                            $half_star =1;
+                                        }
+                                        $empty_star = 5-$full_stars-$half_star;
+                                        for($i=0; $i<$empty_star; $i++)
+                                        {
+                                        ?>
+                                            <img src="<?= URLROOT; ?>/img/customer/star1.png" alt="">
+
+                                        <?php
+                                        }
+                                ?>
+                        </div>
                     </div>
                     <div class="rating">
                         <span>Products</span>
                         <h5>( <?= round($data['rating']->products_rate,1);?> )</h5>
+                        <div class="ratings">
+                                <?php
+                                    $found = 0;
+                            
+                                   
+                                        $rateofproduct = $data['rating']->products_rate;
+                                        $round_rate = round($rateofproduct,1);
+                                        $full_stars = intval($round_rate);
+                                        $half_star =0;
+                                        for($i=0; $i<$full_stars; $i++)
+                                        {
+                                        ?>
+                                            <img src="<?= URLROOT; ?>/img/customer/star.png" alt="">
+
+                                        <?php
+                                        }
+                                        $fraction = fmod($round_rate,1);
+                                        if($fraction >= 0.3 && $fraction <=0.9)
+                                        {
+                                        ?>
+                                            <img src="<?= URLROOT; ?>/img/customer/rating.png" alt="">
+                                        <?php
+                                            $half_star =1;
+                                        }
+                                        $empty_star = 5-$full_stars-$half_star;
+                                        for($i=0; $i<$empty_star; $i++)
+                                        {
+                                        ?>
+                                            <img src="<?= URLROOT; ?>/img/customer/star1.png" alt="">
+
+                                        <?php
+                                        }
+                                ?>
+                        </div>
                     </div>
                     <div class="rating">
                         <span>Overall</span>
                         <h5>( <?= round($data['rating']->overall,1);?> )</h5>
+                        <div class="ratings">
+                                <?php
+                                    $found = 0;
+                            
+                                   
+                                        $rateofproduct = $data['rating']->overall;
+                                        $round_rate = round($rateofproduct,1);
+                                        $full_stars = intval($round_rate);
+                                        $half_star =0;
+                                        for($i=0; $i<$full_stars; $i++)
+                                        {
+                                        ?>
+                                            <img src="<?= URLROOT; ?>/img/customer/star.png" alt="">
+
+                                        <?php
+                                        }
+                                        $fraction = fmod($round_rate,1);
+                                        if($fraction >= 0.3 && $fraction <=0.9)
+                                        {
+                                        ?>
+                                            <img src="<?= URLROOT; ?>/img/customer/rating.png" alt="">
+                                        <?php
+                                            $half_star =1;
+                                        }
+                                        $empty_star = 5-$full_stars-$half_star;
+                                        for($i=0; $i<$empty_star; $i++)
+                                        {
+                                        ?>
+                                            <img src="<?= URLROOT; ?>/img/customer/star1.png" alt="">
+
+                                        <?php
+                                        }
+                                ?>
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="rating-button">
@@ -183,7 +323,7 @@
                     
                 </div>
                 <div class="reviews">
-                    <h4>Reviews</h4>
+                    <h4>Reviews (<?= $data['rating']->count; ?>)</h4>
                     <div class="cus_reviews">
                         <?php foreach($data['reviews'] as $rows)
                         {
@@ -203,9 +343,11 @@
             </div>
         </div>
         
-    </section>
+    </div>
     <script src="<?php echo URLROOT; ?>/js/customer/sellerReviewAdd.js"></script>
     <script src="<?php echo URLROOT; ?>/js/customer/complainAddForSeller.js"></script>
+    <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
+
     <script>
         var img = document.getElementById("br_photo");
 

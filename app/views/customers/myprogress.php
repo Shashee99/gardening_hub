@@ -17,7 +17,6 @@
 <body>
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
     <div class="confirm-progress-delete-popup" id="delete-modal">
         <div class="modal-content">
             <p>Are you sure you want to delete this Progress?</p>
@@ -28,7 +27,7 @@
         </div>
     </div>
 
-    <section id="rest">
+    <div class="rest">
         <div class="filter-options">
             <div class="btn" id="btn1">
                     <a href="<?= URLROOT; ?>/progresses/viewMyProgress">MY Progress</a>
@@ -91,16 +90,17 @@
                         }
                         ?>
                     </div>
-                    <div class="option-button">
-                        <div class="delete-button">
-                            <button class="delete_buttons" data-progressID="<?= $row['progress_id']; ?>">DELETE</button>                    
-                        </div>
-                        <div class="edit-button">
-                            <form action="<?= URLROOT; ?>/progresses/updateProgress/<?= $row['progress_id']; ?>">
-                            <input type="submit" value="Update">
-                            </form>
-                        </div>
-                    </div>        
+                         
+                </div>
+                <div class="option-button">
+                    <div class="delete-button">
+                        <button class="delete_buttons" data-progressID="<?= $row['progress_id']; ?>">DELETE</button>                    
+                    </div>
+                    <div class="edit-button">
+                        <form action="<?= URLROOT; ?>/progresses/updateProgress/<?= $row['progress_id']; ?>">
+                        <input type="submit" value="Update">
+                        </form>
+                    </div>
                 </div><br>
             </div>
             <?php
@@ -116,9 +116,14 @@
         </div>   
 
 
-    </section>
+        </div>
 
     <script src="<?php echo URLROOT; ?>/js/customer/delete_progress_modal.js"></script>
+    <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
+    <script src="<?php echo URLROOT; ?>/js/customer/progressfilter.js"></script>
+
+    
+
 
 </body>
 </html>

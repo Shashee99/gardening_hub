@@ -18,9 +18,7 @@
 
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
-
-    <section id="rest">
+    <div class="rest">
 
         <div class="search-bar">
             <div class="search-img">
@@ -32,10 +30,11 @@
             
         </div>
 
-    </section>
+    </div>
 
     <script>
         var map;
+        var infowindow = null;
         function initMap()
         {
             map = new google.maps.Map(document.getElementById('map'),
@@ -50,26 +49,28 @@
                 title: '<?php echo $place->name; ?>'
             });
 
-                // Add an info window for the marker
-            var infowindow = new google.maps.InfoWindow({
-                content: '<h3><?php echo $place->name; ?></h3>'
-            });
-
             // Add a click event listener for the marker
             marker.addListener('click', function() {
+                // Close any existing info window
+                if (infowindow != null) {
+                    infowindow.close();
+                }
+
+                // Create a new info window for the clicked marker
+                infowindow = new google.maps.InfoWindow({
+                    content: '<h3><?php echo $place->name; ?></h3>'
+                });
                 infowindow.open(map, marker);
             });
 
             <?php } ?>
         }
-    </script>
-    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
 
+    </script>
     
-    <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YNc82y-3LAvVLgv_v7Mmi2EFjqNHQP0&callback=initMap" async defer>
-
-    </script>
+    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+    <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YNc82y-3LAvVLgv_v7Mmi2EFjqNHQP0&callback=initMap" async defer></script>
 
 </body>
 </html>

@@ -19,9 +19,7 @@
 
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
-    <?php require_once APPROOT . '/views/inc/incCustomer/navbar.php'; ?>
-
-    <section id="rest">
+    <div class="rest">
         <div class="one-problem-card" >
             <div class="customer-problem">
                 <div class="user-info">
@@ -53,7 +51,6 @@
                 </div>
             
             </div>
-
             <?php
             foreach($data['reply'] as $rep)
             {
@@ -65,7 +62,7 @@
                         </div>
                         <div class="name-date-time">
                             <h5><?=$rep->name ?></h5>
-                            <h6><?=$rep->dateandtime ?></h6>
+                            <h6><?=$rep->date ?>  <?=$rep->time ?></h6>
                         </div>
                     </div>
                     <div class="reply-content">
@@ -74,12 +71,13 @@
                         </p><br>
 
                     </div>
-                </div>
+                </div><br>
                 <?php
             }
             ?>
-
         </div>
-    </section>
+    </div>
+    <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
+
 </body>
 </html>
