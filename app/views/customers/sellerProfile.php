@@ -203,7 +203,7 @@
                     <button id="review-btn" value="<?= $data['seller']->seller_id ; ?>">Add an Review</button>
                     <span id="error-msg">Allready added Review</span>
                     <span id="error-msg2">You should purchase a product from seller to add an review</span>
-                    <span id="error-msg3"><?= $data['err'];?></span>
+                    <!-- <span id="error-msg3"><?= $data['err'];?></span> -->
                 </div>
                 <div class="review-rating-add">
                     <form action="<?= URLROOT;?>/reviews/addSellerReviewRating/<?= $data['seller']->seller_id ; ?>" method="POST">

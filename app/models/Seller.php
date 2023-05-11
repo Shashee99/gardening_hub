@@ -107,7 +107,14 @@ class Seller{
         $row = $this->db->singleRecord();
         return $row;
     }
-
+    public function sellerLicense($id)
+    {
+        $sql = "SELECT * FROM seller_license WHERE seller_id = :seller_id";
+        $this->db->query($sql);
+        $this->db->bind(':seller_id', $id);
+        $result = $this->db->resultSet();
+        return $result;
+    }
     public function getSellerName ($id){
         $this -> db -> query('SELECT owner_name FROM seller WHERE seller_id = :id AND isDeleted = 0;');
         $this ->db ->bind(':id',$id);

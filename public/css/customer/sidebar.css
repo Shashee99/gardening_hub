@@ -65,7 +65,8 @@ li img{
 }
 body{
     width: 100%;
-    background: linear-gradient(249deg, #0BAB64 2.62%, #3BB78F 96.66%);
+    /* background: linear-gradient(249deg, #0BAB64 2.62%, #3BB78F 96.66%); */
+    background-color: rgba(172, 178, 176, 0.43);
     position: relative;
     display: flex;
 }
