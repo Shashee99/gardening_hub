@@ -2,10 +2,10 @@
 <!--new category request all -->
 <div class="sortarea flex parentwidth">
 <div class="tableoptions">
-    <a href="<?= URLROOT;?>/admins/newproductcategories"  class="tboption"> <i class="fas fa-inbox"></i> All</a>
-    <a href="<?= URLROOT;?>/admins/newproductcategories_pending" class="tboption"> <i class="fas fa-hourglass-end"></i> Pending</a>
-    <a href="<?= URLROOT;?>/admins/newproductcategories_done"  class="tboption"> <i class="far fa-check-circle"></i> Done</a>
-    <a href="<?= URLROOT;?>/admins/newproductcategories_cancelled"  class="tboption"> <i class="fas fa-ban"></i> Canceled</a>
+    <a href="<?= URLROOT;?>/admins/newproductcategories"  class="tboption"> <i class="fas fa-inbox" ></i> All</a>
+    <a href="<?= URLROOT;?>/admins/newproductcategories_pending" class="delete-green tboption"> <i class="fas fa-hourglass-end" style="color: var(--green)"></i> Pending</a>
+    <a href="<?= URLROOT;?>/admins/newproductcategories_done"  class="delete-blue tboption"> <i class="far fa-check-circle" style="color: var(--blue)"></i> Done</a>
+    <a href="<?= URLROOT;?>/admins/newproductcategories_cancelled"  class="delete tboption" style="background-color: var(--red);color: #fff9f8 !important;"> <i class="fas fa-ban" style="color: #fff9f8"></i> Canceled</a>
 </div>
 </div>
 <hr>

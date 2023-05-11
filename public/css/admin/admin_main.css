@@ -964,6 +964,7 @@ hr {
     margin: 1px 5px ;
     cursor: pointer;
     border-radius: 5px;
+    text-decoration: none;
 }
 
 .profileandname{
@@ -1022,7 +1023,8 @@ a.disabled {
     display: flex;
     justify-content: space-evenly ;
     border-radius: 10px;
-    background-color: #F5FFFA;
+    /*background-color: #F5FFFA;*/
+    box-shadow: 0px 1rem 10px rgba(132,139,210,0.2);
 
 }
 .complainphotos_1{
@@ -1049,3 +1051,32 @@ a.disabled {
     cursor: pointer;
     text-decoration:none ;
 }
+
+.delete-green:hover{
+    background-color: var(--green);
+    color: #fff9f8;
+}
+.view:hover,.delete-blue:hover{
+    background-color: var(--blue);
+    color: #fff9f8;
+}
+
+.delete:hover{
+    background-color: var(--red);
+    color: #fff9f8 !important;
+}
+a i:hover{
+    color: #fff9f8;
+}
+
+/*.fas.fa-hourglass-end:hover {*/
+/*    color: white !important;*/
+/*}*/
+
+/*.fas.fa-hourglass-end:hover:before {*/
+/*    color: white !important;*/
+/*}*/
+
+/*.fas.fa-hourglass-end:before {*/
+/*    color: var(--color);*/
+/*}*/
