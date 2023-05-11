@@ -96,5 +96,23 @@
             }
             echo json_encode($arr, JSON_UNESCAPED_UNICODE);
         }
+        public function isAddedProductReview()
+        {
+            if($_SERVER['REQUEST_METHOD'] == 'POST')
+            {
+                $cus_id = $_POST['cus_id'];
+                $pro_id = $_POST['product_id'];
+
+                if($this->ratingModel->isAddedProductReview($pro_id, $cus_id))
+                {
+                    echo json_encode("true", JSON_UNESCAPED_UNICODE);
+                }
+                else
+                {
+                    echo json_encode("false", JSON_UNESCAPED_UNICODE);
+                }
+
+            }
+        }
                     
     }

@@ -20,7 +20,7 @@
                 $data = [
                     'product_id' => $id,
                     'customer_id' => $_SESSION['cus_id'],
-                    'rating' => trim($_POST['rate']),
+                    'rating' => trim($_POST['rating']),
                     'review' => trim($_POST['review'])
                 ];
                 if($this->ratingModel->addProductRating($data))

@@ -1,11 +1,12 @@
 
 #item1{
-    background-color: #6ffb60;
+    background-color: #00a778;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
 .rest{
-    background-color: rgba(239, 239, 239, 0.75);
+    /* background-color: rgba(239, 239, 239, 0.75); */
+    background-color: #fff;
     margin-top: 90px;
     margin-left: 270px;
     height: fit-content;
