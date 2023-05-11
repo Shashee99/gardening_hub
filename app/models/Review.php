@@ -122,4 +122,21 @@
                 return false;
             }
         }
+        public function isAddedProductReview($pro_id, $cus_id)
+        {
+            $sql = "SELECT * FROM product_rating_review WHERE product_id=:pro_id AND customer_id=:cus_id ";
+            $this->db->query($sql);
+            $this->db->bind('pro_id', $pro_id);
+            $this->db->bind(':cus_id',$cus_id);
+            $this->db->execute();
+            
+            if($this->db->rowCount() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }

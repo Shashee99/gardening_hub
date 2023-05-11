@@ -405,6 +405,25 @@ class Sellers extends Controller
 
     }
 
+    public function sellerDetails($id)
+    {
+        $sellerdetails = $this->sellerModel->getSellerDetails($id);
+        $top_rated_products = $this->reviewMoel->topRatedProducts($id);
+        $seller_license = $this->sellerModel->sellerLicense($id);
+        $reviews = $this->reviewMoel->getsASellerReview($id);
+        $rating = $this->reviewMoel->getASellerRating($id);
+        $data = [
+            'seller' => $sellerdetails,
+            'top_products' => $top_rated_products,
+            'license' => $seller_license,
+            'reviews' => $reviews,
+            'rating' => $rating,
+            'complain_err' => '',
+            'err' => ''
+        ];
+        $this->view('customers/sellerProfile', $data);
+    }
+
 
     public function order_conf()
     {
@@ -637,6 +656,24 @@ public function genarate_report(){
 
 
     }
+    public function isaddedreview($id)
+{
+    $result = $this->reviewMoel->isAddedSellerReview($id);
+    $result2 = $this->wishlistModel->isCustomerPurchaseProduct($id);
+    if($result)
+    {
+        echo json_encode("true1", JSON_UNESCAPED_UNICODE); 
+    }
+    elseif($result2)
+    {
+        echo json_encode("true2", JSON_UNESCAPED_UNICODE); 
+    }
+    else
+    {
+        echo json_encode("true3", JSON_UNESCAPED_UNICODE); 
+    }
+
+}
 
 
 }
