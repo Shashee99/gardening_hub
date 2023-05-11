@@ -12,6 +12,7 @@
         }
         public function viewMyProgress()
         {
+            $data= [];
             $result = $this->progressModel->viewMyProgress($_SESSION['cus_id']);
             //$result = $this->haervestModel->allOtherHarvest();
             foreach($result as $progress)

@@ -16,13 +16,23 @@
             <li><b>Complainant_type : </b> <?= $data['complainant_type']?> </li>
             <li><b>Complainee Name : </b> <?= $data['complainee']?></li>
             <li><b>Complainee_type : </b> <?= $data['complainee_type']?></li>
-            <li><b>The matter : </b> <div style="width: 400px; height: 100px; overflow: scroll;"><?= $data['complaints']-> complain ?></div></li>
+            <li><b>Problem </b> <div style="width: 400px; height: 100px; overflow: scroll;"><?= $data['complaints']-> complain ?></div></li>
+            <li><b>Photos </b>
+            <div class="complainphotos">
+                <div class="complainphotos_1"><img src="<?=URLROOT;?>/img/upload_images/customer_pp/IMG-63a40c0c97bec9.72962555.jpg" alt="" width="100%" height="100%"></div>
+<!--                <div class="complainphotos_1"><img src="--><?//=URLROOT;?><!--/img/upload_images/customer_pp/IMG-63a40c0c97bec9.72962555.jpg" alt="" width="100%" height="100%"></div>-->
+<!--                <div class="complainphotos_1"><img src="--><?//=URLROOT;?><!--/img/upload_images/customer_pp/IMG-63a40c0c97bec9.72962555.jpg" alt="" width="100%" height="100%"></div>-->
+<!---->
+<!--                <div class="complainphotos_1"><img src="--><?//=URLROOT;?><!--/img/upload_images/customer_pp/IMG-63a40c0c97bec9.72962555.jpg" alt="" width="100%" height="100%"></div>-->
+
+            </div>
+            </li>
             <li>
-                <div class= "inneroption">
-                    <div><a class="delete" style="text-decoration: none" href="<?=URLROOT;?>/admins/viewcomplaineduser/<?=$data['complainantid'];?>">View Complainant Profile</a></div>
-                    <div><a class="delete" style="text-decoration: none"href="<?=URLROOT;?>/admins/viewcomplaineduser/<?=$data['complaineeid'];?>">View Complainanee Profile</a></div>
-                    <div><a class="view" style="text-decoration: none"href="<?=URLROOT;?>/admins/resolvecomplain/<?= $data['complaints'] -> complian_no ?>">Mark as Resolved</a></div>
-                    <div><a class="delete" style="text-decoration: none"href="<?=URLROOT;?>/admins/deleteacomplain/<?= $data['complaints'] -> complian_no ?>">Delete</a></div>
+                <div class= "inneroption parentwidth">
+                    <a class="delete-green parentwidth" style="text-decoration: none" href="<?=URLROOT;?>/admins/viewcomplaineduser/<?=$data['complainantid'];?>">View Complainant Profile</a>
+                    <a class="delete-green parentwidth" style="text-decoration: none"href="<?=URLROOT;?>/admins/viewcomplaineduser/<?=$data['complaineeid'];?>">View Complainanee Profile</a>
+                    <a class="delete-blue parentwidth" style="text-decoration: none"href="<?=URLROOT;?>/admins/resolvecomplain/<?= $data['complaints'] -> complian_no ?>">Mark as Resolved</a>
+                    <a class="delete parentwidth" style="text-decoration: none"href="<?=URLROOT;?>/admins/deleteacomplain/<?= $data['complaints'] -> complian_no ?>">Delete</a>
                 </div>
             </li>
 

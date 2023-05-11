@@ -202,6 +202,26 @@ class Sellers extends Controller
     }
 
 
+    public function sellerDetails($id)
+    {
+        $sellerdetails = $this->sellerModel->getSellerDetails($id);
+        $top_rated_products = $this->reviewMoel->topRatedProducts($id);
+        $seller_license = $this->sellerModel->sellerLicense($id);
+        $reviews = $this->reviewMoel->getsASellerReview($id);
+        $rating = $this->reviewMoel->getASellerRating($id);
+        $data = [
+            'seller' => $sellerdetails,
+            'top_products' => $top_rated_products,
+            'license' => $seller_license,
+            'reviews' => $reviews,
+            'rating' => $rating,
+            'complain_err' => '',
+            'err' => ''
+        ];
+        $this->view('customers/sellerProfile', $data);
+    }
+
+
     public function add3()
     {
         //Check for POST

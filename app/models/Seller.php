@@ -264,6 +264,15 @@ class Seller{
         return $dataset;
 
     }
+    public function sellerLicense($id)
+    {
+        $sql = "SELECT * FROM seller_license WHERE seller_id = :seller_id";
+        $this->db->query($sql);
+        $this->db->bind(':seller_id', $id);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
     public function recentlyaddedsellers()
     {
         $this -> db -> query('SELECT * FROM seller WHERE is_registered = 0 AND isDeleted = 0 ORDER BY seller_id DESC LIMIT 5; ');
