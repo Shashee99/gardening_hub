@@ -672,7 +672,6 @@ class Users extends Controller
                         $data['u_name_err'] = 'Your registration is pending';
                         $this->view('users/login', $data);
                     }
-
                 }
                 if ($usertype == 'advisor') {
                     if ($userstate === 0) {

@@ -526,10 +526,14 @@ class Admins extends Controller
     public function viewnewcategoryrequest($id){
 
         $result = $this -> productcatModel -> getnewcategoryrequestsbyreqid($id);
+        $userid = $result -> seller_id;
+        $selleremail = $this -> userModel -> getemailbyuserid($userid);
 
         $data = [
             'reqid'=> $id,
             'request' => $result,
+            'sellername'=>$result->shop_name,
+            'selleremail'=>$selleremail,
             'nav' => 'categories',
             'title' => 'Product categories',
             'jsfile' => 'admin_reqnewcategories.js'
@@ -547,16 +551,16 @@ class Admins extends Controller
         else{
             die('error occured!');
         }
-
     }
     public function newproductcategories_markasrejected($id){
         $result = $this -> productcatModel -> markasrejected($id);
         if($result){
-            redirect('admins/newproductcategories');
+            true;
         }
         else{
-            die('error occured!');
+            false;
         }
+
 
     }
 
@@ -636,6 +640,21 @@ class Admins extends Controller
 
             }
 
+
+    }
+
+    function sendCategoryRejectedEmail(){
+
+        $email = $_POST['email'] ;
+        $reason = $_POST['reason'];
+        $sellername = $_POST['sellername'];
+        $reqid = $_POST['reqid'];
+
+//        marking as the rejected
+        $markasrejected = $this->newproductcategories_markasrejected($reqid);
+        $emailsentstate = $this ->mailer -> sendCategoryRejectedEmail($sellername,$email,$reason);
+
+        echo "true";
 
     }
 

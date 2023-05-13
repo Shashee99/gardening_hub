@@ -33,7 +33,7 @@
 
 
 
-<div class="newcategoryreq">
+<div class="newcategoryreq ">
     <div class="newcategoryreq-texts">
         <h3>New Category Requests</h3>
         <p><small>Category request form customers</small></p>
@@ -42,7 +42,7 @@
 </div>
 <hr>
 
-<div class="newcategoryreq">
+<div class="newcategoryreq ">
     <div class="newcategoryreq-texts">
         <h3>New Seller Requests</h3>
         <p><small>Go to new sellers and approve them!</small></p>
@@ -51,7 +51,7 @@
 </div>
 <hr>
 
-<div class="newcategoryreq">
+<div class="newcategoryreq ">
     <div class="newcategoryreq-texts">
         <h3>New Advisor Requests</h3>
         <p><small>Go to new advisors and approve them!</small></p>

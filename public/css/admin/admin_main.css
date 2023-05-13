@@ -420,6 +420,7 @@ hr {
     margin: 30px 0px;
 }
 
+
 /*Product category styling*/
 .category {
     margin: 20px 0px 10px 0px;
@@ -1080,3 +1081,29 @@ a i:hover{
 /*.fas.fa-hourglass-end:before {*/
 /*    color: var(--color);*/
 /*}*/
+/*
+.your-navigation-panel {
+    z-index: 998; !* or any value lower than 9999 *!
+}
+*/
+.preview{
+    z-index: 999;
+}
+.rejectmsg{
+    width: max-content;
+    height: max-content;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin:auto;
+    background-color: #dddddd;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 999;
+}
+
+.msgcontrolbtns{
+    justify-content: space-evenly;
+}

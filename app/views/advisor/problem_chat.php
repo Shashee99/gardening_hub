@@ -37,7 +37,7 @@
                     <div class="image-problem">
                         <?php foreach ($problems['photos'] as $row){
                             ?>
-                            <div class=" image-plants"><img src="<?= URLROOT; ?>/img/upload_images/problem_photo/<?= $row ; ?> " class="preview-image" alt="" ></div>
+                            <div class=" image-plants"><img src="<?= URLROOT; ?>/img/upload_images/problem_photo/<?= $row ; ?>" class="preview-image" alt="" ></div>
                             <?php
                         }
                         ?>

@@ -480,25 +480,6 @@ class Sellers extends Controller
 
     }
 
-    public function sellerDetails($id)
-    {
-        $sellerdetails = $this->sellerModel->getSellerDetails($id);
-        $top_rated_products = $this->reviewMoel->topRatedProducts($id);
-        $seller_license = $this->sellerModel->sellerLicense($id);
-        $reviews = $this->reviewMoel->getsASellerReview($id);
-        $rating = $this->reviewMoel->getASellerRating($id);
-        $data = [
-            'seller' => $sellerdetails,
-            'top_products' => $top_rated_products,
-            'license' => $seller_license,
-            'reviews' => $reviews,
-            'rating' => $rating,
-            'complain_err' => '',
-            'err' => ''
-        ];
-        $this->view('customers/sellerProfile', $data);
-    }
-
 
     public function order_conf()
     {
@@ -526,23 +507,6 @@ class Sellers extends Controller
             echo "Confirm Suceccfully";
         }
     }
-
-    // public function update($id) {
-    //     $itemData = $this -> sellerModel -> getItemById($id);
-    //     $productImg = $this -> sellerModel -> getProductImages($id);
-    // public function update($id) {
-    //     $itemData = $this -> sellerModel -> getItemById($id);
-    //     $productImg = $this -> sellerModel -> getProductImages($id); 
-
-    //     $data = [
-    //         'itemData' => $itemData,
-    //         'productImg' => $productImg,
-    //         'image_err' => '',
-    //         'photo_err' => ''
-    //     ]; 
-
-    //     $this->view('seller/update', $data);
-    // }
 
     public function update($id)
     {

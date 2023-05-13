@@ -316,21 +316,24 @@
             $email =  $result->type;
             return $email;
         }
-        public function getuserverificationcodebyemail($email){
+        public function getuserverificationcodebyemail($email)
+        {
             $this -> db -> query('SELECT * FROM user WHERE email = :email');
             $this ->db ->bind(':email',$email);
             $result = $this -> db -> singleRecord();
             $code =  $result->verification_code;
             return $code;
         }
-        public function getuserhashedpasswordbyemail($email){
+        public function getuserhashedpasswordbyemail($email)
+        {
             $this -> db -> query('SELECT * FROM user WHERE email = :email');
             $this ->db ->bind(':email',$email);
             $result = $this -> db -> singleRecord();
             $code =  $result->password;
             return $code;
         }
-        public function getuserstatebyemail($email){
+        public function getuserstatebyemail($email)
+        {
             $this -> db -> query('SELECT * FROM user WHERE email = :email');
             $this ->db ->bind(':email',$email);
             $result = $this -> db -> singleRecord();

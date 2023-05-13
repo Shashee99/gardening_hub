@@ -23,8 +23,8 @@
         </div>
     </div>
 
-    <div>
-        <h2>No of Complaints for this seller : <?= count($data['complaints']);?></h2>
+    <div  class="<?php echo (count($data['complaints']== 0) ? 'hidden' : '')?> ">
+        <h2>Number of Complaints for this seller : <?= count($data['complaints']);?></h2>
         <br>
         <div class="seller-table-area" style="border: 1px solid black; overflow-x: scroll;">
             <table class="usertable">

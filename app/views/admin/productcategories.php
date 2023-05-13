@@ -34,7 +34,9 @@
             <th>#</th>
             <th>Category</th>
             <th>Sub Category</th>
-            <th>Action</th>
+            <th style="
+    width: 168px;
+">Action</th>
             </thead>
             <tbody id="categoryTable">
 
@@ -59,12 +61,7 @@
                 </div>
                 <input type="submit" class="done"  name="add" id="addcatbuton" value="Add" >
             </div>
-
-
         </form>
-
-
-
 
     <form method="POST" id="editcatform">
         <div class="editmodal hidden">

@@ -4,6 +4,7 @@ class ProductCategories extends Controller{
     public function __construct()
     {
         $this->categoryModel = $this->model('ProductCategory');
+        $this -> mailer = new Mailer();
 
     }
     public function viewAll(){
@@ -19,6 +20,24 @@ class ProductCategories extends Controller{
 
 //        add new categories to table
         $result = $this->categoryModel->insertcat($cat,$subcat);
+        if ($result){
+            // Clear the category and subcategory variables from the $_POST array
+            unset($_POST['category']);
+            unset($_POST['subcategory']);
+        }else{
+            die("something went wrong");
+        }
+    }
+    public function inserfromsellerreq(){
+
+        $sellername = $_POST['sellername'];
+        $selleremail = $_POST['selleremail'];
+        $cat = $_POST['category'];
+        $subcat = $_POST['subcategory'];
+
+//        add new categories to table
+        $result = $this->categoryModel->insertcat($cat,$subcat);
+        $mailsend = $this->mailer -> sendCategoryAddedEmail($sellername,$selleremail,$cat,$subcat);
         if ($result){
             // Clear the category and subcategory variables from the $_POST array
             unset($_POST['category']);

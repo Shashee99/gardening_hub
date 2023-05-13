@@ -140,6 +140,50 @@ class Mailer{
             }
         }
 
+    public function sendCategoryAddedEmail($sellerName, $sellerEmail, $categoryName, $subcategoryName) {
+
+        // Email content
+        $this->mail->setFrom("gardeninghub.official@gmail.com", "Gardening Hub");
+        $this->mail->addAddress($sellerEmail, $sellerName);
+        $this->mail->isHTML(true);
+        $this->mail->Subject = 'New Category Added to Our System';
+        $this->mail->Body = 'Dear ' . $sellerName . ',<br><br>'
+            . 'We are pleased to inform you that your requested category and subcategory have been added to our system.<br><br>'
+            . 'Category: ' . $categoryName . '<br>'
+            . 'Subcategory: ' . $subcategoryName . '<br><br>'
+            . 'You can now add your product to our system with the new category and subcategory. We hope that this addition will enhance your experience with our platform.<br><br>'
+            . 'Thank you for choosing our platform as your selling platform.<br><br>'
+            . 'Best regards,<br>'
+            . '[Gardening Hub Team]';
+
+        if($this->mail->send()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function sendCategoryRejectedEmail($sellerName, $sellerEmail, $reason) {
+
+        // Email content
+        $this->mail->setFrom("gardeninghub.official@gmail.com", "Gardening Hub");
+        $this->mail->addAddress($sellerEmail, $sellerName);
+        $this->mail->isHTML(true);
+        $this->mail->Subject = 'Category Request Rejected';
+        $this->mail->Body = 'Dear ' . $sellerName . ',<br><br>'
+            . 'We regret to inform you that we were unable to add the category that you requested to our system due to the following reason: ' . $reason . '.<br><br>'
+            . 'We apologize for any inconvenience this may have caused and encourage you to suggest a different category that may be more suitable for your product.<br><br>'
+            . 'Thank you for considering our service.<br><br>'
+            . 'Best regards,<br>'
+            . '[Gardening Hub Team]';
+
+        if($this->mail->send()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 
