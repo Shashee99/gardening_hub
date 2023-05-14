@@ -247,41 +247,64 @@ class Users extends Controller
                 'password_err' => '',
                 'confirm_password_err' => '',
                 'pro_li_err' => '',
-                'seller_image_err' => ''
+                'seller_image_err' => '',
+                'es1' => '',
+                'es2' => '',
+                'es3' => '',
+                'es4' => '',
+                'es5' => '',
+                'es6' => '',
+                'es7' => '',
+                'es8' => '',
+                'es9' => '',
+                'es10' => ''
 
             ];
             //Validate name
             if (empty($data['name'])) {
-                $data['name_err'] = 'Please enter name';
+                $data['name_err'] = ' Please enter name';
+                $data['es1'] = "\u{f06a}";
             }
 
             //Validate shop name
             if (empty($data['shop_name'])) {
                 $data['shop_name_err'] = 'Please enter shop name';
+                $data['es2'] = "\u{f06a}";
             }
 
             //Validate address
             if (empty($data['address'])) {
                 $data['address_err'] = 'Please enter address';
+                $data['es3'] = "\u{f06a}";
             }
 
             //Validate BR number
             if (empty($data['br_num'])) {
                 $data['br_num_err'] = 'Please enter BR number';
+                $data['es4'] = "\u{f06a}";
             }
 
             //Validate Mobile number
             if (empty($data['mo_num'])) {
                 $data['mo_num_err'] = 'Please enter Mobile number';
+                $data['es5'] = "\u{f06a}";
+            } elseif (!preg_match("/^[0]{1}+[1-9]{1}+[0-9]{8}$/", $data['mo_num'])) {
+                $data['mo_num_err'] = 'Invalid Mobile number';
+                $data['es5'] = "\u{f06a}";
             }
 
             //Validate Email
             if (empty($data['email'])) {
                 $data['email_err'] = 'Please enter email';
+                $data['es6'] = "\u{f06a}";
+            } elseif(!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/", $data['email'])){
+                $data['email_err'] = 'Invalid email';
+                $data['es6'] = "\u{f06a}";  
             } else {
                 //Check email
                 if ($this->userModel->findUser($data['email'])) {
                     $data['email_err'] = 'Email is already taken';
+                    $data['es6'] = "\u{f06a}";
                 }
             }
 //validate shop image
@@ -291,27 +314,34 @@ class Users extends Controller
 
             if (empty($data['seller_image'])) {
                 $data['seller_image_err'] = 'Please select a photo';
+                $data['es7'] = "\u{f06a}";
             } elseif ($_FILES['shopimage']['size'] > 2097152) {
 
                 $data['seller_image_err'] = 'Image size should be less than 2mb';
+                $data['es7'] = "\u{f06a}";
             } elseif ($filetype != $type[0] && $filetype != $type[1] && $filetype != $type[2]) {
                 $data['seller_image_err'] = 'Image type should be png,jpg or jpeg';
+                $data['es7'] = "\u{f06a}";
 
             }
 
             //Validate password
             if (empty($data['password'])) {
                 $data['password_err'] = 'Please enter password';
+                $data['es8'] = "\u{f06a}";
             } elseif (strlen($data['password']) < 6) {
                 $data['password_err'] = 'Password must be at least 6 characters';
+                $data['es8'] = "\u{f06a}";
             }
 
             //Validate confirm_password
             if (empty($data['confirm_password'])) {
                 $data['confirm_password_err'] = 'Please confirm password';
+                $data['es9'] = "\u{f06a}";
             } else {
                 if ($data['password'] != $data['confirm_password']) {
                     $data['confirm_password_err'] = 'Password do not match';
+                    $data['es9'] = "\u{f06a}";
                 }
             }
 
@@ -323,15 +353,18 @@ class Users extends Controller
 
             if ($fileSize === 0) {
                 $data['pro_li_err'] = 'Please attach Product Licens';
+                $data['es10'] = "\u{f06a}";
             } elseif ($fileSize > 10000000) {
                 $data['pro_li_err'] = 'File is too large';
+                $data['es10'] = "\u{f06a}";
             } elseif (!in_array($fileType, array_keys($allowedTypes))) {
                 $data['pro_li_err'] = 'File not allowed';
+                $data['es10'] = "\u{f06a}";
             }
 
             //Make sure errors are empty
             if (empty($data['email_err']) && empty($data['name_err']) && empty($data['password_err']) && empty($data['confirm_password_err']) &&
-                empty($data['shop_name_err']) && empty($data['address_err']) && empty($data['br_num_err']) && empty($data['mo_num_err']) && empty($data['pro_li_err'])) {
+                empty($data['shop_name_err']) && empty($data['address_err']) && empty($data['br_num_err']) && empty($data['mo_num_err']) && empty($data['pro_li_err']) && empty($data['seller_image_err'])) {
                 //Validated
 
                 //Hash the password
@@ -377,6 +410,17 @@ class Users extends Controller
                 'password_err' => '',
                 'confirm_password_err' => '',
                 'pro_li_err' => '',
+                'seller_image_err' => '',
+                'es1' => '',
+                'es2' => '',
+                'es3' => '',
+                'es4' => '',
+                'es5' => '',
+                'es6' => '',
+                'es7' => '',
+                'es8' => '',
+                'es9' => '',
+                'es10' => ''
             ];
 
             //Load view
@@ -665,7 +709,8 @@ class Users extends Controller
                 if ($usertype == 'seller') {
                     if ($userstate === 0) {
                         $this->userModel->setuserasregistered($data['u_name']);
-                        $this->createSellerSession($logged_user);
+                        $seller_details = $this -> sellerModel->getSellerDetails($logged_user->user_id);
+                        $this->createSellerSession($logged_user, $seller_details);
                     } elseif ($logged_user->user_state === 2) {
                         $data['u_name_err'] = 'Your user account has been deleted';
                         $this->view('users/login', $data);
@@ -756,11 +801,13 @@ class Users extends Controller
 
 
                     } elseif ($logged_user->type === 'seller') {
+                        
                         // var_dump($logged_user->user_state);
                         // die();
 
                         if ($logged_user->user_state == 1) {
-                            $this->createSellerSession($logged_user);
+                            $seller_details = $this -> sellerModel->getSellerDetails($logged_user->user_id);
+                            $this->createSellerSession($logged_user, $seller_details);
                         } elseif ($logged_user->user_state == 2) {
                             $data['u_name_err'] = 'Your user account has been deleted';
                             $this->view('users/login', $data);
@@ -828,9 +875,11 @@ class Users extends Controller
 
     }
 
-    public function createSellerSession($user)
+    public function createSellerSession($user, $seller_details)
     {
         $_SESSION['user_id'] = $user->user_id;
+        $_SESSION['seller_name'] =  $seller_details->owner_name;
+        $_SESSION ['seller_profile_image'] = $seller_details->photo;
         $_SESSION['user_email'] = $user->email;
         $_SESSION['seller'] = 1;
         redirect('sellers/dashboard');
