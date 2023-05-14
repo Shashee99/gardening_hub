@@ -94,7 +94,7 @@
             $this -> db -> bind(':id', $id);
             $this->db->execute();
         }
-        public function addTecno($data,$photo)
+        public function addTecno($data,$photo) 
         {
             $sql='INSERT INTO  new_technology(category,date,title,content,advisor_id )VALUES(
               :catagory,:date,:title,:content,:advisor_id

@@ -7,13 +7,6 @@
 
         public function __construct()
         {
-            // if (!isAdvisorLogin()) {
-            //     if(!isset($_SESSION['cus_id']))
-            //     {
-            //         redirect('users/login');
-            //     }
-
-            // }
 
             if (!isAdvisorLogin()) {
                 if(!isset($_SESSION['cus_id']) && !isset($_SESSION['user_id'])&& $_SESSION['advisor_id'])
@@ -98,9 +91,6 @@
 
         }
 
-
-
-
         public function recentlyaddedadvisors(){
             $dataset = $this -> advisorModel -> recentlyaddedadvisors();
             $data = json_encode($dataset);
@@ -117,17 +107,17 @@
         }
       //add tecno lod view--------------
       public function addtecno(){
-        $data = array();
-        $problems = $this->advisorModel->giveTecno($_SESSION['advisor_id']);
+        $data = array(); // get data tecnhology by data base this data stor array
+        $problems = $this->advisorModel->giveTecno($_SESSION['advisor_id']); //call the model giveTecno function
         
         foreach($problems as $rows)
         {
             $problem_photos = array();
-            $photos = $this->advisorModel->tecnoPhotosById($rows->no);
+            $photos = $this->advisorModel->tecnoPhotosById($rows->no); // call the model tecnoPhotosByid and get tecnhology photo
             foreach($photos as $photo)
             {
-                $problem_photos[] = $photo->imge;
-                // $problem_photos[] = $photo->imge;
+                $problem_photos[] = $photo->imge; //push iamge in array
+               
             }
             $data[] = array
             (
@@ -142,8 +132,6 @@
 
         }
 
-      // echo json_encode($data, JSON_UNESCAPED_UNICODE);
-
        $this->view('advisor/addtecno',$data);
 
       }
@@ -151,10 +139,7 @@
       //add tecnohlogy for preview--------------
       public function item_add(){
 
-        if($_SERVER['REQUEST_METHOD']=='POST'){
-
-
-           //sanities data
+        if($_SERVER['REQUEST_METHOD']=='POST'){// check post request
            $_POST=filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
            $additem=[
              'title'=> trim($_POST['title']),
@@ -182,9 +167,9 @@
           //validate photo----------------
             $photoname = array_filter($_FILES['photos']['name']);
             $photocount = count($_FILES['photos']['name']);
-            $type = array ('png', 'jpg', 'jpeg');
-            $totsize = 0;
-            $photo = array();
+            $type = array ('png', 'jpg', 'jpeg'); // we can check photo type by this array
+            $totsize = 0; // stor photo size
+            $photo = array();// stor tecnhology photo
 
             if(empty($photoname))
             {
@@ -398,8 +383,6 @@
             die("is not delete");
           }
       
-
-
     }
 
     // chat function ------------------------------------
@@ -489,9 +472,6 @@
 
               }
 
-
-
-
           }
           else{
 
@@ -524,7 +504,7 @@
 
 
      }
-
+  //get tecnhology accdoing to the category
      public function filterproblems(){
 
             $replies = $_POST['replied'];
@@ -556,7 +536,7 @@
                 $data[] = $problem;
             }
             
-            $json = json_encode($data);
+            $json = json_encode($data); // ajax respons encode
             echo $json;     
          
      }

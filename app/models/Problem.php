@@ -148,7 +148,7 @@
             }
 
         }
-       
+       // we can use this function for filter problem
         public function filterProblem($category,$reply,$adviosr)
         {
            if($reply==='allproblem' && $category === "all"){
