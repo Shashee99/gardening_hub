@@ -25,9 +25,13 @@
       <?php if(isset($_SESSION['user_id'])) : ?>
          <a href="<?php echo URLROOT; ?>/users/logout" class="cta"><button id="logoutbtn">Logout</button></a>
       <?php endif; ?>
-      <a href="#" >
-         <img src="<?php echo URLROOT; ?>/img/seller/proimg.png" alt="" class="profile">
+      <a href="<?= URLROOT?>/sellers/sellerprofile" >
+         <img src="<?= URLROOT; ?>/img/upload_images/seller_pp/<?php echo $_SESSION['seller_profile_image']; ?>" alt="" class="profile">
       </a>
+      <a href="<?= URLROOT?>/sellers/sellerprofile" id="eqwrqt">
+         <h1 id="sellerusername"><?php echo $_SESSION['seller_name']; ?></h1>
+      </a>
+      
       
    </header>
     

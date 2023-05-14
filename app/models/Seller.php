@@ -178,7 +178,7 @@ class Seller{
                                 INNER JOIN seller_product_details
                                 ON wishlist.product_no = seller_product_details.product_no
                                 WHERE seller_product_details.seller_id = :id
-                                AND wishlist.status = 1;
+                                AND wishlist.status = 2;
         ');
         $this -> db-> bind(':id',$id);
         $orderdetails = $this -> db -> resultSet();
@@ -194,7 +194,7 @@ class Seller{
                                 INNER JOIN seller_product_details
                                 ON wishlist.product_no = seller_product_details.product_no
                                 WHERE seller_product_details.seller_id = :id
-                                AND wishlist.status = 2;
+                                AND wishlist.status = 1;
         ');
         $this -> db-> bind(':id',$id);
         $orderdetails = $this -> db -> resultSet();
@@ -275,22 +275,26 @@ class Seller{
 
     
     public function order_conf($item) {
-        $this -> db -> query('UPDATE wishlist  
-                              SET status = 1,
-                              confirm_reject_date_time = NOW()                     
-                              WHERE (wishlit_id = :item)');
+        $this -> db -> query('UPDATE wishlist 
+                                INNER JOIN seller_product_details ON wishlist.product_no = seller_product_details.product_no 
+                                SET wishlist.status = 2, 
+                                wishlist.confirm_reject_date_time = NOW(), 
+                                seller_product_details.sold_quantity = wishlist.count 
+                                WHERE wishlit_id = :item;');
         
         $this -> db -> bind(':item', $item);
         // $this -> db -> bind(':confirmation', $data['confirmation']);
         // $this -> db -> bind(':order_date', $data['complete_date']);
         $this->db->execute();
+
+
     }
 
 
     public function order_cancel($order_no, $cancel_reason) {
         $this -> db -> query('UPDATE wishlist 
                               SET status_msg = :cancel_reason,
-                              status = 2,
+                              status = 1,
                               confirm_reject_date_time = NOW() 
                               WHERE (wishlit_id = :item)');
         
@@ -324,16 +328,18 @@ class Seller{
     //     $this->db->execute();
     // }
 
-    public function updateProductDetails($data1,$photo) {
+    public function updateProductDetails_withCoverPhotos($data1,$photo) {
         $this -> db -> query('UPDATE seller_product_details 
                               SET title = :title, 
                                   price = :price, 
                                   description = :description,
-                                  image = :image
+                                  image = :image,
+                                  quantity = :quantity
                               WHERE (product_no = :id)');
         $this -> db -> bind(':id', $data1['id']);
         $this -> db -> bind(':title', $data1['title']);
         $this -> db -> bind(':price', $data1['price']);
+        $this -> db -> bind(':quantity', $data1['quantity']);
         $this -> db -> bind(':description', $data1['description']);
         $this -> db -> bind(':image', $data1['image']);
         $this->db->execute();
@@ -358,6 +364,23 @@ class Seller{
             return true;
         }
 
+        public function updateProductDetails($data1){
+            $this -> db -> query('UPDATE seller_product_details 
+                                SET title = :title, 
+                                    price = :price, 
+                                    description = :description,
+                                    image = :image,
+                                    quantity = :quantity
+                                WHERE (product_no = :id)');
+            $this -> db -> bind(':id', $data1['id']);
+            $this -> db -> bind(':title', $data1['title']);
+            $this -> db -> bind(':price', $data1['price']);
+            $this -> db -> bind(':quantity', $data1['quantity']);
+            $this -> db -> bind(':description', $data1['description']);
+            $this -> db -> bind(':image', $data1['image']);
+            $this->db->execute();
+        }
+
         public function delete($delete_item_id) {
             $this -> db -> query('DELETE FROM seller_product_details 
                                   WHERE (product_no = :delete_item_id)');
@@ -370,12 +393,12 @@ class Seller{
         public function getSelectedRadioItems($radio_value) {
             $id =$_SESSION['user_id'];
             $this -> db -> query('SELECT *, AVG(rating) AS total_rating FROM seller_product_details 
+									LEFT JOIN product_rating_review
+                                    ON seller_product_details.product_no = product_rating_review.product_id
                                     INNER JOIN product_category
                                     ON seller_product_details.category_id = product_category.product_id
-                                    INNER JOIN product_rating_review
-                                    ON seller_product_details.product_no = product_rating_review.product_id
-                                    WHERE product_category.product_category = :category_name 
-                                    AND seller_product_details.seller_id = :id 
+                                    WHERE product_category.product_category = :category_name
+                                    AND seller_product_details.seller_id = :id  
                                     GROUP BY seller_product_details.product_no;
                                     ');
             $this -> db-> bind(':category_name',$radio_value);
@@ -413,9 +436,9 @@ class Seller{
         $id =$_SESSION['user_id'];
         $this -> db -> query('SELECT *, 
                                     AVG(rating) AS fullrating,
-                                    (quantity - count) AS num_of_sold_items,
-                                    (quantity - count)*price AS item_income,
-                                    SUM((quantity - count)*price) AS total_income
+                                    (sold_quantity) AS num_of_sold_items,
+                                    (sold_quantity)*price AS item_income,
+                                    SUM((sold_quantity)*price) AS total_income
                                     FROM `seller_product_details` 
                                     LEFT JOIN wishlist 
                                     ON seller_product_details.product_no = wishlist.product_no
@@ -437,8 +460,8 @@ class Seller{
                                     FROM (
                                         SELECT 
                                             AVG(rating) AS fullrating,
-                                            (quantity - count) AS num_of_sold_items,
-                                            (quantity - count)*price AS item_income
+                                            (sold_quantity) AS num_of_sold_items,
+                                            (sold_quantity)*price AS item_income
                                             FROM `seller_product_details` 
                                             LEFT JOIN wishlist 
                                             ON seller_product_details.product_no = wishlist.product_no
@@ -459,7 +482,10 @@ class Seller{
 
     public function sellerconfirmedorders($sellerid){
             $id =$_SESSION['user_id'];
-            $sql = "SELECT * FROM wishlist INNER JOIN seller_product_details ON wishlist.product_no = seller_product_details.product_no WHERE seller_product_details.seller_id = :sellerid AND wishlist.status = 1 GROUP BY wishlist.customer_id";
+            $sql = "SELECT * FROM wishlist 
+                    INNER JOIN seller_product_details ON wishlist.product_no = seller_product_details.product_no 
+                    WHERE seller_product_details.seller_id = :sellerid 
+                    AND wishlist.status = 1 GROUP BY wishlist.customer_id";
             $this -> db -> query($sql);
             $this ->db-> bind(':sellerid',$sellerid);
             $results = $this -> db -> resultSet();
@@ -472,6 +498,15 @@ class Seller{
     }
 
 
+    public function getProfileData(){
+        $id = $_SESSION['user_id'];
+        $sql = "SELECT * FROM seller
+                WHERE seller_id = :id";
+        $this -> db -> query($sql);
+        $this -> db -> bind(':id', $id);
+        $result = $this -> db -> singleRecord();
+        return $result;
+    }
 
 
 }
