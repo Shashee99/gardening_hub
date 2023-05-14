@@ -24,16 +24,7 @@
                    <div class="chart-some-progess"></div>
 
                  </div>
-
-
-
             </div>         
 
-
-
    </div>  
-
-  
-
-
    <?php require APPROOT . '/views/inc/incAdvisor/footer.php'; ?>

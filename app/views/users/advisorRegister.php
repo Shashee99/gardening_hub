@@ -31,13 +31,13 @@
                                          </div>
                                  </div>
 
-                                 <div class="input-box">
+                                 <!-- <div class="input-box">
                                     <span>User Name</span>
                                         <input class="type-input" type="text" name="user"   placeholder="Enter your user name" value="<?php echo $data['user_name'] ; ?>" >
                                         <div class="error">
                                              <span><?php echo  $data['user_name_err'] ;?></span>
                                          </div>
-                                 </div>
+                                 </div> -->
 
                                  <div class="input-box">
                                     <span>Address</span>
@@ -98,7 +98,7 @@
 
                                  <div class="input-box">
                                           <span>Qualification</span>
-                                          <textarea  class="type-input" id="" name="qulafication" rows="5" cols="50"  placeholder="write your qualification"  value="<?php echo $data['qualification'] ; ?>" ></textarea>
+                                          <textarea  class="type-input" id="" name="qulafication" rows="5" cols="50"  placeholder="write your qualification"><?php echo $data['qualification'] ; ?></textarea>
 
                                              <div class="error">
                                                 <span><?php echo  $data['qulification_err'] ;?> </span>
@@ -114,7 +114,7 @@
                                         </div>
 
                                         <div class="input-box">
-                                          <span>Qualification photo</span>
+                                          <span>Qualification PDF</span>
                                            <input class="type-input" type="file" name="photos[]"   placeholder="Enter your email "  multiple   >
                                           <div class="error">
                                              <span><?php echo    $data['qualifi_poto_err'] ;?> </span>

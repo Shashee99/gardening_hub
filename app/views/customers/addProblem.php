@@ -36,6 +36,7 @@
                         <option value="vegetable">Vegetable</option>
                         <option value="fruits">Fruits</option>
                         <option value="flowers">Flowers</option>
+                        <option value="others">others</option>
                     </select>
                     <div class="error">
                         <span><?php echo $data['category_err']; ?></span>
