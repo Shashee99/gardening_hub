@@ -98,6 +98,8 @@ header {
     position: fixed;
     width: 100%;
     z-index: 100;
+    background-color: azure;
+
 
 }
 
@@ -537,4 +539,27 @@ header {
     margin-top: 44px;
     width: 100%;
     height: 200px;
+}
+
+.advisorpagediv1{
+
+}
+.advisorsimags{
+    width: 300px;
+    height:400px;
+}
+.advisordecription{
+    display : grid;
+    grid-template-columns: 300px auto;
+    gap: 40px;
+
+}
+.advisordec{
+    position: relative;
+    top: 100px;
+    background-color: var(--light-gray);
+    border-radius: 50px;
+    /*border: 1px solid black;*/
+    padding: 50px;
+    margin-bottom: 110px;
 }

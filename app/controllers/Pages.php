@@ -18,20 +18,27 @@
            
             $this->view('pages/home', $data);
         }
+
+        public function advisors(){
+            $data = [
+                'title' => 'Advisors'
+            ];
+            $this->view('pages/advisors', $data);
+        }
       
-        public function about()
+        public function Customers()
         {
             $data = [
-              'title' => 'About Us'
+              'title' => 'Customers'
             ];
       
-            $this->view('pages/about', $data);
+            $this->view('pages/customers', $data);
         }
-        public function product(){
+        public function sellers(){
             $data = [
-                'title' => 'Products'
+                'title' => 'Sellers'
             ];
-            $this->view('pages/product',$data);
+            $this->view('pages/sellers',$data);
         }
         public function signup(){
             $data = [

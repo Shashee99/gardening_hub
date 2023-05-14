@@ -23,22 +23,25 @@
             </div>
             <div class="navs">
                 <ul>
-                    <li class=""><a class="fontgreen" href="<?php echo URLROOT; ?>/pages/index">
+
+                    <li class=""><a class="fontgreen" href="<?php echo URLROOT; ?>/pages/home">
                             <div class="icon"><img src="<?php echo URLROOT; ?>/img/landingPage/Vector.png" alt=""
                                                    width="100%" height="100%"></div>
                             Home</a></li>
-                    <li class=""><a href="<?php echo URLROOT; ?>/pages/product">
+                    <li class=""><a href="<?php echo URLROOT; ?>/pages/customers">
+                            <div class="icon"><img src="<?php echo URLROOT; ?>/img/landingPage/customer.png" alt=""
+                                                   width="100%" height="100%"></div>
+                            Customers</a></li>
+
+                    <li class=""><a href="<?php echo URLROOT; ?>/pages/sellers">
                             <div class="icon"><img src="<?php echo URLROOT; ?>/img/landingPage/Vector (1).png" alt=""
                                                    width="100%" height="100%"></div>
-                            Products</a></li>
-                    <li class=""><a href="<?php echo URLROOT; ?>/pages/index">
+                            Sellers</a></li>
+                    <li class=""><a href="<?php echo URLROOT; ?>/pages/advisors">
                             <div class="icon"><img src="<?php echo URLROOT; ?>/img/landingPage/Vector (4).png" alt=""
                                                    width="100%" height="100%"></div>
                             Advisors</a></li>
-                    <li class=""><a href="<?php echo URLROOT; ?>/pages/about">
-                            <div class="icon"><img src="<?php echo URLROOT; ?>/img/landingPage/Vector (3).png" alt=""
-                                                   width="100%" height="100%"></div>
-                            About</a></li>
+
                 </ul>
             </div>
             <div class="signup flex">

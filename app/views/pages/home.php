@@ -3,30 +3,8 @@
     <section class="intro ">
         <div class="container">
             <div class="introtext">
-                <p class="font500 fontblack">Planting a <span class="font500 fontgreen">Garden</span> is Similar to
-                    Believe in Tomorrow
-                </p>
+                <p style="font-size: 40px; padding-top: 50px"><i>Believe in tomorrow with our gardening hub system. Access expert advice, high-quality products, and innovative technologies to create a beautiful garden. Join our community and start planting the seeds of growth today!</i></p>
                 <div class="users">
-                    <div class="userlist">
-                        <img class="faces" src="<?= URLROOT; ?>/img/landingPage/avi.jpg" alt="">
-                        <img class="faces" src="<?= URLROOT; ?>/img/landingPage/dasiya.jpg" alt="">
-                        <img class="faces" src="<?= URLROOT; ?>/img/landingPage/kavidu.jpg" alt="">
-                        <img class="faces" src="<?= URLROOT; ?>/img/landingPage/Nancy.jpg" alt="">
-                        <img class="faces" src="<?= URLROOT; ?>/img/landingPage/jenna.jpg" alt="">
-                        <img class="faces" src="<?= URLROOT; ?>/img/landingPage/danu.png" alt="">
-                    </div>
-
-                    <div class="revies">
-                        <div>Our happy customers</div>
-                        <div class="revi grid">
-                            <div class="str">
-                                <img src="<?= URLROOT; ?>/img/landingPage/Star.png" width="30px" height="32px" alt="">
-                            </div>
-                            <div class="revitxt"> <i><span class="font800">4.9 </span> <span class="font400">[2.5k Reviews]</span></i>
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="intropic">
@@ -61,106 +39,6 @@
                 <div class="servtext">
                     Best Agricultural
                     Products
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="aboutus flex">
-        <div class="aboutimg">
-            <img src="<?= URLROOT; ?>/img/landingPage/about.png" width="100%" height="100%" alt="">
-        </div>
-        <div class="abouttext">
-            <p class="abouttext-1">
-                About Us
-            </p>
-            <br>
-            <p class="abouttext-2">
-                You are here with friendly <span class="fontgreen">Gardeners</span>, <span
-                        class="fontgreen">Product Sellers</span> and <span class="fontgreen">Instructors</span>.
-            </p>
-            <br>
-            <p class="abouttext-3">
-                Simply It is an online web system which provides helps to overcome problems that
-                are occurs when home gardening.
-            </p>
-        </div>
-    </section>
-    <section class="products container">
-
-        <img src="<?php echo URLROOT; ?>/img/landingPage/brands.png" width="100%" height="100%" alt="">
-
-
-    </section>
-    <section>
-        <div class="productsets container">
-            <p class="font600" style="font-size: 25px; text-align: center"> Introducing some<span class="fontgreen"> Products</span>
-            </p>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="<?php echo URLROOT; ?>/img/landingPage/products (1).png" width="100%" height="100%"
-                             alt="">
-                    </div>
-                    <div class="product-text">
-                        <p class="fontgreen" style="text-align: center;font-size: 22px">Digger</p>
-                        <br>
-                        <i>Log in for find more products from nearby shops</i>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="<?php echo URLROOT; ?>/img/landingPage/products (2).png" width="100%" height="100%"
-                             alt="">
-                    </div>
-                    <div class="product-text">
-                        <p class="fontgreen" style="text-align: center;font-size: 22px">Shovel</p>
-                        <br>
-                        <i>Log in for find more products from nearby shops</i>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="<?php echo URLROOT; ?>/img/landingPage/products (3).png" width="100%" height="100%"
-                             alt="">
-                    </div>
-                    <div class="product-text">
-                        <p class="fontgreen" style="text-align: center;font-size: 22px">Fork</p>
-                        <br>
-                        <i>Log in for find more products from nearby shops</i>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="<?php echo URLROOT; ?>/img/landingPage/products (4).png" width="100%" height="100%"
-                             alt="">
-                    </div>
-                    <div class="product-text">
-                        <p class="fontgreen" style="text-align: center;font-size: 22px">Knives</p>
-                        <br>
-                        <i>Log in for find more products from nearby shops</i>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="<?php echo URLROOT; ?>/img/landingPage/products (5).png" width="100%" height="100%"
-                             alt="">
-                    </div>
-                    <div class="product-text">
-                        <p class="fontgreen" style="text-align: center;font-size: 22px">Pitch Fork</p>
-                        <br>
-                        <i>Log in for find more products from nearby shops</i>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="<?php echo URLROOT; ?>/img/landingPage/products (5).png" width="100%" height="100%"
-                             alt="">
-                    </div>
-                    <div class="product-text">
-                        <p class="fontgreen" style="text-align: center;font-size: 22px">Digger</p>
-                        <br>
-                        <i>Log in for find more products from nearby shops</i>
-                    </div>
                 </div>
             </div>
         </div>
@@ -221,6 +99,26 @@
         </div>
 
     </section>
+    <section class="aboutus flex">
+        <div class="aboutimg">
+            <img src="<?= URLROOT; ?>/img/landingPage/about.png" width="100%" height="100%" alt="">
+        </div>
+        <div class="abouttext">
+            <p class="abouttext-1">
+                About Us
+            </p>
+            <br>
+            <p class="abouttext-2">
+                You are here with friendly <span class="fontgreen">Gardeners</span>, <span
+                        class="fontgreen">Product Sellers</span> and <span class="fontgreen">Instructors</span>.
+            </p>
+            <br>
+            <p class="abouttext-3" style="font-size: 20px">
+                <i>Simply put, Simply It is the ultimate online gardening system that provides you with everything you need to overcome common problems and challenges that arise in home gardening. Our platform is designed to make gardening easy, fun, and rewarding for everyone - whether you're a seasoned green thumb or just starting out. With our expert advice, innovative technologies, and high-quality products, you'll have everything you need to create a thriving garden that you can be proud of. Join our community today and start exploring the endless possibilities of home gardening with Simply It!</i>
+            </p>
+        </div>
+    </section>
+
 
 
 </main>

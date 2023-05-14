@@ -22,15 +22,9 @@
             </div>
             <div class="navs">
                 <ul>
-                    <li class=""><a class="fontgreen" href="<?php echo URLROOT; ?>/pages/index">
-                            <div class="icon"><img src="<?php echo URLROOT; ?>/img/landingPage/Vector.png" alt=""
-                                                   width="100%" height="100%"></div>
-                            Home</a></li>
-                    <li class=""><a href="<?php echo URLROOT; ?>/pages/product">
-                            <div class="icon"><img src="<?php echo URLROOT; ?>/img/landingPage/Vector (5).png" alt=""
-                                                   width="100%" height="100%"></div>
-                            How to sign up?</a></li>
-
+                    <li class=""><a class="fontgreen" href="<?php echo URLROOT; ?>/pages/home">
+                            <div class="icon"><img src="<?php echo URLROOT; ?>/img/landingPage/Vector.png" alt="" width="100%" height="100%"></div>Home</a>
+                    </li>
                 </ul>
             </div>
             <div class="signup flex">
@@ -52,7 +46,7 @@
                         </div>
                         <div class="actortxt">
                             <p class="fontgreen font600 actortype" style="font-size: 28px">
-                              Gardner
+                              Customers
                             </p>
                             <p class="font400 actorinfo"><i>Sign up here if you are a gardener</i></p>
                         </div>
