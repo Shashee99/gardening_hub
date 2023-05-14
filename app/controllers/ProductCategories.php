@@ -1,18 +1,20 @@
 <?php
 class ProductCategories extends Controller{
-    private $categoryModel;
+    private $categoryModel;//make conection model
     public function __construct()
     {
         $this->categoryModel = $this->model('ProductCategory');
         $this -> mailer = new Mailer();
 
     }
+    //view all categoris 
     public function viewAll(){
         $tabledata = $this->categoryModel->getAllCategories();
         $tabledata =json_encode($tabledata);
         echo $tabledata;
         exit();
     }
+    //insert category
     public function insert(){
 
         $cat = $_POST['category'];

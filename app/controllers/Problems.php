@@ -8,6 +8,7 @@
         {
             $this->problemModel = $this->model('Problem');
         }
+        //customer view his  reply message
         public function viewProblems()
         {
             $data = array();
@@ -32,6 +33,7 @@
             }
             $this->view('customers/problem', $data);
         }
+        //view one problem by customer id
         public function viewOneProblem($id)
         {
             $problems = $this->problemModel->getAproblem($id);
@@ -54,6 +56,7 @@
 
             $this->view('customers/viewOneProblem',$data);
         }
+        //customer add new problm 
         public function addProblems()
         {
 
@@ -72,6 +75,7 @@
                     'title_err' => '',
                     'photo_err' => ''
                 ];
+                //validate data part
 
                 if(empty($data['title']))
                 {

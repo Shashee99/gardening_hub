@@ -7,7 +7,7 @@ class Admins extends Controller
         if (!isLoggedIn()) {
             redirect('users/login');
         }
-        $this->notiModel = $this -> model('Notification');
+        $this->notiModel = $this -> model('Notification'); //make conection to model
         $this->adminModel = $this->model('Admin');
         $this->customerModel = $this->model('Customer');
         $this->sellerModel = $this->model('Seller');
@@ -18,7 +18,7 @@ class Admins extends Controller
         $this->mailer = new Mailer();
 
     }
-
+     //lode the admin home page by this function
     public function home()
     {
 
@@ -41,9 +41,9 @@ class Admins extends Controller
             'newadvisors' => $newadvisors
 
         ];
-        $this->view('admin/home', $data);
+        $this->view('admin/home', $data); //lode and pass data array home page
     }
-
+       //admin get new product categories 
     public function productcategories()
     {
         $category = $this -> productcatModel -> getnewcategoryrequests_pending();
@@ -56,7 +56,7 @@ class Admins extends Controller
         $this->view('admin/productcategories', $data);
     }
 
-
+     //view new product to send seller
     public function newproductcategories(){
         $newreqs = $this ->productcatModel-> getnewcategoryrequests();
 
@@ -68,6 +68,7 @@ class Admins extends Controller
         ];
         $this->view('admin/newcategories', $data);
     }
+    // admin see pending product
     public function newproductcategories_pending(){
 
         $newreqs = $this ->productcatModel-> getnewcategoryrequests_pending();
@@ -80,6 +81,7 @@ class Admins extends Controller
         ];
         $this->view('admin/newcategories_pending', $data);
     }
+    //admin accsept new product
     public function newproductcategories_done(){
 
         $newreqs = $this ->productcatModel-> getnewcategoryrequests_done();
@@ -92,6 +94,7 @@ class Admins extends Controller
         ];
         $this->view('admin/newcategories_done', $data);
     }
+    //admin cancelled new product 
     public function newproductcategories_cancelled(){
 
         $newreqs = $this ->productcatModel-> getnewcategoryrequests_cancel();
@@ -104,7 +107,7 @@ class Admins extends Controller
         ];
         $this->view('admin/newcategories_cancel', $data);
     }
-
+     //admin view all customers
     public function customers()
     {
         $customer = $this->customerModel->get_all_customers();
@@ -116,7 +119,7 @@ class Admins extends Controller
         ];
         $this->view('admin/customers', $data);
     }
-
+    //admin view all selers
     public function sellers()
     {
         $sellers = $this->adminModel->all_registered_sellers();
@@ -130,7 +133,7 @@ class Admins extends Controller
         ];
         $this->view('admin/sellers', $data);
     }
-
+     //admi view all complain for accept complains
     public function complains()
     {
         $complaints = $this->complaintModel->getAllComplaints();
@@ -147,7 +150,7 @@ class Admins extends Controller
         ];
         $this->view('admin/complains', $data);
     }
-
+     //admin view all advisors
     public function advisors()
     {
         $advisors = $this->adminModel->all_registered_advisors();
@@ -164,7 +167,7 @@ class Admins extends Controller
     }
 
 
-
+ //admin view new sellers and virify sellers
     public function newsellers()
     {
         $newsellers = $this->adminModel->get_non_registered_sellers();
@@ -177,7 +180,7 @@ class Admins extends Controller
         ];
         $this->view('admin/newsellers', $data);
     }
-
+  //admin view new advisor and vireyfy advisor by this function
     public function newadvisors()
     {
         $newadvisors = $this->adminModel->get_non_registered_advisors();
@@ -189,7 +192,7 @@ class Admins extends Controller
         ];
         $this->view('admin/newadvisors', $data);
     }
-
+//admin view all customer by this function
     public function viewcustomer($id)
     {
         $customerinfo = $this->customerModel->getCustomerDetails($id);
@@ -202,7 +205,7 @@ class Admins extends Controller
         ];
         $this->view('admin/customerpreview', $data);
     }
-
+//admin get seller details by with seller id
     public function viewseller($id)
     {
         $sellers = $this->sellerModel->getSellerDetails($id);
@@ -223,7 +226,7 @@ class Admins extends Controller
         ];
         $this->view('admin/registeredsellerpreview', $data);
     }
-
+    //admin view no register sellers
     public function viewsellernonregistered($id){
         $sellers = $this->sellerModel->getSellerDetails($id);
         $data = [
@@ -234,7 +237,7 @@ class Admins extends Controller
         ];
         $this->view('admin/sellerpreview', $data);
     }
-
+  //admin view advisor detalis by with id
     public function viewadvisor($id)
     {
         $advisor = $this->advisorModel->getAdvisordetails($id);
@@ -248,6 +251,7 @@ class Admins extends Controller
         ];
         $this->view('admin/advisorpreview', $data);
     }
+    //admin can view registerd advisors
     public function viewadvisorregistered($id)
     {
         $advisor = $this->advisorModel->getAdvisordetails($id);
@@ -268,7 +272,7 @@ class Admins extends Controller
         ];
         $this->view('admin/registeredadvisorpreview', $data);
     }
-
+ //admin can approve seller by this function
     public function sellerApprove($id)
     {
 
@@ -289,11 +293,11 @@ class Admins extends Controller
 
     }
 
-
+//admin can approve advisor by this function
     public function advisorApprove($id)
     {
 
-        $val = $this->adminModel->advisorApprove($id);
+        $val = $this->adminModel->advisorApprove($id);//call the model by advisor id
         $this -> notiModel -> clearthenotificationafterapprove($id);
         $username = '';
 //        getting the email of the seller from user table
@@ -308,6 +312,7 @@ class Admins extends Controller
         }
 
     }
+    // admin can regect seller by this function
     public function rejectseller($id){
 
         $email = $this-> userModel -> getemailbyuserid($id);
@@ -324,6 +329,7 @@ class Admins extends Controller
         $this -> view('admin/sellerreject',$data);
 
     }
+    //admin can reject advisor by this function
     public function rejectAdvisor($id){
 
         $email = $this-> userModel -> getemailbyuserid($id);
@@ -342,7 +348,7 @@ class Admins extends Controller
     }
 
 
-
+//admin can view complain to send custemore
     public function viewcomplain($complaintID)
     {
 
@@ -373,6 +379,7 @@ class Admins extends Controller
         $this->view('admin/complaintview', $data);
 
     }
+    //admin resolved complain by this function
     public function viewcomplainresolved($complaintID)
     {
 
@@ -400,7 +407,7 @@ class Admins extends Controller
         $this->view('admin/complaintviewresolved', $data);
 
     }
-
+//admin can see reject user
     public function rejectauser(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
@@ -452,7 +459,7 @@ class Admins extends Controller
         $this->view('admin/advisordeleteconfirmation',$data);
 
     }
-
+//admin send notification to user
     public function viewuserfromnotification($id){
         $useremail =  $this -> userModel -> getemailbyuserid($id);
         $usertype = $this -> userModel -> getusertypebyemail($useremail);
@@ -468,6 +475,7 @@ class Admins extends Controller
         }
 
     }
+    //admin can delete complain by this function
     public function deleteacomplain($id){
        if( $this -> complaintModel -> deletecomplaint($id)){
            redirect('admins/complains');
@@ -478,7 +486,7 @@ class Admins extends Controller
 
 
     }
-
+   //admin resolve complain by this function
     public function resolvecomplain($id){
         if( $this -> complaintModel -> resolvecomplaint($id)){
             redirect('admins/complains');
@@ -488,6 +496,7 @@ class Admins extends Controller
         }
 
     }
+    //admin resolved complains
     public function resolvedcomplains(){
         $complaints = $this->complaintModel->getresolvedAllComplaints();
 
@@ -505,7 +514,7 @@ class Admins extends Controller
 
 
     }
-
+     //admin view user complain
     public function viewcomplaineduser($id){
         $useremail =  $this -> userModel -> getemailbyuserid($id);
         $usertype = $this -> userModel -> getusertypebyemail($useremail);
@@ -525,7 +534,7 @@ class Admins extends Controller
         }
 
     }
-
+     //admin view category request to send seller
 
     public function viewnewcategoryrequest($id){
 
@@ -546,7 +555,7 @@ class Admins extends Controller
         $this->view('admin/viewnewcategoryrequest',$data);
 
     }
-
+   //admin mark new category
     public function newproductcategories_markasdone($id){
         $result = $this -> productcatModel -> markasdone($id);
         if($result){
@@ -556,6 +565,7 @@ class Admins extends Controller
             die('error occured!');
         }
     }
+    //reject new category by admin
     public function newproductcategories_markasrejected($id){
         $result = $this -> productcatModel -> markasrejected($id);
         if($result){
@@ -567,7 +577,7 @@ class Admins extends Controller
 
 
     }
-
+//admin delete user
     public function userdelete($id){
 
         $email = $this-> userModel -> getemailbyuserid($id);
@@ -585,7 +595,7 @@ class Admins extends Controller
 
 
     }
-
+//user delete confirm by admin
     public function userdeleteconfirm()
     {
 
@@ -626,10 +636,10 @@ class Admins extends Controller
                 }
 
                 elseif($usertype == "advisor"){
-                    $this -> advisorModel -> delete_advisor($userID);
+                    $this -> advisorModel -> delete_advisor($userID);//call the model
                 }else
                 {
-                   $this -> customerModel -> deletecustomer($userID);
+                   $this -> customerModel -> deletecustomer($userID);//call the model
                 }
 
 
@@ -646,7 +656,7 @@ class Admins extends Controller
 
 
     }
-
+    //admin send reject category email to seller 
     function sendCategoryRejectedEmail(){
 
         $email = $_POST['email'] ;

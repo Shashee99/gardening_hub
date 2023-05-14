@@ -6,6 +6,7 @@
         {
             //$this->postModel = $this->model('Post');
         }
+        //admin change page title load functions
         public function index()
         {
             $this->view('index',['title' =>'Welcome']);

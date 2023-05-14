@@ -2,7 +2,7 @@
 
 class NewTechs extends Controller
 {
-    private $techModel;
+    private $techModel;//conection model
     private $advisorModel;
 
     public function __construct()
@@ -10,10 +10,11 @@ class NewTechs extends Controller
         $this->techModel = $this->model('NewTech');
         $this->advisorModel = $this->model('Advisor');
     }
+    //customer view the advisor new tecnhology  
     public function viewNewTech()
     {
         $data = array();
-        $result = $this->techModel->newtechnologies();
+        $result = $this->techModel->newtechnologies();//call model newtechnology
 
         foreach($result as $technology)
         {
@@ -50,6 +51,7 @@ class NewTechs extends Controller
 
         $this->view('customers/newTech', $data);
     }
+    //ajax support function for filter new technology
     public function filterNewTech()
     {
         if(isset($_POST['category']))
@@ -103,6 +105,7 @@ class NewTechs extends Controller
             echo json_encode($data, JSON_UNESCAPED_UNICODE);
         }
     }
+    //advisor filter new techonology 
     public function filterMyNewTech()
     {
         if(isset($_POST['category']))
@@ -159,7 +162,7 @@ class NewTechs extends Controller
     public function addNewTechnology(){
         $this -> view('advisor/addtechnology');
     }
-
+   //delete advisor technology by this function
     public function deleteTecnhology(){  
        if($_SERVER['REQUEST_METHOD']=='POST'){
             $_POST=filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
