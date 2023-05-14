@@ -394,7 +394,7 @@ class Users extends Controller
                 'password' => trim($_POST['pass']),
                 'cpassword'=>trim($_POST['cpass']),
                 'fullname' => trim($_POST['fname']),
-                'user_name'=>trim($_POST['user']),
+                // 'user_name'=>trim($_POST['user']),
                 'address' => trim($_POST['address']),
                 'nic' => trim($_POST['id_no']),
                 'dob'=>trim($_POST['dob']),
@@ -406,7 +406,7 @@ class Users extends Controller
                 'password_err'=>'',
                 'cpassword_err'=>'',
                 'fullname_err'=>'',
-                'user_name_err'=>'',
+                // 'user_name_err'=>'',
                 'address_err'=>'',
                 'nic_err'=>'',
                 'dob_err'=>'',
@@ -435,15 +435,17 @@ class Users extends Controller
                 }
             }
             //validate full name
-            if (empty($data['fullname'])) {
+            if (empty($data['fullname']))
+            {
                 $data['fullname_err'] = '*Please enter name';
-            } elseif (strlen($data['fullname']) > 15) {
-                $data['fullname_err'] = '*Name should at least 15 characters';
-            }
+            }  
+            // } elseif (strlen($data['fullname']) > 10) {
+            //     $data['fullname_err'] = '*Name should at least 15 characters';
+            // }
             //validate user name
             if (empty($data['user_name'])) {
                 $data['user_err'] = '*Please enter name';
-            } elseif (strlen($data['user_name']) < 5) {
+            } elseif (strlen($data['user_name']) > 5) {
                 $data['user_err'] = '*Name should at least 5 characters';
             }
             //validate address
@@ -483,14 +485,14 @@ class Users extends Controller
             //qualification
             if(empty($data['qualification'])){
                 $data['qualification_err']='*pleas enter qualification';
-            }elseif(strlen($data['qualification'])<150){
+            }elseif(strlen($data['qualification'])>150){
                 $data['qualification_err']='*qualification should at least 150 characters';
             }
 
                  //validate photo----------------    
                  $photoname = array_filter($_FILES['photos']['name']);
                  $photocount = count($_FILES['photos']['name']);
-                 $type = array ('png', 'jpg', 'jpeg');
+                 $type = array ('pdf', 'jpg', 'jpeg');
                  $totsize = 0;
                  $photo = array();
      
@@ -498,9 +500,9 @@ class Users extends Controller
                  {
                      $data['qualifi_poto_err'] = "*Please select at least one image";
                  }
-                 elseif( $photocount>4)
+                 elseif( $photocount>1)
                  {
-                     $data['qualifi_poto_err'] = '*Can not upload more than 4 images';
+                     $data['qualifi_poto_err'] = '*Can not upload more than 1 PDF';
                  }
      
                  foreach($_FILES['photos']['name'] as $key => $value)
@@ -509,7 +511,7 @@ class Users extends Controller
                      $img_type = strtolower(pathinfo($img_name, PATHINFO_EXTENSION));
                      $totsize += $_FILES['photos']['size'] [$key];
      
-                     if($img_type != $type[0]  && $img_type != $type[1] && $img_type != $type[2])
+                     if($img_type != $type[0])
                      {
                          $data['qualifi_poto_err'] = '*Image type should be png or jpeg or jpg'; 
                          break;
@@ -536,10 +538,11 @@ class Users extends Controller
                     
                  }
  
-     
+                 //die();
 
-            if (empty($data['email_err'])) {
+            if (empty($data['email_err'])&& empty( $data['password_err'])&& empty($data['cpassword_err'] )&& empty( $data['fullname_err'])&& empty( $data['address_err'])&& empty(  $data['nic_err'])&& empty($data['dob_err'])&& empty( $data['phone_err'])&& empty( $data['qualification_err'])&& empty( $data['qualifi_poto_err'] )&& empty( $data['pp_err']) ) {
                 //Hashing password
+                
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 // Photo upload
                 $tmp_name = $_FILES['poto']['tmp_name'];
@@ -562,13 +565,8 @@ class Users extends Controller
                     array_push($photo, $new_img1);
                 }
 
-<<<<<<< HEAD
                 if ($this->userModel->advisorRegister($data,$photo)) {
                     flash('register_success', 'Registration received. Pending admin approval. Please check your email for updates. Thank you.');
-=======
-                if ($this->userModel->advisorRegister($data, $photo)) {
-                    // $this->notiModel->addnotification('Advisor');
->>>>>>> feature_advisor
                     redirect('users/login');
                 } else {
                     $this->view('users/advisorRegister', $data);
@@ -583,7 +581,7 @@ class Users extends Controller
                 'password' =>'',
                 'cpassword'=>'',
                 'fullname' =>'',
-                'user_name'=>'',
+                // 'user_name'=>'',
                 'address' => '',
                 'nic' => '',
                 'dob'=>'',
@@ -595,7 +593,7 @@ class Users extends Controller
                 'password_err'=>'',
                 'cpassword_err'=>'',
                 'fullname_err'=>'',
-                'user_name_err'=>'',
+                // 'user_name_err'=>'',
                 'address_err'=>'',
                 'nic_err'=>'',
                 'dob_err'=>'',
@@ -844,7 +842,7 @@ class Users extends Controller
         $_SESSION['advisor_name'] = $details->name;
         $_SESSION['advisor_photo_path'] = $details->photo;
         $_SESSION['advisor'] = 1;
-        redirect('advisors/viewHomePage');
+        redirect('advisors/addtecno');
     }
 
 

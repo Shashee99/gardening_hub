@@ -3,7 +3,7 @@
 <div class="contener">
          <?php require_once APPROOT.'/views/inc/incAdvisor/navbar.php';?>    
 
-            <div class="contener-2">
+         <div class="contener-2">
             <?php require_once APPROOT.'/views/inc/incAdvisor/sidebar.php';?> 
                <div class="item_add_files">
                   <div class="form">
@@ -26,6 +26,7 @@
                                                 <option value="vegetable">Vegetable</option>
                                                 <option value="fruits">Fruits</option>
                                                 <option value="flowers">Flowers</option>
+                                                <option value="others">Others</option>
                                            </select>
                                              <div class="error">
                                                 <span><?php echo $data['catagory_error'];  ?> </span>
@@ -34,7 +35,7 @@
 
                                           <div class="input-box">
                                              <span>Enter your content</span>
-                                              <textarea  class="type-content"  name="content"    placeholder="Enter your content" ></textarea>
+                                              <textarea  class="type-content"  name="content"    placeholder="Enter your content" ><?php echo $data['content'];  ?></textarea>
                                              <div class="error">
                                                 <span><?php echo $data['content_error'];  ?></span>
                                              </div>
@@ -68,9 +69,7 @@
                </div>
 
      
-             </div> 
+          </div> 
 </div>
-
-
 
 <?php require_once APPROOT.'/views/inc/incAdvisor/item_add_footer.php';?>

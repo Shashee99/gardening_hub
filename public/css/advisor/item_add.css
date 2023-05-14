@@ -179,3 +179,7 @@
     transition: all .1s ease-in-out;
     transform: scale(0.95);
 }
+#tec{
+    background-color: #71ce86;
+    color: rgb(255, 255, 255);
+}

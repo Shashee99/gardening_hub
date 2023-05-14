@@ -71,7 +71,7 @@
     border: none;
     font-size: 20px;
     font-weight: 400;
-    padding-inline: 2rem;
+    padding-inline: 7rem;
     outline: none;
     background-color: #C4EDC9;
 }
@@ -121,8 +121,10 @@
     display: flex;
     flex-direction: column;
     border-radius:12px ;
+    outline: 3px solid #19894d;
     /* background-color: aliceblue; */
-    box-shadow: 0 18px 0 0 rgba(234, 143, 143, 0.06), 0 2px 0 0 rgba(0, 0, 0, 0.02);
+    /* box-shadow: 0 18px 0 0 rgba(234, 143, 143, 0.06), 0 2px 0 0 rgba(0, 0, 0, 0.02); */
+    box-shadow: 0 10px 20px -10px #19894d;
      background-color: #C4EDC9;
 
    
@@ -236,6 +238,14 @@
     font-weight: 500;
     
 }
+.update span{
+    margin-top: 8px;
+    text-decoration: none;
+    list-style: none;
+    color: rgb(230, 34, 34);
+    font-weight: 500;  
+}
+
 .update i{
     padding: 9px;
 }
@@ -272,4 +282,160 @@
     height: 30%;
     background-color: #00A778;
 }
+/* popup msg css*/
+#backgr{
+	background-color: rgba(0,0,0,0.5);
+	width: 100%;
+	height: 100%;
+	display: none;
+	/* take this to front */
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+
+}
+#cancel_popup{
+	position: fixed;
+	/* background-color: rgba(0,0,0,0.5); */
+	top: 0;
+	left: 0;
+	z-index: 2;
+	display: none;
+	float: left;
+	margin-left: 36%;
+	margin-top: 23%;
+	background-color:rgb(255, 236, 236);
+	width: 43%;
+    border-radius: 15px;
+    box-shadow: 0 18px 15px 0 rgba(234, 143, 143, 0.06), 0 2px 0 0 rgba(0, 0, 0, 0.02);
+
+    height: 40%;
+}
+.commemt-fild{
+    width: 90%;
+    height: 63%;
+    display: flex;
+    flex-direction: column;
+    background-color: #C4EDC9;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    margin-left: 1.5rem;
+}
+#cancel_popup p{
+	font-size: 25px;
+    font-weight: 600;
+    margin-top: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 10rem;
+}
+.buttons{
+    width: 100%;
+    height: 80%;
+    /* background-color: #00A778; */
+}
+.but{
+    display: flex;
+}
+.delete-but{
+    width: 100px;
+    height: 50px;
+}
+.disition{
+    width: 90%;
+    height: 60%;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    /* background-color: #00A778; */
+}
+.delete-but{
+    margin-top: 1.5rem;
+    width: 100px;
+    border-radius: 12px;
+    height: 35px;
+    border: none;
+    border: 1px solid #00A778;
+    color: #00A778;
+}
+.delete-but:hover{
+    color:#f5eee0;
+    background-color: #00A778;
+}
+#delete-button{
+    border: 1px solid #e73333; 
+    color: #e73333;
+}
+#delete-button:hover{
+    background-color:#e73333 ;
+    color: #f5eee0;
+}
+#tec{
+    background-color: #71ce86;
+    color: rgb(255, 255, 255);
+}
+.empty_record{
+    /* padding: 50px; */
+    width: 60%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    margin: 50px auto 45px auto;
+    margin-left: 12rem;
+    border-radius: 15px;
+    font-size: 25px;
+    box-shadow: 0 10px 20px -10px #000000;
+    background-color: #C4EDC9;
+}
+.empty_record h2{
+    margin-top: 5rem;
+}
+/* aleat message  */
+.allert{
+    background-color: lightgreen;
+    border: 2px solid green;
+    margin-left: 15rem;
+    width: 400px;
+    height: 50px;
+    display: flex;
+    
+    justify-content: center;
+    align-items: center ;
+    border-radius: 10px;
+  }
+  .allert p{
+    font-size: 16px;
+    color: #a51818;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+/* #cancel_popup button{
+	width: 20%;
+	height: 30px;
+	margin-left: 20%;
+	margin-top: 2%;
+	color: white;
+	display: flex;
+    
+	border:none;
+	border-radius: 10px;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+#yes{
+	background-color: #ff1d1d;
+	
+}
+#no{
+	background-color: #18cc19;
+} */
+
+/**/
+
+
 

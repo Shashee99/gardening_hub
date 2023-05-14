@@ -260,7 +260,14 @@
     font-size: 20px;
     font-weight: 200;
 }
-
+#problem
+{
+  color: rgb(255, 255, 255);
+  background-color: #71ce86;
+} 
+#tec{
+  color:black ;
+}
 
 
    
