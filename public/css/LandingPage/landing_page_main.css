@@ -554,12 +554,18 @@ header {
     gap: 40px;
 
 }
+.advisordecription_converse{
+    display : grid;
+    grid-template-columns: auto 300px;
+    gap: 40px;
+
+}
 .advisordec{
     position: relative;
     top: 100px;
     background-color: var(--light-gray);
-    border-radius: 50px;
+
     /*border: 1px solid black;*/
     padding: 50px;
-    margin-bottom: 110px;
+
 }
