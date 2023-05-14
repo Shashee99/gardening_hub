@@ -82,5 +82,13 @@ class Complaint
     }
 
 
+    public function getcomplainphotos($complainid){
+        $this -> db -> query('SELECT * FROM complain_photos WHERE complain_id = :complainid');
+        $this -> db -> bind(':complainid',$complainid);
+        $result = $this->db->resultSet();
+        return $result;
+    }
+
+
 
 }

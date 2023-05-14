@@ -24,7 +24,7 @@
                 <tr>
                     <td>
                        <div class="flex" style="justify-content: space-evenly">
-                           <div onclick="deletecustomer(<?=$data['customerinfo'] -> customer_id; ?>);" class="delete" >Remove</div>
+                           <div onclick="deletecustomer(<?=$data['customerinfo']  -> customer_id; ?>);" class="delete" >Remove</div>
                        </div>
                    </td>
               </tr>

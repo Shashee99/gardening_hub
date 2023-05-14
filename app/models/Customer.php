@@ -11,7 +11,7 @@
 
         public function getCustomerDetails($cus_id)
         {
-            $sql = "SELECT * FROM customer WHERE customer_id = :cus_id LIMIT 1";
+            $sql = "SELECT * FROM `customer` WHERE customer_id = :cus_id";
             $this->db->query($sql);
             $this->db->bind(':cus_id', $cus_id);
             $row = $this->db->singleRecord($sql);

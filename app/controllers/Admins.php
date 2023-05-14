@@ -193,6 +193,7 @@ class Admins extends Controller
     public function viewcustomer($id)
     {
         $customerinfo = $this->customerModel->getCustomerDetails($id);
+//        var_dump($customerinfo);
         $data = [
             'nav' => 'customers',
             'title' => 'Customers',
@@ -353,6 +354,8 @@ class Admins extends Controller
         $complainee = $this->userModel->getNamebyuserid($complaints->complained_user_id);
         $complainee_type = $this->userModel->getUsertype($complaints->complained_user_id);
         $this->complaintModel->viewedcomplain($complaintID);
+        $complain_photos = $this ->complaintModel->getcomplainphotos($complaintID);
+
 
         $data = [
             'nav' => 'complaint',
@@ -364,7 +367,8 @@ class Admins extends Controller
             'complainee_type' => $complainee_type,
             'jsfile' => 'admin_complaint.js',
             'complainantid' => $posted_id,
-            'complaineeid' => $complainted_id
+            'complaineeid' => $complainted_id,
+            'complain_photos' => $complain_photos
         ];
         $this->view('admin/complaintview', $data);
 

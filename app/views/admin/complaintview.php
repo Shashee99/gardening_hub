@@ -19,12 +19,11 @@
             <li><b>Problem </b> <div style="width: 400px; height: 100px; overflow: scroll;"><?= $data['complaints']-> complain ?></div></li>
             <li>
             <div class="complainphotos parentwidth">
-                <div class="complainphotos_1"><img src="<?=URLROOT;?>/img/upload_images/customer_pp/IMG-64336695707eb4.76947797.jpg" alt="" width="100%" height="100%" onclick="previewImage(this)"></div>
-<!--                <div class="complainphotos_1"><img src="--><?//=URLROOT;?><!--/img/upload_images/customer_pp/IMG-63a40c0c97bec9.72962555.jpg" alt="" width="100%" height="100%"></div>-->
-<!--                <div class="complainphotos_1"><img src="--><?//=URLROOT;?><!--/img/upload_images/customer_pp/IMG-63a40c0c97bec9.72962555.jpg" alt="" width="100%" height="100%"></div>-->
-<!---->
-<!--                <div class="complainphotos_1"><img src="--><?//=URLROOT;?><!--/img/upload_images/customer_pp/IMG-63a40c0c97bec9.72962555.jpg" alt="" width="100%" height="100%"></div>-->
-
+                <?php if (count($data['complain_photos']) > 0) : ?>
+                    <?php foreach ($data['complain_photos'] as $row) : ?>
+                        <div class="complainphotos_1"><img src="<?=URLROOT;?>/img/upload_images/customer_pp/<?= $data['complain_photos'] -> complain_photo ?>" alt="" width="100%" height="100%" onclick="previewImage(this)"></div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
             </li>
             <li>
