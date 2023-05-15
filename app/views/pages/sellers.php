@@ -13,15 +13,12 @@
                    <i> At our gardening system, we believe in empowering sellers to take their businesses to new heights. With our user-friendly interface, you can easily upload your products, set prices, and manage your inventory. Plus, our community of passionate gardeners and knowledgeable advisors provides you with valuable feedback and insights to help you improve and refine your offerings. Whether you're an established seller or just starting out, our system has everything you need to succeed. Sign up today and discover the possibilities!</i>
                 </p>
                 <br>
-                <a href="http://localhost/gardening_hub/pages/signup" style="text-decoration:none;cursor:pointer;border-radius: 10px; width: 300px;padding:10px">
-                    <h3 style="font-size: 30px">sign up now !</h3>
-                </a>
             </div>
 
         </div>
     </section>
 
 </div>
-
+<br><br><br><br><br>
 <?php require APPROOT . '/views/inc/incHome/footer.php'; ?>
 
