@@ -10,7 +10,7 @@
         }
         public function viewallProblem()
         {
-            $sql = 'SELECT * FROM problem INNER JOIN customer ON problem.customer_id = customer.customer_id WHERE is_delete=0';
+            $sql = 'SELECT * FROM problem INNER JOIN customer ON problem.customer_id = customer.customer_id WHERE problem.is_delete=0';
             $this -> db -> query($sql);
             return $this->db->resultSet();
         }
@@ -30,16 +30,13 @@
         }
         public function getAproblemwithcusinfo($id)
         {
-            $sql = 'SELECT * FROM problem INNER JOIN customer ON problem.customer_id = customer.customer_id  WHERE problem.problem_id = :problem_id AND is_delete = 0';
+            $sql = 'SELECT * FROM problem INNER JOIN customer ON problem.customer_id = customer.customer_id  WHERE problem.problem_id = :problem_id AND problem.is_delete = 0';
             $this->db->query($sql);
             $this->db->bind(':problem_id', $id);
             return $this->db->singleRecord();
         }
         
-        public function  getreplywithuserDetails($problem_id)
-        {
-            $sql = 'SELECT * FROM problema_reply INNER JOIN ON Advisor WHERE problem_id= :problem_id AND is_delete = 0';
-        }
+       
         public function addProblem($data, $photo)
         {
             $sql = "INSERT INTO problem (title,content,category,customer_id) VALUES (:title,:content,:cat,:cus_id)";

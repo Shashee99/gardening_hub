@@ -38,7 +38,7 @@
                
          </div>
          <div class="valbox" id="d3">
-               <img src="<?= URLROOT;?>/img/customer/time1.png" alt="">
+               <img src="<?= URLROOT;?>/img/customer/pending-cart.png" alt="">
                <div>
                   <h3><?= $data['pending_to_complete']; ?></h3>
                   <span>Pending To Complete</span>
