@@ -74,11 +74,11 @@
                
                 <div class="buttons">
                     <div class="submit-btn">
-                        <input type="submit" value="ADD">
+                        <input type="submit" value="Add">
                     </div>
                     <div class="cancele-btn">
                         <a href="<?= URLROOT; ?>/problems/viewProblems">
-                            <input type="button" value="Cancele">
+                            <input type="button" value="Cancel">
                         </a>
                     </div>
                 </div>

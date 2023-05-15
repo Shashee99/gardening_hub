@@ -20,7 +20,7 @@
             <div class="item" id="item1">
                 <li>
                     <a href="<?php echo URLROOT; ?>/customers/viewHomePage">
-                        <img src="<?php echo URLROOT; ?>/img/customer/layout.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/img/customer/dashboard1.png" alt="">
                         <span class="title">Home Page</span>
                     </a>
                 </li>
@@ -29,7 +29,7 @@
                 <li>
                     <a href="<?php echo URLROOT; ?>/products/viewProducts">
                         
-                        <img src="<?php echo URLROOT; ?>/img/customer/package.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/img/customer/box.png" alt="">
                         <span class="title">Products</span>
                     </a>
                 </li>
@@ -38,7 +38,7 @@
                 <li>
                     <a href="<?php echo URLROOT; ?>/wishlists/viewWishlist">
                         
-                        <img src="<?php echo URLROOT; ?>/img/customer/shopping-cart.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/img/customer/shopping-cart1.png" alt="">
                         
                         <span class="title">Wishlist</span>
                     </a>
@@ -48,7 +48,7 @@
                 <li>
                     <a href="<?php echo URLROOT; ?>/progresses/viewMyProgress">
                     
-                        <img src="<?php echo URLROOT; ?>/img/customer/goal.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/img/customer/goal1.png" alt="">
                         
                         <span class="title">Progress</span>
                     </a>
@@ -58,7 +58,7 @@
                 <li>
                     <a href="<?php echo URLROOT; ?>/harvests/viewAddMyHarvest">
                         
-                        <img src="<?php echo URLROOT; ?>/img/customer/harvest (1).png" alt="">
+                        <img src="<?php echo URLROOT; ?>/img/customer/harvest1.png" alt="">
                         
                         <span class="title">Harvest</span>
                     </a>
@@ -68,7 +68,7 @@
                 <li>
                     <a href="<?php echo URLROOT; ?>/problems/viewProblems">
                     
-                        <img src="<?php echo URLROOT; ?>/img/customer/question.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/img/customer/doubts-button.png" alt="">
                     
                         <span class="title">Problems</span>
                     </a>
@@ -78,7 +78,7 @@
                 <li>
                     <a href="<?php echo URLROOT; ?>/advisors/viewAdvisors">
                     
-                        <img src="<?php echo URLROOT; ?>/img/customer/financial-advisor.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/img/customer/advisor1.png" alt="">
                         
                         <span class="title">Advisors</span>
                     </a>
@@ -88,7 +88,7 @@
                 <li>
                     <a href="<?php echo URLROOT; ?>/agriCenters/viewAgriCenters">
 
-                        <img src="<?php echo URLROOT; ?>/img/customer/warehouse.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/img/customer/warehouse1.png" alt="">
                     
                         <span class="title">Agri Centers</span>
                     </a>
@@ -98,7 +98,7 @@
                 <li>
                         <a href="<?php echo URLROOT; ?>/chats/chatforum">
                         
-                            <img src="<?php echo URLROOT; ?>/img/customer/chat.png" alt="">
+                            <img src="<?php echo URLROOT; ?>/img/customer/chat1.png" alt="">
                             
                             <span class="title">Chat Forum</span>
                         </a>
@@ -108,7 +108,7 @@
                 <li>
                     <a href="<?php echo URLROOT; ?>/newTechs/viewNewTech">
                         
-                        <img src="<?php echo URLROOT; ?>/img/customer/sustainable-energy.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/img/customer/sustainable-energy1.png" alt="">
                         
                         <span class="title">Technologies</span>
                     </a>
@@ -118,7 +118,7 @@
                 <li>
                     <a href="<?php echo URLROOT; ?>/reports/viewreports">
         
-                        <img src="<?php echo URLROOT; ?>/img/customer/computer.png" alt="">
+                        <img src="<?php echo URLROOT; ?>/img/customer/stats.png" alt="">
                         
                         <span class="title">Reports</span>
                     </a>
@@ -128,7 +128,7 @@
         </div>
         <div class="top-bar">
             <div class="menu">
-                <img src="<?php echo URLROOT; ?>/img/customer/menu (1).png" alt="">
+                <img src="<?php echo URLROOT; ?>/img/customer/menu3.png" alt="">
             </div>
             <div class="items">
                 <h3><?= $_SESSION['cus_name']; ?></h3>
@@ -138,7 +138,7 @@
                     </a>
                 </div>
                 <a href="<?= URLROOT;?>/users/logout">
-                    <img src="<?php echo URLROOT; ?>/img/customer/logout.png" alt="">
+                    <img src="<?php echo URLROOT; ?>/img/customer/log-out.png" alt="">
                 </a>
             </div>
             

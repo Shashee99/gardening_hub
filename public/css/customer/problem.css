@@ -1,5 +1,6 @@
 .rest{
-    background-color: rgba(239, 239, 239, 0.75);
+    background-color: #ffffff;
+    box-shadow: -3px -3px 3px rgba(0, 0, 0, 0.2);
     margin-top: 100px;
     margin-left: 270px;
     height: fit-content;
@@ -10,12 +11,12 @@
     height: 100%;
 }
 #item6{
-    background-color: #6ffb60;
+    background-color: #00a778;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
 .problem-filter{
-    margin: 20px auto 0 50px;
+    margin: 20px auto 0 30px;
 
 }
 .problem-filter select{
@@ -23,8 +24,7 @@
     font-size: 18px;
     color: #000;
     height: 55px;
-
-    /* border: thin solid #a47c34; */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     background-color: #fff;
     border-radius: 10px;
     border: none;
@@ -43,7 +43,7 @@
     border-radius: 10px;
 }
 .problem-add .border{
-    width: 580px;
+    width: 95%;
     height: 60px;
     border: #00a778 dashed 3px;
     display: flex;
@@ -75,6 +75,7 @@
     margin: 20px auto 10px auto ;
     background-color: #fff;
     border-radius: 10px;
+    box-shadow: 0 10px 20px -10px #000000;
 }
 .problem-card:hover{
     transition: all .05s ease-in-out;
@@ -120,18 +121,43 @@
     width: 90%;
     padding: 20px;
     background-color: #efefef;
-    margin: 10px auto;
+    margin: 10px auto 20px auto;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
+    border-radius: 10px;
+
 }
 .problem-card .problem .problem-image img{
     width: 120px;
 }
 .problem a{
     width: 100px;
+}
+.links{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.problem button{
+    width: 80px;
+    height: 30px;
+    border: none;
+    color: red;
+    background-color: #fff;
+    border: 2px solid red;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.problem button:hover{
+    transition: all .2s ease-in-out;
+    transform: scale(0.95);
+    color: #fff;
+    background-color: red;
 }
 .problem a:hover .reply-link #green{
     display: block;
@@ -143,6 +169,7 @@
     display: flex;
     justify-content: flex-start;
     margin-left: 10px;
+    width: 50%;
 }
 .reply-link img{
     width: 20px;
@@ -161,34 +188,71 @@
     margin-top: 10px;
     display: none;
 }
-/* .reply{
-    background-color: #efefef;
-    width: 85%;
-    margin: 0 0 10px 10% ;
+.confirm-delete-popup{
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.9);
+    
+}
+.confirm-delete-popup .modal-content {
+    background-color: #fefefe;
+    margin: 200px auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
     border-radius: 10px;
-
 }
-.reply .user-info{
+.confirm-delete-popup .modal-content  p{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.modal-buttons {
     display: flex;
-    justify-content: left;
-    align-items: center;
-    margin: 0px 0 0 20px;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 0 10px;
 }
-.reply .user-info .photo img{
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 20px;
-    margin-top: 20px;
+#confirm-delete{
+    background-color: white;
+    color: red;
+    padding: 14px 20px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    border: 2px solid red;
+    border-radius: 10px;
 }
-.reply .user-info .name-date-time{
-    margin-top: 20px;
+#confirm-delete:hover{
+    background-color: red;
+    color: #fff;
+    transform: scale(0.95);
+    transition: all .3s ease-in-out;
 }
-.reply .reply-content{
-    margin: 10px 10px;
-} */
-
+#cancel-delete:hover{
+    background-color: #00a778;
+    color: #fff;
+    transform: scale(0.95);
+    transition: all .3s ease-in-out;
+}
+#cancel-delete {
+    background-color: white;
+    color: #00A778;
+    padding: 14px 20px;
+    margin: 8px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    border: 2px solid #00a778;
+    border-radius: 10px;
+}
 .data-form{
     display: none;
 }

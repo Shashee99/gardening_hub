@@ -1,5 +1,6 @@
 .rest{
-    background-color: rgba(239, 239, 239, 0.75);
+    background-color: #ffffff;
+    box-shadow: -3px -3px 3px rgba(0, 0, 0, 0.2);
     margin-top: 100px;
     margin-left: 270px;
     height: fit-content;
@@ -10,7 +11,7 @@
     height: 100%;
 }
 #item5{
-    background-color: #6ffb60;
+    background-color: #00a778;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
@@ -26,14 +27,23 @@
 }
 .options .btn{
     width: 250px;
-    height: 55px;
+    height: 50px;
     background-color: #fff;
     text-align: center;
     padding-top: 10px;
     border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 .options .selectcat select{
     width: 250px;
+    height: 50px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    padding: 10px 35px;
+    font-size: 18px;
+    color: #000;
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
 }
 .options .btn a{
     text-decoration: none;
@@ -59,43 +69,10 @@
 #btn1:hover a{
     color: white;
 }
-select{
-    padding: 10px 35px;
-    font-size: 18px;
-    color: #000;
-    height: 55px;
-    /* border: thin solid #a47c34; */
-    background-color: #fff;
-    border-radius: 10px;
-    border: none;
-}
 select:focus{
     outline: none;
 }
-.add{
-    width: 600px;
-    height: 80px;
-    background-color: #efefef;
-    margin: 30px auto 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-}
-.add .boarder{
-    width: 580px;
-    height: 60px;
-    border: #00a778 dashed 3px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-}
-.add .boarder h2{
-    color: #00a778;
-    font-size: 18px;
-    font-weight: 500;
-}
+
 .other-harvest-wrap{
     margin-bottom: 100px;
 }
@@ -120,7 +97,12 @@ select:focus{
     margin: 20px auto 0 auto ;
     background-color: #fff;
     border-radius: 10px;
-    margin-bottom: 20PX;
+    box-shadow: 0 10px 20px -10px #000000;
+}
+.harvest:hover{
+    box-shadow: 0 10px 20px -10px #00a778;
+    transition: all .05s ease-in-out;
+    transform: translateY(-5px);
 }
 .harvest h3{
     text-align: center;

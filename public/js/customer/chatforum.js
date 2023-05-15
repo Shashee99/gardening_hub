@@ -64,7 +64,7 @@ function load_all_messages(){
                                 ${data[a].message}
                             </div>
                         </div>
-                        <span class="chattime-righ">${ttt}</span>
+                        <span class="chattime-righ"></span>
                     </div>`;
               }else{
                   html += `<div class="chatpreviewoutgoing">
@@ -77,7 +77,7 @@ function load_all_messages(){
                                 ${data[a].message}
                             </div>
                         </div>
-                        <span class="chattime-righ">${ttt}</span>
+                        <span class="chattime-righ"></span>
                     </div>`;
               }
             }

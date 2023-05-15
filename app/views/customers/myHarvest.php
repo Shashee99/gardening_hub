@@ -51,7 +51,7 @@
         
 
         <div class="add-harvest-card">
-            <div class="harvest">
+            <div class="harvest-add">
                 <form action="<?php echo URLROOT; ?>/harvests/viewAddMyHarvest" method="POST" enctype="multipart/form-data">
                     <div class="input-box">
                         <div class="title">
@@ -127,7 +127,7 @@
                         </div>
                         <h3><?php echo $row->title; ?></h3>
                         <div class="content">
-                            <p><?php echo $row->description; ?></p>
+                            <p><?= nl2br($row->description); ?></p>
                         </div>
                         <div class="last">
 
@@ -148,7 +148,7 @@
                             
                         </div>
                         <div class="delete_btn"  >
-                                <button class="delete_buttonsaa" data-wishlistID="<?= $row->harvest_id; ?>">DELETE</button>                               
+                            <button class="delete_buttonsaa" data-wishlistID="<?= $row->harvest_id; ?>">DELETE</button>                               
                         </div><br>
                 
                     </div>

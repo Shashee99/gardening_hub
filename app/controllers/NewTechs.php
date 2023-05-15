@@ -89,6 +89,7 @@ class NewTechs extends Controller
 
                 $data[] = array
                 (
+                    'id' => $id,
                     'advisor_name' => $advisor_name,
                     'advisor_photo' => $advisor_photo,
                     'cat' => $cat,

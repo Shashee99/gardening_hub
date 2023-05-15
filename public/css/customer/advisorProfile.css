@@ -1,5 +1,6 @@
 .rest{
-    background-color: rgba(239, 239, 239, 0.75);
+    background-color: #ffffff;
+    box-shadow: -3px -3px 3px rgba(0, 0, 0, 0.2);
     margin-top: 100px;
     margin-left: 270px;
     height: fit-content;
@@ -10,7 +11,7 @@
     height: 100%;
 }
 #item7{
-    background-color: #6ffb60;
+    background-color: #00a778;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
@@ -56,8 +57,8 @@
     margin-top: 5px;
     padding: 8px 10px 8px 15px;
     border: none;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, .40);
-    
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border-radius: 8px;
 }
 .advisor-profile .details input:focus{
     outline: none;
@@ -70,6 +71,7 @@
     gap: 20px;
     justify-content: space-evenly;
     background-color: #efefef;
+    border-radius: 10px;
 }
 .advisor-profile .details .images img{
     width: 100px;
@@ -80,11 +82,10 @@
     text-decoration: none;
     color: #00a778;
     text-align: center;
-    padding: 15px;
-    width: 200px;
+    padding: 8px 10px;
     background-color: #fff;
     cursor: pointer;
-    margin: 10px auto 20px auto;
+    margin: 20px auto 20px auto;
     border-radius: 10px;
     border: #00a778 solid 2px;
 
@@ -103,4 +104,6 @@
     border: none;
     font-size: 14px;
     padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border-radius: 10px;
 }

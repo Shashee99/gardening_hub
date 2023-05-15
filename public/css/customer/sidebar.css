@@ -53,8 +53,8 @@ li img{
     background-color: none;
 }
 ::-webkit-scrollbar-thumb{
-    background-color: #259529;
-    border-radius: 30px;
+    background-color: #676767;
+    border-radius: 2px;
 }
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 *{
@@ -66,7 +66,7 @@ li img{
 body{
     width: 100%;
     /* background: linear-gradient(249deg, #0BAB64 2.62%, #3BB78F 96.66%); */
-    background-color: rgba(172, 178, 176, 0.43);
+    background-color: #dadada;
     position: relative;
     display: flex;
 }
@@ -103,12 +103,12 @@ li:nth-child(1){
 }
 .navigation .item li a{
     text-decoration: none;
-    color: white;
+    color: black;
     font-size: 18px;
     width: 100%;
 }
 .navigation .item:hover{
-    background-color: #6ffb60;
+    background-color: #00a778;
     border-radius: 0 50px 50px 0;
     width: 95%;
     transition: all .05s ease-in-out;
@@ -126,7 +126,7 @@ li:nth-child(1){
     width: 80px;
 }
 .top-bar{
-    color: #fff;
+    color: black;
     height: 90px;
     position: fixed;
     right: 0;
@@ -163,7 +163,7 @@ li:nth-child(1){
     margin-left: 20;
 }
 .top-bar a img{
-    width: 30px;
+    width: 20px;
     margin-left: 20px;
 }
 
@@ -204,7 +204,7 @@ li:nth-child(1){
     }
     .navigation.active{
         width: 270px;
-        background-color: #3BB78F;
+        background-color: #dadada;
     }
     .navigation.active .item li a span{
         display: inline-block;
@@ -249,6 +249,10 @@ li:nth-child(1){
     }
     .rest{
         margin-top: 90px;
+    }
+    .rest.active{
+        margin-left: 90px;
+        width: calc(100% - 90px);
     }
 }
 /* @media (max-width: 767px){

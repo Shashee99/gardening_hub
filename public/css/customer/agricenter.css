@@ -1,5 +1,6 @@
 .rest{
-    background-color: rgba(239, 239, 239, 0.75);
+    background-color: #ffffff;
+    box-shadow: -3px -3px 3px rgba(0, 0, 0, 0.2);
     margin-top: 100px;
     margin-left: 270px;
     height: fit-content;
@@ -10,7 +11,7 @@
     height: 100%;
 }
 #item8{
-    background-color: #6ffb60;
+    background-color: #00a778;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
@@ -22,6 +23,8 @@
     border-radius: 10px;
     background-color: #efefef;
     width: 300px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
 }
 .search-img{
     width: 50px;
@@ -46,6 +49,6 @@
 }
 #map{
     width: 80%;
-    height: 800px;
-    margin: 0 auto;
+    height: 600px;
+    margin: 0 auto 20px auto;
 }

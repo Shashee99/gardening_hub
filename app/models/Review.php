@@ -44,7 +44,7 @@
         }
         public function overallRatingOfProduct($id)
         {
-            $sql ="SELECT AVG(rating) AS rate, COUNT(*) As count FROM product_rating_review  WHERE product_id =:pro_id ";
+            $sql ="SELECT AVG(rating) AS rate, COUNT(*) As count FROM product_rating_review  WHERE product_id =:pro_id";
             $this->db->query($sql);
             $this->db->bind(':pro_id', $id);
             $result = $this->db->singleRecord();
@@ -65,8 +65,16 @@
             $this->db->query($sql);
             $this->db->bind(':seller_id', $id);
             $this->db->bind(':cus_id', $_SESSION['cus_id']);
-            $result = $this->db->resultSet();
-            return $result;
+            $this->db->execute();
+            
+            if($this->db->rowCount() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         public function topRatedProducts($id)
         {

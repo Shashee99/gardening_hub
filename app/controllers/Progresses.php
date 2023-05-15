@@ -13,7 +13,7 @@
         public function viewMyProgress()
         {
             $result = $this->progressModel->viewMyProgress($_SESSION['cus_id']);
-            //$result = $this->haervestModel->allOtherHarvest();
+            $data = array();
             foreach($result as $progress)
             {
                 $progress_id = $progress->progress_id;
@@ -48,6 +48,7 @@
         public function viewOtherProgress()
         {
             $result = $this->progressModel->viewOtherProgress($_SESSION['cus_id']);
+            $data = array();
             
             foreach($result as $progress)
             {
@@ -87,6 +88,7 @@
         public function deleteprogress($id)
         {
             $this->progressModel->deleteprogress($id);
+            flash('progress_Delete_successfuly', 'You Cultivation progress deleted successfuly');
             redirect('progresses/viewMyProgress');
         }
         public function addProgress()

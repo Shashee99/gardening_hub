@@ -43,7 +43,7 @@
                 </div>
                 <div class="input-box">
                     <span class="details">Cultivation Progress</span>
-                    <textarea name="progress"  id='<?php echo (!empty($data['progress_err'])) ? 'invalid' : 'description'; ?>' placeholder="Enter Your cultivation Progress"  cols="30" rows="10" ></textarea>
+                    <textarea name="progress"  id='<?php echo (!empty($data['progress_err'])) ? 'invalid' : 'description'; ?>' placeholder="Enter Your cultivation Progress"  cols="30" rows="10" ><?php echo $data['progress']; ?></textarea>
                     <div class="error">
                         <span><?php echo $data['progress_err']; ?></span>
                     </div>
@@ -75,7 +75,7 @@
                         <input type="submit" value="ADD">
                     </div>
                     <div class="cancele-btn">
-                        <a href="<?= URLROOT; ?>/problems/viewProblems">
+                        <a href="<?= URLROOT; ?>/progresses/viewMyProgress">
                             <input type="button" value="Cancele">
                         </a>
                     </div>

@@ -24,6 +24,7 @@ selectMenu.addEventListener("change", function()
             {
                 for(let item of response)
                 {
+                    let description = item.description.replace(/\n/g, '<br>');
                     out += `
                     <div class="harvest">
                     <div class="part1">
@@ -38,7 +39,7 @@ selectMenu.addEventListener("change", function()
                     </div>
                     <h3>${item.title}</h3>
                     <div class="content">
-                        <p>${item.description}</p>
+                        <p>${description}</p>
                     </div>
                     <div class="last">
 
@@ -50,9 +51,10 @@ selectMenu.addEventListener("change", function()
                         }
                         
                         out += `</div>
-                        <div class="delete_btn">
-                            <button class="delete_buttonsaa" data-wishlistID="${item.id}">DELETE</button>      
-                        </div>
+                        
+                    </div>
+                    <div class="delete_btn">
+                        <button class="delete_buttonsaa" data-wishlistID="${item.id}">DELETE</button>      
                     </div><br>
             
                 </div>
@@ -69,8 +71,6 @@ selectMenu.addEventListener("change", function()
             // Get the cancel delete button
             const cancelButton = document.getElementById("cancel-delete");
 
-            console.log("Hello");
-
             buttons.forEach(function(btn){
                 btn.addEventListener("click", function(){
                     modal.style.display = "block";
@@ -78,7 +78,7 @@ selectMenu.addEventListener("change", function()
 
                     const container = document.getElementById("modal-button");
                     container.innerHTML = 
-                                '<form action="http://localhost/gardening_hub/harvests/deletHarvest/'+id +'" method="POST">'+
+                                '<form action="http://localhost/gardening_hub/harvests/deletHarvest/'+id+'" method="POST">'+
                                     '<button id="confirm-delete" type="submit">Yes</button>'+
                                 '</form>'+
 

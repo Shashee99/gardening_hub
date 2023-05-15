@@ -1,5 +1,6 @@
 .rest{
-    background-color: rgba(239, 239, 239, 0.75);
+    background-color: #ffffff;
+    box-shadow: -3px -3px 3px rgba(0, 0, 0, 0.2);
     margin-top: 100px;
     margin-left: 270px;
     height: fit-content;
@@ -10,7 +11,7 @@
     height: 100%;
 }
 #item5{
-    background-color: #6ffb60;
+    background-color: #00a778;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
@@ -26,15 +27,17 @@
 }
 .options .btn{
     width: 250px;
-    height: 55px;
+    height: 50px;
     background-color: #fff;
     text-align: center;
     padding-top: 10px;
     border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     /* margin: 0 50px 0 0; */
 }
 .options .selectcat select{
     width: 250px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 .options .btn a{
     text-decoration: none;
@@ -103,6 +106,12 @@ select:focus{
     margin: 20px auto 0 auto ;
     background-color: #fff;
     border-radius: 10px;
+    box-shadow: 0 10px 20px -10px #000000;
+}
+.harvest:hover{
+    box-shadow: 0 10px 20px -10px #00a778;
+    transition: all .05s ease-in-out;
+    transform: translateY(-5px);
 }
 .harvest h3{
     text-align: center;
@@ -154,6 +163,12 @@ figcaption{
 .content p{
     margin-left: 20px;
     margin-right: 20px;
+}
+.add-harvest-card .harvest-add{
+    box-shadow: 0 10px 20px -10px #000000;
+    width: 95%;
+    margin: 30px auto ;
+    border-radius: 10px;
 }
 .add-harvest-card .last{
     display: flex;
@@ -209,7 +224,7 @@ form .input-box .title #invalid{
     border-radius: 50px;
 }
 
-.add-harvest-card .harvest .input-box select{
+.add-harvest-card .harvest-add .input-box select{
     height: 40px;
     width: 50%;
     font-size: 14px;
@@ -275,6 +290,7 @@ label{
     cursor: pointer;
     transition: all 0.3s ease;
     border: 2px solid #00A778;
+    color: #00A778;
     border-radius: 10px;
     background: none;
 }
@@ -310,12 +326,12 @@ label{
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border: 2px solid #00A778;
     border-radius: 10px;
     background: none;
     border: 2px solid red;
+    color: red;
 }
-.harvest .delete_btn input:hover{
+.harvest .delete_btn button:hover{
     transform: scale(0.95);
     background: red;
     color: #fff;
@@ -353,7 +369,7 @@ label{
 }
 .confirm-delete-popup .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 200px auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 30%; /* Could be more or less, depending on screen size */
@@ -379,25 +395,44 @@ label{
 
 .modal-buttons {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 0 10px;
 }
 #confirm-delete{
-    background-color: red;
-    color: white;
+    background-color: white;
+    color: red;
     padding: 14px 20px;
     margin: 8px;
     border: none;
     cursor: pointer;
     width: 100px;
+    border: 2px solid red;
+    border-radius: 10px;
+}
+#confirm-delete:hover{
+    background-color: red;
+    color: #fff;
+    transform: scale(0.95);
+    transition: all .3s ease-in-out;
+}
+#cancel-delete:hover{
+    background-color: #00a778;
+    color: #fff;
+    transform: scale(0.95);
+    transition: all .3s ease-in-out;
 }
 #cancel-delete {
-    background-color: #00A778;
-    color: white;
+    background-color: white;
+    color: #00A778;
     padding: 14px 20px;
     margin: 8px;
     border: none;
     cursor: pointer;
     width: 100px;
+    border: 2px solid #00a778;
+    border-radius: 10px;
 }
 @media (max-width: 992px){
     .images img{
@@ -423,7 +458,7 @@ label{
         width: 80px;
         height: 80px;
     }  
-    .add-harvest-card .harvest .input-box select{
+    .add-harvest-card .harvest-add .input-box select{
         width: 90%;
     }
     form .input-box textarea{

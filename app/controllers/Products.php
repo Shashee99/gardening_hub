@@ -5,12 +5,15 @@
         private $productModel;
         private $categoryModel;
         private $ratingModel;
+        private $wishlistModel;
 
         public function __construct()
         {
             $this->productModel = $this->model('Product');
             $this->categoryModel = $this->model('ProductCategory');
             $this->ratingModel = $this->model('Review');
+            $this->wishlistModel = $this->model('Wishlist');
+
 
         }
         public function viewProducts()
@@ -91,7 +94,8 @@
                     'title' => $products->title,
                     'seller' => $products->shop_name,
                     'quantity' => $products->quantity,
-                    'price' => $products->price
+                    'price' => $products->price,
+                    'ratings' => ($this->ratingModel->overallRatingOfProduct($products->product_no))->rate  //(($this->ratingModel->overallRatingOfProduct($products->product_no))->rate === null) ? 0 : ($this->ratingModel->overallRatingOfProduct($products->product_no))->rate
                 );
             }
             echo json_encode($arr, JSON_UNESCAPED_UNICODE);
@@ -103,9 +107,13 @@
                 $cus_id = $_POST['cus_id'];
                 $pro_id = $_POST['product_id'];
 
-                if($this->ratingModel->isAddedProductReview($pro_id, $cus_id))
+                if(!($this->wishlistModel->isCustomerCollectOrder($pro_id)))
                 {
-                    echo json_encode("true", JSON_UNESCAPED_UNICODE);
+                    echo json_encode("true1", JSON_UNESCAPED_UNICODE);
+                }
+                elseif($this->ratingModel->isAddedProductReview($pro_id, $cus_id))
+                {
+                    echo json_encode("true2", JSON_UNESCAPED_UNICODE);
                 }
                 else
                 {

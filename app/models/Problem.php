@@ -10,27 +10,27 @@
         }
         public function viewallProblem()
         {
-            $sql = 'SELECT * FROM problem INNER JOIN customer ON problem.customer_id = customer.customer_id';
+            $sql = 'SELECT * FROM problem INNER JOIN customer ON problem.customer_id = customer.customer_id WHERE is_delete=0';
             $this -> db -> query($sql);
             return $this->db->resultSet();
         }
         public function givenUserProblems($id)
         {
-            $sql = 'SELECT * FROM problem WHERE customer_id= :cus_id';
+            $sql = 'SELECT * FROM problem WHERE customer_id= :cus_id AND is_delete = 0';
             $this->db->query($sql);
             $this->db->bind(':cus_id', $id);
             return $this->db->resultSet();
         }
         public function getAproblem($id)
         {
-            $sql = 'SELECT * FROM problem WHERE problem_id= :problem_id';
+            $sql = 'SELECT * FROM problem WHERE problem_id= :problem_id AND is_delete = 0';
             $this->db->query($sql);
             $this->db->bind(':problem_id', $id);
             return $this->db->singleRecord();
         }
         public function getAproblemwithcusinfo($id)
         {
-            $sql = 'SELECT * FROM problem INNER JOIN customer ON problem.customer_id = customer.customer_id  WHERE problem.problem_id = :problem_id';
+            $sql = 'SELECT * FROM problem INNER JOIN customer ON problem.customer_id = customer.customer_id  WHERE problem.problem_id = :problem_id AND is_delete = 0';
             $this->db->query($sql);
             $this->db->bind(':problem_id', $id);
             return $this->db->singleRecord();
@@ -38,7 +38,7 @@
         
         public function  getreplywithuserDetails($problem_id)
         {
-            $sql = 'SELECT * FROM problema_reply INNER JOIN ON Advisor WHERE problem_id= :problem_id';
+            $sql = 'SELECT * FROM problema_reply INNER JOIN ON Advisor WHERE problem_id= :problem_id AND is_delete = 0';
         }
         public function addProblem($data, $photo)
         {
@@ -123,11 +123,11 @@
             $this->db->execute();
         }
 
-        public function getreplyfromcustomerid($cusid,$problem_id){
-            $sql = "SELECT * FROM problem_reply INNER JOIN advisor ON problem_reply.advisor_id = advisor.advisor_id WHERE problem_reply.customer_id = :cusid AND problem_reply.problem_id = :probid";
+        public function getreplyfromcustomerid($problem_id){
+            $sql = "SELECT * FROM problem_reply INNER JOIN advisor ON problem_reply.advisor_id = advisor.advisor_id WHERE problem_reply.problem_id = :probid";
             $this->db->query($sql);
             $this->db->bind(':probid', $problem_id);
-            $this->db->bind(':cusid', $cusid);
+            // $this->db->bind(':cusid', $cusid);
             return $this->db->resultSet();
         }
 
@@ -147,5 +147,13 @@
                 return $this->db->resultSet();
             }
 
+        }
+        public function deleteProblem($id)
+        {
+            $sql = "UPDATE problem SET is_delete=1 WHERE problem_id = :id";
+            $this->db->query($sql);
+            $this->db->bind(':id',$id);
+            $this->db->execute();
+            return true;
         }
     }

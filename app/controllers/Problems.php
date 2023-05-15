@@ -35,7 +35,7 @@
         public function viewOneProblem($id)
         {
             $problems = $this->problemModel->getAproblem($id);
-            $replies = $this ->problemModel ->getreplyfromcustomerid($_SESSION['cus_id'],$id);
+            $replies = $this ->problemModel ->getreplyfromcustomerid($id);
             $problem_photos = array();
             $photos = $this->problemModel->problemPhotosById($problems->problem_id);
                 foreach($photos as $photo)
@@ -51,6 +51,9 @@
                     'photos' => $problem_photos,
                     'reply' => $replies
                 ];
+
+            // print_r($data);
+            // die();
 
             $this->view('customers/viewOneProblem',$data);
         }
@@ -163,4 +166,11 @@
             ];
             $this->view('customers/addProblem', $data);
         }
+        public function deletProblem($id)
+        {
+            $this->problemModel->deleteProblem($id);
+            flash('progress_Delete_successfuly', 'You Cultivation problen deleted successfuly');
+            redirect('problems/viewProblems');
+        }
+
     }

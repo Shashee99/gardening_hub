@@ -1,5 +1,6 @@
 .rest{
-    background-color: rgba(239, 239, 239, 0.75);
+    background-color: #ffffff;
+    box-shadow: -3px -3px 3px rgba(0, 0, 0, 0.2);
     margin-top: 100px;
     margin-left: 270px;
     height: fit-content;
@@ -10,7 +11,7 @@
     height: 100%;
 }
 #item4{
-    background-color: #6ffb60;
+    background-color: #00a778;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
@@ -27,11 +28,12 @@
 }
 .filter-options .btn{
     width: 220px;
-    height: 55px;
+    height: 50px;
     background-color: #fff;
     text-align: center;
     padding-top: 10px;
     border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     /* margin: 0 50px 0 0; */
 }
 .filter-options .btn a{
@@ -74,6 +76,8 @@
     border-radius: 10px;
     border: none;
     width: 220px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
 }
 select:focus{
     outline: none;
@@ -81,10 +85,13 @@ select:focus{
 .other-progress-wrapper{
     margin-bottom: 100px;
 }
+.other-progress-card{
+    box-shadow: 0 20px 30px -20px #000000;
+}
 .other-progress-card:hover {
     transition: all .05s ease-in-out;
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px -10px #00a778;
+    box-shadow: 0 20px 30px -20px #00a778;
 }
 .other-progress-card .part1{
     display: flex;

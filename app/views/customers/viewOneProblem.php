@@ -39,16 +39,23 @@
                     </p><br>
 
                 </div>
-                <div class="problem-image">
-                                <?php
-                                foreach($data['photos'] as $row1)
-                                {
-                                ?>
-                                    <img src="<?= URLROOT; ?>/img/upload_images/problem_photo/<?= $row1 ; ?>" alt="">
-                                <?php   
-                                }
-                                ?>
-                </div>
+                <?php
+                        if(!empty($data['photos']))
+                        {
+                        ?>
+                            <div class="problem-image">
+                            <?php
+                            foreach($data['photos'] as $row1)
+                            {
+                            ?>
+                                <img src="<?= URLROOT; ?>/img/upload_images/problem_photo/<?= $row1 ; ?>" alt="">
+                            <?php   
+                            }
+                            ?>
+                        </div>
+                        <?php
+                        }
+                        ?>
             
             </div>
             <?php

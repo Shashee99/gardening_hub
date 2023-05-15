@@ -3,6 +3,8 @@
     class Advisors extends Controller
     {
         private $advisorModel;
+        private $problemModel;
+        private $categoryModel;
 
         public function __construct()
         {
@@ -15,11 +17,7 @@
             // }
 
             if (!isAdvisorLogin()) {
-<<<<<<< HEAD
-                if(!isset($_SESSION['cus_id']) && !isset($_SESSION['user_id']))
-=======
                 if(!isset($_SESSION['cus_id']) && !isset($_SESSION['user_id'])&& $_SESSION['advisor_id'])
->>>>>>> feature_advisor
                 {
                     redirect('users/login');
                 }
@@ -718,64 +716,4 @@
 
 
      }
-<<<<<<< HEAD
 }
-=======
-
-     //test-------------------
-    //  public function getCategories(){
-    //     //$category=$_POST['category'];
-    //     //echo $category;
-    //    // $this->addtecno('cat');
-    //   // print_r($cat);
-    // //    if($cat!=null){
-    // //      $category=$cat;
-
-    // //    }else{
-    // //      $category="all";
-    // //    }
-
-    //  $data = array();
-    //  //$problems = $this->advisorModel->giveTecno($_SESSION['advisor_id'],$category);
-    //  //get categroy
-    //  $getcategory=$this->advisorModel->getCategory($_SESSION['advisor_id']);
-    //  print_r($getcategory);
-    //  //print_r($category);
-    // // print_r($cat);
-    //  foreach($getcategory as $rows)
-    //  {
-    //     //  $problem_photos = array();
-    //     //  $photos = $this->advisorModel->tecnoPhotosById($rows->no);
-    //     //  foreach($photos as $photo)
-    //     //  {
-    //     //      $problem_photos[] = $photo->imge;
-    //     //      // $problem_photos[] = $photo->imge;
-    //     //  }
-    //      $data[] = array
-    //      (
-    //         //  'title'=> $rows->title,
-    //          'catagory'=>$rows->category,
-    //         //  'content'=>$rows->content,
-    //         //  'date'=>$rows->date,
-    //         //  'no'=>$rows->no,
-    //         //  'photos' => $problem_photos,
-             
-    //      );
-
-    //  }
-    // //print_r($data);
-    //  echo(json_encode($data));
-
-
-
-    // //$this->view('advisor/addtecno',$data);
-
-
-    //  }
-
-
-
-
-
-    }
->>>>>>> feature_advisor
