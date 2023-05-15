@@ -68,14 +68,14 @@
             <div id="btn_area">
 
                 <div class="buton">
-                    <input type="submit" class="btn_nxt" id="btn_nxt_add1"></input>
+                    <input type="submit" class="btn_nxt" id="btn_nxt_add1" value="Next"></input>
                 </div>
                 
             </div><br><br>
             
         </form>
         <div id="btn_area">
-            <div class="buton" id="req_buton">
+            <div class="butonadd1" id="req_buton">
                 <button class="req_cat" id="req_cat" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/request_category';">Request for new categorys</button>
                 <div class="req_msg">
                     <p>If you do not have a sutable category in the list, Then you can requset for a new category name that related for your items. We wish to 
@@ -125,17 +125,6 @@
 
         ajax.send("category=" + category);
 
-        // if (value.length == 0) document.getElementById("categorySelect").innerHTML = "<option></option>";
-        // else {
-        //     var citiesOptions = "";
-        //     for (categoryId in subcategory[value]) {
-        //         citiesOptions += "<option>" + subcategory[value][categoryId] + "</option>";
-        //     }
-        //     document.getElementById("categorySelect").innerHTML = citiesOptions;
-        // }
-
-        
-
     }
 
     function fillprogressbar(){
@@ -150,58 +139,5 @@
         four.classList.remove("active");
         five.classList.remove("active");
     }
-
-    // function displaySelected() {
-    //     var country = document.getElementById("category").value;
-    //     var city = document.getElementById("categorySelect").value;
-    //     if(!((country.length === 0) && (city.length === 0))) {
-    //         document.getElementById("btn_btn").disabled = true;
-
-    //     } else {
-    //         document.getElementById("btn_btn").disabled = true;
-    // }
-
-
-    // function resetSelection() {
-    //     document.getElementById("category").selectedIndex = 0;
-    //     document.getElementById("categorySelect").selectedIndex = 0;
-    // }
-
-
-    // ---------------------------------------------------------//
-    // --------------- Progress Bar ----------------------------//
-
-    
-    // const five = document.querySelector(".five");
-
-//     one.onclick = function() {
-//         one.classList.add("active");
-//         two.classList.remove("active");
-//         three.classList.remove("active");
-//         four.classList.remove("active");
-//         five.classList.remove("active");
-//     }
-
-//     two.onclick = function() {
-//         one.classList.add("active");
-//         two.classList.add("active");
-//         three.classList.remove("active");
-//         four.classList.remove("active");
-//         five.classList.remove("active");
-//     }
-//     three.onclick = function() {
-//         one.classList.add("active");
-//         two.classList.add("active");
-//         three.classList.add("active");
-//         four.classList.remove("active");
-//         five.classList.remove("active");
-//     }
-//     four.onclick = function() {
-//     one.classList.add("active");
-//     two.classList.add("active");
-//     three.classList.add("active");
-//     four.classList.add("active");
-//     five.classList.remove("active");
-// }
 </script>
 <?php require APPROOT . '/views/inc/incSeller/footer.php'; ?>

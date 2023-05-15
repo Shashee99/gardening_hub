@@ -2,19 +2,19 @@
 
     class Customers extends Controller
     {
-        private $customerModel;
-        private $wishlistModel;
+        private $customerModel;//create conection customer model
+        private $wishlistModel;//create conection wishlist model
         
 
         public function __construct()
-        {
+        {  //make conection to model
             $this->userModel = $this->model('User');
             $this->customerModel = $this->model('Customer');
             $this->wishlistModel = $this->model('Wishlist');
             $this->mailer = new Mailer();
 
         }
-
+        //view customer home page 
         public function viewHomePage()
         {
             $data = [
@@ -28,16 +28,17 @@
             // die();
             $this->view('customers/cushomepage',$data );
         }
+        //customer view all others customer
         public function allcustomers(){
             $tabledata = $this->customerModel->get_all_customers();
             $tabledata =json_encode($tabledata);
             echo $tabledata;
             exit();
         }
-
+      //search other customer names by this function
         public function searchbynames(){
 
-
+            //check post request
             if(isset($_POST['searchbyname'])){
                 $text = $_POST['searchbyname'];
                 $dataset = $this->customerModel -> searchuserbyname($text);
@@ -54,7 +55,7 @@
             }
 
         }
-
+       //not in use now 
         public function recentlyaddedcustomers(){
 
             $dataset = $this -> customerModel -> recentlyaddedcustomers();
@@ -62,6 +63,7 @@
             echo $data;
             exit();
         }
+        // get customer profile data and pass the data view page by this function
         public function myProfile($id)
         {
             $cus_details = $this->customerModel->getCustomerFullDetails($id);
@@ -70,10 +72,10 @@
             ];
             $this->view('customers/profile',$data);
         }
-
+      //admin delete customer by this function
         public function deletecustomer(){
             $id = $_POST['id'];
-
+            //call model accoding to the customer id
             $username = $this ->customerModel ->getCustomerName($id);
             $email = $this ->userModel ->getemailbyuserid($id);
             $result = $this -> customerModel -> deletecustomer($id);

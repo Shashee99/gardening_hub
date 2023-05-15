@@ -1,11 +1,10 @@
 <?php require APPROOT . '/views/inc/incSeller/header.php'; ?>
 
-
 <div class="container">
     <main>
         <div class="productmenu">
             <div class="order_info_part">
-                <button class="button" id="cusorder" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/order';"> Customers Orders</button>
+                <button class="button" id="cusorderdb" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/order';"> Customers Orders</button>
                 <div id="noti">
                     <button id="noti_butn" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/order';">
                         <h3 id="noti_count"><?php echo $data['notificationData'][0] -> num_noti; ?></h3>
@@ -24,8 +23,7 @@
                 </ul>
 
             </div>
-            <!-- <input type="button" class="button"  value="View Genarate Report"> -->
-            <button class="button" id="genreport" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/genarate_report';">View Genarate Report</button>
+            <button class="button" id="genreport" onclick="window.location.href = '<?php echo URLROOT; ?>/sellers/genarate_report';">Income Overview</button>
 
         </div>
         <div class="products">
@@ -74,7 +72,7 @@
                                 <span>Rs. <stron><?php echo $item_data -> price; ?></stron></span>
                             </div>
                             <div class="avi">
-                                <h6>Available <?php echo '('.$item_data -> quantity.')' ?></h6>
+                                <h6>Available <?php echo '('.$item_data -> quantity - $item_data -> sold_quantity.')' ?></h6>
                             </div>
                         </div>
                         <div class="operations">
@@ -89,23 +87,9 @@
     </main>
 </div>
 
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+
 <script>
 
-    // function ajax(div){
-    //     var delete_item_id = div.getAttribute("btn_id");
-    //     console.log(delete_item_id);
-    //     var ajax = new XMLHttpRequest();
-    //     ajax.onreadystatechange=function(){
-    //         if(this.readyState==4 && this.status==200){
-    //             console.log(this.responseText);
-    //         }
-    //     }
-    //     ajax.open("POST","../sellers/delete");
-    //     ajax.send("delete_item_id" + delete_item_id)
-
-
-    // }
     $("button").click(function(){
         var t = $(this).attr('btn_id');
         if(t.includes('delete')) {
@@ -132,112 +116,6 @@
         }
     })
 
-    // $("button").click(function(){
-    //     var t = $(this).attr('btn_id');
-    //     if(t.includes('delete')) {
-    //         var delete_item_id = t.replace('delete', '');
-    //         // var delete_msg = delete_item_id.concat("delete_alert");
-    //         var request = new XMLHttpRequest();
-    //         var url = "http://localhost/gardening_hub/sellers/delete_item";
-    //         var method = "POST";
-    //         request.open(method, url, true);
-    //         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    //         request.send("delete_item_id=" + delete_item_id);
-    //         alert(delete_item_id);
-    //         window.location.reload();
-    //     }
-    // })
-
-
-    // $(document).ready(function(){
-    //     $('.radio').click(function(){
-    //         var radio_value = $('.radio:checked').val();
-    //         alert(radio_value);
-    //         var request = new XMLHttpRequest();
-    //         var url = "http://localhost/gardening_hub/sellers/radio_select";
-    //         var method = "POST";
-    //         request.open(method, url, true);
-    //         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    //         request.send("radio_value=" + radio_value);
-    //     });
-    // })
-    
-    // let selected_radio = document.querySelector(".all_items");
-    // let change_area = document.querySelector(".itemgrid");
-
-    // selected_radio.addEventListener("change", function()
-    // {
-    //     let httpRequest = new XMLHttpRequest();
-    //     let selected_category = this.value;
-
-    //     httpRequest.onreadystatechange = function()
-    //     {
-    //         if(this.readyState == 4 && this.status == 200)
-    //         {
-    //             let response = JSON.parse(this.responseText);
-    //             let search_result = "";
-    //             if(response.length == 0)
-    //             {
-    //                 search_result += `
-    //                     <div class='empty_record' >
-    //                         <h2>Items can not found</h2>
-    //                     </div>
-    //                 `;
-    //             }
-    //             else
-    //             {
-    //                 for(let item of response){
-    //                     search_result += `
-    //                     <div class="sampleitem">
-    //                 <div class="delete_alert" id="${item.product_no}delete_alert">
-    //                     <p id="delete_msg">Do you want to permanetly delete this item</p>
-    //                     <div class="icons">
-    //                         <button class="cr_btn" btn_id="${item.product_no}correct" type="submit">
-    //                             <i id="correct" class="fa-solid fa-circle-check"></i>
-    //                         </button>
-    //                         <button class="cr_btn" btn_id="${item.product_no}worng">
-    //                             <i id="wrong" class="fa-solid fa-circle-xmark"></i>
-    //                         </button>
-    //                     </div>
-    //                 </div>
-    //                     <div class="sampleimg">
-    //                         <a href="http://localhost/gardening_hub/sellers/show/${item.product_no}">
-                            
-    //                             <img src="http://localhost/gardening_hub/sellers/show/${item.image}" alt="Image"> 
-    //                         </a>
-    //                     </div>
-    //                     <h4>${item.title}h4>
-                        
-    //                     <div class="ratings">
-    //                         <span class="fa fa-star checked"></span>
-    //                         <span class="fa fa-star checked"></span>
-    //                         <span class="fa fa-star checked"></span>
-    //                         <span class="fa fa-star"></span>
-    //                         <span class="fa fa-star"></span>
-    //                     </div>
-                       
-    //                     <div class="price">
-    //                         <span>Price <stron>${item.price}</stron></span>
-    //                     </div>
-    //                     <div class="operations">
-    //                         <button class="button" btn_id="${item.price}update"
-    //                         onclick="window.location.href='http://localhost/gardening_hub/sellers/update/${item.product_no}';">Update</button>
-                            
-    //                         <button class="button del" type="submit" btn_id="${item.product_no}delete">Delete</button>
-    //                     </div>
-    //                 </div>
-    //                     `;
-    //                 }
-    //             }
-    //             container.innerHTML = search_result;
-    //         };
-    //     }
-    //     httpRequest.open('POST', "http://localhost/gardening_hub/sellers/radio_select", true);
-    //     httpRequest.setRequestHeader("content-type", "application/x-www-form-urlencoded");
-    //     httpRequest.send("category="+selected_category);
-    //     alert(selected_category);
-    // });
-
     let change_area = document.querySelector(".itemgrid");
 
     document.addEventListener('DOMContentLoaded', function () {
@@ -255,12 +133,14 @@
             {
                 let response = JSON.parse(this.responseText);
                 let search_result = "";
-                // alert(response.length);
+                console.log(response);
                 if(response.length == 0)
                 {
                     search_result += `
-                        <div class='sampleitem' >
-                            <h2>Items can not found</h2>
+                        <div>
+                            <div id='notfoundback'></div>
+                            <img src="http://localhost/gardening_hub/img/seller/notfound.png" alt="Image" class='abdsampleitem' >
+                            <h2 id='notfound_text'>Items can not found</h2>
                         </div>
                     `;
                 }
@@ -292,9 +172,9 @@
                             <div class="RatingStars" id="${item.product_no}">
                                 <div class="stars-outer-below">
                                     <h5 id="num_ratings_bolow" class="num_ratings_bolow">
-                                        ${((item.total_rating)*10000)/10000}
+                                        ${((item.total_rating*1).toFixed(1))}
                                     </h5>
-                                    <div class="stars-inner-below"></div>
+                                    <div class="stars-inner-below" style = "width : ${((item.total_rating*1).toFixed(1))*20}%"></div>
                                 </div>
                             </div>
                         </div>
@@ -347,26 +227,27 @@ if(noti_count == 0){
 
 // ----------------------------- Itemcard Rating Stars ------------------------//
 
+
+// select all .RatingStars classes and save to star array
 const star = document.querySelectorAll(".RatingStars");
+console.log(star);
 const stars_id = [];
+// Add the id value of each selected classes to the array stars_id
 for(let i=0; i<star.length; i++){
     const arr_val = star[i].id;
     stars_id.push(arr_val);
 }
 
+// select all h5 tag classes
 const star_count = document.getElementsByTagName("h5");
 const star_counts = [];
-
+// Add value of each selected h5 tag to the array star_counts
 for(let i=0; i<star_count.length; i++){
     const arr_content_num = star_count[i].textContent;
+    //Convert to float value and convert to 1st place decimal number
     const arr_content_num_float = parseFloat(arr_content_num).toFixed(1);
     console.log(arr_content_num_float);
-    // const arr_content_num_chars = arr_content_num.match(/\d+/g).join('');
-    
-    // const arr_content_num_int = parseInt(arr_content_num_chars).toFixed(1); 
     star_counts.push(arr_content_num_float);
-    // console.log(arr_content_num_int);
-
 }
 
 document.addEventListener('DOMContentLoaded', getRatings);
@@ -374,15 +255,14 @@ document.addEventListener('DOMContentLoaded', getRatings);
 
 function getRatings(){
     for(let star_count in star_counts){
+        // make rating value as percentage
         const starPercentage = `${(star_counts[star_count]/5) * 100}%`;
         console.log(starPercentage);
         const find = document.getElementById(stars_id[star_count]);
-        // console.log(find);
+        // add that percentage value as with of 'stars-inner-below' class
         (find.childNodes[1].children[1]).style.width = starPercentage;
         find.childNodes[1].childNodes[1].innerHTML = "( "+star_counts[star_count]+" )";
     }
-
-    // document.getElementById("num_ratings_bolow").innerHTML = "( "+final_total_star+" )";
 }
 </script>
 

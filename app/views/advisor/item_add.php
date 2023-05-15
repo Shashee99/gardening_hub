@@ -3,7 +3,7 @@
 <div class="contener">
          <?php require_once APPROOT.'/views/inc/incAdvisor/navbar.php';?>    
 
-            <div class="contener-2">
+         <div class="contener-2">
             <?php require_once APPROOT.'/views/inc/incAdvisor/sidebar.php';?> 
                <div class="item_add_files">
                   <div class="form">
@@ -23,10 +23,13 @@
                                             <span>Select your category</span>
                                             <select name='category' class="type-cetagory"   value="<?php echo $data['catagory'];  ?>" >
                                                 <option value="" selected hidden>select category</option>
-                                                <option value="vegetable">Vegetable</option>
-                                                <option value="fruits">Fruits</option>
-                                                <option value="flowers">Flowers</option>
-                                           </select>
+                                                <option value="Vegetable plants">Vegetable plants </option>
+                                                   <option value="Fruits plants">Fruits plants</option>
+                                                   <option value="Flowers plants">Flowers plants</option>
+                                                   <option value="bonsai plants">Bonzzy plants</option>
+                                                   <option value="Hybrid plants">Hybrid plants</option>
+                                                   <option value="Others plants" >Others plants</option>
+                                                </select>
                                              <div class="error">
                                                 <span><?php echo $data['catagory_error'];  ?> </span>
                                              </div>
@@ -34,7 +37,7 @@
 
                                           <div class="input-box">
                                              <span>Enter your content</span>
-                                              <textarea  class="type-content"  name="content"    placeholder="Enter your content" ></textarea>
+                                              <textarea  class="type-content"  name="content"    placeholder="Enter your content" ><?php echo $data['content'];  ?></textarea>
                                              <div class="error">
                                                 <span><?php echo $data['content_error'];  ?></span>
                                              </div>
@@ -68,9 +71,7 @@
                </div>
 
      
-             </div> 
+          </div> 
 </div>
-
-
 
 <?php require_once APPROOT.'/views/inc/incAdvisor/item_add_footer.php';?>

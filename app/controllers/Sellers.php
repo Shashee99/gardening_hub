@@ -25,7 +25,9 @@ class Sellers extends Controller
     {
         //Get item details
         $itemData = $this -> sellerModel ->getItemData();
+        //Get category data
         $catData = $this -> sellerModel -> getCatData();
+        //Get notification data
         $notificationData = $this -> sellerModel -> getNotificationCount();
         // $ratingStarData = $this -> sellerModel -> getratingStarData();
 
@@ -35,16 +37,16 @@ class Sellers extends Controller
             'itemData' => $itemData,
             'catData' => $catData,
             'notificationData' => $notificationData
-            // 'ratingStarData' => $ratingStarData
         ];
 
-        // var_dump($data['notificationData'][0] -> num_noti);
+        // Load view with data contain in 'data' array
         $this->view('seller/dashboard', $data);
     }
 
     public function add1()
     {
         error_reporting(E_ERROR | E_PARSE);
+        //Check for post request
         if ($_SERVER ['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             $data = [
@@ -67,17 +69,17 @@ class Sellers extends Controller
             ];
 
             if (empty($data['selected_category']) && empty($data['selected_subcategory'])) {
-                // $data['cat_err'] = "\u{26A0}".'  Please enter Ctegory and Subcategory';
                 $data['cat_err'] = 'Please enter Ctegory and Subcategory';
                 
                 $data['err_symbol'] = "\u{f06a}";
-
             }
+
             if (empty($data['cat_err'])) {
                 $this->view('seller/add2', $data);
             } else {
                 $this->view('seller/add1', $data);
             }
+            
         } else {
 
             $data = [
@@ -141,10 +143,16 @@ class Sellers extends Controller
             if (empty($data['quantity'])) {
                 $data['quantity_err'] = 'Please enter quantity';
                 $data['err_symbol3'] = "\u{f06a}";
+            } elseif (!is_numeric($data['quantity'] )) {
+                $data['quantity_err'] = 'Quantity should be a number';
+                $data['err_symbol3'] = "\u{f06a}";
             }
 
             if (empty($data['price'])) {
                 $data['price_err'] = 'Please enter product price';
+                $data['err_symbol4'] = "\u{f06a}";
+            } elseif (!is_numeric($data['price'] )){
+                $data['price_err'] = 'Price should be a number';
                 $data['err_symbol4'] = "\u{f06a}";
             }
 
@@ -550,8 +558,7 @@ class Sellers extends Controller
                 'application/pdf' => 'pdf'
             ];
 
-            if ($fileSize === 0) {
-                // $data1['image_err'] = 'Please attach Image';
+            if ($fileSize == 0) {
                 $data1['image'] = $itemData->image;
             } elseif ($fileSize > 10000000) {
                 $data1['image_err'] = 'Image is too large';
@@ -565,8 +572,10 @@ class Sellers extends Controller
             $totsize = 0;
 
 
-            if ($multifileSize == 0) {
-                $data1['photo_err'] = 'Used the previous images';
+            if (empty($filesname)) {
+                $this->sellerModel->updateProductDetails($data1);
+                redirect('sellers/dashboard');
+
             } else {
 
                 if ($filecount > 4) {
@@ -595,6 +604,8 @@ class Sellers extends Controller
 
                 //Make sure errors are empty
                 if (empty($data1['image_err']) && empty($data1['photo_err'])) {
+                    // var_dump("Dddgfdg");
+                    // exit();
                     foreach ($_FILES['cover_photos']['name'] as $key => $value) {
                         $img_name = $_FILES['cover_photos']['name'][$key];
                         $tmp_name = $_FILES['cover_photos']['tmp_name'][$key];
@@ -605,7 +616,7 @@ class Sellers extends Controller
                         array_push($photo, $new_img);
                     }
 
-                    if ($this->sellerModel->updateProductDetails($data1, $photo)) {
+                    if ($this->sellerModel->updateProductDetails_withCoverPhotos($data1, $photo)) {
                         redirect('sellers/dashboard');
                     } else {
                         die('Something went wrong');
@@ -648,10 +659,12 @@ class Sellers extends Controller
 
     }
 
-public function radio_select(){
+    public function radio_select(){
     $radio_value = $_POST['category'];
     $selected_radio_items = $this -> sellerModel -> getSelectedRadioItems($radio_value);
     // $selected_radio_cat = $this -> sellerModel -> getSelectedRadioCats($radio_value);
+
+    $data = array();
     
     foreach($selected_radio_items as $item)
     {
@@ -661,7 +674,6 @@ public function radio_select(){
         $price = $item -> price;
         $quantity = $item -> quantity;
         $total_rating = $item -> total_rating;
-        
 
         $data[] = array(
             'product_no' => $product_no,
@@ -672,10 +684,11 @@ public function radio_select(){
             'total_rating' => $total_rating
         );
     }
+    
     echo json_encode($data, JSON_UNESCAPED_UNICODE);
-}
+    }
 
-public function request_category(){
+    public function request_category(){
     if($_SERVER ['REQUEST_METHOD'] == 'POST') {
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         $data = [
@@ -695,7 +708,7 @@ public function request_category(){
         ];
         $this->view('seller/request_category');
     }
-}
+    }
 
 public function genarate_report(){
 
@@ -703,6 +716,17 @@ public function genarate_report(){
 }
 
     public function genarate_pdf(){
+
+        $reportData = $this -> sellerModel -> getreportData();
+        $totalIncome = $this -> sellerModel -> gettotalIncome();
+        $data = [
+            'reportData' => $reportData,
+            'totalIncome' => $totalIncome
+        ];
+        $this -> view('seller/genarate_pdf', $data);
+    }
+
+    public function genarate_pdf_download(){
 
         $reportData = $this -> sellerModel -> getreportData();
         $totalIncome = $this -> sellerModel -> gettotalIncome();
@@ -739,6 +763,21 @@ public function genarate_report(){
         echo json_encode("true3", JSON_UNESCAPED_UNICODE); 
     }
 
-}
 
 }
+
+
+
+    public function sellerprofile() {
+
+        $profileData = $this -> sellerModel -> getProfileData();
+
+        $data = [
+            'profileData' => $profileData
+        ];
+        $this -> view('seller/sellerprofile', $data);
+    }
+
+
+}
+

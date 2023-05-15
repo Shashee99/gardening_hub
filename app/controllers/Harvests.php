@@ -2,14 +2,15 @@
 
    class Harvests extends Controller
    {
-        private $haervestModel ;
+        private $haervestModel ;//make conection model 
         private $cusModel;
 
         public function __construct()
         {
-            $this->haervestModel = $this->model('Harvest');
-            $this->cusModel = $this->model('Customer');
+            $this->haervestModel = $this->model('Harvest');//make conecion to model harvest
+            $this->cusModel = $this->model('Customer');//make customer to model customer
          }
+         //customer view his harvest
         public function viewAddMyHarvest ()
         {
             
@@ -121,7 +122,7 @@
             }
             
         }
-
+//add the customer harvest
         public function addHarvest()
         {
             if($_SERVER['REQUEST_METHOD'] == 'POST')
@@ -138,9 +139,10 @@
 
             }
         }
+        // ajax support function for filter harvaest
         public function filterHarvest ()
         {
-            if(isset($_POST['category']))
+            if(isset($_POST['category']))//check category
             {
                $category = $_POST['category'];
          
@@ -213,14 +215,15 @@
                   }
                }
             
-               echo json_encode($arr, JSON_UNESCAPED_UNICODE);
+               echo json_encode($arr, JSON_UNESCAPED_UNICODE); //encode array for pass the js respones
             } 
          }
+         //customer view others harvests
          public function otherHarvests()
          {
 
             //$data = array();
-            $result = $this->haervestModel->allOtherHarvest();
+            $result = $this->haervestModel->allOtherHarvest();//call model
             foreach($result as $harvest)
             {
                $harvest_id = $harvest->harvest_id;
@@ -254,6 +257,7 @@
 
             $this->view('customers/otherHarvest', $data);
          }
+         //ajax support function for filter others harvest
          public function filterOtherHarvest ()
          {
             if(isset($_POST['category']))
@@ -318,7 +322,7 @@
 
                      foreach($photos as $photo)
                      {
-                        $harvest_photo[] = $photo->name;
+                        $harvest_photo[] = $photo->name; //put harvest data in this array
                      }
                      $arr[] = array 
                         (
@@ -337,6 +341,7 @@
             }
 
          }
+         //delete customer  
          public function deletHarvest($id)
          {
             $this->haervestModel->deleteHarvest($id);

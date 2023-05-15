@@ -5,20 +5,27 @@
     <?php require_once APPROOT . '/views/inc/incAdvisor/navbar.php'; ?>
     <div class="chat-contener-2">
         <?php require_once APPROOT . '/views/inc/incAdvisor/sidebar.php'; ?>
-        <div class="filtercontainer">
-            <select name="category" id="category">
-                <option value="">All Category</option>
-                <?php foreach ($data[1]['category_details'] as $category){ ?>
-                    <option value="<?= $category->product_category; ?>"> <?= $category->product_category; ?> </option>
-                <?php } ?>
-            </select>
-            <select name="checked" id="replyornot">
-                <option value="allproblem">All Problems</option>
-                <option value="replied">Replied Problems</option>
-            </select>
-        </div>
-        <div id="problems" class="chat-content">
-            <?php foreach ($data[0] as $problems) { ?>
+     <div class="chat-contener-3"> 
+            <div class="filtercontainer">
+                
+                <select name='category' id="category"   class="type-cetagory"  >
+                 <option value="all">all categories</option>   
+                    <option value="vegetable">Vegetable plants </option>
+                    <option value="fruits">Fruits plants</option>
+                    <option value="flowers">Flowers plants</option>
+                    <option value="Bonzzy">Bonzzy plants</option>
+                    <option value="hybrid">Hybrid plants</option>
+                    <option value="others" >Others plants</option>
+                </select>
+
+                <select name="checked" id="replyornot">
+                    <option value="allproblem">All Problems</option>
+                    <option value="replied">Replied Problems</option>
+                </select>
+         </div>       
+         <div id="problems" class="chat-content">
+             <?php flash('send reply');?>
+            <?php foreach ($data as $problems) { ?>
                 <div class="chat-pot">
                     <div class="user-problem">
                         <div class="user-profile">
@@ -52,14 +59,9 @@
             <?php } ?>
 
         </div>
-
-
-
-
-
     </div>
 
-
+ </div>
 
 
 
@@ -102,20 +104,73 @@
     function getfilteron(){
         const cat = category.value;
         const repliedornot = repornot.value;
-
         console.log(cat);
         console.log(repliedornot);
-
-
         var ajax = new XMLHttpRequest();
-
+        let formdata = new FormData();
+        formdata.append("category",cat);
+        formdata.append("replied",repliedornot);
         ajax.open("POST", "http://localhost/gardening_hub/advisors/filterproblems", true);
-        ajax.send("replied="+repliedornot+"&category="+cat);
+        ajax.send(formdata);
         ajax.onreadystatechange = function () {
-
+       let html = "";    let problemphotos = "";
             if (this.readyState == 4 && this.status == 200) {
-                var data = this.responseText;
-                console.log(data);
+                console.log(this.responseText);
+                let respones=JSON.parse(this.responseText)
+                
+                if(respones.length==0){
+                  html+= `
+                    <div class='empty_record' >
+                        <h2>Records Not Found</h2>
+                    </div>
+                    `;
+
+                  }
+
+                if(respones.length>0){
+                   for(let item of  respones){
+                       html+=`
+                    <div class="chat-pot">
+                       <div class="user-problem">
+                           <div class="user-profile">
+                            <img src="http://localhost/gardening_hub/img/upload_images/customer_pp/${item.customer_photo}" alt="" >
+                            <div>
+                                <h5>Name : ${item.customer_name} </h5>
+                                <h6>${item.date_time}</h6>
+                                <h6>Category : ${item.category}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-problem">
+                        <h3><u>${item.title}</u> </h3>
+                        <p>${item.content}</p>
+                    </div>
+                    <div class="image-problem">`
+                         for(let pht of item.photos){
+                           html+=` <div class=" image-plants"><img src="http://localhost/gardening_hub/img/upload_images/problem_photo/${pht}" class="preview-image" alt="" ></div>`
+                         }
+                      html+=` 
+                       </div>
+                       <div class="reply-view">
+                          <ul>
+                            <li><a style="text-decoration: none " href="http://localhost/gardening_hub/advisors/problem_chat_openoneproblem/${item.problem_id}"><i class="fa-regular fa-comment"></i>Reply</a></li>
+                          </ul>
+                      </div>
+
+                   </div>
+         
+                  `;
+
+
+                }
+
+                }else{
+                    
+                }
+
+
+                problems.innerHTML = html;
+
             }
         };
 
@@ -124,11 +179,5 @@
 
     category.addEventListener('change',getfilteron);
     repornot.addEventListener('change',getfilteron);
-
-
-
 </script>
-
-
-
 <?php require_once APPROOT . '/views/inc/incAdvisor/inchat_footer.php'; ?>

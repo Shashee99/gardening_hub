@@ -3,19 +3,12 @@
     class Advisors extends Controller
     {
         private $advisorModel;
+        
 
         public function __construct()
         {
-            // if (!isAdvisorLogin()) {
-            //     if(!isset($_SESSION['cus_id']))
-            //     {
-            //         redirect('users/login');
-            //     }
-
-            // }
 
             if (!isAdvisorLogin()) {
-
                 if(!isset($_SESSION['cus_id']) && !isset($_SESSION['user_id'])&& $_SESSION['advisor_id'])
                 {
                     redirect('users/login');
@@ -27,6 +20,7 @@
             $this->advisorModel = $this->model('Advisor');
             $this ->problemModel = $this -> model('Problem');
             $this -> categoryModel = $this -> model('ProductCategory');
+            $this -> customerModel = $this -> model('Customer');
          
         }
         public function allregadvisors(){
@@ -97,9 +91,6 @@
 
         }
 
-
-
-
         public function recentlyaddedadvisors(){
             $dataset = $this -> advisorModel -> recentlyaddedadvisors();
             $data = json_encode($dataset);
@@ -116,19 +107,17 @@
         }
       //add tecno lod view--------------
       public function addtecno(){
-       // $category =  $_GET['category'];
-       // print_r($category);
-        $data = array();
-        $problems = $this->advisorModel->giveTecno($_SESSION['advisor_id']);
+        $data = array(); // get data tecnhology by data base this data stor array
+        $problems = $this->advisorModel->giveTecno($_SESSION['advisor_id']); //call the model giveTecno function
         
         foreach($problems as $rows)
         {
             $problem_photos = array();
-            $photos = $this->advisorModel->tecnoPhotosById($rows->no);
+            $photos = $this->advisorModel->tecnoPhotosById($rows->no); // call the model tecnoPhotosByid and get tecnhology photo
             foreach($photos as $photo)
             {
-                $problem_photos[] = $photo->imge;
-                // $problem_photos[] = $photo->imge;
+                $problem_photos[] = $photo->imge; //push iamge in array
+               
             }
             $data[] = array
             (
@@ -143,8 +132,6 @@
 
         }
 
-      // echo json_encode($data, JSON_UNESCAPED_UNICODE);
-
        $this->view('advisor/addtecno',$data);
 
       }
@@ -152,10 +139,7 @@
       //add tecnohlogy for preview--------------
       public function item_add(){
 
-        if($_SERVER['REQUEST_METHOD']=='POST'){
-
-
-           //sanities data
+        if($_SERVER['REQUEST_METHOD']=='POST'){// check post request
            $_POST=filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
            $additem=[
              'title'=> trim($_POST['title']),
@@ -183,9 +167,9 @@
           //validate photo----------------
             $photoname = array_filter($_FILES['photos']['name']);
             $photocount = count($_FILES['photos']['name']);
-            $type = array ('png', 'jpg', 'jpeg');
-            $totsize = 0;
-            $photo = array();
+            $type = array ('png', 'jpg', 'jpeg'); // we can check photo type by this array
+            $totsize = 0; // stor photo size
+            $photo = array();// stor tecnhology photo
 
             if(empty($photoname))
             {
@@ -226,13 +210,13 @@
                     $tmp_name = $_FILES['photos']['tmp_name'][$key];
                     $img_type = strtolower(pathinfo($img_name, PATHINFO_EXTENSION));
                     $new_img = uniqid('IMG-',true).'.'.$img_type;
-                    $img_upload_path = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/advisor_tecno/'.$new_img;
+                    $img_upload_path = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/new_tech_photos/'.$new_img;
                     move_uploaded_file($tmp_name,$img_upload_path);
                     array_push($photo,$new_img);
                 }
 
                 if($this->advisorModel->addTecno($additem,$photo)){
-                    flash('add_new_tecno_successfuly', 'You tecno added successfuly');
+                    flash('add_new_tecno', 'You tecnhology added successfully');
                     redirect('advisors/addtecno');
                 }else{
 
@@ -278,11 +262,8 @@
 
     //   update and delete tecno-----
     function updateTecnhology($id){
-           //die($id);
+          
         if($_SERVER['REQUEST_METHOD']=='POST'){
-
-            //die($id);
-            //sanities data
             $_POST=filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
             $additem=[
               'title'=> trim($_POST['title']),
@@ -353,14 +334,14 @@
                      $tmp_name = $_FILES['photos']['tmp_name'][$key];
                      $img_type = strtolower(pathinfo($img_name, PATHINFO_EXTENSION)); 
                      $new_img = uniqid('IMG-',true).'.'.$img_type;
-                     $img_upload_path = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/advisor_tecno/'.$new_img;
+                     $img_upload_path = 'C:/xampp/htdocs/gardening_hub/public/img/upload_images/new_tech_photos/'.$new_img;
                      move_uploaded_file($tmp_name,$img_upload_path);
                      array_push($photo,$new_img);
                  }
                 
  
                  if($this->advisorModel->tecnoUpdate($additem,$photo,$id)){
-                     flash('add_new_tecno_successfuly', 'You tecno added successfuly');
+                     flash('add_new_tecno_successfuly', 'Your tecnhology updated successfully');
                      redirect('advisors/addtecno');
                  }else{
                     $this->view('advisor/tecnoUpdate',$additem);
@@ -374,12 +355,11 @@
  
  
          }else{
-
+               $getValue=$this->advisorModel->getTecnoFroupdate($_SESSION['advisor_id'],$id);
              $additem=[
-                 'title'=> '',
-                 'catagory'=>'',
-                 'content'=>'', 
-                 'date'=>'',      
+                 'title'=>$getValue->title,
+                 'catagory'=>$getValue->category,
+                 'content'=>$getValue->content,     
                  'title_error' =>'',
                  'catagory_error' =>'',
                  'content_error'=>'',
@@ -403,13 +383,11 @@
             die("is not delete");
           }
       
-
-
     }
 
     // chat function ------------------------------------
     public function problem_chat(){
-         $categories = $this->categoryModel->categorydetails();
+        // $categories = $this->categoryModel->categorydetails();
          $problems = $this->problemModel ->viewallProblem();
 
          foreach($problems as $rows)
@@ -420,7 +398,7 @@
                 {
                     $problem_photos[] = $photo->image;
                 }
-                $data[0][] = array
+                $data[] = array
                 (
                     'id' => $rows->problem_id,
                     'name' => $rows->name,
@@ -433,7 +411,7 @@
                 );
 
             }
-         $data[1]['category_details'] = $categories;
+       //  $data[1]['category_details'] = $categories;
          $this->view('advisor/problem_chat',$data);
  
     }
@@ -455,6 +433,7 @@
                       'date' => $problems->date_time,
                       'title' =>$problems->title ,
                       'name' => $problems->name,
+                      'category'=>$problems->category,
                       'content' => $problems->content,
                       'photos' => $problem_photos,
                       'reply' => $replies,
@@ -479,7 +458,6 @@
                       $data['errormsg'] = "Maximum number of replies limit reached! ";
                       $this->view('advisor/problem_chat_onechatpreview',$data);
                   }
-
               }
               else{
                   //sanities data
@@ -488,13 +466,11 @@
                   $replyfromadvisor = trim($_POST['prompt']);
                   unset($_POST['prompt']);
                   $this->problemModel -> insertreply($id,$replyfromadvisor,$data['cusid'],$_SESSION['advisor_id']);
-
+                  flash('send reply','Successfully reply');
                   redirect('advisors/problem_chat');
+                 
 
               }
-
-
-
 
           }
           else{
@@ -528,25 +504,41 @@
 
 
      }
-
+  //get tecnhology accdoing to the category
      public function filterproblems(){
 
-            $rornot = $_POST['replied'];
+            $replies = $_POST['replied'];
             $category = $_POST['category'];
-
             $advisor  = $_SESSION['advisor_id'];
-            if($rornot == 'allproblem'){
-
-//                $result = $this -> problemModel -> getproblemswithcategoryandadvisorsid($category," ");
-                echo json_encode($category);
-
+            $result = $this->problemModel->filterProblem($category,$replies, $advisor );
+            $data = array();
+            foreach ($result as $row) {
+                $problem = array(
+                    'problem_id' => $row->problem_id,
+                    'title' => $row->title,
+                    'content' => $row->content,
+                    'date_time' => $row->date_time,
+                    'category' => $row->category,
+                    'customer_id' => $row->customer_id,
+                    'customer_name' => ($this->customerModel -> getCustomerDetails($row->customer_id))->name,
+                    'customer_photo' => ($this->customerModel -> getCustomerDetails($row->customer_id))->photo,
+                    'photos' => array()
+                );
+                $problemphotos = $this -> problemModel -> problemPhotosById($row->problem_id);
+                
+                
+                if(!empty($problemphotos)){
+                    foreach($problemphotos as $ph){
+                        $problem['photos'][] = $ph->image;
+                    }
+                }
+            
+                $data[] = $problem;
             }
-            else{
-
-//                $result =  $this -> problemModel -> getproblemswithcategoryandadvisorsid($category,$advisor);
-                echo json_encode($rornot);
-            }
-
+            
+            $json = json_encode($data); // ajax respons encode
+            echo $json;     
+         
      }
 
     
@@ -560,21 +552,19 @@
          
          $_POST=filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
          $getProfile_data=[
-            'userName'=>trim($_POST['user']),
+            // 'userName'=>trim($_POST['user']),
             'fullName'=>trim($_POST['fname']),
             'email'=>trim($_POST['email']),
             'mobile'=>trim($_POST['mobile']),
             'location'=>trim($_POST['address']),
             'brithday'=>trim($_POST['date']),
-            'about_me'=>trim($_POST['about']),
             'poto_pp'=>$_FILES['profile']['name'],
-            'userName_error'=>'',
+            // 'userName_error'=>'',
             'fullName_error'=>'',
             'email_error'=>'',
             'mobile_error'=>'',
             'location_error'=>'',
             'brithday_error'=>'',
-            'about_error'=>'',
             'poto_pp_error'=>''
 
           ];
@@ -614,12 +604,7 @@
         } elseif ((date("Y") - 15) < date("Y", strtotime($getProfile_data['brithday'])) || (date("Y") - 100) > date("Y", strtotime($getProfile_data['brithday']))) {
             $getProfile_data['brithday_error'] = '*Birthday should be bettween ' . (date("Y") - 100) . ' and ' . (date("Y") - 15);
         }
-        //validate about me
-        if(empty($getProfile_data['about_me'])){
-            $getProfile_data['about_error']='*Please enter about me';
-        }elseif(strlen($getProfile_data['about_me'])>25){
-            $getProfile_data['about_error']='*about me should be lessthan 25 character';
-        }
+
         //validate photo
             $type = array('png', 'jpg', 'jpeg');
             $img_type = strtolower(pathinfo($_FILES['profile']['name'], PATHINFO_EXTENSION));
@@ -632,7 +617,7 @@
                 $getProfile_data['poto_pp_error'] = 'Image type should be png or jpeg or jpg';
             }
 
-            if(empty($getProfile_data['userName_error'])&& empty( $getProfile_data['fullName_error'])&& empty( $getProfile_data['email_error'])&& empty( $getProfile_data['mobile_error'])&& empty($getProfile_data['location_error'])&& empty($getProfile_data['brithday_error'])&& empty( $getProfile_data['brithday_error'])&& empty( $getProfile_data['about_error'])&& empty( $getProfile_data['poto_pp_error'])){
+            if(empty( $getProfile_data['fullName_error'])&& empty( $getProfile_data['email_error'])&& empty( $getProfile_data['mobile_error'])&& empty($getProfile_data['location_error'])&& empty($getProfile_data['brithday_error'])&& empty( $getProfile_data['brithday_error'])&& empty( $getProfile_data['poto_pp_error'])){
                       
                 $tmp_name = $_FILES['profile']['tmp_name'];
                 $img_type = strtolower(pathinfo($_FILES['profile']['name'], PATHINFO_EXTENSION));
@@ -646,8 +631,8 @@
                 $_SESSION['advisor_photo_path']=$new_img;
 
                 if($this->advisorModel->editProfile($getProfile_data)){
-                    
-                    redirect('advisors/viewHomePage');
+                    flash('profile update','your profile updated');
+                    redirect('advisors/addtecno');
                 }else{
                    // die();
                 }
@@ -658,13 +643,12 @@
 
                 $getData=$this->advisorModel->getProfile();
                 $Profile_data=[
-                    'userName'=>$getData->userName,
+                    // 'userName'=>$getData->userName,
                     'fullName'=>$getData->name,
                     'email'=>$getData->email,
                     'mobile'=>$getData->tel_no,
                     'location'=>$getData->address,  
                     'brithday'=>$getData->dob,
-                    'about_me'=>$getData->about_me,
                     'poto_pp'=>$getData->photo,
                     'userName_error'=>$getProfile_data['userName_error'],
                     'fullName_error'=>$getProfile_data['fullName_error'],
@@ -672,8 +656,8 @@
                     'mobile_error'=>$getProfile_data['mobile_error'],
                     'location_error'=>$getProfile_data['location_error'],
                     'brithday_error'=>$getProfile_data['brithday_error'],
-                    'about_error'=>$getProfile_data['about_error'],
                     'poto_pp_error'=>$getProfile_data['poto_pp_error']
+                  
         
                   ];
                
@@ -690,21 +674,21 @@
           
           $getData=$this->advisorModel->getProfile();
           $getProfile_data=[
-            'userName'=>$getData->userName,
+            // 'userName'=>$getData->userName,
             'fullName'=>$getData->name,
             'email'=>$getData->email,
             'mobile'=>$getData->tel_no,
             'location'=>$getData->address,
             'brithday'=>$getData->dob,
-            'about_me'=>$getData->about_me,
             'poto_pp'=>$getData->photo,
+            'title'=>'Edite profile',
+            'nav'=>'home',
             'userName_error'=>'',
             'fullName_error'=>'',
             'email_error'=>'',
             'mobile_error'=>'',
             'location_error'=>'',
             'brithday_error'=>'',
-            'about_error'=>'',
             'poto_pp_error'=>''
 
           ];
@@ -714,6 +698,8 @@
        } 
 
 
-     }
+    
+
+    }
 
 }

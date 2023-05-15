@@ -108,3 +108,7 @@ transition: .5s;
   margin-top: .05rem;
   font-size: 1.5rem;
 }
+#home{
+  color: rgb(255, 255, 255);
+  background-color: #71ce86;
+}

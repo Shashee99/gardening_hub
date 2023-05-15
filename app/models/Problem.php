@@ -148,4 +148,44 @@
             }
 
         }
+       // we can use this function for filter problem
+        public function filterProblem($category,$reply,$adviosr)
+        {
+           if($reply==='allproblem' && $category === "all"){
+            $sql2='SELECT * FROM problem';
+            $this->db->query($sql2);
+            return $this->db->resultSet();
+           }
+           elseif($reply==='replied' && $category === "all" ){
+              $sql='SELECT * FROM problem INNER JOIN problem_advisors ON problem.problem_id = problem_advisors.problem_id WHERE problem_advisors.advisor_id = :advisorid';
+              $this->db->query($sql);
+              $this -> db -> bind(':advisorid',$adviosr);
+              return $this->db->resultset();
+               
+           }
+           elseif($reply==='allproblem' && $category != "all"){
+            $sql2='SELECT * FROM problem WHERE category=:category';
+            $this->db->query($sql2);
+            $this->db->bind(':category',$category);
+            return $this->db->resultSet();
+           }
+           elseif($reply==='replied' && $category != "all"){
+            $sql='SELECT * FROM problem INNER JOIN problem_advisors ON problem.problem_id = problem_advisors.problem_id WHERE problem_advisors.advisor_id = :advisorid AND problem.category = :cat';
+            $this->db->query($sql);
+            $this -> db -> bind(':advisorid',$adviosr);
+            $this -> db -> bind(':cat',$category);
+            return $this->db->resultset();
+           }
+           else{
+              $sql2='SELECT * FROM problem WHERE category=:category';
+              $this->db->query($sql2);
+              $this->db->bind(':category',$category);
+              return $this->db->resultSet();
+           }
+    
+        }
+
+
+
+
     }

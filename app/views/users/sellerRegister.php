@@ -1,277 +1,386 @@
-<?php require APPROOT . '/views/inc/incSeller/header.php'; ?>
+<style>
 
-    <style>
-        body{
-            font-family: 'Work Sans';
-            background-color: #00A778;
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css");
 
-        }
-
-        /*nav bar styling*/
-
-        .navbg::before{
-            content: "";
-            position: absolute;
-            width: 100%;
-            top: 0;
-            height: 224px;
-            background-color: white;
-            border-radius: 0px 0px 30px 30px;
-            z-index: 1;
-        }
-        .container{
-            z-index: 6;
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-
-
-        }
-        h3{
-            margin: 16px 0px;
-            font-family: 'Work Sans';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 25px;
-            line-height: 4px;
-            letter-spacing: -0.02em;
-            color: #000000;
-        }
-        .col2{
-            position: absolute;
-            top: 150px;
-            transform: translate(-50%);
-            border: 2px solid black;
-            height: 300px;
-        }
-        .form{
-            display: flex;
-            width: 100%;
-            margin: 45px 0px;
-            justify-content: space-around;
-        }
-        .formcard{
-            margin-top: 70px;
-            background-color: #FAF8FB;
-            width: 100%;
-            height: 500px;
-            border-radius: 20px 20px 0px 0px;
-        }
-        input[type='text']{
-
-            width: 100%;
-            padding: 20px 20px;
-            display: inline-block;
-            border: none;
-            border-bottom: 2px solid black;
-            font-size: 20px;
-            background-color: #FAF8FB;
-            margin: 10px 0px 0px 0px;
-        }
-
-        input[type='email']{
-
-            width: 100%;
-            padding: 20px 20px;
-            display: inline-block;
-            border: none;
-            border-bottom: 2px solid black;
-            font-size: 20px;
-            background-color: #FAF8FB;
-            margin: 10px 0px 0px 0px;
-        }
-
-        input[type='password']{
-
-            width: 100%;
-            padding: 20px 20px;
-            display: inline-block;
-            border: none;
-            border-bottom: 2px solid black;
-            font-size: 20px;
-            background-color: #FAF8FB;
-            margin: 10px 0px 0px 0px;
-        }
-
-
-
-        .error{
-            color: 	#ff3333;
-            padding-left: 30px;
-            display: none;
-            transform: translate(-20px);
-            font-size: 12px;
-        }
-
-        .infotext{
-
-            margin: 10px 0px;
-        }
-        .inputbr{
-            text-align: center;
-            border: 2px dashed black;
-            line-height: 40px;
-            width: 100%;
-            display: inline-block;
-        }
-        .fileup{
-            margin: 20px 0px;
-        }
-        .button span:after {
-            content: '\00bb';
-            position: absolute;
-            opacity: 0;
-            top: 0;
-            right: -20px;
-            transition: 0.5s;
-        }
-
-        .button:hover span {
-            padding-right: 25px;
-        }
-
-        .button:hover span:after {
-            opacity: 1;
-            right: 0;
-        }
-        .button {
-            display: inline-block;
-            border-radius: 4px;
-            background-color: #00A778;
-            border: 2px solid #00A778;
-            color: #000000;
-            text-align: center;
-
-            padding: 12px;
-
-            transition: all 0.5s;
-            cursor: pointer;
-            margin: 23px 0px 0px 0px;
-            font-family: 'Source Sans 3';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 20px;
-
-            letter-spacing: 0.09em;
-            color: rgba(0, 0, 0, 0.9);
-            border-radius: 10px;
-        }
-
-        .button span {
-            cursor: pointer;
-            display: inline-block;
-            position: relative;
-            transition: 0.5s;
-        }
-        .btncancel{
-            background-color: white;
-            border: 2px solid black;
-        }
-        .submitsection{
-            position: absolute;
-            width: 208px;
-            height: 80px;
-            bottom:0;
-            left: 0;
-            right: 0;
-            margin:auto;
-
-        }
-        #inputbtn,#inputbr{
-            display: none;
-
-        }
-        label i{
-            margin-right: 20px;
-        }
-
-    </style>
-
-<?php
-if(($data['name_err']) != null){
-    ?> <style>.name_err{display: block}</style> <?php
+.additem2 {
+    position: relative;
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 50px;
+    border-radius: 4px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    margin: 80px auto;
 }
-if(($data['shop_name_err']) != null){
-    ?> <style>.shop_name_err{display: block}</style> <?php
-}
-if(($data['address_err']) != null){
-    ?> <style>.address_err{display: block}</style> <?php
-}
-if(($data['br_num_err']) != null){
-    ?> <style>.br_num_err{display: block}</style> <?php
-}
-if(($data['mo_num_err']) != null){
-    ?> <style>.mo_num_err{display: block}</style> <?php
-}
-if(($data['email_err']) != null){
-    ?> <style>.email_err{display: block}</style> <?php
-}
-if(($data['password_err']) != null){
-    ?> <style>.password_err{display: block}</style> <?php
-}
-if(($data['confirm_password_err']) != null){
-    ?> <style>.confirm_password_err{display: block}</style> <?php
-}
-if(($data['pro_li_err']) != null){
-    ?> <style>.pro_li_err{display: block}</style> <?php
-}
-?>
 
-    <div class="navbg"></div>
-    <div class="container">
-        <main>
-            <h3>Fill and submit your information</h3>
-            <div class="formcard">
-                <form action="<?php echo URLROOT; ?>/users/sellerRegister" method="post" enctype="multipart/form-data">
-                    <div class="form">
-                        <div class="col1">
-                            <input type="text" name="name" id="name" placeholder="Full name" value="<?php echo $data['name']; ?>"><br>
-                            <p class="error name_err"> <?php echo '* '.$data['name_err']; ?> </p>
-                            <input type="text" name="shop_name" id="shop_name" placeholder="Name of the shop" value="<?php echo $data['shop_name']; ?>"><br>
-                            <p class="error shop_name_err"> <?php echo '* '.$data['shop_name_err']; ?> </p>
-                            <input type="text" name="address" id="address"placeholder="Address" value="<?php echo $data['address']; ?>"><br>
-                            <p class="error address_err"> <?php echo '* '.$data['address_err']; ?> </p>
-                            <input type="text" name="br_num" id="br_num" placeholder="BR Number" value="<?php echo $data['br_num']; ?>"> <br>
-                            <p class="error br_num_err"> <?php echo '* '.$data['br_num_err']; ?> </p>
-                            <input type="text" name="mo_num" id="mo_num" placeholder="Mobile Number" value="<?php echo $data['mo_num']; ?>"><br>
-                            <p class="error mo_num_err"> <?php echo '* '.$data['mo_num_err']; ?> </p>
-                        </div>
-                        <div class="col2"></div>
-                        <div class="col3">
-                            <input type="email" name="email" id="email" placeholder="E-mail address" value="<?php echo $data['email']; ?>"><br>
-                            <p class="error email_err"> <?php echo '* '.$data['email_err']; ?> </p>
-                            <input type="password" name="password" id="password" placeholder="Password" value="<?php echo $data['password']; ?>"><br>
-                            <p class="error password_err"> <?php echo '* '.$data['password_err']; ?> </p>
-                            <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" value="<?php echo $data['confirm_password']; ?>"><br>
-                            <p class="error confirm_password_err"> <?php echo '* '.$data['confirm_password_err']; ?> </p>
-                            <input type="file" name="shopimage" id="shopimage">
-                            <p class="error seller_image_err"> <?php echo '* '.$data['seller_image_err']; ?> </p>
-                            <div class="fileup">
-                                <p>Product licenses</p>
-                                <label for="inputbtn" class="inputbr"><i class="fa-solid fa-upload"></i>Upload File</label>
-                                <input type="file" name="pro_li" id="pro_li">
-                                <br>
-                                <p class="error pro_li_err"> <?php echo '* '.$data['pro_li_err']; ?> </p><br>
-                                <small>* Attach the soft copy of your BR certificate and other product licens</small><br>
-                                <small>* File size of your documents should not exceed 10MB</small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="submitsection">
-                        <input type="submit" value="Submit" class="button">
-                        <input type="submit" value="Cancel" class="button btncancel">
-                    </div>
+.additem2 #itemdis {
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 500;
+    text-align: center;
+}
 
-                </form>
+.additem2 .form {
+    margin-top: 30px;
+}
+
+.form .input-box {
+    width: 100%;
+}
+
+.input-box label {
+    color: #333;
+}
+
+.form :where(.input-box input, .select-box) {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-size: 13px;
+    color: #282A3A;
+    margin-top: 8px;
+    border: 1px solid #00A778;
+    border-radius: 4px;
+    padding: 0 15px;
+}
+
+.headcontent{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.logo{
+    width: 200px;
+    cursor: pointer;
+}
+
+.input-box input:focus {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"]::placeholder {
+    color: #00A778;
+}
+
+.form .column {
+    display: flex;
+    column-gap: 15px;
+}
+
+.address :where(input, .select-box) {
+    margin-top: 15px;
+}
+
+.select-box select {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    color: #707070;
+    font-size: 1rem;
+}
+
+.image_brfile{
+    display: flex;
+}
+
+.firstinfo{
+    width: 35%;
+}
+
+.seller_image{
+    height: 380px;
+    border: 1px solid #00A778;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-top: 8px;
+}
+
+.secondinfo{
+    width: 65%;
+    height: 300px;
+}
+
+.certificate{
+    height: 380px;
+    border: 1px solid #00A778;
+    margin-top: 8px;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+.info_docu{
+    display: block;
+}
+
+#preclick{
+    width: 214px;
+    height: 277px;
+    object-fit: cover;
+    margin: 10px;
+    bottom: 18px;
+    border-radius: 4px;
+}
 
 
+.uploadlabel {
+    width: 233px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 4px;
+    padding-top: 15px;
+}
+
+.uploadlabeldoc{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding-top: 15px;
+}
+
+.dfg{
+    margin-left: 10px;
+}
+
+#pdf_icon {
+    display: none;
+    padding-top: 30px;
+}
+
+#pdf_icon img {
+    max-width: 100px;
+    height: auto;
+    display: flex;
+    margin: auto;
+}
+
+#pdf_icon p {
+    font-size: 14px;
+    margin-top: 5px;text-align: center;
+}
+
+.regsub{
+    display: flex;
+    position: inherit;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+    height: 40px;
+    border-radius: 4px;
+    border: none;
+    background: #00A778;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.reg_err_cls{
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+}
+
+@keyframes hideafteronesec {
+    to{
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+@-webkit-keyframes hideafteronesec {
+    to{
+        width: 0;
+        height: 0;
+        visibility: hidden;
+    }
+}
+
+#reg_err_name {
+    font-size: 14px;
+    color: red;
+    letter-spacing: 1px;
+}
+
+#reg_err_symbl{
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: relative;
+    right: 10px;
+    font-size: 20px;
+    color: red;
+}
+
+</style>
+
+    <section  class="additem2" id="additem2">
+        <div class="headcontent">
+            <a href="<?php echo URLROOT; ?>" class="an">
+                <img src="<?php echo URLROOT; ?>/img/seller/logo.png" alt="" class="logo">
+            </a>
+            <h2 id="itemdis"> Seller Registration Form</h2>
+        </div>
+        
+        <form action="<?php echo URLROOT; ?>/users/sellerRegister" method="post" enctype="multipart/form-data" class="form">
+            <div class="input-box">
+                <label for="name">Full Name</label>
+                <input type="text" name="name" id="name" placeholder=" Enter full name" value="<?php echo $data['name']; ?>">
+                <div class="reg_err_cls">
+                    <p  id="reg_err_symbl"><?php echo $data['es1']; ?></p>
+                    <p id="reg_err_name"><?php echo $data['name_err']; ?> </p>
+                </div>
             </div>
-        </main>
-    </div>
+            <div class="input-box">
+                <label for="shop_name">Name of the shop</label>
+                <input type="text" name="shop_name" id="shop_name" placeholder="Enter name of the shop" value="<?php echo $data['shop_name']; ?>"><br>
+                <div class="reg_err_cls">
+                    <p  id="reg_err_symbl"><?php echo $data['es2']; ?></p>
+                    <p id="reg_err_name"><?php echo $data['shop_name_err']; ?> </p>
+                </div>
+            </div>
+            <div class="input-box">
+                <label for="address">Address</label>
+                <input type="text" name="address" id="address"placeholder="Enter address" value="<?php echo $data['address']; ?>"><br>
+                <div class="reg_err_cls">
+                    <p  id="reg_err_symbl"><?php echo $data['es3']; ?></p>
+                    <p id="reg_err_name"><?php echo $data['address_err']; ?> </p>
+                </div>
+            </div>
+            <div class="input-box">
+                <label for="br_num">BR Number</label>
+                <input type="text" name="br_num" id="br_num" placeholder="Enter BR Number" value="<?php echo $data['br_num']; ?>"> <br>
+                <div class="reg_err_cls">
+                    <p  id="reg_err_symbl"><?php echo $data['es4']; ?></p>
+                    <p id="reg_err_name"><?php echo $data['br_num_err']; ?> </p>
+                </div>
+            </div>
+            <div class="input-box">
+                <label for="mo_num">Mobile Number</label>
+                <input type="text" name="mo_num" id="mo_num" placeholder="Enter Mobile Number" value="<?php echo $data['mo_num']; ?>"><br>
+                <div class="reg_err_cls">
+                    <p  id="reg_err_symbl"><?php echo $data['es5']; ?></p>
+                    <p id="reg_err_name"><?php echo $data['mo_num_err']; ?> </p>
+                </div>
+            </div>
+            <div class="input-box">
+                <label for="email">E-mail address</label>
+                <input type="email" name="email" id="email" placeholder="Enter E-mail address" value="<?php echo $data['email']; ?>"><br>
+                <div class="reg_err_cls">
+                    <p  id="reg_err_symbl"><?php echo $data['es6']; ?></p>
+                    <p id="reg_err_name"><?php echo $data['email_err']; ?> </p>
+                </div>
+            </div>
+            <div class="input-box">
+                <label for="description">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter password" value="<?php echo $data['password']; ?>"><br>
+                <div class="reg_err_cls">
+                    <p  id="reg_err_symbl"><?php echo $data['es8']; ?></p>
+                    <p id="reg_err_name"><?php echo $data['password_err']; ?> </p>
+                </div>
+            </div>
+            <div class="input-box">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Enter confirm password" value="<?php echo $data['confirm_password']; ?>"><br>
+                <div class="reg_err_cls">
+                    <p  id="reg_err_symbl"><?php echo $data['es9']; ?></p>
+                    <p id="reg_err_name"><?php echo $data['confirm_password_err']; ?> </p>
+                </div>
+            </div>
+            <div class="image_brfile">
+                <div class="firstinfo">
+                    <p class="dfg">Profile Image</p>
+                    
+                    <div class="seller_image">
+                        <label for="shopimage" class="uploadlabel">
+                            <span><i class="fa fa-cloud-upload" onclick="triggerClick()"></i></span>
+                            <p>Click to upload</p>
+                        </label>                    
+                        <input type="file" name="shopimage" id="shopimage" onchange="previewimage(this)" hidden>
+                        <img src=""  alt="" id="preclick">
+                    </div>
+                    
+                    <div class="reg_err_cls">
+                        <p  id="reg_err_symbl"><?php echo $data['es7']; ?></p>
+                        <p id="reg_err_name"><?php echo $data['seller_image_err']; ?> </p>
+                    </div>
+                </div>
+                <div class="secondinfo">
+                    <p class="dfg">Documents</p>   
+                    <div class="certificate">
+                        <label for="pro_li" class="uploadlabeldoc">
+                            <span><i class="fa fa-cloud-upload" onclick="triggerClickfile()"></i></span>
+                            <p>Click to upload</p><br>
+                        </label> 
+                        <input type="file" name="pro_li" id="pro_li" onchange="previewPDF()" hidden>
+                        <div id="pdf_icon"></div>
+                        
+                    </div>
+                    <div class="reg_err_cls">
+                        <p  id="reg_err_symbl"><?php echo $data['es10']; ?></p>
+                        <p id="reg_err_name"><?php echo $data['pro_li_err']; ?> </p>
+                    </div>
+                </div>
+                
+            </div>
+
+            <input type="submit" value="Register" class="regsub">
+        </form>
+      </section>
+
+
+    <script>
+
+
+        function triggerClick(){
+            document.querySelector('#shopimage').click();
+        }
+
+        function previewimage(img){
+            if(img.files[0]){
+                var reader = new FileReader();
+                reader.onload = function(img) {
+                    document.querySelector('#preclick').setAttribute('src', img.target.result);
+                }
+                reader.readAsDataURL(img.files[0]);
+            }
+        }
+
+        function triggerClickfile(){
+            document.querySelector('#pro_li').click();
+        }
+
+        function previewPDF() {
+            const inputfile = document.getElementById("pro_li");
+            const previewpdf = document.getElementById("pdf_icon");
+
+            const file = inputfile.files[0];
+            console.log(file);
+
+            const reader = new FileReader();
+
+
+            reader.onload = () => {
+                const img = document.createElement('img');
+                img.src = '<?= URLROOT; ?>/img/seller/pdficon.png';
+                const p = document.createElement('p');
+                p.innerHTML = file.name;
+                previewpdf.innerHTML = '';
+                previewpdf.appendChild(img);
+                previewpdf.appendChild(p);
+                previewpdf.style.display = 'block';
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+
+    </script>
 <?php require APPROOT . '/views/inc/incSeller/footer.php'; ?>

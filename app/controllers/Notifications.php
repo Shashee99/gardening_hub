@@ -7,7 +7,7 @@ class Notifications extends Controller{
     {
         $this->notiModel = $this->model('Notification');
     }
-
+//get all notification by this function
     public function getallnotifications(){
 
         $tabledata = $this->notiModel->getallnotifications();
@@ -16,6 +16,7 @@ class Notifications extends Controller{
         exit();
 
     }
+    //admin view notification by this function
     public function viewnotification(){
         $notiid=$_POST['notiid'];
 

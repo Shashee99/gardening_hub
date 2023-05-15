@@ -1,13 +1,8 @@
  <?php require_once APPROOT . '/views/inc/incAdvisor/incheadare_reply.php'; ?>
-             
-
            <div class="reply-contener">
                  <?php require_once APPROOT.'/views/inc/incAdvisor/navbar.php';?> 
-                 
                  <div class="contener2">
                      <?php require_once APPROOT.'/views/inc/incAdvisor/sidebar.php';?>
-
-
                      <div class="chat-content">
                                 <div class="chat-pot">
                                       <div class="problem">
@@ -77,14 +72,12 @@
                <script>
                    // Get all the image elements with the specified class
                    var images = document.querySelectorAll('.preview-image');
-
                    // Loop through each image element
                    images.forEach(function(image) {
                        // Create a modal element
                        var modal = document.createElement('div');
                        modal.classList.add('modal');
                        document.body.appendChild(modal);
-
                        // Create an image element inside the modal
                        var modalImage = document.createElement('img');
                        modalImage.src = image.src;
@@ -102,6 +95,4 @@
                    });
 
                </script>
-
-
  <?php require_once APPROOT . '/views/inc/incAdvisor/incfooter_reply.php'; ?>

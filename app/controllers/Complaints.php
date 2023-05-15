@@ -11,12 +11,14 @@ class Complaints extends Controller {
         $this->sellerModel = $this->model('Seller');
         $this->reviewModel = $this->model('Review');
     }
+    //view all complains 
     public function allnewcomplaints(){
-        $tabledata = $this->complaintModel->getAllComplaints();
+        $tabledata = $this->complaintModel->getAllComplaints();//call the model get the all complains
         $tabledata = json_encode($tabledata);
         echo $tabledata;
         exit();
     }
+    //add complain for seller
     public function addComplainForSeller($id)
     {
         if($_SERVER['REQUEST_METHOD'] == "POST")
@@ -97,6 +99,7 @@ class Complaints extends Controller {
         }
         
     }
+    //ajax support function  for filter complains
     public function isaddedcomplain($id)
     {
         if($_SERVER['REQUEST_METHOD'] == "POST")

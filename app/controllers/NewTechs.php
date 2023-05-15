@@ -2,7 +2,7 @@
 
 class NewTechs extends Controller
 {
-    private $techModel;
+    private $techModel;//conection model
     private $advisorModel;
 
     public function __construct()
@@ -10,10 +10,11 @@ class NewTechs extends Controller
         $this->techModel = $this->model('NewTech');
         $this->advisorModel = $this->model('Advisor');
     }
+    //customer view the advisor new tecnhology  
     public function viewNewTech()
     {
         $data = array();
-        $result = $this->techModel->newtechnologies();
+        $result = $this->techModel->newtechnologies();//call model newtechnology
 
         foreach($result as $technology)
         {
@@ -50,6 +51,7 @@ class NewTechs extends Controller
 
         $this->view('customers/newTech', $data);
     }
+    //ajax support function for filter new technology
     public function filterNewTech()
     {
         if(isset($_POST['category']))
@@ -88,7 +90,62 @@ class NewTechs extends Controller
                 }
 
                 $data[] = array
-                (
+                (    
+                    'id'=>$id,
+                    'advisor_name' => $advisor_name,
+                    'advisor_photo' => $advisor_photo,
+                    'cat' => $cat,
+                    'date' => $date,
+                    'title' => $title,
+                    'content' => $content,
+                    'tech_photos' => $tech_photo
+                );
+
+            }
+            echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        }
+    }
+    //advisor filter new techonology 
+    public function filterMyNewTech()
+    {
+        if(isset($_POST['category']))
+        {
+            $category = $_POST['category'];
+            $data = array();
+
+            if($category === "")
+            {
+                $result = $this->techModel->myNewtechnologies();
+
+            }
+            else
+            {
+                $result = $this->techModel->myNewtechnologiesByCat($category);
+            }
+
+            foreach($result as $technology)
+            {
+                $id = $technology->no;
+                $date = $technology->date;
+                $title = $technology->title;
+                $cat = $technology->category;
+                $content = $technology->content;
+                $advisor_id = $technology->advisor_id;
+                $advisor_details = $this->advisorModel->advisorDetails($advisor_id);
+                $advisor_name = $advisor_details->name;
+                $advisor_photo = $advisor_details->photo;
+
+                $photos = $this->techModel->techPhotosbyId($id);
+                $tech_photo = array();
+
+                foreach($photos as $photo)
+                {
+                    $tech_photo[] = $photo->imge;
+                }
+
+                $data[] = array
+                (    
+                    'id'=>$id,
                     'advisor_name' => $advisor_name,
                     'advisor_photo' => $advisor_photo,
                     'cat' => $cat,
@@ -104,5 +161,17 @@ class NewTechs extends Controller
     }
     public function addNewTechnology(){
         $this -> view('advisor/addtechnology');
+    }
+   //delete advisor technology by this function
+    public function deleteTecnhology(){  
+       if($_SERVER['REQUEST_METHOD']=='POST'){
+            $_POST=filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+            $tec_id=$_POST['tec_id'];
+
+            if( $this->techModel->deleteTecno($tec_id)){
+                redirect('advisors/addtecno');
+            }
+
+       }
     }
 }
