@@ -1,5 +1,6 @@
 .rest{
-    background-color: rgba(239, 239, 239, 0.75);
+    background-color: #ffffff;
+    box-shadow: -3px -3px 3px rgba(0, 0, 0, 0.2);
     margin-top: 100px;
     margin-left: 270px;
     height: fit-content;
@@ -10,7 +11,7 @@
     height: 100%;
 }
 #item3{
-    background-color: #6ffb60;
+    background-color: #00a778;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
@@ -32,6 +33,7 @@
     background-color: #efefef;
     height: 50px;
     border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 .date-filter .from-to h4{
     margin-left: 10px;
@@ -61,6 +63,33 @@
     width: 150px;
     background-color: #fff;
     border-radius: 10px;
+}
+.select-option select{
+    padding: 10px 35px;
+    font-size: 18px;
+    color: #000;
+    height: 55px;
+    width: 250px;
+    /* border: thin solid #a47c34; */
+    background-color: #efefef;
+    border-radius: 10px;
+    border: none;
+    font-size: 17px;
+    font-weight: 530;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    outline: none;
+}
+.select-option select option{
+    font-size: 16px;
+}
+.wislist-option .filter-option .select-option select:focus{
+    outline: none;
+}
+#date-err{
+    color: red;
+    margin-top: 5px;
+    text-align: center;
+    font-weight: 400;
 }
 .wishlist-table{
     margin: 10px 10px 120px 10px;
@@ -153,6 +182,12 @@ tr:nth-child(odd) td.fixed-cell{
     color: #fff;
     transition: all .2s ease-in-out;
     transform: scale(1.1);
+}
+.empty_record{
+    width: 100%;
+}
+.empty_record h3{
+    text-align: center;
 }
 @media (max-width: 768px){
     .wishlist-table table td, .wishlist-table table th{

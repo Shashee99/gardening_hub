@@ -52,8 +52,8 @@
 
                 if($this->db->rowCount() > 0)
                 {
-                    $sql2 = "INSERT INTO customer (customer_id, name, nic_no, email, bod, address, gramasewa_division, divisional_secretary, tel_no, photo) 
-                            VALUES (:cus_id, :name, :id, :email, :bod, :address, :gs, :ds, :mobile, :photo)";
+                    $sql2 = "INSERT INTO customer (customer_id, name, nic_no, email, bod, address, tel_no, photo,latitude, longitude) 
+                            VALUES (:cus_id, :name, :id, :email, :bod, :address, :mobile, :photo, :lat, :lng)";
 
                     $this->db->query($sql2);
                     $this->db->bind(':cus_id', $row1->user_id);
@@ -62,8 +62,8 @@
                     $this->db->bind(':email', $data['email']);
                     $this->db->bind(':bod', $data['bod']);
                     $this->db->bind(':address', $data['address']);
-                    $this->db->bind(':gs', $data['gs']);
-                    $this->db->bind(':ds', $data['ds']);
+                    $this->db->bind(':lat', $data['lat']);
+                    $this->db->bind('lng', $data['lgt']);
                     $this->db->bind(':mobile', $data['mobile']);
                     $this->db->bind(':photo', $data['photo']);
 

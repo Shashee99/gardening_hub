@@ -28,7 +28,7 @@
         </div>
         <div class="agri-center-tabel" id="map">
             
-        </div>
+        </div><br>
 
     </div>
 

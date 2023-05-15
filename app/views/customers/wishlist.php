@@ -23,14 +23,25 @@
             <div class="date-filter">
                 <div class="from-to">
                     <h4>From</h4>
-                    <input type="date" id="from">
+                    <input type="date" id="from" max="<?php echo date('Y-m-d'); ?>">
                 </div>
                 <div class="from-to">
                     <h4>To</h4>
-                    <input type="date" id="to">
+                    <input type="date" id="to" max="<?php echo date('Y-m-d'); ?>">
+                </div>
+                <div class="select-option">
+                    <select name="state" id="state">
+                        <option value="">All</option>
+                        <option value="0">Pendind</option>
+                        <option value="1">Rejected</option>
+                        <option value="2">Confirm</option>
+                        <option value="3">Complete</option>
+                        <option value="4">Not Complete</option>
+
+                    </select>
                 </div>
             </div>
-            <div class="filter-option">
+            <!-- <div class="filter-option">
                 <div class="options">
                     <p>Pending</p>
                     <input type="checkbox" name="pending" id="option1">
@@ -51,8 +62,9 @@
                     <p>Not Completed</p>
                     <input type="checkbox" name="not-completed" id="option5">
                 </div>
-            </div>
+            </div> -->
         </div>
+        <h5 id="date-err"></h5>
         <div class="wishlist-table">
             <table>
                 <thead>
@@ -65,7 +77,8 @@
                 <th>Status Message</th>
                 <th>Action</th>
                 </thead>
-                <tbody>
+                
+                <tbody id="table_body">
                     <?php 
                     foreach($data['wislist'] as $row)
                     {
@@ -131,6 +144,9 @@
                
                 </tbody>
             </table>
+            <div class="empty_record">
+                    
+            </div>
         </div>
     </div>
 

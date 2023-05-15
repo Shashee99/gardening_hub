@@ -43,7 +43,6 @@ body{
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 40px 0 12px 0;
-    background-image: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url("./images/bck1.jpg");
     background-repeat:no-repeat;
     background-size:contain;
     background-position:center;  
@@ -101,21 +100,28 @@ body{
     
 }
 form .button input{
-    width: 250px;
+    width: 200px;
     height: 45px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: none;
-    color: #fff;
+    color: #00a778;
     font-size: 18px;
     font-weight: 500;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    background: #00a778;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    background: #fff;
+    border: 2px solid #00a778;
 }
 .form-content form .button input:hover{
-    /* transform: scale(0.99); */
-    background: #19f54c;
+    transform: scale(0.99);
+    transition: all .2s ease-in-out;
+    background: #00a778;
+    color: #fff;
+}
+#map{
+    height: 300px;
 }
 @media(max-width: 600px){
     .signup-page-container{

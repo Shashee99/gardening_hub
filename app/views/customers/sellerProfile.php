@@ -200,15 +200,14 @@
                     </div>
                 </div>
                 <div class="rating-button">
-                    <button id="review-btn" value="<?= $data['seller']->seller_id ; ?>">Add an Review</button>
-                    <span id="error-msg">Allready added Review</span>
-                    <span id="error-msg2">You should purchase a product from seller to add an review</span>
-                    <!-- <span id="error-msg3"><?= $data['err'];?></span> -->
+                    <button id="review-btn" onclick="reviewAddModal('<?= $data['seller']->seller_id;?>');">Add an Review</button>
+                    
                 </div>
+                <span id="error3"></span>
                 <div class="review-rating-add">
                     <form action="<?= URLROOT;?>/reviews/addSellerReviewRating/<?= $data['seller']->seller_id ; ?>" method="POST">
                         <div class="rating">
-                            <span>Customer Service : </span>
+                            
                             <input type="radio" name="service" id="service-5" value="5">
                             <label for="service-5" class="fas fa-star"></label>
                             <input type="radio" name="service" id="service-4" value="4">
@@ -218,11 +217,12 @@
                             <input type="radio" name="service" id="service-2" value="2">
                             <label for="service-2" class="fas fa-star"></label>
                             <input type="radio" name="service" id="service-1" value="1">
-                            <label for="service-1" class="fas fa-star"></label>                      
+                            <label for="service-1" class="fas fa-star"></label>   
+                            <span>Customer Service : </span>                   
                             
-                        </div> 
+                        </div>
+
                         <div class="rating">
-                            <span>Products : </span>
                             <input type="radio" name="products" id="products-5" value="5">
                             <label for="products-5" class="fas fa-star"></label>
                             <input type="radio" name="products" id="products-4" value="4">
@@ -232,11 +232,13 @@
                             <input type="radio" name="products" id="products-2" value="2">
                             <label for="products-2" class="fas fa-star"></label>
                             <input type="radio" name="products" id="products-1" value="1">
-                            <label for="products-1" class="fas fa-star"></label>                      
+                            <label for="products-1" class="fas fa-star"></label> 
+                            <span>Products : </span>                     
                             
-                        </div> 
+                        </div>
+ 
                         <div class="rating">
-                            <span>Overall : </span>
+                            
                             <input type="radio" name="overall" id="overall-5" value="5">
                             <label for="overall-5" class="fas fa-star"></label>
                             <input type="radio" name="overall" id="overall-4" value="4">
@@ -246,18 +248,23 @@
                             <input type="radio" name="overall" id="overall-2" value="2">
                             <label for="overall-2" class="fas fa-star"></label>
                             <input type="radio" name="overall" id="overall-1" value="1">
-                            <label for="overall-1" class="fas fa-star"></label>                      
+                            <label for="overall-1" class="fas fa-star"></label>   
+                            <span>Overall : </span>                   
                             
-                        </div>                
+                        </div> 
+                        <span id="err1"></span>
+               
 
                         <div class="textarea">
                             <textarea cols="30" placeholder="Describe your experience.." name="review"></textarea>
                         </div>
+                        <span id="err2"></span>
+
                         <div class="btn">
-                            <button id="add" type="submit">Post</button>
-                            <a href="<?= URLROOT; ?>/sellers/sellerDetails/<?=$data['seller']->seller_id ; ?>">
-                                <button id="cancel" type="button">Cancel</button>
-                            </a>
+                            <button id="add" type="submit" onclick="return validateReview();">Post</button>
+                            <div class="modal-cancel" onclick="closeModal();">
+                                <h4 id="cancel">Cancel</h4>
+                            </div>                        
                         </div>
                     </form>
 
@@ -304,19 +311,21 @@
                 </div>
                 <div class="complain">
                     <div class="complain_add_btn">
-                        <button id="complain_btn" value="<?=$data['seller']->seller_id ; ?>">Add a Complain</button>
-                        <span id="complain_err"><?=$data['complain_err']; ?></span>
+                        <button id="complain_btn" value="<?=$data['seller']->seller_id ; ?>" style="margin-bottom: 20px;">Add a Complain</button>
                     </div>
+
+                    <span id="max-err"></span>
                     
                     <div class="complain_form">
                         <form action="<?= URLROOT; ?>/complaints/addComplainForSeller/<?=$data['seller']->seller_id ; ?>" method="POST" enctype="multipart/form-data">
                             <span>Your compalin</span>
-                            <textarea name="content" id="" cols="30" rows="10" placeholder="Enter your complain ......"></textarea>
+                            <textarea name="content" id="complain" cols="30" rows="10" placeholder="Enter your complain ......"></textarea>
+                            <h6 id="complain_err"></h6>
                             <span>Add some evidance(images) if you have</span>
                             <input type="file" name="complains[]" id="" multiple>
                             <div class="complain-submit_btn">
-                                <button type="submit">Add</button>
-                                <button type="button">Cancel</button>
+                                <input onclick="return complainValidate();" type="submit"  value="Add">
+                                <button type="button" onclick="closemodal();">Cancel</button>
                             </div>
                         </form>
                     </div>

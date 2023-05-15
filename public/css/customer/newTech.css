@@ -1,5 +1,6 @@
 .rest{
-    background-color: rgba(239, 239, 239, 0.75);
+    background-color: #ffffff;
+    box-shadow: -3px -3px 3px rgba(0, 0, 0, 0.2);
     margin-top: 100px;
     margin-left: 270px;
     height: fit-content;
@@ -10,9 +11,12 @@
     height: 100%;
 }
 #item10{
-    background-color: #6ffb60;
+    background-color: #00a778;
     border-radius: 0 50px 50px 0;
     width: 90%;
+}
+.new-tech-wraper{
+    margin-bottom: 120px;
 }
 .new-tech-option{
     display: flex;
@@ -26,7 +30,7 @@
     font-size: 18px;
     color: #000;
     height: 55px;
-    /* border: thin solid #a47c34; */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     background-color: #fff;
     border-radius: 10px;
     border: none;
@@ -39,7 +43,12 @@
     margin: 30px auto 0 auto ;
     background-color: #efefef;
     border-radius: 10px;
+    box-shadow: 0 5px 20px -5px #000000;
+}
+.new_technology:hover{
     box-shadow: 0 5px 20px -5px #00a778;
+    transition: all .2s ease-in-out;
+    transform: translateY(-5px);
 }
 .new_technology .part1{
     display: flex;
@@ -75,6 +84,7 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 10px;
+    border-radius: 10px;
 }
 .new_technology .tech-photos img{
     width: 130px;

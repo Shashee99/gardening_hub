@@ -5,15 +5,15 @@ selectMenu.addEventListener("change", function()
 {
     let httpRequest = new XMLHttpRequest();
     let categoryName = this.value;
-
+    let out = "";
     httpRequest.onreadystatechange = function()
     {
         if(this.readyState == 4 && this.status == 200){
             let response = JSON.parse(this.responseText);
-            let out = "";
+           
             console.log(response);
-
-            if(response.length == 0)
+            console.log(response.length);
+            if(response.length === 0)
             {
                 out += `
                     <div class='empty_record' >
@@ -23,13 +23,16 @@ selectMenu.addEventListener("change", function()
             }
             else
             {
+            
+                
                 for(let item of response)
                 {
+                    let description = item.description.replace(/\n/g, '<br>');
                     out += `
                         <div class="harvest">
                         <div class="part1">
                             <div class="photo">
-                                <img src="http://localhost/gardening_hub/img/upload_images/customer_pp/${item.photo_path}" alt="">
+                                <img src="http://localhost/gardening_hub/img/upload_images/customer_pp/${item.cus_photo}" alt="">
                             </div>
                             <div class="date">
                                 <h5>${item.cus_name}</h5>
@@ -39,12 +42,12 @@ selectMenu.addEventListener("change", function()
                         </div>
                         <h3>${item.title}</h3>
                         <div class="content">
-                            <p>${item.description}</p>
+                            <p>${description}</p>
                         </div>
                         <div class="last">
 
                             <div class="images">`
-                            for(let pht of item.photo)
+                            for(let pht of item.harvest_photo)
                             {
                                 out += ` <img src="http://localhost/gardening_hub/img/upload_images/harvest_photo/${pht}" alt="">`
                                 
@@ -61,6 +64,7 @@ selectMenu.addEventListener("change", function()
             }
             container.innerHTML = out;
         };
+       
     }
     httpRequest.open('POST', "http://localhost/gardening_hub/harvests/filterOtherHarvest", true);
     httpRequest.setRequestHeader("content-type", "application/x-www-form-urlencoded");
