@@ -216,7 +216,7 @@
                 }
 
                 if($this->advisorModel->addTecno($additem,$photo)){
-                    flash('add_new_tecno', 'You tecnhology added successfuly');
+                    flash('add_new_tecno', 'You tecnhology added successfully');
                     redirect('advisors/addtecno');
                 }else{
 
@@ -341,7 +341,7 @@
                 
  
                  if($this->advisorModel->tecnoUpdate($additem,$photo,$id)){
-                     flash('add_new_tecno_successfuly', 'Your tecnhology updated successfuly');
+                     flash('add_new_tecno_successfuly', 'Your tecnhology updated successfully');
                      redirect('advisors/addtecno');
                  }else{
                     $this->view('advisor/tecnoUpdate',$additem);
@@ -466,7 +466,7 @@
                   $replyfromadvisor = trim($_POST['prompt']);
                   unset($_POST['prompt']);
                   $this->problemModel -> insertreply($id,$replyfromadvisor,$data['cusid'],$_SESSION['advisor_id']);
-                  flash('send reply','Sucssesfuly reply');
+                  flash('send reply','Successfully reply');
                   redirect('advisors/problem_chat');
                  
 
