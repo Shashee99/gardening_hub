@@ -16,8 +16,7 @@ function getProducts() {
         // Parse the JSON response and update the product list
             let response = JSON.parse(this.responseText);
             let out = "";
-            // const products = JSON.parse(this.responseText);
-            // productList.innerHTML = '';
+            console.log(response);
 
             if(response.length == 0)
             {
@@ -37,6 +36,50 @@ function getProducts() {
                                 <img src="http://localhost/gardening_hub/img/upload_images/product_cover_photo/${item.photo}" alt="">
                             </a>
                             <h4>${item.title}</h4>
+                            <div class="ratings">`;
+
+                            if(item.ratings != null)
+                            {
+                                let rate_of_product = parseFloat(item.ratings);
+                                let round_rate = parseFloat(rate_of_product.toFixed(1));
+                                let full_stars = Math.floor(rate_of_product);
+                                let half_star = 0;
+                                for(let i=0;i<full_stars;i++)
+                                {
+                                    out += `
+                                        <img src="http://localhost/gardening_hub/img/customer/star.png" alt="">
+                                    `;
+                                }
+                                let fraction = round_rate%1;
+                                if(fraction >= 0.3 && fraction <=0.9)
+                                {
+                                    half_star = 1;
+                                    out += `
+                                        <img src="http://localhost/gardening_hub/img/customer/rating.png" alt="">
+                                    `;
+                                }
+                                let empty_star = 5-full_stars-half_star;
+                                for(let i=0; i<empty_star; i++)
+                                {
+                                    out += `
+                                        <img src="http://localhost/gardening_hub/img/customer/star1.png" alt="">
+                                    `;
+                                }
+                            }
+                            else
+                            {
+                                out += `
+                                    <img src="http://localhost/gardening_hub/img/customer/star1.png" alt="">
+                                    <img src="http://localhost/gardening_hub/img/customer/star1.png" alt="">
+                                    <img src="http://localhost/gardening_hub/img/customer/star1.png" alt="">
+                                    <img src="http://localhost/gardening_hub/img/customer/star1.png" alt="">
+                                    <img src="http://localhost/gardening_hub/img/customer/star1.png" alt="">
+
+                                `;
+                            }
+                            
+                            out += `
+                            </div>
                             <h5>${item.seller}</h5>
                             <p>Available : ${item.quantity}</p>
                             <h4>Price Rs.${item.price}</h4>
@@ -52,7 +95,7 @@ function getProducts() {
             }
             product_wraper.innerHTML = out;
 
-            console.log(out);
+            // console.log(out);
 
             // products.forEach(function(product) {
             //   const productItem = document.createElement('div');

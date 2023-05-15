@@ -1,5 +1,6 @@
 .rest{
-    background-color: rgba(239, 239, 239, 0.75);
+    background-color: #ffffff;
+    box-shadow: -3px -3px 3px rgba(0, 0, 0, 0.2);
     margin-top: 90px;
     margin-left: 270px;
     height: fit-content;
@@ -10,7 +11,7 @@
     height: 100%;
 }
 #item2{
-    background-color: #6ffb60;
+    background-color: #00a778;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
@@ -22,6 +23,7 @@
     gap: 30px;
     width: 100%;
     margin-top: 20px;
+
 }
 .product-option select{
     padding: 10px 35px;
@@ -30,9 +32,11 @@
     height: 55px;
     width: 250px;
     /* border: thin solid #a47c34; */
-    background-color: #fff;
+    background-color: #efefef;
     border-radius: 10px;
     border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
 }
 .product-option select:focus{
     outline: none;
@@ -62,11 +66,12 @@
     background-color: #efefef;
     margin-bottom: 10px;
     border-radius: 10px;
+    box-shadow: 0 20px 30px -20px #000000;
 }
 .products-details .product:hover{
+    box-shadow: 0 20px 30px -20px #00a778;
     transition: all .05s ease-in-out;
     transform: translateY(-5px);
-    box-shadow: 0 20px 30px -20px #00a778;
 }
 .products-details .product a img{
     width: 100px;
@@ -83,15 +88,17 @@
 .product .product-add input{
     width: 120px;
     height: 30px;
-    background-color: #00A778;
+    background-color: #fff;
     margin-bottom: 10px;
     border: none;
-    color: #ffffff;
+    color: #00a778;
     border-radius: 10px;
     cursor: pointer;
+    border: solid 2px #00a778;
 }
 .product .product-add input:hover{
-    background-color: #107AB0;
+    background-color: #00a778;
+    color: #fff;
     transition: all .05s ease-in-out;
     transform: scale(1.1);
 }
@@ -138,7 +145,7 @@ products-details .product a:hover {
 }
 .count-get-modal .modal-content #input-field{
     width: 200px;
-    margin: 20px auto 5px auto;
+    margin: 40px auto 5px auto;
     display: block;
     height: 30px;
     border: none;
@@ -154,25 +161,41 @@ products-details .product a:hover {
     align-items: center;
     justify-content: center;
     gap: 50px;
-    margin-top: 10px;
+    margin-top: 40px;
 }
 .count-get-modal .modal-content .button-div input{
     width: 100px;
     height: 40px;
-    background-color: #00a778;
+    background-color: #fff;
     border: none;
-    color: #fff;
+    color: #00a778;
     cursor: pointer;
+    border-radius: 10px;
+    border: solid 2px #00a778;
+}
+.count-get-modal .modal-content .button-div input:hover{
+    background-color: #00a778;
+    color: #fff;
+    transition: all .1s ease-in-out;
+    transform: scale(1.05);
 }
 .count-get-modal .modal-content .button-div a{
     width: 100px;
     height: 40px;
-    background-color: red;
+    background-color: #fff;
     border: none;
-    color: #fff;
+    color: red;
     text-decoration: none;
     text-align: center;
     padding-top: 7px;
+    border: solid 2px red;
+    border-radius: 10px;
+}
+.count-get-modal .modal-content .button-div a:hover{
+    background-color: red;
+    color: #fff;
+    transition: all .1s ease-in-out;
+    transform: scale(1.05);
 }
 .count-get-modal .modal-content  #invalid{
     
@@ -200,16 +223,15 @@ products-details .product a:hover {
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    margin-left: 270px;
-    width: calc(100% - 270px); /* Full width */
+    width: 100%; /* Full width */
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-   
-    background-color: rgba(0,0,0,0.85);
+    border-radius: 25px 0 0 0;
+    background-color: rgba(0,0,0,0.8);
 }
 .count-get-modal .modal-content{
     background-color: #fefefe;
-    margin:250px auto 0 auto; /* 15% from the top and centered */
+    margin:200px auto;/* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 350px; /* Could be more or less, depending on screen size */

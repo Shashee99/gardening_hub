@@ -11,7 +11,7 @@ selectMenu.addEventListener("change", function()
         if(this.readyState == 4 && this.status == 200)
         {
             let response = JSON.parse(this.responseText);
-            
+             
             let out = "";
             if(response.length == 0)
             {
@@ -25,6 +25,7 @@ selectMenu.addEventListener("change", function()
             {
                 for(let item of response)
                 {
+                    let content = item.content.replace(/\n/g, '<br>');
                     out += `
                         <div class="new_technology">
                             <div class="part1">
@@ -39,7 +40,7 @@ selectMenu.addEventListener("change", function()
                             </div>
                             <h3>${item.title}</h3>
                             <div class="content">
-                                <p>${item.content}</p>
+                                <p>${content}</p>
                             </div><br>
 
                             <div class="tech-photos">`

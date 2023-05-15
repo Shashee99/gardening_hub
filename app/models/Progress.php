@@ -46,6 +46,7 @@
         }
         public function addProgress($data,$photo)
         {
+            date_default_timezone_set('Asia/Colombo');
             $sql = "INSERT INTO progress(started_date,category,title,content,updated_date,customer_id,is_delete) VALUES (:start_d,:cat,:title,:content,:update_d,:cus_id,:is_delete)";
             $this->db->query($sql);
             $this->db->bind(':start_d',date('Y-m-d'));

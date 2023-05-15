@@ -1,5 +1,6 @@
 .rest{
-    background-color: rgba(239, 239, 239, 0.75);
+    background-color: #ffffff;
+    box-shadow: -3px -3px 3px rgba(0, 0, 0, 0.2);
     margin-top: 100px;
     margin-left: 270px;
     height: fit-content;
@@ -10,7 +11,7 @@
     height: 100%;
 }
 #item4{
-    background-color: #6ffb60;
+    background-color: #00A778;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
@@ -27,11 +28,12 @@
 }
 .filter-options .btn{
     width: 220px;
-    height: 55px;
+    height: 50px;
     background-color: #fff;
     text-align: center;
     padding-top: 10px;
     border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     /* margin: 0 50px 0 0; */
 }
 .filter-options .btn a{
@@ -68,12 +70,13 @@
     padding: 10px;
     font-size: 18px;
     color: #000;
-    height: 55px;
+    height: 50px;
     /* border: thin solid #a47c34; */
     background-color: #fff;
     border-radius: 10px;
     border: none;
     width: 220px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 select:focus{
     outline: none;
@@ -87,6 +90,7 @@ select:focus{
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 .progress-add .progress-border{
     width: 430px;
@@ -137,11 +141,15 @@ select:focus{
     margin: 20px auto 0 auto ;
     background-color: #fff;
     border-radius: 10px;
+    box-shadow: 0 20px 30px -20px #000000;
 }
 .my-progress-card h3{
     text-align: center;
     margin-bottom: 10px;
     margin-top: 10px;
+}
+.my-progress-card .content{
+    height: fit-content;
 }
 .my-progress-card .content p{
     margin-left: 20px;
@@ -194,9 +202,11 @@ select:focus{
 }
 .my-progress-card .delete-button button {
     border: 2px solid red;
+    color: red;
 }
 .my-progress-card .edit-button input{
     border: 2px solid #00a778; 
+    color: #00A778;
 }
 .my-progress-card .delete-button button:hover{
     transform: scale(0.95);
@@ -223,16 +233,14 @@ select:focus{
     z-index: 1; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
+    width: 100%;
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.9);
-    
+    background-color: rgba(0,0,0,0.9);    
 }
 .confirm-progress-delete-popup .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 200px auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
     width: 30%; /* Could be more or less, depending on screen size */
@@ -263,22 +271,40 @@ select:focus{
     gap: 20px;
 }
 .confirm-progress-delete-popup .modal-content .modal-buttons #confirm-delete{
-    background-color: red;
-    color: white;
+    background-color: white;
+    color: red;
     padding: 14px 20px;
     margin: 8px;
     border: none;
     cursor: pointer;
     width: 100px;
+    border: 2px solid red;
+    border-radius: 10px;
 }
+.confirm-progress-delete-popup .modal-content .modal-buttons #confirm-delete:hover{
+    background-color: red;
+    color: #fff;
+    transform: scale(0.95);
+    transition: all .3s ease-in-out;
+    
+}
+.confirm-progress-delete-popup .modal-content .modal-buttons #cancel-delete:hover{
+    background-color: #00a778;
+    color: #fff;
+    transform: scale(0.95);
+    transition: all .3s ease-in-out;
+}
+
 .confirm-progress-delete-popup .modal-content .modal-buttons #cancel-delete {
-    background-color: #00A778;
-    color: white;
+    background-color: white;
+    color: #00A778;
     padding: 14px 20px;
     margin: 8px;
     border: none;
     cursor: pointer;
     width: 100px;
+    border: 2px solid #00A778;
+    border-radius: 10px;
  }
  .allert{
     background-color: lightgreen;

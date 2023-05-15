@@ -6,7 +6,8 @@
 }
 .rest{
     /* background-color: rgba(239, 239, 239, 0.75); */
-    background-color: #fff;
+    background-color: #ffffff;
+    box-shadow: -3px -3px 3px rgba(0, 0, 0, 0.2);
     margin-top: 90px;
     margin-left: 270px;
     height: fit-content;
@@ -24,22 +25,6 @@
     flex-wrap: wrap;
     gap: 20px;
 }
-.order-details #d1{
-    background: linear-gradient(90deg, #EF629F 5.88%, #EECDA3 100%);
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
-}
-.order-details #d2{
-    background: linear-gradient(90deg, #00CDAC -9.75%, #02AAB0 100%);
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
-}
-.order-details #d3{
-    background: linear-gradient(90deg, #b20917 0%, #eb5447 100%);
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
-}
-.order-details #d4{
-    background: linear-gradient(90deg, #FF5F6D 0%, #FFC371 100%);
-    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
-}
 .order-details .valbox{
     margin-bottom: 20px;
     width: 250px;
@@ -47,16 +32,11 @@
     border-radius: 10px;
     display: flex;
     background-color: #efefef;
-    box-shadow: 0 10px 20px -10px #00a778;
+    box-shadow: 0 10px 20px -10px #000000;
 }
 .order-details .valbox:hover{
     transition: all .05s ease-in-out;
     transform: scale(1.1); 
-}
-.order-details #d3:hover{
-    transition: all .05s ease-in-out;
-    transform: scale(1.1);
-    border: 2px solid red;
 }
 .order-details .valbox img{
     width: 50px;
@@ -76,8 +56,8 @@ h2{
 }
 .chart_table{
     display: flex;
-    justify-content: start;
-    align-items: center;
+    justify-content: space-evenly;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: 50px;
     margin-bottom: 100px;
@@ -91,7 +71,7 @@ h2{
 }
 .not-complete-orders{
     width: 600px;
-    margin: 20px 10px 0 10px;
+    margin: 0 10px 0 10px;
     overflow-x: auto;
 }
 th.fixed-column,
@@ -104,7 +84,7 @@ tr:nth-child(even) td.fixed-cell{
     background-color: #fff;
 }
 tr:nth-child(odd) td.fixed-cell{
-    background-color: #4cee98;
+    background-color: #efefef;
 }
 .not-complete-orders table thead{
     border-radius: 10px 10px 0 0;
@@ -117,6 +97,7 @@ tr:nth-child(odd) td.fixed-cell{
     border-collapse: collapse;
     width: 90%;
     margin: 30px auto 20px auto;
+    border-radius: 10px;
 }
 .not-complete-orders table td, .not-complete-orders table th{
     padding: 12px 15px;
@@ -131,12 +112,9 @@ tr:nth-child(odd) td.fixed-cell{
     background-color: #fff;
 }
 .not-complete-orders table tbody tr:nth-child(odd){
-    background-color: #4cee98;
+    background-color: #efefef;
 }
-#d3 h3, #d3 span{
-    color: #fff;
-    font-weight: 600;
-}
+
 @media (max-width: 768px){
     .not-complete-orders table td, .not-complete-orders table th{
         padding: 7px 10px;

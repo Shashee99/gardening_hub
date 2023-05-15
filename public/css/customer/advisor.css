@@ -1,5 +1,6 @@
 .rest{
-    background-color: rgba(239, 239, 239, 0.75);
+    background-color: #ffffff;
+    box-shadow: -3px -3px 3px rgba(0, 0, 0, 0.2);
     margin-top: 100px;
     margin-left: 270px;
     height: fit-content;
@@ -10,7 +11,7 @@
     height: 100%;
 }
 #item7{
-    background-color: #6ffb60;
+    background-color: #00a778;
     border-radius: 0 50px 50px 0;
     width: 90%;
 }
@@ -26,7 +27,7 @@
     font-size: 18px;
     color: #000;
     height: 55px;
-    /* border: thin solid #a47c34; */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     background-color: #fff;
     border-radius: 10px;
     border: none;
@@ -46,17 +47,22 @@
     width: 450px;
     background-color: #efefef;
     margin-bottom: 20px;
+    border-radius: 15px;
 }
 .advisor-card .part1
 {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     margin-top: 20px;
+}
+.advisor-card .part1 .name-rating{
+    margin-right: 20px;
 }
 .advisor-card .part1 img{
     width: 50px;
     border-radius: 50%;
+    margin-left: 20px;
 }
 .advisor-card .part2{
     margin-left: 30px;
@@ -84,13 +90,14 @@
     margin: 20px auto 20px auto;
     border-radius: 10px;
     border: 1px solid #00a778;
+    
 }
 .advisor-card .showmore a{
     text-decoration: none;
-    color: #000;
+    color: #00a778;
     text-align: center;
     display: block;
-    padding-top: 7px;
+    padding-top: 10px;
     
 }
 .advisor-card .showmore:hover{

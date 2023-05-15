@@ -3,7 +3,9 @@
     class Advisors extends Controller
     {
         private $advisorModel;
-        
+        private $problemModel;
+        private $customerModel;
+        private $categoryModel;
 
         public function __construct()
         {
@@ -389,9 +391,10 @@
     public function problem_chat(){
         // $categories = $this->categoryModel->categorydetails();
          $problems = $this->problemModel ->viewallProblem();
-
+         $data=[];
          foreach($problems as $rows)
             {
+             
                 $problem_photos = array();
                 $photos = $this->problemModel->problemPhotosById($rows->problem_id);
                 foreach($photos as $photo)
@@ -698,8 +701,5 @@
        } 
 
 
-    
-
-    }
-
+     }
 }

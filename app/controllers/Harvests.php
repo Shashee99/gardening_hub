@@ -221,38 +221,49 @@
          //customer view others harvests
          public function otherHarvests()
          {
-
-            //$data = array();
-            $result = $this->haervestModel->allOtherHarvest();//call model
+            $data = array();
+            $result = $this->haervestModel->allOtherHarvest();
             foreach($result as $harvest)
             {
                $harvest_id = $harvest->harvest_id;
-               $title = $harvest->title;
-               $content = $harvest->description;
-               $date = $harvest->date;
-               $cat = $harvest->category;
                $cus_details = $this->cusModel->getCustomerDetails($harvest->customer_id);
-               $cus_name = $cus_details->name;
-               $cus_photo = $cus_details->photo;
+               $lat = $cus_details->latitude;
+               $lng = $cus_details->longitude;
 
-               $photos = $this->haervestModel->harvestPhotosbyId($harvest_id);
-               $harvest_photo = array();
-
-               foreach($photos as $photo)
+               if($this->is_within_10km($lat,$lng, $_SESSION['lat'], $_SESSION['lng'] ))
                {
-                  $harvest_photo[] = $photo->name;
-               }
+                  $title = $harvest->title;
+                  $content = $harvest->description;
+                  $date = $harvest->date;
+                  $cat = $harvest->category;
+                  $cus_details = $this->cusModel->getCustomerDetails($harvest->customer_id);
+                  $cus_name = $cus_details->name;
+                  $cus_photo = $cus_details->photo;
+                  $lat = $cus_details->latitude;
+                  $lng = $cus_details->longitude;
 
-               $data[] = array 
-               (
-                  'title' => $title,
-                  'description' => $content,
-                  'date' => $date,
-                  'category' => $cat,
-                  'cus_name' => $cus_name,
-                  'cus_photo' => $cus_photo,
-                  'harvest_photo' => $harvest_photo
-               );
+                  $photos = $this->haervestModel->harvestPhotosbyId($harvest_id);
+                  $harvest_photo = array();
+
+                  foreach($photos as $photo)
+                  {
+                     $harvest_photo[] = $photo->name;
+                  }
+
+                  $data[] = array 
+                  (
+                     'title' => $title,
+                     'description' => $content,
+                     'date' => $date,
+                     'category' => $cat,
+                     'cus_name' => $cus_name,
+                     'cus_photo' => $cus_photo,
+                     'lat' => $lat,
+                     'lng' => $lng,
+                     'harvest_photo' => $harvest_photo
+                  );
+               }
+               
             }
 
             $this->view('customers/otherHarvest', $data);
@@ -273,31 +284,43 @@
                   foreach($result as $harvest)
                   {
                      $harvest_id = $harvest->harvest_id;
-                     $title = $harvest->title;
-                     $content = $harvest->description;
-                     $date = $harvest->date;
-                     $cat = $harvest->category;
                      $cus_details = $this->cusModel->getCustomerDetails($harvest->customer_id);
-                     $cus_name = $cus_details->name;
-                     $cus_photo = $cus_details->photo;
+                     $lat = $cus_details->latitude;
+                     $lng = $cus_details->longitude;
 
-                     $photos = $this->haervestModel->harvestPhotosbyId($harvest_id);
-                     $harvest_photo = array();
-
-                     foreach($photos as $photo)
+                     if($this->is_within_10km($lat,$lng, $_SESSION['lat'], $_SESSION['lng'] ))
                      {
-                        $harvest_photo[] = $photo->name;
-                     }
-                     $arr[] = array 
+                        $title = $harvest->title;
+                        $content = $harvest->description;
+                        $date = $harvest->date;
+                        $cat = $harvest->category;
+                        $cus_details = $this->cusModel->getCustomerDetails($harvest->customer_id);
+                        $cus_name = $cus_details->name;
+                        $cus_photo = $cus_details->photo;
+                        $lat = $cus_details->latitude;
+                        $lng = $cus_details->longitude;
+
+                        $photos = $this->haervestModel->harvestPhotosbyId($harvest_id);
+                        $harvest_photo = array();
+
+                        foreach($photos as $photo)
+                        {
+                           $harvest_photo[] = $photo->name;
+                        }
+
+                        $arr[] = array 
                         (
-                           'cus_name' => $cus_name,
-                           'photo_path' => $cus_photo,
                            'title' => $title,
-                           'date' => $date,
                            'description' => $content,
+                           'date' => $date,
                            'category' => $cat,
-                           'photo' => $harvest_photo
+                           'cus_name' => $cus_name,
+                           'cus_photo' => $cus_photo,
+                           'lat' => $lat,
+                           'lng' => $lng,
+                           'harvest_photo' => $harvest_photo
                         );
+                     }
                   }
                }
                else
@@ -309,31 +332,43 @@
                   foreach($result as $harvest)
                   {
                      $harvest_id = $harvest->harvest_id;
-                     $date = $harvest->date;
-                     $title = $harvest->title;
-                     $content = $harvest->description;
-                     $cat = $harvest->category;
                      $cus_details = $this->cusModel->getCustomerDetails($harvest->customer_id);
-                     $cus_name = $cus_details->name;
-                     $cus_photo = $cus_details->photo;
+                     $lat = $cus_details->latitude;
+                     $lng = $cus_details->longitude;
 
-                     $photos = $this->haervestModel->harvestPhotosbyId($harvest_id);
-                     $harvest_photo = array();
-
-                     foreach($photos as $photo)
+                     if($this->is_within_10km($lat,$lng, $_SESSION['lat'], $_SESSION['lng'] ))
                      {
-                        $harvest_photo[] = $photo->name; //put harvest data in this array
-                     }
-                     $arr[] = array 
+                        $title = $harvest->title;
+                        $content = $harvest->description;
+                        $date = $harvest->date;
+                        $cat = $harvest->category;
+                        $cus_details = $this->cusModel->getCustomerDetails($harvest->customer_id);
+                        $cus_name = $cus_details->name;
+                        $cus_photo = $cus_details->photo;
+                        $lat = $cus_details->latitude;
+                        $lng = $cus_details->longitude;
+      
+                        $photos = $this->haervestModel->harvestPhotosbyId($harvest_id);
+                        $harvest_photo = array();
+      
+                        foreach($photos as $photo)
+                        {
+                           $harvest_photo[] = $photo->name;
+                        }
+      
+                        $arr[] = array 
                         (
-                           'cus_name' => $cus_name,
-                           'photo_path' => $cus_photo,
-                           'date' => $date,
                            'title' => $title,
                            'description' => $content,
+                           'date' => $date,
                            'category' => $cat,
-                           'photo' => $harvest_photo
+                           'cus_name' => $cus_name,
+                           'cus_photo' => $cus_photo,
+                           'lat' => $lat,
+                           'lng' => $lng,
+                           'harvest_photo' => $harvest_photo
                         );
+                     }
                   }
                }
             

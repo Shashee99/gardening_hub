@@ -38,7 +38,8 @@ class Complaints extends Controller {
                 'top_products' => $top_rated_products,
                 'license' => $seller_license,
                 'reviews' => $reviews,
-                'rating' => $rating
+                'rating' => $rating,
+                'err' => ''
             ];
             //validation part
             if(empty($data['complain']))

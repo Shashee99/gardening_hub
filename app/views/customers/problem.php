@@ -17,6 +17,17 @@
 <body>
     <?php require_once APPROOT . '/views/inc/incCustomer/sidebar.php'; ?>
 
+
+    <div class="confirm-delete-popup" id="delete-modal">
+        <div class="modal-content">
+            <p>Are you sure you want to delete this item?</p>
+            <div class="modal-buttons" id="modal-button">
+                <button id="confirm-delete">Yes</button>
+                <button id="cancel-delete">No</button>
+            </div>
+        </div>
+    </div>
+
     <div class="rest" id="blur">
         <div class="problem-filter">
             <select name="category" id="category">
@@ -32,6 +43,7 @@
             </div>
         </div>
         <?php flash("problem_add_successfuly"); ?>
+        <?Php flash('progress_Delete_successfuly'); ?>
         <div class="problem-wraper">
         <?php foreach ($data as $problems) { ?>
                 <div class="problem-card">
@@ -53,24 +65,37 @@
                             </p><br>
 
                         </div>
-                        <div class="problem-image">
-                                <?php
-                                foreach($problems['photos'] as $row1)
-                                {
-                                ?>
-                                    <img src="<?= URLROOT; ?>/img/upload_images/problem_photo/<?= $row1 ; ?>" alt="">
-                                <?php   
-                                }
-                                ?>
+                        <?php
+                        if(!empty($problems['photos']))
+                        {
+                        ?>
+                            <div class="problem-image">
+                            <?php
+                            foreach($problems['photos'] as $row1)
+                            {
+                            ?>
+                                <img src="<?= URLROOT; ?>/img/upload_images/problem_photo/<?= $row1 ; ?>" alt="">
+                            <?php   
+                            }
+                            ?>
                         </div>
+                        <?php
+                        }
+                        ?>
                         
-                        <a href="<?= URLROOT; ?>/problems/viewOneProblem/<?= $problems['id']; ?>">
-                            <div class="reply-link">
-                                <img src="<?= URLROOT; ?>/img/customer/reply.png" alt="">
-                                <img id="green" src="<?= URLROOT; ?>/img/customer/reply_1.png" alt="">
-                                <span>Replies...</span>
-                            </div>
-                        </a><br>
+                        <div class="links">
+                            <a href="<?= URLROOT; ?>/problems/viewOneProblem/<?= $problems['id']; ?>">
+                                <div class="reply-link">
+                                    <img src="<?= URLROOT; ?>/img/customer/reply.png" alt="">
+                                    <img id="green" src="<?= URLROOT; ?>/img/customer/reply_1.png" alt="">
+                                    <span>Replies...</span>
+                                </div>
+                            </a><br>
+                            <button class="delete_buttons" data-problemID="<?= $problems['id']; ?>">
+                                Delete
+                            </button>
+                        </div>
+
 
                     </div>
                 </div>
@@ -80,7 +105,8 @@
         </div>
 
         </div>
-        <script src="http://localhost/gardening_hub/js/customer/menu-bar-toogle.js"></script>
+        <script src="<?php echo URLROOT; ?>/js/customer/menu-bar-toogle.js"></script>
+        <script src="<?php echo URLROOT; ?>/js/customer/delete_problem_modal.js"></script>
 
 </body>
 </html>

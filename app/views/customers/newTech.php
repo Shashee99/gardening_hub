@@ -51,7 +51,7 @@
                         </div>
                         <h3><?= $row['title']; ?></h3>
                         <div class="content">
-                            <p><?= $row['content']; ?></p>
+                            <p><?= nl2br($row['content']); ?></p>
                         </div><br>
                         <div class="tech-photos">
                             <?php

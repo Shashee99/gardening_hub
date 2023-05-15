@@ -98,7 +98,9 @@
                             <span id="err2"></span>
                             <div class="btn">
                                 <button type="submit" onclick="return validateReview();">Add</button>
-                                <div  onclick="closeModal();"><h4>Cancel</h4></div>
+                                <div class="modal-cancel" onclick="closeModal();">
+                                    <h4 id="cancel">Cancel</h4>
+                                </div>
                             </div>
                         </form>
 
@@ -134,26 +136,6 @@
                         <?php     
                         }
                         ?>
-                        <div class="review">
-                            <div class="user-info">
-                                <img src="<?= URLROOT; ?>/img/customer/profile.jpeg" alt="">
-                                <h4>Nilshan Deemantha</h4>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident necessitatibus iusto minus facere 
-                                doloremque hic quae repellat. Perferendis soluta nihil et. Qui voluptate,
-                                id rerum voluptates minima ipsum quia assumenda.
-                            </p>
-                        </div>
-                        <div class="review">
-                            <div class="user-info">
-                                <img src="<?= URLROOT; ?>/img/customer/profile.jpeg" alt="">
-                                <h4>Nilshan Deemantha</h4>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident necessitatibus iusto minus facere 
-                                doloremque hic quae repellat. Perferendis soluta nihil et. Qui voluptate,
-                                id rerum voluptates minima ipsum quia assumenda.
-                            </p>
-                        </div>
                     </div>
                     
 

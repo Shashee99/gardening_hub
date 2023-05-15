@@ -9,8 +9,11 @@ function reviewAddModal(product_id,cus_id)
         if(this.readyState == 4 && this.status == 200)
         {
             let response = JSON.parse(this.responseText);
-            console.log(response);
-            if(response == "true")
+            if(response == "true1")
+            {
+                errmsg3.innerHTML = "You can add review after purchasing the product";
+            }
+            else if(response == "true2")
             {
                 errmsg3.innerHTML = "You already added review";
             }

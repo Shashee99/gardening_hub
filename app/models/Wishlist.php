@@ -39,138 +39,75 @@
             $this->db->query($sql);
             $this->db->bind(':cus_id', $_SESSION['cus_id']);
             $this->db->bind(':seller_id', $id);
-            $result = $this->db->resultSet();
-
-            return $result;
+            $result = $this->db->singleRecord();
+            if($result)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
             
         } 
-        public function filterWishlist($fdate,$tdate,$opt1,$opt2,$opt3,$opt4,$opt5)
+        public function filterWishlist($fdate,$tdate,$status)
         {
             $sql = "SELECT * FROM wishlist INNER JOIN seller_product_details ON 
                     wishlist.product_no = seller_product_details.product_no INNER JOIN seller ON  
-                    seller_product_details.seller_id = seller.seller_id WHERE wishlist.customer_id = :id ";
+                    seller_product_details.seller_id = seller.seller_id WHERE wishlist.customer_id = ".$_SESSION['cus_id']." ";
 
-            if(!empty($fdate) && !empty($tdate))
+            if($fdate != null && $tdate != null)
             {
-                $sql .= "AND DATE(wishlist.order_date_time) BETWEEN :from_date AND :to_date AND";
-                if(!empty($opt1))
+                $sql .= "AND DATE(wishlist.order_date_time) BETWEEN \"".$fdate."\" AND \"".$tdate."\"";
+                if($status != null)
                 {
-                    $sql .= " wishlist.status = 0 OR";
+                    $sql .= "AND  wishlist.status = ".$status;
                 }
-                elseif(!empty($opt2))
-                {
-                    $sql .= " wishlist.status = 1 OR";
-                }
-                elseif(!empty($opt3))
-                {
-                    $sql .= " wishlist.status = 2  OR";
-                }
-                elseif(!empty($opt4))
-                {
-                    $sql .= " wishlist.status = 3 OR";
-                }
-                elseif(!empty($opt5))
-                {
-                    $sql .= " wishlist.status = 4 OR";
-                }
-                if(empty($opt1) && empty($opt2) && empty($opt3) && empty($opt4) && empty($opt5) )
-                {
-                    $sql = rtrim($sql, 'AND');
-                }
-                else
-                {
-                    $sql = rtrim($sql, 'OR');
-                }  
-
             }
-            elseif(!empty($fdate) && empty($tdate))
+            elseif($fdate != null && $tdate == null)
             {
-                $sql .= "AND DATE(wishlist.order_date_time) > :from_date AND";
-                if(!empty($opt1))
+                $sql .= "AND DATE(wishlist.order_date_time) >= \"".$fdate."\"";
+                if($status != null)
                 {
-                    $sql .= " wishlist.status = 0 OR";
+                    $sql .= "AND wishlist.status = ".$status;
                 }
-                elseif(!empty($opt2))
-                {
-                    $sql .= " wishlist.status = 1 OR";
-                }
-                elseif(!empty($opt3))
-                {
-                    $sql .= " wishlist.status = 2  OR";
-                }
-                elseif(!empty($opt4))
-                {
-                    $sql .= " wishlist.status = 3 OR";
-                }
-                elseif(!empty($opt5))
-                {
-                    $sql .= " wishlist.status = 4 OR";
-                }
-                if(empty($opt1) && empty($opt2) && empty($opt3) && empty($opt4) && empty($opt5) )
-                {
-                    $sql = rtrim($sql, 'AND');
-                }
-                else
-                {
-                    $sql = rtrim($sql, 'OR');
-                } 
                
             }
-            elseif(empty($fdate) && !empty($tdate))
+            elseif($fdate == null && $tdate != null)
             {
-                $sql .= "AND DATE(wishlist.order_date_time) < :to_date AND (";
-                if(!empty($opt1))
+                $sql .= "AND DATE(wishlist.order_date_time) <= \"".$tdate."\"";
+                if($status != null)
                 {
-                    $sql .= " wishlist.status = 0 OR";
-                }
-                elseif(!empty($opt2))
-                {
-                    $sql.= " wishlist.status = 1 OR";
-                }
-                elseif(!empty($opt3))
-                {
-                    $sql .= " wishlist.status = 2  OR";
-                }
-                elseif(!empty($opt4))
-                {
-                    $sql .= " wishlist.status = 3 OR";
-                }
-                elseif(!empty($opt5))
-                {
-                    $sql .= " wishlist.status = 4 OR";
-                }
-                if(empty($opt1) && empty($opt2) && empty($opt3) && empty($opt4) && empty($opt5) )
-                {
-                    $sql = rtrim($sql, 'AND');
-                    $sql = rtrim($sql, '(');
-                }
-                else
-                {
-                    $sql = rtrim($sql, 'OR');
-                    $sql .= ")";
-                }
-                
+                    $sql .= "AND wishlist.status = ".$status;
+                }               
             }
-
-            $this->db->query($sql); 
-
-            if(!empty($fdate) && !empty($tdate))
+            elseif($fdate == null && $tdate == null)
             {
-                $this->db->bind(':from_date', $fdate);
-                $this->db->bind(':to_date', $tdate);
-            }
-            elseif(!empty($fdate) && empty($tdate))
-            {
-                $this->db->bind(':from_date', $fdate);
-            }
-            elseif(empty($fdate) && !empty($tdate))
-            {
-                $this->db->bind(':to_date', $tdate);
+                if($status != null)
+                {
+                    $sql .= "AND wishlist.status = ".$status;
+                } 
             }
             
-            $this->db->bind(':id', $_SESSION['cus_id']);
+            $this->db->query($sql); 
             $result = $this->db->resultSet();
 
             return $result;
+        }
+        public function isCustomerCollectOrder($id)
+        {
+            $sql = "SELECT * FROM wishlist WHERE product_no=:pro_id AND customer_id=:cus_id AND status=3";
+            $this->db->query($sql); 
+            $this->db->bind(':pro_id',$id);
+            $this->db->bind(':cus_id', $_SESSION['cus_id']);
+            $result = $this->db->singleRecord();
+            if($result)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }

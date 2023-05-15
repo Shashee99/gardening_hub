@@ -38,7 +38,7 @@
                
          </div>
          <div class="valbox" id="d3">
-               <img src="<?= URLROOT;?>/img/customer/pending-cart.png" alt="">
+               <img src="<?= URLROOT;?>/img/customer/time1.png" alt="">
                <div>
                   <h3><?= $data['pending_to_complete']; ?></h3>
                   <span>Pending To Complete</span>
@@ -83,13 +83,13 @@
 
                               $dateTime = new DateTime($dateString);
 
-                              $timeInterval = new DateInterval('P7DT19H29M'); // 23 hours and 59 minutes
+                              $timeInterval = new DateInterval('P'.$row->validate_time.'DT19H29M'); // 23 hours and 59 minutes
                               
                               $newDateTime = $dateTime->add($timeInterval);
                               //echo $newDateTime->format('Y-m-d H:i:s');
                               $currentDateTime = new DateTime();
                               $interval = $newDateTime->diff($currentDateTime);
-                              if($interval->format('%a')==0)
+                              if($interval->format('%a')<2)
                               {
                            ?>
                                  <td class="remaning_time fixed-column1" style="color:red" data-time=<?= $row->confirm_reject_date_time; ?> > <?=  $interval->format('%a days, %h hours, %i minutes'); ?></td>

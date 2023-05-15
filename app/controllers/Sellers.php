@@ -710,10 +710,10 @@ class Sellers extends Controller
     }
     }
 
-public function genarate_report(){
+    public function genarate_report(){
 
-    $this -> view('seller/genarate_report');
-}
+        $this -> view('seller/genarate_report');
+    }
 
     public function genarate_pdf(){
 
@@ -746,26 +746,31 @@ public function genarate_report(){
 
 
     }
-    public function isaddedreview($id)
-{
-    $result = $this->reviewMoel->isAddedSellerReview($id);
-    $result2 = $this->wishlistModel->isCustomerPurchaseProduct($id);
-    if($result)
+    public function isaddedreview()
     {
-        echo json_encode("true1", JSON_UNESCAPED_UNICODE); 
-    }
-    elseif($result2)
-    {
-        echo json_encode("true2", JSON_UNESCAPED_UNICODE); 
-    }
-    else
-    {
-        echo json_encode("true3", JSON_UNESCAPED_UNICODE); 
-    }
+        if($_SERVER['REQUEST_METHOD'] === 'POST')
+        {
+            $seller_id = $_POST['seller_id'];
 
+            $result = $this->reviewMoel->isAddedSellerReview($seller_id);
+            $result2 = $this->wishlistModel->isCustomerPurchaseProduct($seller_id);
+            if($result)
+            {
+                echo json_encode("true1", JSON_UNESCAPED_UNICODE); 
+            }
+            elseif(!$result2)
+            {
+                echo json_encode("true2", JSON_UNESCAPED_UNICODE); 
+            }
+            else
+            {
+                echo json_encode("false", JSON_UNESCAPED_UNICODE); 
+            }
 
-}
+        }
+        
 
+    }
 
 
     public function sellerprofile() {

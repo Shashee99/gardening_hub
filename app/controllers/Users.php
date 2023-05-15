@@ -35,22 +35,21 @@ class Users extends Controller
                 'confirm_pass' => trim($_POST['confirm_pass']),
                 'id' => trim($_POST['nic']),
                 'bod' => trim($_POST['birthday']),
-                'gs' => trim($_POST['gs_division']),
+                'lgt' => trim($_POST['longitude']),
                 'mobile' => trim($_POST['phone']),
                 'email' => trim($_POST['mail']),
-                'ds' => trim($_POST['dv_sec']),
-                'user_name' => trim($_POST['user_name']),
+                'lat' => trim($_POST['latitude']),
                 'password' => trim($_POST['password']),
                 'photo' => $_FILES['photo']['name'],
+                'privacy' => trim($_POST['privacy']),
                 'name_err' => '',
                 'address_err' => '',
                 'confirm_pass_err' => '',
                 'id_err' => '',
                 'bod_err' => '',
-                'gs_err' => '',
+                'location_err' => '',
                 'mobile_err' => '',
                 'email_err' => '',
-                'ds_err' => '',
                 'user_name_err' => '',
                 'password_err' => '',
                 'photo_err' => '',
@@ -60,6 +59,9 @@ class Users extends Controller
                 $data['name_err'] = 'Please enter name';
             } elseif (strlen($data['name']) < 5) {
                 $data['name_err'] = 'Name should at least 5 characters';
+            }
+            if (empty($data['lgt']) && empty($data['lat'])) {
+                $data['location_err'] = 'Please seletc your location';
             }
 
             if (empty($data['address'])) {
@@ -95,10 +97,6 @@ class Users extends Controller
                 $data['bod_err'] = 'Birthday should be bettween ' . (date("Y") - 100) . ' and ' . (date("Y") - 15);
             }
 
-            if (empty($data['gs'])) {
-                $data['gs_err'] = 'Please enter gramasewa division';
-            }
-
             if (empty($data['mobile'])) {
                 $data['mobile_err'] = 'Please enter mobile number';
             } elseif (!preg_match("/^[0]{1}+[1-9]{1}+[0-9]{8}$/", $data['mobile'])) {
@@ -110,10 +108,10 @@ class Users extends Controller
             } elseif (!preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/", $data['email'])) {
                 $data['email_err'] = 'Invalid email or email type';
             }
-
-            if (empty($data['ds'])) {
-                $data['ds_err'] = 'Please enter divisional secretary';
+            elseif ($this->userModel->findUser($data['email'])) {
+                $data['user_name_err'] = 'Email is already exits';
             }
+            
 
             if (empty($data['user_name'])) {
                 $data['user_name_err'] = 'Please enter user name';
@@ -136,12 +134,12 @@ class Users extends Controller
                 $data['photo_err'] = 'Image type should be png or jpeg or jpg';
             }
 
-            if (empty($data['privacy'])) {
+            if (($data['privacy']) == 1) {
                 $data['privacy_err'] = 'Please accept the privacy policy';
             }
 
             if (empty($data['name_err']) && empty($data['address_err']) && empty($data['password_err']) && empty($data['confirm_pass_err']) && empty($data['id_err']) && empty($data['mobile_err'])
-                && empty($data['bod_err']) && empty($data['gs_err']) && empty($data['email_err']) && empty($data['ds_err']) && empty($data['user_name_err']) && empty($data['photo_err'])) {
+                && empty($data['bod_err'])  && empty($data['email_err']) && empty($data['ds_err']) && empty($data['photo_err']) && empty($data['location_err'])) {
                 //die('Success');
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
                 // Photo upload
@@ -176,10 +174,10 @@ class Users extends Controller
                 'confirm_pass' => '',
                 'id' => '',
                 'bod' => '',
-                'gs' => '',
+                'lgt' => '',
+                'lat' => '',
                 'mobile' => '',
                 'email' => '',
-                'ds' => '',
                 'user_name' => '',
                 'password' => '',
                 'photo' => '',
@@ -189,10 +187,9 @@ class Users extends Controller
                 'confirm_pass_err' => '',
                 'id_err' => '',
                 'bod_err' => '',
-                'gs_err' => '',
+                'location_err' => '',
                 'mobile_err' => '',
                 'email_err' => '',
-                'ds_err' => '',
                 'user_name_err' => '',
                 'password_err' => '',
                 'photo_err' => '',
@@ -859,6 +856,8 @@ class Users extends Controller
         $_SESSION['cus_id'] = $data->user_id;
         $_SESSION['cus_name'] = $customer_details->name;
         $_SESSION['cus_photo_path'] = $customer_details->photo;
+        $_SESSION['lat'] = $customer_details->latitude;
+        $_SESSION['lng'] = $customer_details->longitude;
         $_SESSION['customer'] = 1;
 
     }
@@ -902,6 +901,8 @@ class Users extends Controller
             unset($_SESSION['cus_name']);
             unset($_SESSION['cus_photo_path']);
             unset($_SESSION['customer']);
+            unset($_SESSION['lat']);
+            unset($_SESSION['lng']);
             session_destroy();
             redirect('users/login');
         }

@@ -79,14 +79,6 @@
                         </div>
                     </div>
                     <div class="input-box">
-                        <span class="details">Grama Sewa Divison</span>
-                        <input id='<?php echo (!empty($data['gs_err'])) ? 'invalid' : ''; ?>'
-                        type="text" name="gs_division" value="<?php echo $data['gs']; ?>" placeholder="Enter your grama sewa division" >
-                        <div class="error">
-                            <span><?php echo $data['gs_err']; ?></span>
-                        </div>
-                    </div>
-                    <div class="input-box">
                         <span class="details">E mail</span>
                         <input id='<?php echo (!empty($data['email_err'])) ? 'invalid' : ''; ?>'
                         type="text" name="mail" value="<?php echo $data['email']; ?>" placeholder="Enter your mobile number" >
@@ -94,22 +86,15 @@
                             <span><?php echo $data['email_err']; ?></span>
                         </div>
                     </div>
-                    <div class="input-box">
-                        <span class="details">Divisional Secretary</span>
-                        <input id='<?php echo (!empty($data['ds_err'])) ? 'invalid' : ''; ?>'
-                        type="text" name="dv_sec" value="<?php echo $data['ds']; ?>" placeholder="Enter your divisional secretary" >
-                        <div class="error">
-                            <span><?php echo $data['ds_err']; ?></span>
-                        </div>
-                    </div>
-                    <div class="input-box">
+                    
+                    <!-- <div class="input-box">
                         <span class="details">User Name</span>
                         <input id='<?php echo (!empty($data['user_name_err'])) ? 'invalid' : ''; ?>'
                         type="text" name="user_name" value="<?php echo $data['user_name']; ?>" placeholder="Enter your user name " >
                         <div class="error">
                             <span><?php echo $data['user_name_err']; ?></span>
                         </div>
-                    </div> 
+                    </div>  -->
                     <div class="input-box">
                         <span class="details">Profile Photo</span>
                         <input type="file" name="photo" placeholder="Select a phohto" id='<?php echo (!empty($data['photo_err'])) ? 'invalid' : ''; ?>' >
@@ -118,10 +103,18 @@
                         </div>
                     </div> 
                     <div class="input-box">
+                        <label for="">Selecet Location</label>
+                        <div id="map">
 
+                        </div>
+                        <input type="hidden" name="latitude" id="latitude">
+                        <input type="hidden" name="longitude" id="longitude">
+                        <div class="error">
+                            <span><?php echo $data['location_err']; ?></span>
+                        </div>  
                     </div>
                     <div class="policy">
-                        <input type="checkbox" class="check" name="policy">
+                        <input type="checkbox" class="check" name="policy" value="1">
                         <label for="">I have clearly read the <a href="#">privacy policy </a> and i accept all the policies</label> 
                         <div class="error">
                             <span><?php echo $data['privacy_err']; ?></span>
@@ -137,5 +130,43 @@
             </form>
         </div>
     </div>
+
+    <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8YNc82y-3LAvVLgv_v7Mmi2EFjqNHQP0&callback=initMap" async defer></script>
+    <script>
+        var map;
+        var marker;
+        
+        function initMap() {
+            // Initialize the map centered on a default location
+            var defaultLocation = {lat: 6.66696, lng: 80.70479};
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: defaultLocation,
+                zoom: 8
+            });
+            
+            // Add a click listener to the map to set the marker
+            map.addListener('click', function(event) {
+                placeMarker(event.latLng);
+            });
+        }
+        
+        function placeMarker(location) {
+            // Remove the existing marker, if there is one
+            if (marker) {
+                marker.setMap(null);
+            }
+            
+            // Add a new marker at the selected location
+            marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+            
+            // Update the latitude and longitude hidden inputs with the selected location
+            document.getElementById('latitude').value = location.lat();
+            document.getElementById('longitude').value = location.lng();
+        }
+    </script>
 </body>
 </html>

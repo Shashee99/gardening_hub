@@ -1,8 +1,6 @@
 const complain_btn = document.getElementById("complain_btn");
 const form = document.querySelector(".complain_form");
-const err = document.getElementById("complain_err");
-
-console.log("Hello");
+const err = document.getElementById("max-err");
 
 complain_btn.addEventListener("click", function()
 {
@@ -33,3 +31,31 @@ complain_btn.addEventListener("click", function()
     httpRequest.send();
 
 });
+
+function complainValidate()
+{
+    let complain_txt = document.getElementById("complain");
+    let err = document.getElementById("complain_err");
+
+    if(complain_txt.value=="")
+    {
+        err.innerHTML = "Please enter the complain";
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+};
+function closemodal()
+{
+    let complain_txt = document.getElementById("complain");
+    let err = document.getElementById("complain_err");
+    const complain_btn = document.getElementById("complain_btn");
+    const form = document.querySelector(".complain_form");
+
+    complain_txt.value="";
+    err.innerHTML="";
+    complain_btn.style.display = "block";
+    form.style.display = "none";
+};

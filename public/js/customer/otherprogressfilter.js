@@ -26,6 +26,7 @@ selectMenu.addEventListener("change", function()
             {
                 for(let item of response)
                 {
+                    let description = item.description.replace(/\n/g, '<br>');
                     out += `
                         <div class="other-progress-card">
                             <div class="part1">
@@ -40,7 +41,7 @@ selectMenu.addEventListener("change", function()
                             </div>
                             <h3>${item.title}</h3>
                             <div class="content">
-                                <p>${item.description}</p>
+                                <p>${description}</p>
                             </div>
                             <div class="last">
             

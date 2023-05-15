@@ -55,6 +55,7 @@
 
         <?php flash("progress_add_successfuly"); ?>
         <?php flash("progress_update_successfuly"); ?>
+        <?php flash('progress_Delete_successfuly'); ?>
         
         <div class="my-progress-wrapper"> 
         <?php
@@ -76,7 +77,7 @@
                 </div>
                 <h3><?php echo $row['title']; ?></h3>
                 <div class="content">
-                    <p><?php echo $row['description']; ?></p>
+                    <p><?= nl2br($row['description']); ?></p>
                 </div>
                 <div class="last">
 
@@ -109,7 +110,7 @@
             else
             {
                 echo "<div class='empty_record' >";
-                echo "<h2>Rsecords Not Found</h2>";
+                echo "<h2>Records Not Found</h2>";
                 echo "</div>";
             }
             ?>

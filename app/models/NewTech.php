@@ -10,14 +10,14 @@ class NewTech
     }
     public function newtechnologies()
     {
-        $sql = "SELECT * FROM new_technology ";
+        $sql = "SELECT * FROM new_technology WHERE is_delete = 0 ";
         $this->db->query($sql);
         $row = $this->db->resultSet($sql);
         return $row;
     }
     public function newtechnologiesByCat($category)
     {
-        $sql = "SELECT * FROM new_technology WHERE category = :cat";
+        $sql = "SELECT * FROM new_technology WHERE category = :cat AND is_delete = 0";
         $this->db->query($sql);
         $this->db->bind(':cat', $category);
         $row = $this->db->resultSet($sql);
