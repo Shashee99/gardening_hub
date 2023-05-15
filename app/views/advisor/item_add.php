@@ -26,7 +26,7 @@
                                                 <option value="Vegetable plants">Vegetable plants </option>
                                                    <option value="Fruits plants">Fruits plants</option>
                                                    <option value="Flowers plants">Flowers plants</option>
-                                                   <option value="Bonzzy plants">Bonzzy plants</option>
+                                                   <option value="bonsai plants">Bonzzy plants</option>
                                                    <option value="Hybrid plants">Hybrid plants</option>
                                                    <option value="Others plants" >Others plants</option>
                                                 </select>
