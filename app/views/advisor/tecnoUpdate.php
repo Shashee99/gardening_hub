@@ -22,10 +22,13 @@
                                             <span>Select your category</span>
                                             <select name='category' class="type-cetagory"   value="<?php echo $data['catagory'];  ?>" >
                                                 <option value="" selected hidden><?php echo $data['catagory'];  ?></option>
-                                                <option value="vegetable">Vegetable</option>
-                                                <option value="fruits">Fruits</option>
-                                                <option value="flowers">Flowers</option>
-                                           </select>
+                                                <option value="Vegetable plants">Vegetable plants </option>
+                                                   <option value="Fruits plants">Fruits plants</option>
+                                                   <option value="Flowers plants">Flowers plants</option>
+                                                   <option value="Bonzzy plants">Bonzzy plants</option>
+                                                   <option value="Hybrid plants">Hybrid plants</option>
+                                                   <option value="Others plants">Others plants</option>
+                                               </select>
                                              <div class="error">
                                                 <span><?php echo $data['catagory_error'];  ?> </span>
                                              </div>

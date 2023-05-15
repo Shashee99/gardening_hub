@@ -21,10 +21,12 @@
                         <div class="add-item-div">
                                 <select name='category' onchange="getProducts();" id="category"   class="type-cetagory"  >
                                  <option value="" >All categories</option>   
-                                 <option value="vegetable">Vegetable </option>
-                                 <option value="fruits">Fruits</option>
-                                 <option value="flowers">Flowers</option>
-                                 <option value="others" >Others</option>
+                                 <option value="Vegetable plants">Vegetable plants </option>
+                                 <option value="Fruits plants">Fruits plants</option>
+                                 <option value="Flowers plants">Flowers plants</option>
+                                 <option value="Bonzzy plants">Bonzzy plants</option>
+                                 <option value="Hybrid plants">Hybrid plants</option>
+                                 <option value="Others plants" >Others plants</option>
                                 </select>
                          </div> 
                     </div>

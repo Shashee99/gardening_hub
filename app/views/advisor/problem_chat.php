@@ -9,11 +9,13 @@
             <div class="filtercontainer">
                 
                 <select name='category' id="category"   class="type-cetagory"  >
-                 <option value="all">Select categories</option>   
-                 <option value="vegetable">Vegetable </option>
-                 <option value="fruits">Fruits</option>
-                 <option value="flowers">Flowers</option>
-                 <option value="others" >Others</option>
+                 <option value="all">all categories</option>   
+                    <option value="vegetable">Vegetable plants </option>
+                    <option value="fruits">Fruits plants</option>
+                    <option value="flowers">Flowers plants</option>
+                    <option value="Bonzzy">Bonzzy plants</option>
+                    <option value="hybrid">Hybrid plants</option>
+                    <option value="others" >Others plants</option>
                 </select>
 
                 <select name="checked" id="replyornot">
